@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<input id="ipt1" type="" value="">
+	<input id="ipt2" type="" value="">
+	<button id="bt">compare</button>
+
+	<script type="text/javascript">
+		bt.onclick=function(){
+			if(ipt1.value==''||ipt2.value==''||isNaN(ipt1.value)||isNaN(ipt2.value))
+			{
+				alert('please input number');
+			}
+			else if(ipt1.value>ipt2.value)
+			{
+				alert(ipt1.value+'  large');
+			}
+			else if(ipt1.value<ipt2.value)
+			{
+				alert(ipt2.value+'  large');
+			}
+			else 
+			{
+				alert('require');
+			}
+
+			/*if(!ipt1.value||!ipt1.value)
+			{
+				alert('please input number');
+			}
+			else if(Number(ipt1.value)>Number(ipt2.value))
+			{
+				alert(ipt1.value+'  large');
+			}
+			else if(Number(ipt1.value)<Number(ipt2.value))
+			{
+				alert(ipt2.value+'  large');
+			}
+			else 
+			{
+				alert('require');
+			}*/
+		}
+		
+
+
+	</script>
+	
+</body>
+</html>

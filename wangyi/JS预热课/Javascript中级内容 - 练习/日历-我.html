@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 500px;height: 500px;border: 2px solid black;margin: 10px;font-size: 30px;}
+        #d2,#d3{width: 100%;height: 40px;float: left;font-size: 30px;text-align: center;margin-bottom: 10px;}
+        #prev{float: left;cursor: pointer;}#next{float: right;cursor: pointer;}
+        span{font-size: 30px;margin:0 10px;}
+        #d4{width:100%;height: 350px;float: left;}
+        #d3 span{margin:0 20px;}
+        .b{color: red;}
+        li{width: 70px;height: 50px; float: left;text-align: center;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2">
+            <span id="prev">prev</span>
+            <span class="a"></span>年<span class="a"></span>月<span class="a"></span>日
+            <span id="next">next</span>
+        </div>
+        <div id="d3">
+            <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span class="b">六</span><span class="b">日</span>
+        </div>
+        <ol id="d4">
+
+        </ol>
+    </div>
+</body>
+<script>
+    function two(i){return i>=0&&i<=9?'0'+i:i;}
+    function nextnyr(m1)
+    {
+        d4.innerHTML='';
+        var nd=new Date(); nd.setMonth(m1);  
+        var y=nd.getFullYear(),m=nd.getMonth(),d=two(nd.getDate()),xqj=nd.getDay(),ymd=String(y)+(m+1)+d,asp=document.getElementsByClassName('a');//console.log(y,m,d,y+m+d,ymd,y+String(m)+d);//xqj代表，这个月的几号是星期几
+        nd.setDate(1);xqj11=nd.getDay();//这个月的1号是星期几
+        asp[0].innerHTML=y,asp[1].innerHTML=two(m+1),asp[2].innerHTML=d;
+        nd.setMonth(m+2), nextmonthallday=nd.getDate(nd.setDate(0));xqj1=nd.getDay();//得到下个月的总天数，需要把月数设置为下下个月，日期设为0,xqj1代表，下个月最后一天是星期几
+        nd.setMonth(m+1);thismonthallday=nd.getDate(nd.setDate(0));xqj2=nd.getDay();//得到这个月的总天数，需要把月数设置为下个月，日期设为0，xqj2代表，这个月最后一天是星期几
+        
+
+        nd.setMonth(m);lastmonthallday=nd.getDate(nd.setDate(0));xqj3=nd.getDay();//得到上个月的总天数，需要把月数设置为这个月，日期设为0，xqj3代表，上个月最后一天是星期几
+        
+        console.log(nd,m,lastmonthallday,thismonthallday,nextmonthallday,xqj,xqj1,xqj2,xqj3,xqj11);
+  
+        if(xqj11==0)xqj11=7;
+        
+            //设置上个月的最后几天
+            for(var i=xqj11-1;i>0;i--)
+            {
+                var oli=document.createElement('li');
+                oli.innerHTML=lastmonthallday+1-i;
+                oli.style.color='#ccc';
+                d4.appendChild(oli);
+            }
+
+            //设置这个月的所有天
+            for(var i=0;i<thismonthallday;i++)
+            {
+                var oli=document.createElement('li');
+                oli.innerHTML=i+1;
+                d4.appendChild(oli);
+            }
+
+
+            for(var i=0;i<d4.children.length;i++)
+            {
+                if(i>=xqj11-1 && i%7==5||i%7==6)
+                {
+                    d4.children[i].style.color='red';
+                }
+            }
+
+            var ne=d4.children.length;
+            //设置下个月的前几天
+            for(var i=0;i<7-ne%7;i++)
+            {
+                var oli=document.createElement('li');
+                oli.innerHTML=i+1;
+                oli.style.color='#aaa';
+                d4.appendChild(oli);
+            }
+
+
+/*             //设置下个月的前几天
+            for(var i=0;i<7-xqj2;i++)
+            {
+                var oli=document.createElement('li');
+                oli.innerHTML=i+1;
+                oli.style.color='#aaa';
+                d4.appendChild(oli);
+            } */
+
+            //把周六日的背景变为黄色
+            for(i=0;i<d4.children.length;i++)
+            {
+                if(i%7==5||i%7==6)
+                {
+                    d4.children[i].style.background='yellow';
+                }
+            }
+
+    }
+
+
+    var nd=new Date(),m=nd.getMonth(); 
+    //var y=nd.getFullYear(),m=nd.getMonth(),d=two(nd.getDate());
+    nextnyr(m);
+
+    next.onclick=function(){
+        m++;
+        nextnyr(m);
+    }
+
+    prev.onclick=function(){
+        m--;
+        //if(m<0)m=12+m%12;console.log(m);
+        nextnyr(m);
+    }
+</script>
+</html>

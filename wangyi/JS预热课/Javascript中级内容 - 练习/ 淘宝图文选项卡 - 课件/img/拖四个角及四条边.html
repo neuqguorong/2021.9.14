@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{margin: 100px;background: #ccc;}
+        .jiao{width: 20px;height: 20px;background: red;}
+        .b{float: left;}
+        #d3,#d8{width: 20px;height: 260px;background: yellow;}
+        .bian{width: 260px;height: 20px;background: yellow;}
+        #d11{width: 260px;height: 100%;}
+        #d6{top: 260px;}
+        div{position:relative;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div class="b" id="d10">
+            <div id="d2" class="jiao"></div>
+            <div id="d3" class="bian"></div>
+            <div id="d4" class="jiao"></div>
+        </div>
+        <div class="b" id="d11">
+            <div id="d5" class="bian"></div>
+            <div id="d6" class="bian"></div>
+        </div>
+        <div class="b" id="d12">
+            <div id="d7" class="jiao"></div>
+            <div id="d8" class="bian"></div>
+            <div id="d9" class="jiao"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function getstyle(obj,name){
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[name];
+        }
+        else if(getComputedStyle)
+        {
+            return getComputedStyle(obj,false)[name];
+        }
+    }
+
+    d2.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX,t=ev.clientY,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height')),d6w=d6.offsetWidth,d8h=d8.offsetHeight;console.log(t);
+        document.onmousemove=function(e){
+            var ev=e||event;
+            var l1=ev.clientX-l,t1=ev.clientY-t;
+            l1>d6w?l1=d6w:l1=l1;
+            t1>d8h?t1=d8h:t1=t1;
+            //先上下拉
+            d1.style.top=t1+'px';
+            d1.style.height=h-t1+'px';
+            d3.style.height=d8.style.height=d8h-t1+'px';
+            d6.style.top=-t1+'px';
+
+            //再左右拉
+            d1.style.left=l1+'px';
+            d1.style.width=w-l1+'px';
+            d5.style.width=d6.style.width=d6w-l1+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+    d4.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX,t=ev.clientY,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height')),d6w=d6.offsetWidth,d8h=d8.offsetHeight;console.log(t);
+        document.onmousemove=function(e){
+            var ev=e||event;
+            var l1=ev.clientX-l,t1=ev.clientY-t;
+            l1>d6w?l1=d6w:l1=l1;
+            t1<-d8h?t1=-d8h:t1=t1;
+            //先上下拉
+            d1.style.height=h+t1+'px';
+            d3.style.height=d8.style.height=d8h+t1+'px';
+            d6.style.top=+t1+'px';
+
+            //再左右拉
+            d1.style.left=l1+'px';
+            d1.style.width=w-l1+'px';
+            d5.style.width=d6.style.width=d6w-l1+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+    d7.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX,t=ev.clientY,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height')),d6w=d6.offsetWidth,d8h=d8.offsetHeight;console.log(t);
+        document.onmousemove=function(e){
+            var ev=e||event;
+            var l1=ev.clientX-l,t1=ev.clientY-t;
+            l1<-d6w?l1=-d6w:l1=l1;
+            t1>d8h?t1=d8h:t1=t1;
+            //先上下拉
+            d1.style.top=t1+'px';
+            d1.style.height=h-t1+'px';
+            d3.style.height=d8.style.height=d8h-t1+'px';
+            d6.style.top=-t1+'px';
+
+            //再左右拉
+            d1.style.width=w+l1+'px';
+            d5.style.width=d6.style.width=d6w+l1+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+    d9.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX,t=ev.clientY,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height')),d6w=d6.offsetWidth,d8h=d8.offsetHeight;//console.log(w,h,this.offsetLeft);
+        document.onmousemove=function(e){
+            var ev=e||event;
+            var l1=ev.clientX-l,t1=ev.clientY-t;
+            l1<-d6w?l1=-d6w:l1=l1;
+            t1<-d8h?t1=-d8h:t1=t1;
+            //d7.style.left=d8.style.left=d9.style.left=l1+'px';
+            //d6.style.top=t1+'px';
+            d1.style.width=w+l1+'px';
+            d1.style.height=h+t1+'px';
+            d5.style.width=d6.style.width=d6w+l1+'px';
+            d3.style.height=d8.style.height=d8h+t1+'px';//console.log(l1,t1);
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+/*     d6.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX,t=ev.clientY,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height')),d6w=d6.offsetWidth,d8h=d8.offsetHeight;//console.log(w,h,this.offsetLeft);
+        document.onmousemove=function(e){
+            var ev=e||event,l1=ev.clientX-l,t1=ev.clientY-t;
+            t1<-d8h?t1=-d8h:t1=t1;
+            d6.style.top=t1+'px';
+            d1.style.height=h+t1+'px';
+            d3.style.height=d8.style.height=d8h+t1+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    } */
+</script>
+</html>

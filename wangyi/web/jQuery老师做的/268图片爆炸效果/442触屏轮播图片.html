@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        body,html{height: 100%;background: black;}
+        ul{width: 400%;height: 100%;position: absolute;}
+        ul li{width: 25%;height: 100%;float: left;display: -webkit-box;-webkit-box-pack: center;-webkit-box-align: center;}
+        ul li img{max-width: 100%;max-height: 100%;}
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li><img src="1.jpg"></li>
+        <li><img src="2.jpg"></li>
+        <li><img src="3.jpg"></li>
+        <li><img src="4.jpg"></li>
+    </ul>
+</body>
+
+<script>
+    var ali=document.getElementsByTagName('li');
+    var l=t=drag=0;
+    for(var i=0;i<ali.length;i++)
+    {
+        document.addEventListener('touchstart',function(e){
+            //e.preventDefault();
+            l=e.touches[0].clientX-this.offsetLeft;
+            t=e.touches[0].clientY-this.offsetTop;
+            drag=1;
+        },false);
+        document.addEventListener('touchmove',function(e){
+            //e.preventDefault();
+            newl=e.touches[0].clientX-l;
+            newt=e.touches[0].clientY-t;
+            newl<0?newl=0:newl;
+            if(newl>30 && newl<innerWidth)
+            {
+                ul.style.left=-(i+1)*innerWidth;//如果当前li右滑在30到屏幕宽度之间，让ul右移一个屏幕宽度，使得下一张图片出来。
+            }
+        },false);
+
+        document.addEventListener('touchend',function(){
+            drag=0;
+        },false)
+    }
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        .b{background: red;}
+        .a{background: red;display:block;}
+        div{width: 200px;height: 200px;font-size: 100px;display: none;}
+    </style>
+</head>
+<body>
+    <input type="button" value="1" class="b">
+    <input type="button" value="2">
+    <input type="button" value="3">
+    <div class="a">1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+<script>
+/*     for(var i=0;i<$('input').length;i++)
+    {
+        $('input').eq(i).attr('index',i);
+        $('input').eq(i).click(function(){
+            console.log($(this).attr('index'));
+            $('input,div').removeClass('a b');
+            $(this).addClass('b');
+            $('div').eq($(this).attr('index')).addClass('a');
+
+        })
+    } */
+
+    $('input').click(function(){
+        $('input,div').removeClass('a b');
+        $(this).addClass('b');
+        $('div').eq($(this).index()).addClass('a');
+    });
+
+    //$('div').wrap($('<div></div>'));
+</script>
+</html>

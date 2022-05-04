@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1,#p1{width: 200px;height: 200px;background: red;margin: 300px;; position:relative;}
+    </style>
+</head>
+<body>
+    <div id="d1">1
+        <div id="d2">2</div>
+    </div>
+    <input id="ipt">
+    <p id="p1"></p>
+</body>
+<script>
+    d1.onclick=function(){
+        console.log(1);
+    }
+    d1.addEventListener('click',function(){console.log(2);});
+    function a(){console.log('mouseover');d1.removeEventListener('mouseover',a);}
+    d1.addEventListener('mouseover',a);
+    d2.addEventListener('click',function(){console.log(3);},false);//最后一个参数为false，事件处理默认是在事件冒泡阶段（从内层具体元素向外层传播），子级的事件，父级不会有。
+    d2.addEventListener('click',function(){console.log(4);},true);//最后一个参数为false，事件处理默认是在事件捕获阶段（从外层具体元素向内层传播），子级的事件，父级不会有。事件捕获是不能被阻止的，否则定位不到具体的元素；
+    d2.addEventListener('click',function(){console.log(5);},true);//45312
+
+    //阻止事件冒泡，需要给子级元素添加事件监听，阻止事件冒泡函数
+    for(var i=0;i<d1.children.length;i++)
+    {
+        d1.children[i].addEventListener('click',function(e){
+            e.stopPropagation();
+        })
+    }//453
+
+    //以上代码，点击d1，打印12，点击d2,打印453
+
+/*     onkeydown=function(){
+        console.log(event.keyCode);
+    } */
+    ipt.onkeydown=function(){
+        if(event.keyCode>=48 && event.keyCode<=57 || event.keyCode==8)
+        {
+            console.log(1);
+        }
+        else{
+            return false;
+        }
+    }
+
+    var le=to=0,t=null;console.log(le,to);
+    onkeydown=function(){
+        clearInterval(t);
+
+        switch(event.key){
+            case 'd':t=setInterval(function(){le++;},1);break;
+            case 'a':t=setInterval(function(){le--;},1);break;
+            case 'w':t=setInterval(function(){to--;},1);break;
+            case 's':t=setInterval(function(){to++;},1);break;
+        }
+        p1.style.left=le+'px';
+        p1.style.top=to+'px';
+
+/*         if(event.key=='d')//让p1右移
+        {
+            t=setInterval(function(){
+                le++;
+                p1.style.left=le+'px';
+            },1);
+        }
+
+        if(event.key=='s')//让p1下移
+        {
+            t=setInterval(function(){
+                to++;
+                p1.style.top=to+'px';
+            },1);
+        }
+
+        if(event.key=='w')//让p1上移
+        {
+            t=setInterval(function(){
+                to--;
+                p1.style.top=to+'px';
+            },1);
+        }
+
+        if(event.key=='a')//让p1左移
+        {
+            t=setInterval(function(){
+                le--;
+                p1.style.left=le+'px';
+            },1);
+        } */
+        onkeyup=function(){
+            clearInterval(t);
+        }
+    } 
+
+    setTimeout(function(){d1.style.left='-100px';},1000)
+    
+
+  
+</script>
+</html>

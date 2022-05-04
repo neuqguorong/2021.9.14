@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+
+<script>
+    document.body.innerHTML='<canvas id="canvas" width="600px" height="600px"></canvas>';
+    var canva=document.getElementById('canvas');
+    var ctx=canva.getContext('2d');
+
+    //画棋盘，15*15的线
+    ctx.beginPath();
+    for(var i=0;i<15;i++)
+    {
+        ctx.moveTo(15,15+i*30);
+        ctx.lineTo(435,15+i*30);
+        ctx.moveTo(15+i*30,15);
+        ctx.lineTo(15+i*30,435);  
+    }
+    ctx.stroke();
+
+    //画棋子，在每个交点位置附近，画黑子或者白子
+    //先用空数组存起来棋盘上所有点的位置
+    var chessboard=[];
+    var wins=[],winsheng=[],winsshu=[],winsyoushang=[],winszuoxia=[];//赢法数组
+    var count=0;//一共有多少种数组
+    var mywin=[];//赢法统计数组
+
+    //棋盘每个点处，没有棋子时，用0表示，1表示有棋子,,,初始化赢法数组
+    for(var i=0;i<15;i++)
+    {
+        chessboard[i]=[];
+        wins[i]=[];
+        for(var j=0;j<15;j++)
+        {
+            chessboard[i][j]=0;
+            wins[i][j]=[];
+        }
+    }
+
+    //每个点，如果横着赢，有多少种赢法
+    for(var i=0;i<11;i++)
+    {
+        for(var j=0;j<15;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i+k][j][count]=true;
+            }
+            count++;
+        }
+    }
+    
+
+     //每个点，如果竖着赢，有多少种赢法
+    for(var i=0;i<15;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i][j+k][count]=true;
+            }
+            count++;
+        }
+    }
+    
+    //每个点，如果向右下角斜着赢，有多少种赢法
+    for(var i=0;i<11;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i+k][j+k][count]=true;
+            }
+            count++;
+        }
+    }
+
+    //每个点，如果向左下角斜着赢，有多少种赢法
+    for(var i=4;i<15;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i-k][j+k][count]=true;
+            }
+            count++;
+        }
+    }
+    console.log(count);//一共572种赢法
+
+    //先让mywin置0，就是每个棋子的赢法，开始都为0，当有一个棋子的赢法达到5时，说明赢了
+    for(var i=0;i<count;i++)
+    {
+        mywin[i]=0;
+    }
+
+    //落棋子
+    canvas.onclick=function(e){
+        var i=Math.floor(e.offsetX/30);
+        var j=Math.floor(e.offsetY/30);//console.log(i,j);
+        if( chessboard[j][i]==1)
+        {
+            alert('那个位置有子了，请在其他地方落子');
+            return;
+        }
+        ctx.beginPath();
+        ctx.arc(15+i*30,15+j*30,13,0,2*Math.PI);
+        var grd=ctx.createRadialGradient(15+i*30,15+j*30,13,17+i*30,13+i*30,1);
+        grd.addColorStop(0,'black');
+        grd.addColorStop(1,'white');
+        ctx.fillStyle=grd;
+        ctx.fill();
+        ctx.stroke();
+        chessboard[j][i]=1;console.log(chessboard);
+        for(var k=0;k<count;k++)
+        {
+            if(wins[i][j][k])//每个棋子的所有赢法中，只要有一种赢法符合，就让mywin[k]加1
+            {
+                mywin[k]++;//mywin是计算这种赢法上有多少棋子，当这种赢法上有5个棋子时，就按照这种赢法赢了。
+                if(mywin[k]==5)
+                {
+                    alert('您赢了');
+                }
+            }
+
+            
+        }
+        computerai();
+    }
+
+    function computerai(){
+        var myscore=[];//储存每个棋子的相邻位置的危险度，危险度为1，危险较小，危险度为4，危险很大，选择危险度最高的位置，落子
+        var max=0,u=0,v=0;//max保存最大危险度，u v 保存最大危险度的横纵坐标
+        for(var i=0;i<15;i++)//先把储存危险度的数组，全部置零
+        {
+            myscore[i]=[];
+            for(j=0;i<15;j++)
+            {
+                myscore[i][j]=0;
+            }
+        }
+
+        for(var i=0;i<15;i++)
+        {
+            for(j=0;i<15;j++)
+            {
+                if(chessboard[i][j]==0)//当棋盘上有棋子了，计算这个棋子的周围棋子的危险度，
+                {
+                    for(var k=0;k<count;k++)
+                    {
+                        if(wins[i][j][k])
+                        {
+                            switch(mywin[k]){
+                                case 1:myscore[i][j]=1;break;
+                                case 2:myscore[i][j]=2;break;
+                                case 3:myscore[i][j]=3;break;
+                                case 4:myscore[i][j]=4;break;
+                            }
+                        }
+                    }
+                }
+                if(myscore[i][j]>max)
+                {
+                    max=myscore[i][j];
+                    u=i;
+                    v=j;
+                }
+            }
+        }
+
+        ctx.beginPath();
+        ctx.arc(15+u*30,15+v*30,13,0,2*Math.PI);
+        var grd=ctx.createRadialGradient(15+u*30,15+v*30,13,17+u*30,13+v*30,1);
+        grd.addColorStop(0,'white');
+        grd.addColorStop(1,'black');
+        ctx.fillStyle=grd;
+        ctx.fill();
+        ctx.stroke();
+
+        chessboard[u][v]=2;
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='text'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src='angular.js'></script>
+</head>
+<body ng-controller='const'>
+    <div>{{t|date:'yyyy年MM月dd日 HH:mm:ss'}}</div>
+</body>
+
+<script>
+    var app=angular.module('text',[]);
+    app.controller('const',function($scope,$interval){
+        $scope.t=new Date().getTime();
+        $interval(function(){
+            $scope.t=new Date().getTime();
+        },1000)
+    })
+</script>
+</html>

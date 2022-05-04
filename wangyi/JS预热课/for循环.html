@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<script type="text/javascript">
+		var d=document.getElementsByTagName('div');
+		for(var i=0;i<d.length;i++)
+		{
+			d[i].innerHTML=i;
+			if(i%2==0)
+			{
+				continue;
+			}
+			else
+			{
+				d[i].style.background='red';
+			}
+			if(i==7)
+			{
+				break;
+			}
+		};
+
+
+		/*onclick=function(){
+			d[0].style.background='green';
+			var i=0;
+			while(i<d.length)
+			{
+				i++;
+				if(i==3)
+				{
+					continue;
+				}
+				d[i].style.width='100px';
+				if(i==5)
+					break;
+			}
+		}
+*/
+			/*	onclick=function(){
+			for(var i=0;i<d.length;i++)
+			{
+				d[i].style.background='green';
+			};
+		};*/
+
+		/*onclick=function(){
+			var i=0;
+			do{
+				d[i].style.width='200px';
+				i++;
+			}
+			while(i<d.length)
+		}*/
+
+		/*var i=4;
+		switch(i)
+		{
+			case 0:alert(1);break;
+			case 1:alert(2);break;
+			default:alert(3);break;
+		}*/
+
+		/*var i=-1;
+		onclick=function(){
+			i++;
+			switch(i)
+			{
+				case 0:alert('天气不错');break;
+				case 1:alert('fawefaasg');break;
+				default:alert('bxbesrse');break;
+			}
+		}*/
+
+		//switch穿透
+		/*var i=-1;
+		onclick=function(){
+			i++;
+			switch(i)
+			{
+				case 0:alert('天气不错');
+				case 1:alert('fawefaasg');
+				default:alert('bxbesrse');break;
+			}
+		}*/
+
+		/*var i=0,j=1;
+		if(i==0 && j!=2)
+			alert(1);*/
+
+		
+	</script>
+</body>
+</html>

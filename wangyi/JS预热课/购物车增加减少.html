@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+	<button id="b1">-</button>
+	<span id="s">0</span>
+	<button id="b2">+</button>
+	<script type="text/javascript">
+		var b1=document.getElementById('b1'),b2=document.getElementById('b2'),s=document.getElementById('s'),a=0;
+		b2.onclick=function(){
+			a=a+1;
+			s.innerHTML=a;
+		};
+		b1.onclick=function(){
+			if(a==0)
+			{
+				s.innerHTML=0;
+			}
+			else
+			{
+				a=a-1;
+				s.innerHTML=a;
+			}
+			
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='jquery-1.9.1.min.js'></script> 
+</head>
+<body>
+<script type="text/javascript">
+	
+
+$.extend({
+	'fuerdai':function(){
+		alert(1);
+	},
+	'qiongerdai':function(){
+		return {x:innerWidth,y:innerHeight};
+	},
+	'random':function(){
+		return Math.random();
+	}
+})
+
+alert($.random());
+
+</script>
+</body>
+</html>

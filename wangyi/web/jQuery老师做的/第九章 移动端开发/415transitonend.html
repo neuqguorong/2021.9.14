@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 200px;height: 200px;background: black;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px;transition: 0.5s;}
+        #d1:active{transform:rotate(90deg);} 
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+
+<script>
+    d1.addEventListener('transitionend',function(){
+        if( d1.style.background=='red')
+        {
+            d1.style.transform='rotate(0deg)';
+            d1.style.background='black';
+        }
+        else{
+            d1.style.background='red';
+        }
+        
+    })
+</script>
+</html>

@@ -1,0 +1,106 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>js图片展示 - leo</title>
+<script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+<link href="style/zns_style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="automatic">
+
+	<div class="prev_div"></div>
+    <a class="prev" href="###">
+        <span class="ico1"></span>
+        <span class="ico"></span>
+        <span class="txt"></span>
+    </a>
+	
+	<div class="next_div"></div>
+    <a class="next" href="###">
+        <span class="ico1"></span>
+        <span class="ico"></span>
+        <span class="txt"></span>
+    </a>
+
+	<div class="line"></div>
+
+    <ul>
+        <li class="pos_0"><a href="http://www.zhinengshe.com"><img src="images/8.jpg" width="100" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_1"><a href="http://www.zhinengshe.com"><img src="images/1.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_2"><a href="http://www.zhinengshe.com"><img src="images/2.jpg" width="510" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_3"><a href="http://www.zhinengshe.com"><img src="images/3.jpg" width="680" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_4"><a href="http://www.zhinengshe.com"><img src="images/4.jpg" width="510" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_5"><a href="http://www.zhinengshe.com"><img src="images/5.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_6"><a href="http://www.zhinengshe.com"><img src="images/6.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_6"><a href="http://www.zhinengshe.com"><img src="images/7.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+    </ul>
+
+</div>
+<p id="footer"><a href="javascript:;">leo</a></p>
+
+<script type="text/javascript">
+    
+
+    var leo = {
+        'left':[],
+        'top':[],
+        'z':[],
+        'opa':[],
+        'w':[],
+        'h':[]
+    };
+
+    var allLi = $('ul > li');
+
+    for(var i = 0;i < allLi.length;i++){
+        leo.left.push(allLi.eq(i).css('left'));
+        leo.top.push(allLi.eq(i).css('top'));
+        leo.z.push(allLi.eq(i).css('zIndex'));
+        leo.opa.push(allLi.eq(i).css('opacity'));
+        leo.w.push(allLi.eq(i).css('width'));
+        leo.h.push(allLi.eq(i).css('height'));
+    };
+
+    for(var i = 0;i < allLi.length;i++){
+        allLi.eq(i).css({
+            'width':leo.w[i],
+            'height':leo.h[i]
+        })
+    };
+
+    $('img').width('100%');
+
+    //console.log(leo)
+    var t = true;
+   $('.prev_div').click(function(){
+    if(!t)return;
+    t = false;
+        leo.left.push(leo.left.shift());
+        leo.top.push(leo.top.shift());
+        leo.z.push(leo.z.shift());
+        leo.opa.push(leo.opa.shift());
+        leo.w.push(leo.w.shift());
+        leo.h.push(leo.h.shift());
+        for(var i = 0;i < allLi.length;i++){
+            allLi.eq(i).css({
+                'zIndex': leo.z[i]
+            });
+            allLi.eq(i).stop().animate({
+                'left':leo.left[i],
+                'top':leo.top[i],
+                'opacity':leo.opa[i],
+                'width':leo.w[i],
+                'height':leo.h[i]
+            },500,function(){
+                t = true;
+            });
+        }
+
+   });
+
+</script>
+</body>
+</html>

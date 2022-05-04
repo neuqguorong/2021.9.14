@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#div1{width: 510px;height: 510px;border: 1px solid black;}
+		div{float: left;width: 170px;height: 170px;}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<input type="button" value="more dice">
+	<input type="button" value="shake dice">
+	<input type="button" value="less dice">
+	<input type="button" value="stop">
+	<p><span id="ospan">0</span> :dice</p>
+	<p>total: <span id="ospan2">0</span></p>
+	
+
+	<script type="text/javascript">
+		var aipt=document.getElementsByTagName('input');
+		var ospanvalue=0;
+		var ospan2value=0;
+		var t=null;
+		function random(n,m)
+		{
+			return parseInt(Math.random()*(m-n))+n;
+		}
+		aipt[0].onclick=function(){
+			var div=document.createElement('div');
+			ospan2value++;
+			var rnd=random(1,7);
+			//console.log(rnd);
+			ospanvalue+=rnd;
+			div.innerHTML='<img src='+rnd+'.png>';
+			div.setAttribute('ran',rnd);
+			div1.appendChild(div);
+			ospan.innerHTML=ospanvalue;
+			ospan2.innerHTML=ospan2value;
+		}
+		
+		aipt[2].onclick=function(){
+			ospan2value--;
+			//console.log(div1.children[div1.children.length-1].getAttribute('ran'));
+			ospanvalue=ospanvalue-(div1.children[div1.children.length-1].getAttribute('ran'));
+			div1.children[div1.children.length-1].remove();
+			ospan.innerHTML=ospanvalue;
+			ospan2.innerHTML=ospan2value;
+		}
+		aipt[1].onclick=function(){
+			clearInterval(t);
+			t=setInterval(function(){
+				for(var i=0;i<div1.children.length;i++)
+				{
+					var rnd=random(1,7);
+					div1.children[i].setAttribute('ran',rnd);
+					div1.children[i].innerHTML='<img src='+rnd+'.png>';
+					ospanvalue+=rnd;
+					ospan.innerHTML=ospanvalue;
+				}
+				/*for(var i=0;i<div1.children.length;i++)
+				{
+					ospanvalue+=Number(div1.children[i].getAttribute('ran'));
+				}
+				ospan.innerHTML=ospanvalue;*/
+				ospanvalue=0;
+			},30)
+		}
+		aipt[3].onclick=function(){
+			clearInterval(t);
+		}
+	</script>
+</body>
+</html>

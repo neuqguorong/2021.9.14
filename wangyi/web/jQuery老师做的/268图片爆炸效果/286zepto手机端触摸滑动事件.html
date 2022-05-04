@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src='jquery-1.9.1.min.js'></script>
+    <style>
+        .l{width: 200px;height: 200px;background:black;position: absolute;}
+    </style>
+</head>
+<body>
+    <div id="l" class="l"></div>
+    <input id="ipt">
+</body>
+<script>
+    $('<div></div>').appendTo('body');//给body插入生成的div
+    console.log($('div'));
+
+    //手机端点击事件tap
+    $('div').eq(1).addClass('l').on({
+        'tap':function(){
+            alert($('div').eq(1).css('background'));
+        },
+        'longTap':function(){
+            alert('longTap');
+        },
+        'swipeLeft':function(){
+            alert('swipeLeft');
+        },
+        'swipeUp':function(){
+            s(this).css('width','100px','top','100px');
+        },
+        'swipeDown':function(){
+            s(this).css('width','300px','top','0px');
+        },
+    });
+
+    l.addEventListener('longTap',function(){alert('longTap')});
+
+    //电脑端,手机端 点击事件click
+/*     $('div').addClass('l').on({
+        'click':function(){
+            //alert($('div').css('background'));//rgb(0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box
+            alert($(this).css('background'));//rgb(0, 0, 0) none repeat scroll 0% 0% / auto padding-box border-box
+            //alert(getComputedStyle($('div')[0]));//[object CSSStyleDeclaration]
+        }
+    }); */
+
+    //以下三个是移动端用得多的，触摸开始，触摸移动，触摸结束
+    //原生写法
+    //l.addEventListener('touchstart',function(){alert(1)});
+    //l.addEventListener('touchmove',function(){alert(2)});
+    //l.addEventListener('touchend',function(){alert(3)});
+
+/*     onblur=function(){
+        document.title='您离开了';
+    }//onblur:离开页面
+    onfocus=function(){
+        document.title=':)您回来了';
+    }//onfocus:回到页面
+
+    /* ipt.onchange=function(){
+        alert(1);
+    }   */ //input内容改变的时候，弹出1
+    /*ipt.oninput=function(){
+        alert(1);
+    }//input输入内容的时候，弹出1 */
+
+</script>
+</html>

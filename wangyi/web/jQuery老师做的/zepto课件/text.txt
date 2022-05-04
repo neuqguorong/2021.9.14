@@ -1,0 +1,65 @@
+calc 是css里面计算公式 支持 ＋ － ＊ ／
+
+-webkit-box-pack:center 左右在中心
+-webkit-box-align:center; 上下
+
+display: -webkit-box; 只传递第一级子级
+
+vw / vh
+vw = 1%浏览器的 width
+vh = 1%浏览器的 height
+
+viewport
+
+classList
+完全控制class的一个api
+
+add 添加一个类 如果有 就不添加了 没有就添加
+remove 移除一个类 如果没有就不移除了
+toggle 切换类 如果有就删除 如果没有就给与
+contains 判断类 如果元素有这个类 就返回true 没有就返回 false
+
+document.querySelector 他只找到符合条件的第一个 里面可以放 任何 css 选择器
+querySelectorAll 符合条件都会选中
+
+
+zepto 移动端 的jquery
+不兼容低级浏览器
+api 几乎和jquery 一摸一样
+
+click
+onmousedown
+onmouseup
+onmouseover
+onmouseout
+onmouseleave
+onmousemove
+onmouseenter
+dbclick
+keydown
+keyup
+onfocus
+onblur
+onresize
+onload
+onunload
+
+oninput
+onchange
+onsubmit
+
+onreset
+onscroll
+
+touchstart
+touchamove
+touchend
+
+移动端 虽然支持的css3 比较多 但是性能不如pc 
+pc的处理器比手机要快很多
+
+在手机上尽量使用 transition animation gpu加速
+
+Math.floor 向下取整
+Math.abs 没有负数 如果是负数就变成负数
+Math.PI 圆周率

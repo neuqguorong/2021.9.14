@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+/*	    p{float: left;}
+	    img{float: left;}
+	    input{float: left;}
+	    span{float: left;}*/
+		.hide{display: none;}
+	</style>
+</head>
+<body>
+	<div>
+		<h2>Category name</h2>
+		<ul>
+			<li>
+				<p id="p1">teachear online class</p>
+				<img id="pen1" src="pen.png" alt="pen">
+				<input id="ipt1" type="text" name="" value="">
+				<span class="save">save</span>
+				<span class="cancel">cancel</span>
+			</li>
+			<li>
+				<p>techear online class</p>
+				<img src="pen.png" alt="pen">
+				<input type="text" name="">
+				<span>save</span>
+				<span>cancel</span>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var allp=document.getElementsByTagName('p');
+		var allimg=document.getElementsByTagName('img');
+		var allinput=document.getElementsByTagName('input');
+		var allspan=document.getElementsByTagName('span');
+		var allsave=document.getElementsByClassName('save');
+		var allcancel=document.getElementsByClassName('cancel');
+		//先让input save cancel 隐藏
+		for(var i=0;i<allinput.length;i++)
+		{
+			allinput[i].classList.add('hide');
+		}
+		for(var i=0;i<allspan.length;i++)
+		{
+			allspan[i].classList.add('hide');
+		}
+
+		for(var i=0;i<allimg.length;i++)
+		{
+			allimg[i].onclick=function(){
+				this.classList.add('hide');
+				this.parentNode.children[0].classList.add('hide');
+				this.parentNode.children[2].classList.remove('hide');
+				this.parentNode.children[3].classList.remove('hide');
+				this.parentNode.children[4].classList.remove('hide');
+				this.parentNode.children[2].value=this.parentNode.children[0].innerHTML;
+			};
+		}
+
+		for(var i=0;i<allsave.length;i++)
+		{
+			allsave[i].onclick=function(){
+				this.classList.add('hide');
+				this.parentNode.children[0].classList.remove('hide');
+				this.parentNode.children[1].classList.remove('hide');
+				this.parentNode.children[2].classList.add('hide');
+				this.parentNode.children[4].classList.add('hide');
+				this.parentNode.children[0].innerHTML=this.parentNode.children[2].value;
+			};
+		}
+
+		for(var i=0;i<allcancel.length;i++)
+		{
+			allcancel[i].onclick=function(){
+				this.classList.add('hide');
+				this.parentNode.children[0].classList.remove('hide');
+				this.parentNode.children[1].classList.remove('hide');
+				this.parentNode.children[2].classList.add('hide');
+				this.parentNode.children[3].classList.add('hide');
+			};
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		/*pen1.onclick=function(){
+			p1.style.display='none';
+			pen1.style.display='none';
+			ipt1.style.display='inline';
+			save.style.display='inline';
+			cancel.style.display='inline';
+
+			save.onclick=function(){
+				p1.innerHTML=ipt1.value;
+				p1.style.display='inline';
+				pen1.style.display='inline';
+				ipt1.style.display='none';
+				save.style.display='none';
+				cancel.style.display='none';
+			}
+			cancel.onclick=function(){
+				p1.style.display='inline';
+				pen1.style.display='inline';
+				ipt1.style.display='none';
+				save.style.display='none';
+				cancel.style.display='none';
+			}
+		}*/
+	</script>
+</body>
+</html>

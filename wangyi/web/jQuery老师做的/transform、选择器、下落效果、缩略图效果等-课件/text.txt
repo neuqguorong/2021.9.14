@@ -1,0 +1,57 @@
+css1 - width/height
+css2 - fixed…
+css3 - transform/transition…animation..keyfreams
+
+css3 ie 10- 不兼容
+transition 过渡 css3动画
+
+
+css3 手机上有 gpu 加速 
+手机尽量使用css3
+transform 2d动画
+scale(x倍数,y倍数)  /scaleX(倍数)/scaleY(倍数) 缩放
+
+
+perspective(800px)
+rotate  旋转 deg
+rotateX 沿着x轴旋转
+skew 扭曲
+skewX/skewY
+
+
+transform-style:preserve-3d; 
+3d空间
+translateX 横轴平移
+translateY 纵轴平移
+translateZ 3d平移
+
+transform-origin:透视点
+
+css3 选择器
+> 子集第一层的选择器
++ 兄弟选择  相邻的第一个 如有就给值没有就算了
+
+~ 下面的所有要找的元素都会给值
+:not 除了
+
+[iTarget]属性选择器
+[iTarget$=‘name’] 末尾必须是name值 的属性的元素
+[iTarget^=‘name’] 开头必须是name值 的属性的元素
+[iTarget=‘name’] 内容必须是name值 的属性的元素
+[iTarget*=‘name’] 只要内容有这个属性 的值就能选中
+
+
+相对第一个
+nth-child 
+选第几个 odd 奇数 even 偶数 也可以自己计算
+
+only-of-type 只有一个的
+
+last-of-type
+first-of-type 自己的第一个
+first-child
+last-child
+
+querySelector 会找到符合他条件的第一个
+
+querySelectorAll 

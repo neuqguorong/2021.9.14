@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 100px;height: 100px;background: black; margin:200px;}
+        #d2{width: 100px;height: 100px;background: green;position: absolute;left: 0;top: 0;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+<script>
+    d2.onmousedown=function(e){
+        var ev=e||event;
+        var l=ev.clientX-this.offsetLeft,t=ev.clientY-this.offsetTop,d2ol=d2.offsetLeft,d2ot=d2.offsetTop;
+        document.onmousemove=function(e){
+            var ev=e||event;
+            var l1=ev.clientX-l,t1=ev.clientY-t;console.log(l1,t1,d1.offsetLeft);
+            d2.style.left=l1+'px',d2.style.top=t1+'px';
+            if(l1>d1.offsetLeft-d2.offsetWidth-d2ol && l1<d1.offsetLeft+d1.offsetWidth && t1>d1.offsetTop-d2.offsetHeight-d2ot && t1<d1.offsetTop+d1.offsetHeight){
+                d1.style.background='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+            }
+/*             if(t1>d1.offsetTop-d2.offsetHeight-d2ot && t1<d1.offsetTop+d1.offsetHeight){
+                d1.style.background='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+            } */
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+</script>
+</html>

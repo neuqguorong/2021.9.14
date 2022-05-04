@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        input,#outspan{float: left;}
+        #load{width: 300px;height: 10px;border: 1px solid black;  border-radius:5px; position:relative;float: left;margin-top: 5px;float: left;}
+        #loadpoint{width:0%;height: 100%;border-radius: 5px;background:#ccc;position: relative;}
+        #volume{width: 10px;height: 150px;border:1px solid black;border-radius: 5px;float: left;margin-left: 3px;margin-top:-135px;position: relative;float: left; z-index: 2;}
+        #volumepoint{width: 10px;height: 10px;background: black;border-radius: 5px; position:relative;top: 140px;}
+        
+    </style>
+</head>
+<body>
+    <!-- <video controls autoplay src="不谓侠.mp4" loop></video> -->
+   <video id="video">
+       <source src='不谓侠.mp4'>
+   </video><br>
+
+<!--    <audio id="video">
+    <source src='天空之城.mp3'>
+   </audio><br> -->
+
+   <input id="ipt" type="button" value="play">
+   <span id="outspan">
+       <span id="s1">00:00</span>/<span id="s2">00:00</span>
+   </span>
+  
+   <div id="load">
+       <div id="loadpoint"></div>
+   </div>
+
+   <div id="volume">
+        <div id="volumepoint"></div>
+   </div>
+   <input id="iptloop" type="button" value="loop">
+   <input id="full" type="button" value="fullscreen">
+</body>
+
+<script>
+    onload=function(){
+        //s2.innerHTML=video.duration.toFixed(2);
+        if(parseInt(video.duration)>=0 && parseInt(video.duration)<=9)
+        {
+            s2.innerHTML='00:0'+parseInt(video.duration);                
+        }
+        else if(parseInt(video.duration)>=10 && parseInt(video.duration)<60)
+        {
+            s2.innerHTML='00:'+parseInt(video.duration);
+        }
+        else if(parseInt(video.duration)>=60 && parseInt(video.duration)<3600){
+                    
+        }
+    }
+  
+    var i=0;
+    ipt.onclick=function(){
+        if(i%2==0)
+        {
+            video.play();
+            ipt.value='pause';
+/*             video.addEventListener('timeupdate',function(){
+                s1.innerHTML=video.currentTime.toFixed(2);
+                s2.innerHTML=video.duration.toFixed(2);
+                loadpoint.style.width=(video.currentTime/video.duration)*100+'%';
+            },false) */
+
+
+            video.addEventListener('timeupdate',function(){
+                if(parseInt(video.currentTime)>=0 && parseInt(video.currentTime)<=9)
+                {
+                    s1.innerHTML='00:0'+parseInt(video.currentTime);
+                }
+                else if(parseInt(video.currentTime)>=10 && parseInt(video.currentTime)<60)
+                {
+                    s1.innerHTML='00:'+parseInt(video.currentTime);
+                }
+                else if(parseInt(video.currentTime)>=60 && parseInt(video.currentTime)<3600){
+
+                }
+
+                if(parseInt(video.duration)>=0 && parseInt(video.duration)<=9)
+                {
+                    s2.innerHTML='00:0'+parseInt(video.duration);
+                }
+                else if(parseInt(video.duration)>=10 && parseInt(video.duration)<60)
+                {
+                    s2.innerHTML='00:'+parseInt(video.duration);
+                }
+                else if(parseInt(video.duration)>=60 && parseInt(video.duration)<3600){
+                    
+                }
+                
+                loadpoint.style.width=(video.currentTime/video.duration)*100+'%';
+            },false)
+            
+        }
+        else{
+            video.pause();
+            ipt.value='play';
+        }
+        i++;
+    }
+
+    load.onclick=function(e){
+        var ev=e||event;
+        var bili=(ev.clientX-this.offsetLeft)/this.offsetWidth;
+        loadpoint.style.width=((ev.clientX-this.offsetLeft)/this.offsetWidth)*100+'%';
+
+        video.currentTime=video.duration*bili;
+        video.addEventListener('timeupdate',function(){
+            if(parseInt(video.currentTime)>=0 && parseInt(video.currentTime)<=9)
+                {
+                    s1.innerHTML='00:0'+parseInt(video.currentTime);
+                }
+                else if(parseInt(video.currentTime)>=10 && parseInt(video.currentTime)<60)
+                {
+                    s1.innerHTML='00:'+parseInt(video.currentTime);
+                }
+                else if(parseInt(video.currentTime)>=60 && parseInt(video.currentTime)<3600){
+
+                }
+
+                if(parseInt(video.duration)>=0 && parseInt(video.duration)<=9)
+                {
+                    s2.innerHTML='00:0'+parseInt(video.duration);
+                }
+                else if(parseInt(video.duration)>=10 && parseInt(video.duration)<60)
+                {
+                    s2.innerHTML='00:'+parseInt(video.duration);
+                }
+                else if(parseInt(video.duration)>=60 && parseInt(video.duration)<3600){
+                    
+                }
+
+                //s1.innerHTML=video.currentTime.toFixed(2);
+                //s2.innerHTML=video.duration.toFixed(2);
+                loadpoint.style.width=(video.currentTime/video.duration)*100+'%';
+            },false)
+    }
+
+    volume.onclick=function(e){
+        var ev=e||event;
+        console.log(ev.clientY);
+        volumepoint.style.top=this.offsetHeight-(innerHeight-ev.clientY)+'px';
+        //volumepoint.style.height=(innerHeight-ev.clientY)+'px';
+        video.volume=1-((this.offsetHeight-(innerHeight-ev.clientY))/(this.offsetHeight-volumepoint.offsetHeight));
+    }
+
+    var j=0;
+    iptloop.onclick=function(){
+        if(j%2==0)
+        {
+            this.value='noloop';
+            video.addEventListener('ended',function(){
+                video.currentTime=0;
+                video.play();
+                ipt.value='play';
+            },false)
+        }
+        else{
+            this.value='loop';
+            ipt.value='play';
+        }
+        j++;
+    }
+
+    full.onclick=function(){
+        video.webkitEnterFullScreen();
+    }
+
+    video.onclick=ipt.onclick;
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    document.body.style.background='black';
+    var d1=document.createElement('div');
+    d1.id='d1';
+    d1.style.cssText='width:100%;height:100%;position:absolute;background:white;transform:perspective(800px) rotateY(45deg);transform-style:preserve-3d;';
+    document.body.appendChild(d1);
+
+    function creatediv(x,y){
+        for(var i=0;i<x;i++)
+        {
+            for(var j=0;j<y;j++)
+            {
+                var d2=document.createElement('div');
+                d2.style.cssText='width:'+d1.offsetWidth/y+'px;height:'+d1.offsetHeight/x+'px;float:left;background:rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+');';
+                d1.appendChild(d2);
+            }
+        }
+    }
+    creatediv(15,20);
+    //onresize=creatediv(15,20);//这句错误，是给onresize赋值了
+    onresize=function(){
+        d1.innerHTML='';
+        creatediv(15,20);
+    }
+
+    var centetdiv=d1.children[parseInt(d1.children.length/2)];
+    centetdiv.style.cssText='transform:translateZ(300px);transition:1s all ease;';
+    //centetdiv.style.transform='translateZ(300px)'; 
+    //centetdiv.style.transition='1s all ease';
+/*     setTimeout(function(){
+        centetdiv.style.transform='translateZ(0px)';
+        for(var i=0;i<d1.children.length;i++)
+        {
+            d1.children[i].style.transition='1s all ease';
+            d1.children[i].style.transform='perspective(800px) rotateX('+(Math.random()*360-180)+'deg) rotateY('+(Math.random()*360-180)+'deg) translateZ('+(Math.random()*200-400)+'px)';
+            d1.children[i].style.opacity=0;
+        }
+    },1000); */
+
+    </script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#d1{height: 200px;width: 200px;background: red;position:relative;}
+		#d2{height: 200px;width: 200px;background: green;margin-left:300px;margin-top: 300px;}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<script type="text/javascript">
+		d1.onmousedown=function(e){
+			var ev=e||event;
+			var l=ev.clientX-this.offsetLeft;
+			var t=ev.clientY-this.offsetTop;
+			d1.onmousemove=function(e){
+				var ev=e||event;
+				var needleft=ev.clientX-l;
+				var needtop=ev.clientY-t;
+				d1.style.left=needleft+'px';
+				d1.style.top=needtop+'px';
+				if(needleft==d2.offsetLeft && needtop==d2.offsetTop && d1.offsetWidth==d2.offsetWidth && d1.offsetHeight==d2.offsetHeight)
+				{
+					alert('we are one');
+					d1.onmousemove=null;
+				}
+			}
+			return false;
+		}
+	</script>
+</body>
+</html>

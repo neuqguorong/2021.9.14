@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{font-size: 20px;margin-bottom: 10px;width: 100px;height: 100px;background: red;}
+        #d1{width: 100px;height: 100px;background: red;}
+    </style>
+</head>
+<body>
+    <div id="d1">move1 不用定时器，循环调用move函数实现</div>
+    <div id="d2">move2 定时器调用move</div>
+    <div id="d3">move3 封装成为一个函数</div>
+    <div id="d4">move4 封装成为一个函数（传参数）+回调函数</div>
+    <div id="d5">move5 封装成为一个函数（传整个json）+回调函数</div>
+    <div id="d6">move6 封装成为一个函数（只有stylename传json）+回调函数</div>
+</body>
+<script>
+    function getstyle(obj,stylename){
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[stylename];
+        }
+        if(getComputedStyle)
+        {
+            return getComputedStyle(obj,false)[stylename];
+        }
+    }
+    
+    function move6(obj,opt,time,fn){
+        clearInterval(t);
+        var j=0,k=0;
+
+        //找目标中，j等于几，就是有几个量需要改变，如果最后j==k，那么就说明都变化完成，才可以关闭定时器
+        for(var i in opt)
+        {
+            j++;
+        }
+        t=setInterval(function(){
+            for(var i in opt)
+            {
+                var w=parseFloat(getstyle(obj,i)),speed=(opt[i]-w)/10;
+                //console.log(w);
+                obj.style[i]=w+speed+'px';
+
+                //如果目标opt[i]和改变的量之间的差的绝对值小于0.2，近似认为改变完成一个量，k++;如果最后j==k，那么就说明都变化完成，才可以关闭定时器，width还没改变完，但是定时器却被关了，并且k=2了，按理说，k=1才对，因为只改变完成了一个量
+                if(Math.abs(opt[i]-w) <0.2)
+                {
+                    obj.style[i]=opt[i]+'px';
+                    k++;console.log(j,k);
+                    if(j==k)
+                    {
+                        clearInterval(t);
+                        fn&&fn();
+                        return;
+                    }
+                   
+                }
+            }
+        },time);
+    }
+    move6(d6,{'width':400,'height':300},100);
+    //move6(d6,{'width':400,'height':300},100,function(){move6(d6,{'width':100,'height':100},100);});
+
+
+
+
+    //console.log(getstyle(d1,'width'));
+
+/*     function move1(){
+        var w=parseFloat(getstyle(d1,'width')),m=300,speed=(m-w)/10;
+        d1.style.width=w+speed+'px';
+        if(Math.abs(m-w) <0.2)
+        {
+            d1.style.width=m+'px';
+            return;
+        }
+        move1(); 
+    }
+    move1();//循环调用move函数实现
+
+
+    function move2(){
+        var w=parseFloat(getstyle(d2,'width')),m=30,speed=(m-w)/10;
+        d2.style.width=w+speed+'px';
+        if(Math.abs(m-w) <0.2)
+        {
+            d2.style.width=m+'px';
+            return;
+        }
+    }
+    setInterval(move2,100);//定时器调用move
+
+
+    var t=null;
+    function move3(){
+        clearInterval(t);
+        t=setInterval(function(){
+            var w=parseFloat(getstyle(d3,'width')),m=300,speed=(m-w)/10;
+            //console.log(w);
+            d3.style.width=w+speed+'px';
+            if(Math.abs(m-w) <0.2)
+            {
+                d3.style.width=m+'px';
+                clearInterval(t);
+                return;
+            }
+        },50);
+    }
+    move3();
+
+
+    function move4(obj,stylename,m,time,fn){
+        clearInterval(t);
+        t=setInterval(function(){
+            var w=parseFloat(getstyle(obj,stylename)),speed=(m-w)/10;
+            //console.log(w);
+            obj.style[stylename]=w+speed+'px';
+            if(Math.abs(m-w) <0.2)
+            {
+                obj.style[stylename]=m+'px';
+                clearInterval(t);
+                fn&&fn();
+                return;
+            }
+        },time);
+    }
+    move4(d4,'width','200',100,function(){
+        move4(d4,'height','200',100);
+    });
+
+
+    var json={
+        'obj':d5,
+        'stylename':'width',
+        'm':300,
+        'time':80
+    },
+    json1={
+        'obj':d5,
+        'stylename':'marginLeft',
+        'm':100,
+        'time':100
+    }
+    function move4(opt,fn){
+        clearInterval(t);
+        t=setInterval(function(){
+            var w=parseFloat(getstyle(opt.obj,opt.stylename)),speed=(opt.m-w)/10;
+            //console.log(w);
+            opt.obj.style[opt.stylename]=w+speed+'px';
+            if(Math.abs(opt.m-w) <0.2)
+            {
+                opt.obj.style[opt.stylename]=opt.m+'px';
+                clearInterval(t);
+                fn&&fn();
+                return;
+            }
+        },opt.time);
+    }
+    move4(json,function(){
+        move4(json1);
+    });
+  */
+
+
+</script>
+</html>

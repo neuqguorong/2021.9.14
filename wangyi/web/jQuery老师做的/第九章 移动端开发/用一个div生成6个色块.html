@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 200px;height: 200px;background: black; position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px; box-shadow: 0 -200px 0 pink;}
+        div:after{width: 200px;height: 200px;background: red; content:'';position: absolute;left: 200px; box-shadow: 0 -200px 0 orange;}
+        div:before{width: 200px;height: 200px;background: green;content:'';position: absolute;left: -200px;box-shadow: 0 -200px 0 blue;}
+        input{position: absolute;margin: 100px 0 0 100px;outline: none;border: 1px solid #ccc;}
+        input:focus{border: 1px solid skyblue;box-shadow: 0 0 5px skyblue;}
+    </style>
+</head>
+<body>
+    <input>
+    <div id="d1"></div>
+</body>
+<script>
+    function attach(obj,event,fn){
+        if(obj.attachEvent)
+        {
+            obj.attachEvent('on'+event,fn);//ie
+        }
+        else{
+            obj.addEventListener(event,fn,false);//非ie
+        }
+    }
+
+    attach(d1,'click',function(){alert(1);});
+
+</script>
+</html>

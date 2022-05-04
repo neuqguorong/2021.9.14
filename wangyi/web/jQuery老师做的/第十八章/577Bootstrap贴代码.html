@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <style>
+        div{margin-bottom: 10px;height: 300px;}
+    </style>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <pre>
+        <p class="text-info">该行是获取id的<small>--通过元素的id获取元素</small></p>
+        document.getElementById('');document.getElementById('');document.getElementById('');document.getElementById('');document.getElementById('');
+        document.getElementById('');
+        document.getElementById('');
+        document.getElementById('');
+        document.getElementById('');
+        document.getElementById('');
+
+
+
+        <p class="text-info">该行是获取class的<small>--通过元素的class获取元素</small></p>
+        document.getElementsByClassName('');document.getElementsByClassName('');document.getElementsByClassName('');document.getElementsByClassName('');document.getElementsByClassName('');
+    </pre>
+
+    可以通过<code>document.getElementById('');</code>来获取元素
+
+    <pre>
+        &lt;div id="div"&gt;&lt;/div&gt;这是一个id为div的div
+    </pre>
+
+    请<kbd>ctrl+c</kbd>这行代码
+    <code>getElementsByClassName('');</code>
+
+
+    <div class="container">
+        <p class="text-info">今天学习的所有代码：<small>--如何声明变量</small></p>
+        <pre>
+            var a=10;
+            var b=10;
+        </pre>
+        <p>上面的<code>var</code>是变量声明时用的</p>
+    </div>
+
+    <div class="container-fluid">
+        <p class="text-info">今天学习的所有代码：<small>--如何声明变量</small></p>
+        <pre>
+            var a=10;
+            var b=10;
+        </pre>
+        <p>上面的<code>var</code>是变量声明时用的</p>
+    </div>
+
+
+    <p class="text-center">text-center</p>
+    <p class="text-right">text-right</p>
+    <p class="show">show</p>
+    <p class="hide">hide</p>
+
+    <table class="table">
+        <thead>
+            <tr class="active">
+                <th>name</th>
+                <th>age</th>
+                <th>sex</th>
+                <th>job</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="success">
+                <th>zhao</th>
+                <th>1</th>
+                <th>man</th>
+                <th>student</th>
+            </tr>
+            <tr class="danger">
+                <th>qian</th>
+                <th>2</th>
+                <th>woman</th>
+                <th>teacher</th>
+            </tr>
+            <tr class="info">
+                <th>sun</th>
+                <th>3</th>
+                <th>man</th>
+                <th>doctor</th>
+            </tr>
+            <tr class="warning">
+                <th>sun</th>
+                <th>3</th>
+                <th>man</th>
+                <th>doctor</th>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="container">
+        <table class="table table-striped table-bordered table-hover table-condensed" id="tab">
+            <thead>
+                <tr>
+                    <th class="text-info">name</th>
+                    <th>age</th>
+                    <th>sex</th>
+                    <th>job</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th class="text-info">zhao</th>
+                    <th>1</th>
+                    <th>man</th>
+                    <th>student</th>
+                </tr>
+                <tr>
+                    <th class="text-info">qian</th>
+                    <th>2</th>
+                    <th>woman</th>
+                    <th>teacher</th>
+                </tr>
+                <tr>
+                    <th class="text-info">sun</th>
+                    <th>3</th>
+                    <th>man</th>
+                    <th>doctor</th>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    各种按钮
+    <a class="btn btn-default" role="button" href="#">a标签按钮</a>
+    <button>button按钮</button>
+    <input type="button" value="input按钮">
+    <div class="btn btn-default">div按钮</div>
+    <input type="button" class="btn-success" value="input按钮">
+    <input type="button" class="btn-danger" value="input按钮">
+    <input type="button" class="btn-warning" value="input按钮">
+    <input type="button" class="btn-info" value="input按钮">
+    <input type="button" class="btn-link" value="input按钮">
+    <input type="button" class="btn-primary" value="input按钮">
+    <input type="button" class="btn-primary btn-lg" value="input按钮">
+    <input type="button" class="btn-primary btn-sm" value="input按钮">
+    <input type="button" class="btn-primary btn-xs" value="input按钮">
+    <input type="button" class="btn-primary btn-block" value="input按钮">
+    <input type="button" class="btn-primary btn-xs" value="input按钮">
+    <input type="button" class="btn-primary btn-xs active" value="active按钮">
+    <input type="button" class="btn-primary btn-xs" disabled='disabled' value="disabled按钮">
+
+
+    <br>
+    <br>
+
+    响应式
+    <div class="row">
+        <div class="col-md-8 " style="height: 200px;background: green;"></div>
+        <div class="col-md-3 " style="height: 200px;background: red;"></div>
+        <div class="col-md-1 " style="height: 200px;background: yellow;"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-xs-1 col-sm-2 col-lg-3" style="height: 200px;background: green;"></div>
+        <div class="col-md-3 col-xs-7 col-sm-5 col-lg-8" style="height: 200px;background: red;"></div>
+        <div class="col-md-1 col-xs-4 col-sm-5 col-lg-1" style="height: 200px;background: yellow;"></div>
+    </div>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+
+  <script>
+    var arr=[['li','4','man','17'],['wang','5','woman','18'],['cheng','6','man','19']];
+    for(var i=0;i<arr.length;i++)
+    {
+        var tr=document.createElement('tr');
+        for(var j=0;j<arr[i].length;j++)
+        {
+            var th=document.createElement('th');
+            if(j==arr[i].length-1)
+            {
+                if(arr[i][j]<18)
+                {
+                    th.className='text-danger';//老师，想让job小于18的变为红色
+                }
+            }
+            th.innerHTML=arr[i][j];
+            tr.appendChild(th);
+        }
+        tab.appendChild(tr);
+    }
+      
+      
+  </script>
+</html>

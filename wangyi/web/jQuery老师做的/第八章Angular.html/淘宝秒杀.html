@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='text'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="angular.js"></script>
+</head>
+
+
+<body ng-controller='cont1'>
+    <ul>
+        <li ng-repeat='value in arr'>
+            <span>{{value.name}}</span>
+            <span>{{value.money|currency}}</span>
+            <span>{{value.date|date:'yyyy年MM月dd日 HH:mm:ss'}}</span>
+
+        </li>
+    </ul>
+
+    <script>
+        var app=angular.module('text',[]);
+        app.controller('cont1',function ($scope){
+            $scope.arr=[
+                {'name':'skirt',
+                 'money':'10',
+                 'date':1637579535152
+                },
+                {'name':'T-shirt',
+                 'money':'20',
+                 'date':1637573535152
+                },
+                {'name':'sweater',
+                 'money':'30',
+                 'date':1637673535152
+                }
+            ]
+        })
+    </script>
+    
+</body>
+</html>

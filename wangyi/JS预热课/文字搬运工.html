@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1,#d3{width: 200px;height: 200px;border: 1px solid black;float: left;}
+        #d1{background: burlywood;}
+        p{width: 130px; height: 50px;background: orange;text-align: center;}
+        #d3{background: cornflowerblue;}
+        #d2{width: 200px;height: 200px;float: left;margin: 0 10px;}
+    </style>
+</head>
+<body>
+    <div id="d1" contenteditable="true"></div>
+    <div id="d2">
+        <p id="p1">text transform</p> 
+        <p><span id="s1">0</span>/<span id="s2">0</span> </p>
+    </div>
+    <div id="d3" contenteditable="true"></div>
+</body>
+<script>
+    var t=null,i=0,k=false;
+    s1.innerHTML=d1.innerHTML.length,s2.innerHTML=d3.innerHTML.length;
+    p1.onclick=function(){
+/*         for(var i=0;i<d1.innerHTML.length;i++)
+        {
+
+        } */
+        if(k==true)return;
+        k=!k;
+        if(k)
+        {
+            d3.innerHTML='';   
+            t=setInterval(function(){
+                
+                d3.innerHTML+=d1.innerHTML.charAt(0);//d1.innerHTML.charAt(i)='';
+                d1.innerHTML=d1.innerHTML.substring(1);
+                s1.innerHTML=d1.innerHTML.length,s2.innerHTML=d3.innerHTML.length;
+                i++;
+                if(d1.innerHTML.length==0)
+                {
+                    i=0;
+                    k=false;
+                    clearInterval(t);
+                }
+            },30);
+        }
+
+        
+    }
+</script>
+</html>

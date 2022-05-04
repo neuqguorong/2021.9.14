@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{width: 100px;height: 100px;background: green;}
+    </style>
+</head>
+<body>
+    <div>
+        <button>for</button>
+        <button>while</button>
+        <button>do while</button>
+        <button>for in </button>
+        <button>for Each</button>
+        <button>recover</button>
+    </div>
+    <div class="a"></div>
+    <div class="a"></div>
+    <div class="a"></div>
+</body>
+<script>
+    var abtn=document.getElementsByTagName('button'),adiv=document.getElementsByClassName('a');
+    var arr=[];
+    for(var i=0;i<adiv.length;i++)
+    {
+        arr.push(adiv[i]);
+    }
+    // for in 循环数组adiv;
+    abtn[3].onclick=function(){
+        console.log(arr);
+        for(var i in arr)
+        {
+            arr[i].style.background='red';
+        }
+    }
+
+    // forEach 循环数组adiv;
+    abtn[4].onclick=function(){
+        arr.forEach((value,index,array)=>{
+            console.log(value);
+            value.style.background='red';
+        });
+    }
+
+    abtn[0].onclick=function(){
+        for(var i=0;i<adiv.length;i++)
+        {
+            adiv[i].style.background='red';
+        }
+    }
+    abtn[1].onclick=function(){
+        var i=0;
+        while(i<adiv.length)
+        {
+            adiv[i].style.background='red';
+            i++;
+        }
+    }
+    abtn[2].onclick=function(){
+        var i=0;
+        do
+        {
+            adiv[i].style.background='red';
+            i++;
+        } while(i<adiv.length)
+    }
+
+    abtn[abtn.length-1].onclick=function(){
+        for(var i=0;i<adiv.length;i++)
+        {
+            adiv[i].style.background='green';
+        }
+    }
+
+/*     [1,2,3].forEach(function(value,index,array){
+        console.log(value);
+    }); */
+</script>
+</html>

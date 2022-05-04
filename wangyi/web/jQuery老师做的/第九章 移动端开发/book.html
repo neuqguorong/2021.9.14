@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #front,#back{width: 0;height: 0;}
+        #book{width: 300px;height: 400px;position: absolute;left: 50%;top: 50%; margin:-200px 0 0 -150px;transform-style: preserve-3d;}
+        div{width: 300px;height: 400px;position: absolute;background: #ccc;font-size: 100px;}
+    </style>
+</head>
+<body>
+    <div id="book">
+        
+    </div>
+</body>
+<script>
+    for(var i=0;i<50;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.style.transform='translateZ('+i+'px)';
+        if(i==0)
+        {
+            odiv.innerHTML='front';
+            odiv.style.background='green';
+            odiv.style.transform='scaleX(-1)';
+        }
+        if(i==49)
+        {
+            odiv.innerHTML='back';
+            odiv.style.background='red';
+        }
+        book.appendChild(odiv);
+    }
+
+    var side=document.createElement('div');
+    side.innerHTML='left side';
+    side.style.cssText='width:50px;height:400px;background:black;position:absolute;left:250px;transform-origin:right;transform: rotateY(90deg);color:white;font-size:20px;';
+    book.appendChild(side);
+
+    var reg=0;
+    setInterval(function(){
+        reg++;
+        book.style.transform='perspective(800px) rotateY('+reg+'deg)';
+
+    },30)
+</script>
+</html>

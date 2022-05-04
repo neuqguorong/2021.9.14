@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<button id="bt1" >play</button>
+	<button id="bt2" >stop</button>
+	<div id="d1"></div>
+	<script type="text/javascript">
+		var arr=[];
+		var t=null;
+		function random(min,max){
+			return parseInt(Math.random()*(max-min))+min;
+		}
+		bt1.onclick=function(){
+			clearInterval(t);
+			arr=[];
+			t=setInterval(function(){
+				arr=[];
+				for(var i=0;true;i++)
+				{
+					if(arr.length==6)
+						break;
+					var ran=random(0,43);
+					if(arr.indexOf(ran)!=-1)
+					{
+						continue;
+					}
+					else
+					{
+						arr.push(ran);
+					}
+				}
+				document.getElementById('d1').innerHTML=arr;
+			},30)
+		};
+		bt2.onclick=function(){
+			clearInterval(t);
+		}
+
+	</script>
+</body>
+</html>

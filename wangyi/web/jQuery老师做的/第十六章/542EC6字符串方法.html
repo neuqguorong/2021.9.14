@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        let a=10;//不允许重复声明，允许重复赋值
+        console.log(a);
+        a=20;
+        console.log(a);
+
+        const b=20;
+        console.log(b);
+        //b=30;//baocuo 
+        //console.log(b);//baocuo 
+
+        var str='dvazgbfds';
+        console.log(str.charCodeAt(0));//查询字符串中第几位的编码
+        var hanzi='李';
+        console.log(hanzi.charCodeAt(0));//查询汉字对应的编码
+        
+        console.log(String.fromCharCode(20000));//查询编码为20000对应的字符是什么
+
+        console.log(str.repeat(3));//把str重复n次
+
+        let d1='<div></div>';
+        console.log(d1.repeat(5));
+
+        console.log(str.includes('m'));//若字符串中包含m，则返回true,否则返回false  
+        console.log(str.includes('zgb'));
+        console.log(str.includes('zgb',8));//从第8位开始找，str是否包含zgb
+        console.log(str.startsWith('d'));
+        console.log(str.startsWith('a'));
+        console.log(str.endsWith('s'));
+        console.log(str.endsWith('d'));
+        console.log(str.endsWith('b',str.indexOf('b')+1));//第二个参数，是从第几位结束
+
+
+
+
+
+
+
+
+
+/*         //  \u4e00-\u9fa5 判断中文正则,下面打印所有中文字
+        var allhanzi=[];
+        for(var i=0x4e00;i<0x9fa5;i++)
+        {
+            allhanzi.push(String.fromCharCode(i));
+        }
+        document.body.innerHTML=allhanzi;
+        console.log(allhanzi.length);  */
+        
+        onkeydown=function(e){
+            console.log('按键对应的编码为'+e.keyCode,'按键对应的字符为'+String.fromCharCode(e.keyCode));
+        }
+    </script>
+</body>
+</html>

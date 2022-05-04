@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 200px;height: 200px;background: red;}
+		.d3{border: 5px solid black;}
+		.d4{box-shadow: 0 0 20px green;}
+	</style>
+</head>
+<body>
+	<div id="d1" class=""></div>
+	<script type="text/javascript">
+		console.log(d1.className);
+		/*onclick=function(){
+			if(d1.className=='')
+			{
+				d1.className='d3';
+			}
+			else
+			{
+				d1.className+=' d3';
+			}	
+		};*/
+
+		d1.classList.add('d3','d4');
+		d1.classList.remove('d3');
+		console.log(d1.classList.contains('d3'));
+		console.log(d1.classList.contains('d4'));
+
+		/*onclick=function(){
+			if(d1.classList.contains('d3'))
+			{
+				d1.classList.remove('d3');
+			}
+			else
+			{
+				d1.classList.add('d3');
+			}
+		}*/
+
+		onclick=function(){
+			d1.classList.toggle('d3');
+		}
+	</script>
+</body>
+</html>

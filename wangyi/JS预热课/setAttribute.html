@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 200px;height: 200px;background: green;}
+	</style>
+</head>
+<body>
+	<div id="d1" class="d2"></div>
+	<a id="a1" href="https://study.163.com/"></a>
+	<script type="text/javascript">
+		console.log(d1.id);
+		console.log(d1.className);
+		d1.setAttribute('age',18);
+		d1.setAttribute('sex','man');
+		d1.setAttribute('height','180cm');
+		/*console.log(a1.getAttribute('href'));
+		console.log(d1.getAttribute('sex'));
+		d1.removeAttribute('class');
+		d1.removeAttribute('age');
+		a1.removeAttribute('href');*/
+
+		console.log(d1.hasAttribute('age'));
+		console.log(d1.hasAttribute('fff'));
+
+		onclick=function(){
+			if(d1.getAttribute('sex')=='man')
+			{
+				d1.setAttribute('sex','woman');
+			}
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		#out{border: 1px solid black;width: 280px;text-align: center;height:180px;}
+		#pr{float: left;cursor: pointer;}
+		#nt{float: right;cursor: pointer;}
+		#dayul li{float: left;width: 40px;text-align: center;}
+		#all li{float: left;width: 40px;text-align: center;}
+		li{float: left;width: 40px;height: 21px;}
+	</style>
+</head>
+<body>
+	<div id="out">
+		<div>
+			<span id="pr">pre</span>
+			<span id="year">2021</span>year
+			<span id="mon">10</span>mon
+			<span id="th">25</span>th
+			<span id="nt">next</span>
+		</div>
+		<ul id="dayul">
+			<li>Mon</li>
+			<li>Tue</li>
+			<li>Wed</li>
+			<li>Thu</li>
+			<li>Fri</li>
+			<li style="color: red;">Sat</li>
+			<li style="color: red;">Sun</li>
+		</ul>
+		<ul id="all"></ul>
+	</div>
+
+	<script type="text/javascript">
+
+		function rl(){
+			var odate=new Date();
+			//console.log(odate);
+
+			year.innerHTML=new Date().getFullYear();
+			mon.innerHTML=new Date().getMonth()+1;
+			th.innerHTML=new Date().getDate();
+
+			//get the first day is what day
+			//odate.setMonth(odate.getMonth());
+			odate.setDate(1);
+			var whatday=odate.getDay(); //console.log(whatday);
+			odate.getDay()==0?whatday=7:whatday=odate.getDay();//console.log(whatday);
+			for(var i=0;i<whatday-1;i++)
+			{
+				var oli=document.createElement('li');
+				all.appendChild(oli);
+				//console.log(i);
+			}
+
+			//get the full days of now month
+			odate.setMonth(odate.getMonth()+1);
+			odate.setDate(0);
+			var allday=odate.getDate();//console.log(allday);
+			for(var i=0;i<allday;i++)
+			{
+				var oli=document.createElement('li');
+				oli.innerHTML=i+1;
+				all.appendChild(oli);
+			}
+			for(var i=0;i<all.children.length;i++)
+			{
+				if(i%7>=5)
+					all.children[i].style.color='red';
+			}
+
+		}
+
+		rl();
+
+		function rl2(yearinnerHTML,moninnerHTML){
+			var odate=new Date();
+			//console.log(odate);
+			odate.setYear(yearinnerHTML);
+			odate.setMonth(moninnerHTML-1);
+			year.innerHTML=yearinnerHTML;
+			mon.innerHTML=moninnerHTML;
+			th.innerHTML=odate.getDate();
+
+			//get the first day is what day
+			//odate.setMonth(odate.getMonth());
+			odate.setDate(1);
+			var whatday=odate.getDay(); //console.log(whatday);
+			odate.getDay()==0?whatday=7:whatday=odate.getDay();//console.log(whatday);
+			for(var i=0;i<whatday-1;i++)
+			{
+				var oli=document.createElement('li');
+				all.appendChild(oli);
+				//console.log(i);
+			}
+
+			//get the full days of now month
+			odate.setMonth(moninnerHTML);
+			odate.setDate(0);
+			var allday=odate.getDate();//console.log(allday);
+			for(var i=0;i<allday;i++)
+			{
+				var oli=document.createElement('li');
+				oli.innerHTML=i+1;
+				all.appendChild(oli);
+			}
+			
+			for(var i=0;i<all.children.length;i++)
+			{
+				if(i%7>=5)
+					all.children[i].style.color='red';
+			}
+		}
+
+		nt.onclick=function(){
+			mon.innerHTML++;
+			if(mon.innerHTML>12)
+			{
+				year.innerHTML=Number(year.innerHTML)+parseInt(mon.innerHTML/12);
+				mon.innerHTML=mon.innerHTML%12;
+			}
+			all.innerHTML='';
+			rl2(year.innerHTML,mon.innerHTML);
+			
+		}
+
+		pr.onclick=function(){
+			mon.innerHTML--;
+			if(mon.innerHTML==0)
+			{
+				year.innerHTML=Number(year.innerHTML)+parseInt(mon.innerHTML/12-1);
+				mon.innerHTML=(mon.innerHTML%12)+12;
+			}
+			all.innerHTML='';
+			rl2(year.innerHTML,mon.innerHTML);
+			
+		}
+
+
+	</script>
+</body>
+</html>

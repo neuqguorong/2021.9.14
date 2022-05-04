@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    //结构赋值，跟后面的结构一样就可以
+    /* var [a,b,c]=[10,20,30];//等价于let [a,b,c]=[10,20,30];
+    console.log(a,b,c);//a=10,b=20,c=30; */
+    
+ /*    var [a,b,c]=[10,[20,30],40];
+    console.log(a,b,c);//10  [20, 30] 40
+
+    var [d,[e,f],g]=[1,[2,3],4];
+    console.log(d,e,f,g);
+
+    var json={'a':10,'b':20};
+    var {a,b}=json;//给json赋值，key值必须相同
+    console.log(a,b);//10,20 */
+
+/*     function show(a=[1,2,3,4]){
+        var [e,b,c,d]=a;
+        console.log(e,b,c,d);
+    }
+    show([5,6,7,8]); */
+
+/*     function show4(x){console.log(x)};
+    show4.bind(1)(2);//与call类似，this指向第一个参数，之后的参数是形参 */
+
+    class a{
+        constructor(x,y,z){
+            console.log(x,y,z);
+        }
+        ff(){console.log('ff方法');}
+    }
+    new a(2,[45,6],{'m':10,'n':20}).ff();
+</script>
+</html>

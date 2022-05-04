@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 400px;height: 300px;border: 1px solid black;overflow: hidden;}
+        #d2{width: 300%;height: 225px;float: left;position: relative;transition: 1s all ease;}
+        #d21{width: 400px;height: 100%;float: left;background: yellow;}
+        #d22{width: 400px;height: 100%;float: left;background: blue;}
+        #d23{width: 400px;height: 100%;float: left;background: green;}
+        #d3{width: 100%;height: 75px;background: #ccc;float: left;}
+        #le{position: absolute;margin: 100px 0 0 10px;z-index: 2;}
+        #ri{position: absolute;margin: 100px 0 0 350px;z-index: 2;}
+        #d3 li{width: 50px;height: 30px;float: left;margin-right:10px;margin-top: 20px;}
+        #d31{background: yellow;margin-left: 210px;}
+        #d32{background: blue;}
+        #d33{background: green;}
+        .a{border: 2px solid red;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <button id="le">left</button>
+        <button id="ri">right</button>
+        <ul id="d2">
+            <li id="d21"></li>
+            <li id="d22"></li>
+            <li id="d23"></li>
+        </ul>
+        <ul id="d3">
+            <li id="d31"></li>
+            <li id="d32"></li>
+            <li id="d33"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var d3ali=d3.getElementsByTagName('li'),j=0;
+    for(var i=0;i<d3ali.length;i++)
+    {
+        d3ali[i].index=i;
+        d3ali[i].onmouseover=function(){
+            for(var i=0;i<d3ali.length;i++)
+            {
+                d3ali[i].className='';
+            }
+            this.className='a';
+            d2.style.left=-this.index*d21.offsetWidth+'px';
+            j=this.index;
+        }
+    }
+
+    ri.onclick=function(){
+        j++;
+        if(j==d3ali.length)j=0;
+        d2.style.left=-j*d21.offsetWidth+'px';
+    }
+    
+    le.onclick=function(){
+        j--;
+        if(j==-1)j=d3ali.length-1;
+        d2.style.left=-j*d21.offsetWidth+'px';
+    }
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+</body>
+<script>
+    var a=3,json={'j1':10,'j2':'ijlo'};
+    var str=`fdsa${a}${json.j1}${json.j2}`;
+    console.log(str);
+
+/*     //字符串模板可以传入函数，获得函数返回值
+    function show(){
+        return 'fdsags';
+    }
+    var str2=`show的返回值是${show()}`;
+    console.log(str2); */
+
+/*     //字符串模板可以传入函数参数，
+    function show(n){
+        return n;
+    }
+    var str2=`show的返回值是${show(5)}`;
+    console.log(str2); // */
+
+    //数组map的应用
+/*     var a=[2,3,4].map((x,y,z)=>{
+        var ipt=document.createElement('input');
+        ipt.value=x;
+        console.log(ipt);
+        document.body.appendChild(ipt);
+        return ipt;
+    })
+    console.log(a); */
+
+
+ /*    var b=[2,3,4].map((x,y,z)=>{
+        console.log('<input value='+x+'>');
+    })
+    //console.log(a);
+    //用模板生成三个input 三个div 选项卡。标签模板
+    var jsondata={
+        'topvalue':[1,2,3],
+        'bottominner':['a','b','c']
+    };
+
+    //为啥下面不对，应该让每个input的value都是对应的topvalue的值，div也应该对应
+    createnode=json=>`<div>
+        ${json.topvalue.map((x,y,z)=>`<input type='button' value=${x}>`).join('')}
+        ${json.bottominner.map((x,y,z)=>`<div>${x}</div>`).join('')}
+    </div>`
+    console.log(createnode(jsondata));
+    document.body.innerHTML=createnode(jsondata); */
+
+    //string.raw();//取消转义字符的转义
+    console.log('leo');
+    console.log('l\ne\no');//竖着输出l e o
+    console.log('l\\ne\\no');//输出结果为l\ne\no
+
+    console.log(String.raw`l\\ne\\no`);//l\\ne\\no
+</script>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="ip1">
+    <input id="ip2" type="checkbox">
+</body>
+<script>
+    if(localStorage.mes)
+    {
+        var cha=new Date().getTime()-localStorage.time;console.log(cha/1000/3600/24);
+        if(cha/1000/3600/24>7)
+        {
+            localStorage.mes=null;
+            localStorage.time=null;
+        }
+        else{
+            ip1.value=localStorage.mes;
+        }
+        
+    }
+
+    ip2.onclick=function(){
+        if(ip2.checked)
+        {
+            localStorage.mes=ip1.value;
+            localStorage.time=new Date().getTime();
+        }
+    }
+   
+</script>
+</html>

@@ -1,0 +1,88 @@
+body{
+	background:yellow;
+}
+
+
+@lixueci:100px;
+@yangxiaoyu:green;
+@sunmin:#bedeb3;
+//#cfefc4
+@sunmin1:#111111;
+@sunmin2:@sunmin+@sunmin1;
+@yangxiaoyu:aqua;
+.wangxu(@w:20px,@h:30px,@bg:yellow){
+	width: @w;
+	height: @h;
+	background: @bg;
+}
+.rem(@w:0px,@h:0px){
+	width: @w/2/20;
+	height:@h/2/20;
+
+}
+
+.mmm(@a) when (@a > 50px){
+	width: @a;
+	height: @a;
+	background: @yangxiaoyu;
+}
+.mmm(@a)when(@a<50px){
+	width: @a;
+	height: 20px;
+	background: pink;
+}
+#div2{
+	.mmm(45px);
+	background: @sunmin2;
+
+	//.rem(400rem,300rem);background: @yangxiaoyu;
+	//.wangxu(90px,60px,@yangxiaoyu);
+
+}
+.licuan{
+	box-shadow: 0 0 5px @yangxiaoyu;
+	margin:@lixueci;
+}
+.trans(@time:1s,@style:all,@ea:ease){
+	-moz-transition:@time @style @ea;
+	-ms-transition:@time @style @ea;
+	-o-transition:@time @style @ea;
+	-webkit-transition:@time @style @ea;
+	transition:@time @style @ea;
+}
+
+
+
+#div1{
+	@yangxiaoyu:red;
+	width: @lixueci;
+	height:@lixueci;
+	background: @yangxiaoyu;
+	.licuan;
+	.trans();
+	&:hover{
+		width: @lixueci + 300px;
+		height:@lixueci/50 + 20px;
+	}
+
+	div{
+		.wangxu(30px,50px,pink);
+
+		span{
+			.wangxu(15px,30px,black);
+			float: left;
+
+			&:hover{
+				.trans();
+				.wangxu(45px,30px,black);
+			}
+
+		}
+
+
+
+	}
+}
+
+
+

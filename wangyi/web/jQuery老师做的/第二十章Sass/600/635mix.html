@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="600.css"> 
+    <style>
+        div{width: 8px;height: 50px;float: left;}
+        .red,.green,.blue,.d7{width: 800px;height: 50px;border: 1px solid black;}
+        #d4{width: 200px;height: 200px;border: 2px solid black;}
+   </style>
+</head>
+<body>
+  
+    <div class="red" id="d1"></div>
+    <div class="green" id="d2"></div>
+    <div class="blue" id="d3"></div>
+    <div class="d7" id="d7"></div>
+    <div id="d4"></div>
+</body>
+<script>
+    for(var i=0;i<100;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.className='name'+i;
+        d1.appendChild(odiv);
+    }
+    for(var i=0;i<100;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.className='green'+i;
+        d2.appendChild(odiv);
+    }
+    for(var i=0;i<100;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.className='blue'+i;
+        d3.appendChild(odiv);
+    }
+    
+    for(var i=0;i<100;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.className='d7'+i;
+        d7.appendChild(odiv);
+    }
+
+    setInterval(()=>{
+        d7.insertBefore(d7.children[0],d7.children[d7.children.length]);
+    },30);
+
+    var alld7div=d7.children;
+    for(var i=0;i<100;i++)
+    {
+        alld7div[i].onmouseover=function(){
+            d4.style.background=getComputedStyle(this)['background'];
+        }
+    }
+</script>
+</html>

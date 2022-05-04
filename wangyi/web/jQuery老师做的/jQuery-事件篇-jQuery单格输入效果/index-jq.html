@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="alt_tabs.js"></script>
+    <script src="hzsoft-ui.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>六位数字框</title>
+</head>
+<body>
+   <div class="db mt">
+   	<div class="searchNum" id="searchNum">
+   		<input type="tel" maxlength="1" value="1" readonly="readonly" autofocus="autofocus">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   	</div>
+   	<div class="grayTxt">位数可留空</div>
+   </div>
+   <div class="btn-submit">确定</button>
+   <script type="text/javascript">
+   	  $('input').on({
+        'input':function(){
+          if($(this).val().length == 1){
+            $(this).blur();
+            $(this).next().focus();
+          }
+        },
+        'keydown':function(e){
+          if(e.keyCode == 8){
+
+            $(this).val('').blur();
+            if($(this).index() != 1){
+              setTimeout(x=>{
+               $(this).prev().focus();
+              },0);
+            }
+            
+          }
+        }
+      })
+
+
+
+   </script>
+</body>
+</html>

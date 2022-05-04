@@ -1,0 +1,11 @@
+{
+  "name": "662npmnode2",
+  "version": "1.0.0",
+  "description": "第一次用，作为例子",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "guorong",
+  "license": "ISC"
+}

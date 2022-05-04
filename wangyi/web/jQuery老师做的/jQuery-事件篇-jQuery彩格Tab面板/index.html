@@ -1,0 +1,117 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>HTML5彩格TAB面板</title>
+<script type="text/javascript" src='jquery.min.js'></script>
+<link type="text/css" href="css/style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+
+<div id="hero-slides">
+
+  <div id="header">
+    <div id="logo"></div>
+    <div id="menu">
+      <div id="hamburger">
+        <div class="slice"></div>
+        <div class="slice"></div>
+        <div class="slice"></div>
+      </div>
+    </div>
+  </div>
+  
+  <div id="slides-cont">
+    <div class="button" id="next"></div>
+    <div class="button" id="prev"></div>
+    <div id="slides">
+      <div class="slide" style="background-image: url(img/1.png);">
+        <div class="number">01</div>
+        <div class="body">
+          <div class="location">Shibuya, Japan</div>
+          <div class="headline">Photo by Benjamin Hung</div><a href="#">
+            <div class="link">View on Unsplash</div></a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url(img/2.png);">
+        <div class="number">02</div>
+        <div class="body">
+          <div class="location">Mong Kok, Hong Kong</div>
+          <div class="headline">Photo by Ryan Tang</div><a href="#">
+            <div class="link">View on Unsplash</div></a>
+        </div>
+      </div>
+      <div class="slide" style="background-image: url(img/3.png);">
+        <div class="number">03</div>
+        <div class="body">
+          <div class="location">Incheon, South Korea</div>
+          <div class="headline">Photo by Steve Roe</div><a href="#">
+            <div class="link">View on Unsplash</div></a>
+        </div>
+      </div>
+    </div>
+    <div id="next-catch"></div>
+    <div id="prev-catch"></div>
+  </div>
+  <script type="text/javascript">
+
+    var i = 0;
+    $('.slide').css({
+      'filter':'grayscale(100%)',
+      'transition':'1s'
+    }).on({
+      'mouseenter':function(){
+        i = $(this).index();
+        $('.slide').css({
+          'filter':'grayscale(100%)'
+        });
+        $(this).css({
+          'filter':'grayscale(0)'
+        });
+      }
+    }).eq(0).css({
+      'filter':'grayscale(0)'
+    });
+
+    $('#next').click(function(){
+     // alert(1);
+      i++;
+      if(i == $('.slide').length){
+        i=0;
+      };
+      $('.slide').css({
+          'filter':'grayscale(100%)'
+      });
+      $('.slide').eq(i).css({
+          'filter':'grayscale(0)'
+      });
+    });
+
+    $('#prev').click(function(){
+     // alert(1);
+      i--;
+      if(i == -1){
+        i=$('.slide').length-1;
+      };
+      $('.slide').css({
+          'filter':'grayscale(100%)'
+      });
+      $('.slide').eq(i).css({
+          'filter':'grayscale(0)'
+      });
+    })
+
+
+
+
+  </script>
+</div>
+
+
+
+
+
+</body>
+</html>

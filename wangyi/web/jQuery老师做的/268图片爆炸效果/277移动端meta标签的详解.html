@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,initial-scale=0.47,maximum-scale=0.47,
+    user-scaleable=0" name="viewport">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <img src='1.jpg' id="img">
+
+    <script>
+       /*  var a=new Image();
+        a.onload=function(){
+            document.querySelectorAll('meta')[3].content='width=device-width,initial-scale='+320/(img.offsetWidth)+',maximum-scale='+320/(img.offsetWidth)+',user-scaleable=0';
+        } */
+        var min=document.body.offsetWidth;console.log(min);
+        onload=function(){
+            document.querySelectorAll('meta')[3].content='width=device-width,initial-scale='+min/(img.offsetWidth)+',maximum-scale='+min/(img.offsetWidth)+',user-scaleable=0';
+        }
+        onresize=function(){
+            var min=document.body.offsetWidth;console.log(min);
+            onload=function(){
+                document.querySelectorAll('meta')[3].content='width=device-width,initial-scale='+min/(img.offsetWidth)+',maximum-scale='+min/(img.offsetWidth)+',user-scaleable=0';
+            }
+        }
+    </script>
+</body>
+</html>

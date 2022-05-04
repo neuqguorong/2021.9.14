@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    function tabnode2(opt){
+        this.opt=opt;//把opt变为私有属性，方便引用，并且不要变量
+        var this1=this;
+        this1.inter=null;
+        this1.index2=0;
+        opt.iscreate?(this1.create(this1),this1.createnode,this1.event(this1)):this1.uncreate();
+        opt.createnode.isinterval && (this1.setinter(this1));
+    }
+
+    tabnode2.prototype={
+        'uncreate':function(){},
+        'create':function(this1){
+            var obj=document.createElement(this1.opt.createnode.outnode.split('/')[1]);
+            obj.id=this1.opt.createnode.outnode.split('/')[0];
+            document.body.appendChild(obj);
+
+            //生成选项卡的顶部元素
+            for(var i=0;i<this1.opt.createnode.length;i++)
+            {
+                var objt=document.createElement(this1.opt.createnode.topcos.split('/')[0]);
+                if(objt.nodeName=='INPUT')
+                {
+                    objt.type='button';
+                    for(var j in this1.opt.createnode.topstyle)
+                    {
+                        objt.style[j]=this1.opt.createnode.topstyle[j];
+                    }
+                    objt.value=this1.opt.createnode.topvalue[i];
+                }
+                else if(objt.nodeName=='BUTTON')
+                {
+                    for(var j in this1.opt.createnode.topstyle)
+                    {
+                        objt.style[j]=this1.opt.createnode.topstyle[j];
+                    }
+                    objt.innerHTML=this1.opt.createnode.topvalue[i];
+                }
+                if(i==0)
+                {
+                    objt.style.background='red';
+                }
+                obj.appendChild(objt);
+            }
+
+            //生成选项卡的底部元素
+            for(var i=0;i<this1.opt.createnode.length;i++)
+            {
+                var objb=document.createElement(this1.opt.createnode.topcos.split('/')[1]);    
+                for(var j in this1.opt.createnode.bottomstyle)
+                {
+                    objb.style[j]=this1.opt.createnode.bottomstyle[j];
+                }
+                objb.innerHTML=this1.opt.createnode.bottomvalue[i];
+                if(i==0)
+                {
+                    objb.style.display='block';
+                    objb.style.background='red';
+                }
+                obj.appendChild(objb);
+            }
+                
+        },
+        'createnode':function(this1){
+
+        },
+        'event':function(this1){
+            this1.alltop=document.getElementById(this1.opt.createnode.outnode.split('/')[0]).getElementsByTagName(this1.opt.createnode.topcos.split('/')[0]);
+            this1.allbottom=document.getElementById(this1.opt.createnode.outnode.split('/')[0]).getElementsByTagName(this1.opt.createnode.topcos.split('/')[1]);
+            for(var i=0;i<this1.alltop.length;i++)
+            {
+                this1.alltop[i].index=i;
+                this1.alltop[i].onclick=function(){
+                    if(this1.opt.iscreate)
+                    {
+                        for(var i=0;i<this1.alltop.length;i++)
+                        {
+                            for(var j in this1.opt.createnode.topactive)
+                            {
+                                this1.alltop[i].style[j]='none';
+                            }
+
+                            for(var j in this1.opt.createnode.bottomactive)
+                            {
+                                this1.allbottom[i].style[j]='none';
+                                //this1.allbottom[i].style[j]='';//不能设为空，如果不想要，需要设为none
+                            }
+                        }
+                        //this.className=this1.opt.createnode.topactive;
+                        //this1.allbottom[this.index].className=this1.opt.createnode.bottomactive;
+                        for(var j in this1.opt.createnode.topactive)
+                        {
+                            this.style[j]=this1.opt.createnode.topactive[j];
+                        }
+
+                        for(var j in this1.opt.createnode.bottomactive)
+                        {
+                            this1.allbottom[this.index].style[j]=this1.opt.createnode.bottomactive[j];
+                        }
+                    }
+                    this1.index2=this.index;
+                }
+            }
+        },
+        'setinter':function(this1){
+            
+            this1.inter=setInterval(function(){
+                this1.index2++;
+                if(this1.index2==this1.opt.createnode.length)this1.index2=0;
+                this1.alltop=document.getElementById(this1.opt.createnode.outnode.split('/')[0]).getElementsByTagName(this1.opt.createnode.topcos.split('/')[0]);
+                this1.allbottom=document.getElementById(this1.opt.createnode.outnode.split('/')[0]).getElementsByTagName(this1.opt.createnode.topcos.split('/')[1]);
+                for(var i=0;i<this1.alltop.length;i++)
+                {
+                    for(var j in this1.opt.createnode.topactive)
+                    {
+                        this1.alltop[i].style[j]='none';
+                    }
+
+                    for(var j in this1.opt.createnode.bottomactive)
+                    {
+                        this1.allbottom[i].style[j]='none';
+                        //this1.allbottom[i].style[j]='';//不能设为空，如果不想要，需要设为none
+                    }
+                }
+                        //this.className=this1.opt.createnode.topactive;
+                        //this1.allbottom[this.index].className=this1.opt.createnode.bottomactive;
+                for(var j in this1.opt.createnode.topactive)
+                {
+                    this1.alltop[this1.index2].style[j]=this1.opt.createnode.topactive[j];
+                }
+
+                for(var j in this1.opt.createnode.bottomactive)
+                {
+                    this1.allbottom[this1.index2].style[j]=this1.opt.createnode.bottomactive[j];
+                }
+            },this1.opt.createnode.intervaltime);
+        }
+    }
+    
+
+    json={
+        iscreate:true,
+        createnode:{
+            outnode:'tabnode/DIV',
+            length:8,
+            topcos:'INPUT/DIV',
+            topstyle:{
+                'width':'30px',
+                'height':'30px',
+                'margin':'3px',
+                'background':'#ccc',
+                'fontSize':'20px'
+            },
+            bottomstyle:{
+                'width':'200px',
+                'height':'200px',
+                'display':'none',
+                'border':'1px solid black',
+                'fontSize':'100px'
+            },
+            topvalue:[1,2,3,4,5,6,7,8],
+            bottomvalue:['b1','b2','b3','b4','b5','b6','b7','b8'],
+            'topactive':{'background':'red'},
+            'bottomactive':{
+                'display':'block',
+                'background':'red'
+            },
+            'isinterval':true,
+            'intervaltime':1000
+        }
+    }
+    //console.log(json);
+    new tabnode2(json);
+
+    
+</script>
+</html>

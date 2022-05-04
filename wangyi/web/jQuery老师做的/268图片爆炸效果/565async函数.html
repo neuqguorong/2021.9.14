@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+async function a(){
+   /*  await one();//执行await one,返回'one'
+    await two(); */
+    console.log(await one());
+    console.log(await two());
+    return await 10
+}
+a().then(x=>{console.log('a-res'+x)}).catch(x=>{console.log('a-rej'+x)});
+async function one(){
+    return await 'one';//返回one
+    //await Promise.reject('one');//返回一个Promise.reject('one')对象
+}
+async function two(){
+    return await 'two';
+}
+one().then(x=>{console.log('one-res'+x)}).catch(x=>{console.log('one-rej'+x)})
+</script>
+</html>

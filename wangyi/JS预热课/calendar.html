@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		#rili{width: 280px;float: left;border: 1px solid black;}
+		#n{width: 100%;height: 20px;line-height: 20px;text-align: center;float: left;}
+		#pr{float: left;cursor: pointer;}
+		#nt{float: right;cursor: pointer;}
+		#l{width: 100%;height: 20px;line-height: 20px;text-align: center;}
+		#l span{width: 40px;height: 20px;line-height: 20px;text-align: center;float: left;}
+		#all li{width: 40px;height: 20px;line-height: 20px;text-align: center;float: left;}
+
+	</style>
+</head>
+<body>
+	<div id="rili">
+		<div id="n">
+			<span id="pr">prev</span>
+			<span id="year">2021</span>year  <span id="month">10</span>mon <span id="dayNode">12</span>date
+			<span id="nt">next</span>
+		</div>
+		<div id="l">
+			<span>Mon</span>
+			<span>Tue</span>
+			<span>Wen</span>
+			<span>Thu</span>
+			<span>Fri</span>
+			<span style="color: red;">Sat</span>
+			<span style="color: red;">Sun</span>
+		</div>
+		<ul id="all"></ul>
+	</div>
+</body>
+<script type="text/javascript">
+	window.setMonth=new Date().getMonth();
+	
+	setrl();
+	nt.onclick=function(){
+		setMonth++;
+		setrl();
+	}
+	pr.onclick=function(){
+		setMonth--;
+		setrl();
+	}
+	function setrl(){
+		var odate=new Date();//obtain today is what year what month what day
+		odate.setMonth(setMonth);
+		var nowyear=odate.getFullYear();
+		var nowmonth=odate.getMonth();
+		var nowdays=odate.getDate();
+		var oldmonth=setMonth%12;
+		if(oldmonth<0)oldmonth=(oldmonth%12)+12;
+		var oldm=setMonth%12;
+		if(oldm<0)oldm=(oldm%12)+12;
+		year.innerHTML=nowyear;
+		month.innerHTML=nowmonth+1;
+		dayNode.innerHTML=nowdays;
+		oldmonth++;
+		odate.setMonth(oldmonth);//this month=10month
+		odate.setDate(0);//the days of last month
+		var alldate=odate.getDate();//obtain the days of last month
+		//odate.setYear(2021);
+		odate.setMonth(oldm);
+		odate.setDate(1);
+		//alert(odate.getDay());//return 2016year9mon1date is what day
+		function toDay(num){
+			return num==0?7:num;
+		}
+		var getday=toDay(odate.getDay());//obtain today is what day
+		all.innerHTML='';
+		for(var i=0;i<getday-1;i++)
+		{
+			var oli=document.createElement('li');
+			all.appendChild(oli);
+		}
+		//alert(alldate);
+		
+		for(var i=0;i<alldate;i++)
+		{
+			var oli=document.createElement('li');
+			oli.innerHTML=i+1;
+			all.appendChild(oli);
+		}
+		for(var i=0;i<all.children.length;i++)
+		{
+			if(i%7==5||i%7==6)
+			{
+				all.children[i].style.color='red';
+			}
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="alt_tabs.js"></script>
+    <script src="hzsoft-ui.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>六位数字框</title>
+</head>
+<body>
+   <div class="db mt">
+   	<div class="searchNum" id="searchNum">
+   		<input type="tel" maxlength="1" value="1" readonly="readonly" autofocus="autofocus">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   	</div>
+   	<div class="grayTxt">位数可留空</div>
+   </div>
+   <div class="btn-submit">确定</button>
+   <script type="text/javascript">
+   var allInput = document.getElementsByTagName('input');
+   //var index = 0;
+   for(var i = 0;i < allInput.length;i++){
+   	 allInput[i].index = i;
+   	 allInput[i].oninput = function(){
+      if(this.value.length == 1){
+        this.blur();
+        allInput[this.index + 1] && (allInput[this.index + 1].focus())
+      }
+   	 }
+     allInput[i].onkeydown = function(e){
+      //console.log(e)
+       if(e.keyCode == '8'){
+          this.value = '';
+          this.blur();
+          allInput[this.index - 2] && (allInput[this.index - 1].focus())
+       }
+     }
+   }
+
+   </script>
+</body>
+</html>

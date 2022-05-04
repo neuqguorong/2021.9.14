@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        ul{width: 500px;height: 300px;position: absolute;left: 50%;top: 50%;margin-left: -250px;
+        margin-top: -150px;background:rgb(83, 75, 93);}
+       .le{width: 130px;height: 100px;float: left;position: absolute;top: 50px;left: 12px; background: #666;border: 1px solid white;border-radius: 10px; opacity: 0.3;}
+       img{width: 110px;height: 80px;margin: 10px;}
+       .a{width: 180px;height: 140px;float: left;position: absolute;top: 70px;left: 152px;background: #666;border: 1px solid white;border-radius: 10px;opacity: 1;}
+       .ri{width: 130px;height: 100px;float: left;position: absolute;top: 50px;left: 342px; background: #666;border: 1px solid white;border-radius: 10px; opacity: 0.3;}
+       .b{width: 160px;height: 120px;}
+    </style>
+</head>
+<body>
+    
+        <ul>
+            <li class="le"><img src="1.jpg"></li><li class="a"><img class="b" src="2.jpg"></li><li class="ri"><img src="3.jpg"></li>
+        </ul>
+    
+</body>
+<script>
+    var lile=[],litop=[],liclas=[],imgclas=[];
+    for(var i=0;i<$('li').length;i++)
+    {
+        lile.push($('li').eq(i).css('left'));
+        litop.push($('li').eq(i).css('top'));
+        liclas.push($('li')[i].className);
+        imgclas.push($('img')[i].className);
+    }
+    //console.log(lile);
+    $('body').on({
+        'click':function(){
+            lile.push(lile.shift());
+            litop.push(litop.shift());
+            liclas.push(liclas.shift());
+            imgclas.push(imgclas.shift());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).stop().animate({
+                    'left':lile[i],
+                    'top':litop[i],
+                },500);
+                $('li')[i].className=liclas[i];
+                $('img')[i].className=imgclas[i];
+            }
+        }
+    },'.ri');
+
+    $('body').on({
+        'click':function(){
+            lile.unshift(lile.pop());
+            litop.unshift(litop.pop());
+            liclas.unshift(liclas.pop());
+            imgclas.unshift(imgclas.pop());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).stop().animate({
+                    'left':lile[i],
+                    'top':litop[i],
+                },500);
+                $('li')[i].className=liclas[i];
+                $('img')[i].className=imgclas[i];
+            }
+        }
+    },'.le');
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 310px;height: 500px;border: 3px solid black;}
+        #d2{width: 100%;height: 450px;float: left;}
+        #d3{width: 100%;height: 48px;float: left;border-top: 2px solid #ccc;}
+        #d4,.a{width: 50px;height: 48px;background: url(3.png) no-repeat center center;background-size:40px 40px; float: left;}
+        #d5{width: 200px;height: 40px;border: 1px solid #555;float: left;margin:3px;}
+        button{float: left;height: 40px;margin:3px;}
+        .b{word-wrap: break-word;background:green}
+        .c{width: 50px;height: 48px;background: url(4.png) no-repeat center center;background-size:40px 40px; float: right;}
+        .d{word-wrap: break-word;float: right;text-align: right; text-align-last: left;background: grey;}
+        div{overflow: hidden;}
+        .e{margin-bottom: 1px;margin-top: 1px;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+        <div id="d3">
+            <div id="d4"></div>
+            <div id="d5" contenteditable="true"></div>
+            <button id="btn">send</button>
+        </div>
+    </div>
+</body>
+<script>
+    var i=0;
+    d4.onclick=function(){
+        i++;
+        if(i%2==1)
+        {
+            d4.style.backgroundImage='url(4.png)';
+        }
+        else{
+            d4.style.backgroundImage='url(3.png)';
+        }
+    }
+
+
+    
+    btn.onclick=function(){
+        if(d5.innerHTML=='')
+        {
+            alert('please input message');
+        }
+        else{
+            var odiv=document.createElement('div');
+            odiv.className='e';
+            if(i%2==0)
+            {  
+                odiv.innerHTML='<div class="a"></div><span class="b">'+d5.innerHTML+'</span>';
+                d2.appendChild(odiv);
+                d5.innerHTML='';
+                var asp=document.getElementsByTagName('span');
+                console.log(asp[asp.length-1].offsetWidth);
+                if(asp[asp.length-1].offsetWidth>=200){
+                    asp[asp.length-1].style.float='left';
+                    asp[asp.length-1].style.width='200px';
+                }
+            }
+            else{
+                odiv.innerHTML='<div class="c"></div><span class="d">'+d5.innerHTML+'</span>';
+                d2.appendChild(odiv);
+                d5.innerHTML='';
+                var asp=document.getElementsByTagName('span');
+                console.log(asp[asp.length-1].offsetWidth);
+                if(asp[asp.length-1].offsetWidth>=200){
+                    asp[asp.length-1].style.float='right';
+                    asp[asp.length-1].style.width='200px';
+                    asp[asp.length-1].style.textAlign='right';
+                    asp[asp.length-1].style.textAlignLast='left';
+                }
+            }
+            
+        }
+    }
+</script>
+</html>

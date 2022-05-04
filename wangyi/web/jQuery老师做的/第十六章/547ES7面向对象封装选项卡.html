@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #out div,#out2 div{width: 200px;height: 200px;background: #ccc;display: none;font-size: 100px;}
+        #out2 div:first-of-type,#out div:first-of-type{display: block;}
+        .a{background: red;}
+    </style>
+</head>
+<body>
+    <div id="out">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3"><br>
+        <div class="a">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <div id="out2">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3"><br>
+        <div class="a">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+</body>
+<script>
+    class tab{
+        constructor(x){
+            this.node=document.getElementById(x);
+            this.allipt=this.node.getElementsByTagName('input');
+            this.alldiv=this.node.getElementsByTagName('div');
+            this.event();
+            this.index1=0;
+        }
+        event(){
+            for(let i=0;i<this.allipt.length;i++)
+            {
+                this.allipt[i].onclick=function(){
+                    this.hide();
+                    this.show(i);
+                }.bind(this);
+            }
+        }
+        hide(){
+            for(var i=0;i<this.allipt.length;i++)
+            {
+                this.allipt[i].className='';
+                this.alldiv[i].style.display='none';
+            }
+        }
+        show(index){
+            this.allipt[index].className='a';
+            this.alldiv[index].style.display='block';
+        }
+        
+    };
+    new tab('out');
+
+    //下面是通过继承tab方法，定时器自动走
+    class tab2 extends tab{
+        constructor(y){
+            super(y);
+        }
+        autoplay(){
+            var this1=this;
+            setInterval(() => {
+                if(this1.index1==this1.allipt.length-1)this1.index1=-1;
+                this1.index1++;
+                this1.hide();
+                this1.show(this1.index1);
+            }, 500);
+        }
+    }
+    new tab2('out2').autoplay();
+</script>
+</html>

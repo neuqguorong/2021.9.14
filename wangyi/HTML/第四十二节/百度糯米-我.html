@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度糯米-我</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #total{width: 1440px;height: 3052px;}
+        #top{width: 100%;height: 38px;background:#f2f2f2;}
+        .topleftul{float: left; margin-left: 110px;margin-top: 12px;}
+        .topleftul li{float: left;margin-right: 24px;font-size: 14px;line-height: 14px;text-align: center;}
+        .li2{color: #b99a61;}
+        .toprightul{float: right; margin-right: 110px;margin-top: 12px;}
+        .toprightul li,.toprightul .jhsx24{float: left;margin-left: 24px;font-size: 14px;line-height: 14px;text-align: center;}
+        .toprightul .jhsx{padding-right: 11px; background: url(image/jh.png) 56px;margin-left: 14px;}
+        .toprightul .line{width: 7px;height: 14px; background: url(image/sx.png);margin-left: 18px;}
+        #top2{width: 1220px;height: 110px;margin:auto;}
+        #top2 .nmimg{float: left;margin-top: 25px;}
+        .l1img{margin: 39px 0 0 37px;float: left;}
+        #top2 span,#top2 .l2img{float: left;margin-top: 35px;}
+        #seae{float: left; width: 576px;height: 37px;margin: 25px 0 0 73px;}
+        #sea{float: left; width: 576px;height: 37px;border: 1px solid #aa7513;}
+        #sea input{outline: none;float: left;height: 100%;width: 468px; border: none;text-indent: 13px;}
+        #sea div{width: 108px;height: 100%;background: #c59d52;color: white;float: left;text-align: center;font-size: 18px;line-height: 37px;}
+        #seae ul{margin-top: 8px;}
+        #seae ul li{float: left;margin-right: 20px;font-size: 14px;color: #acacac;}
+        #d3{margin: 25px 0 0 15px; float: left; width: 148px;height: 37px;background: #fff8eb;border: 1px solid #f4ead7;}
+        /* #d3 .b{width: 39px;height: 100%;}
+        #d3 .sx2{margin-top:7px;} */
+        #d3 ul{height: 100%;}
+        #d3 ul li{float: left;}
+        #d3 ul .aa{width: 46px;height: 100%;float: left;}
+        #d3 .sx2{margin-top:7px;}
+        #top3{width: 1219px;height: 431px;margin:0 auto;}
+        #top31{width: 235px;height: 100%;float: left;}
+        #top31 #li1{width: 100%;height: 44px;background: #caa156;text-indent: 15px; color: white; font-size: 19px;line-height: 44px;}
+        #top31 #li1.leftspan{float: left;text-indent: 13px;}
+        #top31 #li1 img{float: right; margin:12px 17px 0 0;}
+        #top31 .li2{width: 100%;height: 48px;background: #313131;}
+        #top31 .li2 .leftspan{float: left;margin: 16px 0 0 15px; font-size: 16px;color: #fafafa;}
+        #top31 .li2 .rightspan{float: right;margin:16px 16px 0 0;font-size: 13px;color: #8e8e8e;}
+        #top3 #top32{width: 984px;height: 42px;float: left;}
+        #top32 li{float: left;margin:0 30px;line-height: 42px;font-size: 15px;font-weight: bold;}
+        #top32 #li3{padding-right: 16px;background: url(jian.png) no-repeat 28px;}
+        #top32 #li4{padding-right: 18px;background: url(h.png) no-repeat 28px 7px;margin-right: 42px;}
+        #top33{width: 984px;height: 2px;background: #ac8137; float: left;}
+        #top3 .img1{float: left;margin:11px 0 0 11px;}
+        #top4{width: 1220px;height: 430px;margin: 0 auto;}
+        #top4 #top41{width: 100%;height: 43px;margin-top: 49px;}
+        #top4 #top41 .leftli,#top5 #top51 .leftli,#top6 #top61 .leftli,.leftli{float: left;font-size:24px ;}
+        #top4 #top41 .rightli,#top5 #top51 .rightli,#top6 #top61 .rightli,.rightli{float: right;font-size: 14px;margin-left: 35px;}
+        #top4 #top41 .you,.you{padding-right:12px;background: url(you.png) no-repeat 55px;}
+        #top4 #top42{width: 100%;height:386px;float: left;}
+        #top4 #top42 li{height: 100%;width: 182px;float: left;margin-right: 25px;}
+        #top4 #top42 li div{height: 35px;width: 100%;margin-top: 19px;font-size: 18px;}
+        #top4 #top42 li button{float: left;width: 120px;height: 34px;border:2px solid #d1b380 ;font-size: 13px;color: #d1b380;margin-left: 29px;background: #ffffff;}
+        #top4 #top42 .last,.last{margin-right: 0;}
+        .top44{width: 100%;height: 1px;background: #ededed;float: left;}
+        #top5{width: 1220px;height: 388px;margin: 0 auto;}
+        #top5 #top51,#top6 #top61,#top7 #top71{width: 100%;height: 46px;margin-top: 46px;float: left;}
+        #top5 #top52 li{height: 100%;width: 223px;float: left;margin-right: 21px;}
+        #top5 #top52 li .d51{margin-top: 22px;width: 100%;height: 26px;font-size: 18px;}
+        #top5 #top52 li .d52{height: 14px;width: 100%;}
+        #top5 #top52 li .d52 img{float: left;}
+        #top5 #top52 li .d52 span{float: right;font-size: 14px;color: #a6a6a6;}
+        #top5 #top52 li .d53{height: 37px;width: 100%;float: left;}
+        #top5 #top52 li .d53 img{float: left; margin-left: 5px;}
+        #top5 #top52 li .d53 span{float: right;}
+        #top5 #top52 li p{font-size: 13px; color:#818181;height: 39px;width: 100%;float: left;}
+        #top6{height: 457px;width:1220px;margin: 0 auto;}
+        #top6 #top62 li{width: 390px;height: 342px;float: left;margin-right: 16px;}
+        #top7{width: 1220px;height: 460px;margin: 0 auto;}
+        #top72 .zuo{width: 389px;height: 342px;float: left;margin-right: 24px;}
+        #top72 .you7{width: 389px;height: 158px;float: left;margin-bottom: 23px;}
+        #top72 .down{margin-bottom: 0;}
+        #top6 #top62,#top7 #top72{float: left; margin-bottom: 26px;}
+        #top8{width: 1220px;height: 384px;margin: 0 auto;}
+        #top8 #top81{ margin-top: 75px;height: 30px;width:65px;border-bottom: 3px solid #171717;}
+        #top8 #top81 .xiahua{font-size: 16px;float: left;}
+        .top82,.top91{width: 244px;height: 277px;float: left;}
+        .top82 .first{margin-top: 34px;}
+        .top82 li{margin-bottom: 24px;font-size: 14px;color: #afafaf;}
+        #top9{width: 100%;height: 290px;background: #f2f2f2;}
+        .top90{width: 1220px;height: 100%;margin: 0 auto;}
+        #top9 .top91 .cc{margin-top: 47px;font-size:18px ;margin-bottom: 27px;font-weight: bold;}
+        #top9 .top91 .dd{font-size: 14px;margin-bottom: 20px;}
+        #top9 div{font-size: 14px; margin-bottom: 24px;text-indent:629px;padding: 22px;background: url(10.png) no-repeat 625px #f2f2f2;}
+    </style>
+</head>
+<body>
+    <div id="total">
+        <div id="top">
+            <ul class="topleftul">
+                <li>Hi,欢迎来到百度糯米</li>
+                <li><a class="li2">请登录</a></li>
+                <li><a>免费注册</a></li>
+            </ul>
+            <ul class="toprightul">
+                <li><a>个人中心</a></li>
+                <li class="jhsx"><a>最近浏览</a></li>
+                <li class="line"></li>
+                <li class="jhsx jhsx24"><a>糯米APP</a></li>
+                <li class="jhsx"><a>我是商家</a></li>
+                <li class="line"></li>
+                <li><a>帮助中心</a></li>
+                <li><a>食品安全</a></li>
+            </ul>
+        </div>
+
+        <div id="top2">
+            <img src="image/nm.png" class="nmimg">
+            <img src="image/l1.png" class="l1img">
+            <span>北京</span>
+            <img src="image/l2.png" class="l2img">
+            <div id="seae">
+                <div id="sea">
+                    <input type="text" name="" id="" placeholder="搜索商家/地点">
+                    <div>搜索</div>
+                </div>
+                <ul>
+                    <li><a>自助火锅</a></li>
+                    <li><a>天虹广场</a></li>
+                    <li><a>中医推拿按摩</a></li>
+                    <li><a>化妆</a></li>
+                    <li><a>钢琴培训</a></li>
+                </ul>
+            </div>
+            <div id="d3">
+                <ul>
+                    <li class="aa"><img src="tui.png" class="b"></li>
+                    <li><img src="sx2.jpg" class="sx2"></li>
+                    <li class="aa"><img src="pei.png" class="b"></li>
+                    <li><img src="sx2.jpg" class="sx2"></li>
+                    <li class="aa"><img src="qian.png" class="b"></li>
+                </ul>
+
+<!--                 <img src="tui.png" class="b">
+                <img src="sx2.jpg" class="sx2">
+                <img src="pei.png" class="b">
+                <img src="sx2.jpg" class="sx2">
+                <img src="qian.png" class="b"> -->
+
+            </div>
+        </div>
+
+        <div id="top3">
+            <ul id="top31">
+                <li id="li1"><span class="leftspan">全部分类</span><span class="rightspan"><a><img src="三横.png"></a></span></li>
+                <li class="li2"><span class="leftspan">酒店</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">旅游</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">电影</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">休闲娱乐</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">结婚</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">生活服务</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">美食</span><span class="rightspan">北京/上海/广州</span></li>
+                <li class="li2"><span class="leftspan">丽人</span><span class="rightspan">北京/上海/广州</span></li>
+            </ul>
+            <ul id="top32">
+                <li>首页</li>
+                <li>酒店</li>
+                <li id="li3">出行</li>
+                <li id="li4">电影</li>
+                <li>结婚</li>
+                <li>外卖</li>
+            </ul>
+            <ul id="top33"></ul>
+            <img class="img1" src="1.png">
+            <img class="img1" src="2.png">
+            <img class="img1" src="3.png">
+        </div>
+
+        <div id="top4" class="top4">
+            <ul id="top41" class="top41">
+                <li class="leftli">热映电影</li>
+                <li class="rightli you">查看全部</li>
+                <li class="rightli"><a>看影片 </a>/<a>找影院 </a>/<a>看票房 </a></li>
+            </ul>
+            <ul id="top42">
+                <li>
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+                <li>
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+                <li>
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+                <li>
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+                <li>
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+                <li class="last">
+                    <img src="4.png">
+                    <div>复仇者联盟4：终局...</div>
+                    <button>选座购票</button>
+                </li>
+            </ul>
+            <div class="top44"></div>
+        </div>
+
+        <div id="top5">
+            <ul id="top51">
+                <li class="leftli">休闲娱乐</li>
+                <li class="rightli you">查看全部</li>
+                <li class="rightli"><a>KTV </a>/<a>足浴按摩 </a>/<a>轰趴馆 </a>/<a>运动健身 </a></li>
+            </ul>
+            <ul id="top52">
+                <li>
+                    <img src="5.png">
+                    <div class="d51">虎峪园林山庄</div>
+                    <div class="d52">
+                        <img src="6.png">
+                        <span>119条评论</span>
+                    </div>
+                    <div class="d53">
+                        <img src="sx2.jpg">
+                        <span></span>
+                    </div>
+                    <p>￥65.5/人</p>
+                </li>
+                <li>
+                    <img src="5.png">
+                    <div class="d51">虎峪园林山庄</div>
+                    <div class="d52">
+                        <img src="6.png">
+                        <span>119条评论</span>
+                    </div>
+                    <div class="d53">
+                        <img src="sx2.jpg">
+                        <span></span>
+                    </div>
+                    <p>￥65.5/人</p>
+                </li>
+                <li>
+                    <img src="5.png">
+                    <div class="d51">虎峪园林山庄</div>
+                    <div class="d52">
+                        <img src="6.png">
+                        <span>119条评论</span>
+                    </div>
+                    <div class="d53">
+                        <img src="sx2.jpg">
+                        <span></span>
+                    </div>
+                    <p>￥65.5/人</p>
+                </li>
+                <li>
+                    <img src="5.png">
+                    <div class="d51">虎峪园林山庄</div>
+                    <div class="d52">
+                        <img src="6.png">
+                        <span>119条评论</span>
+                    </div>
+                    <div class="d53">
+                        <img src="sx2.jpg">
+                        <span></span>
+                    </div>
+                    <p>￥65.5/人</p>
+                </li>
+                <li class="last">
+                    <img src="5.png">
+                    <div class="d51">虎峪园林山庄</div>
+                    <div class="d52">
+                        <img src="6.png">
+                        <span>119条评论</span>
+                    </div>
+                    <div class="d53">
+                        <img src="sx2.jpg">
+                        <span></span>
+                    </div>
+                    <p>￥65.5/人</p>
+                </li>
+            </ul>
+            <div class="top44"></div>
+        </div>
+
+        <div id="top6">
+            <ul id="top61">
+                <li class="leftli">旅游</li>
+                <li class="rightli you">查看全部</li>
+            </ul>
+            <ul id="top62">
+                <li><img src="7.png"></li>
+                <li><img src="7.png"></li>
+                <li class="last"><img src="7.png"></li>
+            </ul>
+            <div class="top44"></div>
+        </div>
+        <div id="top7">
+            <ul id="top71">
+                <li class="leftli">结婚</li>
+                <li class="rightli you">查看全部</li>
+            </ul>
+            <ul id="top72">
+                <li class="zuo"><img src="8.png"></li>
+                <li class="zuo"><img src="8.png"></li>
+                <li class="you7"><img src="9.png"></li>
+                <li class="you7 down"><img src="9.png"></li>
+            </ul>
+            <div class="top44"></div>
+        </div>
+
+        <div id="top8">
+            <ul id="top81">
+                <li class="leftli xiahua">热门商场</li>
+                
+            </ul>
+            <div class="top44"></div>
+            <ul class="top82">
+                <li class="first">朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li class="lastli">朝阳大悦城</li>
+            </ul>
+            <ul class="top82">
+                <li class="first">朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li class="lastli">朝阳大悦城</li>
+            </ul>
+            <ul class="top82">
+                <li class="first">朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li class="lastli">朝阳大悦城</li>
+            </ul>
+            <ul class="top82">
+                <li class="first">朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li class="lastli">朝阳大悦城</li>
+            </ul>
+            <ul class="top82">
+                <li class="first">朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li>朝阳大悦城</li>
+                <li class="lastli">朝阳大悦城</li>
+            </ul>
+        </div>
+
+        <div id="top9">
+            <ul class="top90">
+                <ul class="top91">
+                    <li class="cc">用户帮助</li>
+                    <li class="dd">常见团购问题</li>
+                    <li class="ee">开放API</li>
+                </ul>
+                <ul class="top91">
+                    <li class="cc">用户帮助</li>
+                    <li class="dd">常见团购问题</li>
+                    <li class="ee">开放API</li>
+                </ul>
+                <ul class="top91">
+                    <li class="cc">用户帮助</li>
+                    <li class="dd">常见团购问题</li>
+                    <li class="ee">开放API</li>
+                </ul>
+                <ul class="top91">
+                    <li class="cc">用户帮助</li>
+                    <li class="dd">常见团购问题</li>
+                    <li class="ee">开放API</li>
+                </ul>
+                <ul class="top91">
+                    <li class="cc">用户帮助</li>
+                    <li class="dd">常见团购问题</li>
+                    <li class="ee"><button>手机专享优惠</button></li>
+                </ul>
+            </ul>
+            <div>京公网安倍11000002000001号</div>
+        </div>
+    </div>
+</body>
+</html>

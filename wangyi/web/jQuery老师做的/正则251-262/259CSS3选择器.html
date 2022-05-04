@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        body>:not(div)~div{width: 100px;height: 100px;background: #ccc;margin-bottom: 10px;}
+        [aa]{width: 100px;height: 100px;background: red;}
+        [aa$='sgaa']{width: 100px;height: 100px;background: green;}
+        [aa^='aaf']{width: 100px;height: 100px;background: blue;}
+        [aa*='d']{width: 100px;height: 100px;background: orange;}
+        /* span:first-child{width: 200px;height: 200px;background: pink;} */
+        span:last-child{width: 200px;height: 200px;background: greenyellow;}
+    </style>
+</head>
+<body>
+    
+    <span aa='dfasgaa'>body下面第一个span，我是span的父元素的首个子元素的span标签</span>
+    <div bb>body下面第一个div
+        <span>我是span的父元素的首个子元素的span标签</span>
+    </div>
+    <div cc>body下面第二个div</div>
+    <div>body下面第三个div</div>
+    <span>body下面第二个span</span>
+    <div aa='eingaa'>body下面第四个div</div>
+    <span aa='aafdjsk'>body下面第三个span</span>
+    <div>body下面第五个div</div>
+    <span>body下面第四个span</span>
+
+    <script>
+        var a=document.querySelector('div');//querySelector() 方法仅仅返回匹配指定选择器的第一个元素。
+        //如果你需要返回所有的元素，请使用 querySelectorAll() 方法替代。
+        console.log(a);
+        var b=document.querySelectorAll('div');//返回所有的元素
+        console.log(b);
+    </script>
+</body>
+</html>

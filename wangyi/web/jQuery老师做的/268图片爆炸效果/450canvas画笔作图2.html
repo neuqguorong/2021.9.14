@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        html,body{height: 100%;width: 100%;background: black;}
+        canvas{background: white;}
+    </style>
+</head>
+<body>
+    <canvas id="can" width="500" height="500"></canvas>
+</body>
+<script>
+    //画出一条线
+    var c=can.getContext('2d');console.log(c);
+/*     c.beginPath();
+    c.strokeStyle='red';//画笔颜色
+    c.lineWidth=10;//画笔粗细
+    c.moveTo(50,50);
+    c.lineTo(100,100);
+    c.stroke(); */
+
+    //自动清除整个画布,用矩形
+    function clearcan(){
+        c.beginPath();
+        c.fillStyle='white';//填充颜色
+        c.rect(0,0,can.width,can.height);
+        c.fill();
+        c.stroke();
+    }
+
+    //自动画线
+/*     var t=null;
+    t=setInterval(function(){
+        c.beginPath();
+        c.strokeStyle='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';//画笔颜色
+        c.lineWidth=20*Math.random();//画笔粗细
+        c.moveTo(can.width*Math.random(),can.height*Math.random());
+        c.lineTo(can.width*Math.random(),can.height*Math.random());
+        c.stroke();
+    },10);
+
+    //一秒钟之后，自动清屏
+    setTimeout(function(){
+        clearcan();
+        clearInterval(t);
+    },1000) */
+    
+
+
+    //画矩形
+/*     function 画矩形(x,y,x1,y1){
+        c.beginPath();
+        c.strokeStyle='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';//线条颜色，也就是矩形边框颜色
+        c.rect(x,y,x1,y1);
+        c.fillStyle='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';//填充颜色
+        c.fill();
+        c.stroke();
+    }
+    var x=50,y=50,x1=200,y1=100;
+    画矩形(x,y,x1,y1);
+
+    //清除所画的矩形
+    function 清除所画的矩形(x,y,x1,y1){
+        c.beginPath();
+        c.fillStyle='white';//填充颜色
+        c.strokeStyle='white';//清除矩形边框的颜色
+        c.rect(x,y,x1,y1);
+        c.fill();
+        c.stroke();
+    }
+
+    //移动矩形，需要先清除，再画矩形
+    can.onmousedown=function(e){
+        var l0=e.clientX-x,t0=e.clientY-y;
+        can.onmousemove=function(e){
+            清除所画的矩形(x-2,y-2,x1+4,y1+4);
+            画矩形(e.clientX-l0,e.clientY-t0,x1,y1);
+            x=e.clientX-l0,y=e.clientY-t0;
+        }
+        can.onmouseup=function(){
+            can.onmousemove=can.onmouseup=null;
+        }   
+    } */
+
+    //画圆形,内部填充，
+    function 画圆形(rx,ry,r,sd,ed,tf){
+        c.beginPath();
+        c.fillStyle='white';
+        c.fillStyle='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';//填充颜色
+        c.strokeStyle='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';//线条颜色，也就是矩形边框颜色
+        c.lineWidth=20*Math.random();
+        c.arc(rx,ry,r,sd,ed,tf);
+        c.fill();
+        c.stroke();
+    }
+    var rx=200,ry=200,r=100,sd=Math.PI/3,ed=Math.PI*3/2,tf=true;
+    画圆形(rx,ry,r,sd,ed,tf);
+
+    function 清除圆形(rx,ry,r,sd,ed,tf){
+        c.beginPath();
+        c.fillStyle='white';//填充颜色
+        c.strokeStyle='white';//线条颜色，也就是矩形边框颜色
+        c.lineWidth=20;
+        c.arc(rx,ry,r,sd,ed,tf);
+        c.fill();
+        c.stroke();
+    }
+    //画圆形(200,200,100,Math.PI/3,Math.PI*3/2,false);
+/*     setTimeout(function(){
+        清除圆形(rx,ry,r,sd+Math.PI/180,ed-Math.PI/180,tf)
+    },1000) */
+
+    setInterval(() => {
+        清除圆形(rx,ry,r,sd,ed,tf);
+        //sd++,ed--;
+        ed=ed+Math.PI/180;
+        画圆形(rx,ry,r,sd,ed,tf);
+    }, 100);
+</script>
+</html>

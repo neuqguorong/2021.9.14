@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{list-style: none;}
+        #d1{width: 50%;height: 100%;background: #ccc;position: absolute;left: 50%;margin-right: 20%;}
+        #filecon{width: 100%;height: 300px;}
+        #filecls{position: absolute;top: 20px;right: 20px;}
+        #ol li{margin-top: 10px;cursor: pointer;position: relative;}
+        li:hover{color: red;}
+        #d2{width: 500px;height: 300px;display: none;background:wheat;position: relative;}
+        li p{position: absolute;left: 30px;top:-30px;background: #ccc;display: none;width: 500px;}
+        #d2cls{position: absolute;right: 20px;top:20px;}
+    </style>
+</head>
+<body>
+    单击列表中的某一项，可以查看文件内容，双击列表中的某一项可以删除该项<br>
+    <button id="write">click write file title and content</button>
+    <ol id="ol"></ol>
+    <div id="d1">
+        please input filename:<input id="filename"><br>
+        please input file content:<br>
+        <textarea id="filecon" placeholder="please input file content"></textarea><br>
+        <button id="submit">submit and create file</button>
+        <button id="filecls">close</button>
+    </div>
+    <div id="d2">
+        <h3 id="h3"></h3>
+        <div id="div"></div>
+        <button id="d2cls">d2cls</button>
+    </div>
+    
+</body>
+<script>
+    $('#ol').html('');
+    var jsonget={
+            'type':'get',
+            'url':'http://localhost:1116',
+            'value':{
+                'filename':filename.value,
+                'filecon':filecon.value
+            },
+            'success':function(data){
+                if(data!=''){
+                    var arr=eval(data);console.log(arr);
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        $('<li>'+arr[i]+'<li>').appendTo($('#ol'));
+                    }
+                }
+            },
+            'error':function(){
+                console.log('error');
+            }
+    }
+    //console.log(jsontostr(json.value)) ;
+    ajax(jsonget);
+
+
+    submit.onclick=function(){
+/*         var ali=ol.children;
+        for(var i=0;i<ali.length;i++)
+        {
+            if(filename.value==ali[i].innerHTML)
+            {
+                alert('!! filename  repeat,please change filename');
+                return;
+            }
+        } */
+
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1117',
+            'value':{
+                'filename':filename.value,
+                'filecon':filecon.value
+            },
+            'success':function(data){
+                if(data=='!! filename  repeat,please change filename')
+                {
+                    alert(data);
+                }else{
+                    $('#ol').html('');
+                    var arr=eval(data);
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        $('<li>'+arr[i]+'<li>').appendTo($('#ol'));
+                    }
+                }
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+        filename.value='';
+        filecon.value='';
+    }
+
+    document.onclick=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='LI')
+        {
+            d2.style.display='block';
+            h3.innerHTML=target.innerHTML;
+            var jsonget={
+                'type':'get',
+                'url':'http://localhost:1118',
+                'value':{
+                    'filename':$(target).html(),
+                },
+                'success':function(data){
+                    div.innerHTML=data;
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+            
+        }
+    }
+
+
+
+    d2cls.onclick=function(){
+        d2.style.display='none';
+    }
+
+
+    document.ondblclick=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='LI')
+        {
+            var jsonget={
+                'type':'get',
+                'url':'http://localhost:1119',
+                'value':{
+                    'filename':$(target).html(),
+                },
+                'success':function(data){
+                    $('#ol').html('');
+                    var arr=eval(data);
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        $('<li>'+arr[i]+'<li>').appendTo($('#ol'));
+                    }
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+        }
+    }
+
+/*     document.onmouseover=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='LI')
+        {
+            target.children[0].style.display='block';
+        }
+    }
+
+
+    document.onmouseover=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='LI')
+        {
+            target.children[0].style.display='none';
+        }
+    } */
+
+    function ajax(opt)
+    {
+        var xhr=new XMLHttpRequest();
+        if(opt.type=='get')
+        {
+            xhr.open(opt.type,opt.url+'?'+jsontostr(opt.value),true);
+            xhr.send();
+        }
+        else if(opt.type=='post')
+        {
+            xhr.open('post',opt.url,true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//告诉后台要发送的数据类型，图片，字符串，之类的
+            xhr.send(jsontostr(opt.value));
+        }
+        
+
+        //AJAX状态码发生改变时
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState==4)//AJAX状态码=4时，才可以收到响应
+            {
+                if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+                {
+                    //console.log(xhr.responseText);
+                    opt.success(xhr.responseText);
+                }
+                else{
+                    //console.log('服务器错误');
+                    opt.error && opt.error();
+                }
+            }
+        }
+
+        function jsontostr(json)
+        {
+            var arr=[];
+            for(var i in json)
+            {
+                arr.push(i+'='+json[i]);
+            }
+            return arr.join('&');
+        }
+    }
+</script>
+</html>

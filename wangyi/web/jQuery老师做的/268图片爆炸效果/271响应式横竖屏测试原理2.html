@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        html,body{width: 100%;height: 100%;}
+        body{transition: 1s all ease;}
+        ul{transition: 1s all ease;}
+        @media all and (orientation:landscape){
+            body{background: black;background: url(1.jpg) no-repeat;background-size: cover;}
+            ul{width: 100%;height: 20px;display: -webkit-box;-webkit-box-orient:horizontal;}
+            li{-webkit-box-flex: 1;}
+            .u1{background: black;}
+            .u2{background: aqua;}
+            .u3{background: red;}
+            .u4{background: chartreuse;}
+        }
+
+        @media all and (orientation:portrait){
+            body{background: yellow;background: url(2.jpg) no-repeat;background-size:100% 100%;}
+            ul{width:20px;height: 100%;display: -webkit-box;-webkit-box-orient:vertical;}
+            li{-webkit-box-flex: 1;}
+            .u1{background:hotpink;}
+            .u2{background: aqua;}
+            .u3{background: red;}
+            .u4{background: chartreuse;}
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="u1"></li>
+        <li class="u2"></li>
+        <li class="u3"></li>
+        <li class="u4"></li>
+    </ul>
+</body>
+</html>

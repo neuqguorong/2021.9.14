@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='jquery-1.9.1.min.js'></script>
+    <title></title>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        //$('<div class="a"></div>').appendTo('#d1');
+        $('<div class="a"></div>').appendTo($('#d1'));
+        $('#d1').append(('<div class="b"></div>'));
+        $('#d1').append($('<div class="c"></div>'));
+        $('#d1').prepend(('<div class="d"></div>'));
+        $('<div class="e"></div>').prependTo($('#d1'));
+        var i=0;
+        $(document).click(function(){
+            $('<div class="e">div+'+i+'</div>').prependTo($('#d1'));
+            i++;
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        div{width: 200px;height: 200px;background: black;position: absolute;left: 50%;top: 50%;margin-left: -100px;margin-top: -100px;transition: 1s;}
+        #d1{background: red;transform: perspective(800px);}
+        #d2{background:green;}
+        #d3{background:-webkit-linear-gradient(45deg,red,yellow,green);}
+        #d2:hover{transform:translateX(200px) rotate(30deg);}
+        #d3:hover{transform:rotate(30deg) translateX(200px);}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+    <div id="d3"></div>
+</body>
+
+<script>
+/*     var i=0;
+    setInterval(function(){
+        i++;
+        d3.style.background='-webkit-linear-gradient('+i+'deg,red,yellow,green';
+    },0) */
+</script>
+</html>

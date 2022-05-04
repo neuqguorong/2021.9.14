@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #d1{width: 200px;height: 200px;background: url(bilibili.png);
+        position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px;
+        transition: 3s transform ease;transform: perspective(800px) rotateY(-60deg);
+        transform-style: preserve-3d;}
+        #d2{width: 200px;height: 200px;background: red;position: absolute;
+        left: 0;top: 0; transform:translateZ(100px);}
+        #d3{width: 200px;height: 200px;background: green;position: absolute;
+        left: 0;top: 0; transform:translateZ(-100px);}
+        #d4{width: 200px;height: 200px;background: yellow;position: absolute;
+        left: 0;top: 0; transform:rotateY(-90deg) translateZ(-100px);}
+        #d5{width: 200px;height: 200px;background: blue;position: absolute;
+        left: 0;top: 0; transform:rotateY(-90deg) translateZ(100px);}
+        #d6{width: 200px;height: 200px;background: pink;position: absolute;
+        left: 0;top: 0; transform:rotateX(90deg) translateZ(100px);}
+        #d7{width: 200px;height: 200px;background: orange;position: absolute;
+        left: 0;top: 0; transform:rotateX(-90deg) translateZ(100px);}
+        div{font-size: 70px;text-align: center;}
+        
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2">右面</div>
+        <div id="d3">左面</div>
+        <div id="d4">后面</div>
+        <div id="d5">前面</div>
+        <div id="d6">上面</div>
+        <div id="d7">下面</div>
+    </div>
+
+    <script>
+        var a=0;
+        setInterval(function(){
+            a++;
+            d1.style.transform='perspective(800px) rotateX('+a+'deg) rotateY('+a+'deg)';
+        },10);
+    </script>
+</body>
+</html>

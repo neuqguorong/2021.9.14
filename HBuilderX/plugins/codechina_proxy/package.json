@@ -1,0 +1,62 @@
+{
+  "__private": true,
+  "name": "codechina_proxy",
+  "displayName": " CSDN CodeChina 代码托管服务",
+  "version": "1.0.1-2021071421",
+  "description": " CSDN CodeChina 代码托管服务",
+  "keywords": [],
+  "author": "",
+  "license": "",
+  "publisher": "DCloud",
+  "engines": {
+    "HBuilderX": "^3.1.10"
+  },
+  "categories": [
+    "Other"
+  ],
+  "contributes": {
+    "commandInterceptors": [
+      {
+        "id": "interceptor.checkPluginExists",
+        "patterns": [
+          "api.main_project_create.proxy",
+          "api.main_project_visit.proxy"
+        ],
+        "args": {
+          "pluginId": "codechina-workflow",
+          "pluginName": "CSDN CodeChina 代码托管服务"
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "api.main_project_create.proxy",
+        "title": "托管项目到Git平台（CODE CHINA）"
+      },
+      {
+        "command": "api.main_project_visit.proxy",
+        "title": "访问托管项目Web页..."
+      }
+    ],
+    "expressions": {
+      "iscodechinaExtensionExists": "plugin.isInstalled <- 'codechina-workflow'"
+    },
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "api.main_project_create.proxy",
+          "group": "z_commands",
+          "when": "!expression.iscodechinaExtensionExists && explorerResourceIsWorkspaceFolder && !(file.exists <- '${workspaceFolder}/.git/codechina.yaml')"
+        },
+        {
+          "command": "api.main_project_visit.proxy",
+          "group": "z_commands",
+          "when": "!expression.iscodechinaExtensionExists && explorerResourceIsWorkspaceFolder && file.exists <- '${workspaceFolder}/.git/codechina.yaml'"
+        },
+        {
+          "group": "z_commands"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,44 @@
+<!doctype html> 
+<html ng-app='text'> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='angular.js'></script>
+</head>
+<script type="text/javascript">
+	
+	var app = angular.module('text',[]);
+	app.controller('const',function ($scope,$http,$timeout){
+		$scope.a = 0;
+		//$scope.a = 30;
+		
+		/*
+		$timeout(function(){
+			$scope.a = 30;
+		},1000)
+	*/
+		
+		setTimeout(function(){
+			$scope.a = 30;
+			//console.log($scope.a);
+			$scope.$apply();
+		},1000);
+	
+		
+		/*
+		$scope.fn = function(n){
+			setTimeout(function(){
+				$scope.n = 30;
+				return $scope.n;
+			},1000);
+		}
+		*/
+		
+	})
+
+</script>
+<body ng-controller='const'>
+<div>{{a}}</div>
+
+</body>
+</html>

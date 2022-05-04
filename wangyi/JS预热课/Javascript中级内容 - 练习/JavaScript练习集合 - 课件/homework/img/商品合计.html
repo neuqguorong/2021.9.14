@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        button,span{margin: 7px;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li><button class="a">-</button><span>0</span><button class="b">+</button>单价：<span>20</span>元 小计<span>0</span>元</li>
+        <li><button class="a">-</button><span>0</span><button class="b">+</button>单价：<span>20</span>元 小计<span>0</span>元</li>
+        <li><button class="a">-</button><span>0</span><button class="b">+</button>单价：<span>10</span>元 小计<span>0</span>元</li>
+        <li><button class="a">-</button><span>0</span><button class="b">+</button>单价：<span>40</span>元 小计<span>0</span>元</li>
+        <li><button class="a">-</button><span>0</span><button class="b">+</button>单价：<span>30</span>元 小计<span>0</span>元</li>
+        <p>商品合计共：<span id="piece">0</span>件，共花费了：<span id="money">0</span>元</p>
+        <p>其中最贵的商品单价是：<span id="exp">0</span>元</p>
+    </ul>
+</body>
+<script>
+    var abtn=document.getElementsByClassName('a'),bbtn=document.getElementsByClassName('b');//console.log(typeof abtn[0].parentNode.children[1].innerHTML);
+    var a1=[],a2=[],a3=[],a4=[0];
+    for(var i=0;i<abtn.length;i++)
+    {
+        a1.push(abtn[i].parentNode.children[1].innerHTML);
+        a2.push(abtn[i].parentNode.children[3].innerHTML);
+        a3.push(abtn[i].parentNode.children[4].innerHTML);
+    }
+    //console.log(a1,a2,a3);
+    for(var i=0;i<abtn.length;i++)
+    {
+        abtn[i].index=i;
+        abtn[i].onclick=function(){ 
+            if(a1[this.index]!='0')
+            {   
+                //console.log(typeof a1[this.index]);
+                a1[this.index]--,a3[this.index]=a2[this.index]*a1[this.index];
+                this.parentNode.children[1].innerHTML=a1[this.index];
+                this.parentNode.children[4].innerHTML=a3[this.index];
+                piece.innerHTML=eval(a1.join("+"));
+                money.innerHTML=eval(a3.join("+"));
+            }
+
+            for(var j=0;j<a1.length;j++)
+            {
+                if(a1[j]==0)
+                {   //console.log(a2[j]);
+/*                     for(var k=0;k<a4.length;k++)
+                    {
+                        if(a4[k]==a2[j])
+                        {
+                            a4[k]=0;  
+                        }
+                    } */
+                    a4.splice(a4.indexOf(a2[j]),1);
+                    if(a4.length==0)
+                    {
+                        a4=[0];
+                    }
+                }
+                else{
+                    (a4.indexOf(a2[j])==-1)&&a4.push(a2[j]);
+                }
+            }
+            console.log(a4);
+            a4.sort(function(a,b){return b-a;});
+            exp.innerHTML=a4[0];  
+        }
+
+     
+    }
+
+    for(var i=0;i<bbtn.length;i++)
+    {   
+        bbtn[i].index=i;
+        bbtn[i].onclick=function(){
+            a1[this.index]++,a3[this.index]=a2[this.index]*a1[this.index];
+            this.parentNode.children[1].innerHTML=a1[this.index];
+            this.parentNode.children[4].innerHTML=a3[this.index];
+            piece.innerHTML=eval(a1.join("+"));
+            money.innerHTML=eval(a3.join("+"));
+            /* this.parentNode.children[1].innerHTML++;
+            piece.innerHTML++;
+            this.parentNode.children[4].innerHTML=this.parentNode.children[1].innerHTML*this.parentNode.children[3].innerHTML; */
+            //console.log(a1);
+            for(var j=0;j<a1.length;j++)
+            {
+                if(a1[j]!=0)
+                {   //console.log(a2[j]);
+                    (a4.indexOf(a2[j])==-1)&&a4.push(a2[j]);
+                }
+            }
+            console.log(a4);
+            a4.sort(function(a,b){return b-a;});
+            exp.innerHTML=a4[0];
+        }
+    } 
+
+
+    
+    
+</script>
+</html>

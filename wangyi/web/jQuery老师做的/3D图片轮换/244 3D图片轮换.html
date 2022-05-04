@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>244 3D三维图片轮换</title>
+<link href="zns_style.css" rel="stylesheet" type="text/css" />
+<script src="jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>
+
+<ul id="znsRotatePic">
+	<li class="pic1">
+		<a href="http://baidu.com/"><img src="images/pic1.gif" alt="pic1" class="unactive" longdesc="http://www.zns.com" width="187" /></a><!-- 208 -->
+		<span></span>
+	</li>
+	<li class="pic2">
+		<a href="http://google.com/"><img src="images/pic2.gif" alt="pic2" longdesc="http://www.zns.com" width="208" /></a>
+		<span></span>
+	</li>
+	<li class="pic3">
+		<a href="http://www.zns.com/"><img src="images/pic3.gif" alt="pic3" class="unactive" longdesc="http://www.zns.com" width="187" /></a>
+		<span></span>
+	</li>
+</ul>
+<script type="text/javascript">
+	var imgposx=[],imgposy=[],imgw=[],imgt=[],clas=[],opa=[];
+    $('a').attr('href','javascript:;');
+    for(var i=0;i<$('li img').length;i++)
+    {
+        imgposx.push($('li').eq(i).css('left'));
+        imgposy.push($('li').eq(i).css('top'));                           
+        imgw.push($('li img').eq(i).width());
+        imgt.push($('li img').eq(i).css('top'));
+        clas.push($('li')[i].className); 
+        opa.push($('li img').eq(i).css('opacity'));     
+    };
+
+    //console.log(imgposx,imgposy,imgw,imgt,clas,opa); 
+    //用事件委托去写，事件绑定，会一直有
+    $('body').on({
+        'click':function(){
+            imgposx.unshift(imgposx.pop());
+            imgposy.unshift(imgposy.pop());
+            imgw.unshift(imgw.pop());
+            imgt.unshift(imgt.pop());
+            clas.unshift(clas.pop());
+            opa.unshift(opa.pop());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).stop().animate({
+                    'left':imgposx[i],
+                    'top':imgposy[i],
+                },500);
+                $('li')[i].className=clas[i];
+
+                $('li img').eq(i).stop().animate({
+                    'width':imgw[i],
+                    'top':imgt[i],
+                    'opacity':opa[i]
+                },500);
+            };
+
+/*             for(var i=0;i<$('li img').length;i++)
+            {    
+                $('li img').eq(i).stop().animate({
+                    'width':imgw[i],
+                    'top':imgt[i],
+                    'opacity':opa[i]
+                },500);
+            } */
+        }
+    },'.pic1');
+
+    $('body').on({
+        'click':function(){
+            imgposx.unshift(imgposx.pop());
+            imgposy.unshift(imgposy.pop());
+            imgw.unshift(imgw.pop());
+            imgt.unshift(imgt.pop());
+            clas.unshift(clas.pop());
+            opa.unshift(opa.pop());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).stop().animate({
+                    'left':imgposx[i],
+                    'top':imgposy[i],
+                },500);
+                $('li')[i].className=clas[i];
+            };
+
+            for(var i=0;i<$('li img').length;i++)
+            {    
+                $('li img').eq(i).stop().animate({
+                    'width':imgw[i],
+                    'top':imgt[i],
+                    'opacity':opa[i]
+                },500);
+            }
+        }
+    },'.pic2');
+
+    $('body').on({
+        'click':function(){
+            imgposx.push(imgposx.shift());
+            imgposy.push(imgposy.shift());
+            imgw.push(imgw.shift());
+            imgt.push(imgt.shift());
+            clas.push(clas.shift());
+            opa.push(opa.shift());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).stop().animate({
+                    'left':imgposx[i],
+                    'top':imgposy[i],
+                },500);
+                $('li')[i].className=clas[i];
+            };
+
+            for(var i=0;i<$('li img').length;i++)
+            {    
+                $('li img').eq(i).stop().animate({
+                    'width':imgw[i],
+                    'top':imgt[i],
+                    'opacity':opa[i]
+                },500);
+            }
+        }
+    },'.pic3');
+</script>
+</body>
+</html>

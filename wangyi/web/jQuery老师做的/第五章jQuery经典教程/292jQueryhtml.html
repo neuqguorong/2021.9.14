@@ -1,0 +1,97 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        div{width: 200px;height: 200px;border: 1px solid black;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;text-align: center;line-height: 200px;}
+    </style>
+</head>
+<body>
+    <div>原生hello world</div>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 400px;height: 400px;border: 1px solid black;position: absolute;left: 0;right: 0;top: 0;bottom: 0;margin: auto;text-align: center;line-height: 400px;}
+        [shuxing='shuxing1']{width: 100px;height: 100px;background: green;margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="a">fdasger</li>
+        <li class="a">fdasgerfeweg</li>
+        <li class="a">fdasgergfdhgfjyd</li>
+        <li class="a">fdasgersdfrtyugihjo</li>
+    </ul>
+    <ul>
+        <li class="b">b1</li>
+        <li class="b">b2</li>
+        <li class="b">b3</li>
+        <li class="b">b4</li>
+    </ul>
+    <div id="d1"></div>
+    <div shuxing='shuxing12'></div>
+    <p shuxing='shuxing1'>shuxing p</p>
+    <button id="btn">buttonanniu</button>
+    <script>
+        $('#btn').attr({
+            'leo':'18',
+            'zhangsn':'19',
+            'wo':20
+        })
+        $('#btn').removeAttr('leo');
+
+        console.log(btn.innerHTML);
+            $('#btn').click=function(){
+                $(this).html('jquery button');
+            }
+
+
+        //这方法也对
+      /*   window.onload=function(){
+            $('div').html('jQuery hello world');
+        } */
+
+
+/*         //这方法也对，页面加载完成后，执行
+        $(document).ready(function(){
+            //$('div').html('$ jQuery hello world').css('color','red');
+            $('div').html('$ jQuery hello world').css({
+                'color':'red',
+                'font-size':'40px'
+            });
+        });
+
+        $('.a').css('color','green');
+
+        $('li').css('font-size','30px');
+
+        $('body *').css({
+            'color':'yellow',
+            'width':'300px'
+        }); */
+
+        /* var bli=document.getElementsByClassName('b');
+        $(bli).css('color','aqua'); */
+        
+        //console.log($('[shuxing^="shuxing1"]'));
+
+     
+        
+    </script>
+</body>
+</html>

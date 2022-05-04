@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+/*         //localStorage容量一般在2-5MB左右，只能储存字符串
+        localStorage.clear();//清空localStorage的key
+        localStorage.a=10;
+        localStorage.setItem('b',20);
+        console.log(localStorage,localStorage.getItem('a'),localStorage.getItem('b'));
+        localStorage.removeItem('a');
+        console.log(localStorage,localStorage.getItem('a'),localStorage.getItem('b'));
+
+        //sessionStorage.c=5;//网页关闭时失效，刷新没问题
+        console.log(sessionStorage); */
+
+        //用indexedDB创建数据库和表
+        var tab=indexedDB.open('table1',3);//创建或打开数据库，如果有，就打开，没有，就创建，而且只能创建高版本
+        var table2=indexedDB.open('table2',1);
+        tab.onsuccess=function(){
+            console.log('tabel1创建数据库成功');
+        }
+        var table3=indexedDB.open('table1',1);
+        table3.onerror=function(){
+            console.log('table3创建数据库失败');
+        }
+
+        tab.onupgradeneeded=function(){
+            console.log('版本号升级了');
+            //版本号升级了，才能创建表
+            table1.result.createObjectStore('test1',{autoIncrement:true});//创建一个名为test1的表，
+        }
+        
+        console.log(tab);
+        var json={'name':'leo','age':'20'};
+        var db=tab.result;
+        var tr=db.transaction('test1','readwrite');
+        var stor=tr.objectStore('test1');
+        stor.add(json);
+        setTimeout(function(){
+            
+        },300)
+       
+       
+    </script>
+</body>
+</html>

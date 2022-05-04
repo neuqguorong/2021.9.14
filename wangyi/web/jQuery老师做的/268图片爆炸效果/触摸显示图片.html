@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width:500px;height: 300px;position: absolute;left: 50%;top: 50%;margin-left: -250px;margin-top: -150px;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+    for(var i=0;i<10;i++)
+    {
+        for(var j=0;j<15;j++)
+        {
+            var odiv=document.createElement('div');
+            odiv.style.cssText='float:left;width:'+d1.offsetWidth/15+'px;height:'+d1.offsetHeight/10+'px;background:url(1.jpg) '+(-j)*d1.offsetWidth/15+'px '+(-i)*d1.offsetHeight/10+'px;transition:'+(Math.random()*1.8+0.7)+'s all ease;opacity:0';
+            
+/*             odiv.style.float='left';
+            odiv.style.width=d1.offsetWidth/15+'px';
+            odiv.style.height=d1.offsetHeight/10+'px';
+            odiv.style.background='url(1.jpg) '+(-j)*d1.offsetWidth/15+'px '+(-i)*d1.offsetHeight/10+'px';
+            odiv.style.transition=(Math.random()*1.8+0.7)+'s all ease';
+            odiv.style.display='none'; */
+/*             odiv.onmouseover=function(){
+                this.style.opacity=1;
+            } */
+            d1.appendChild(odiv);
+        }
+    }
+    
+    var adiv=d1.children;//console.log(adiv);
+    for(var i=0;i<adiv.length;i++)
+    {
+        adiv[i].onmouseover=function(){
+            this.style.opacity=1;
+            
+        }
+    }
+       
+</script>
+</html>

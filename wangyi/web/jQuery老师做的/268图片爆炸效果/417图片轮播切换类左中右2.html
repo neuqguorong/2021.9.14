@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        ul{position: absolute;left: 0; margin-top: 100px;}
+        li{width: 200px;height: 150px;float: left; background-size: 100% 100%;position: absolute;transition: 1s;opacity: 0;}
+        .a{transform: perspective(800px) rotateY(60deg);z-index: 0;}
+        .b{transform: perspective(800px) rotateY(30deg);left: 100px;z-index: 1;opacity: 1;}
+        .c{left: 200px;z-index: 2;opacity: 1;}
+        .d{transform: perspective(800px) rotateY(-30deg);left: 300px;z-index: 1;opacity: 1;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="a" ></li>
+        <li class="b e"></li>
+        <li class="c"></li>
+        <li class="d"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</body>
+<script>
+    var z=0,cla=['a','b','c','d'];
+    var arr=['1.jpg','2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg'];
+    for(var i=0;i<$('li').length;i++)
+    {
+        $('li').eq(i).css({
+            'background':'url('+arr[i]+')',
+        });
+    }
+
+/*     $('li').eq(1).click(function(){
+        console.log(1);
+        cla.push(cla.shift());
+        for(var i=0;i<cla.length;i++)
+        {
+            $('li').eq(i).removeClass().addClass(cla[i]);
+        }
+    }) */
+
+    var k=true;
+    $(document).on('click',function(){
+        if(k)
+        {
+            k=false;
+            cla.push(cla.shift());
+            arr.push(arr.shift());
+            for(var i=0;i<$('li').length;i++)
+            {
+                $('li').eq(i).css({
+                    'background':'url('+arr[i]+')',
+                });
+                $('li').eq(i).removeClass().addClass(cla[i]);
+            }
+            k=true;
+        }
+        
+    })
+</script>
+</html>

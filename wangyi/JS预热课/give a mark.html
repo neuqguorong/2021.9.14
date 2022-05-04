@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<button></button>
+	<button></button>
+	<button></button>
+	<button></button>
+	<button></button>
+
+	<script type="text/javascript">
+		var b=document.getElementsByTagName('button');
+		for(var i=0;i<b.length;i++)
+		{
+			b[i].index=i;
+			b[i].onclick=function(){
+				for(var i=0;i<b.length;i++)
+				{
+					b[i].style.background='white';
+				}
+				for(var j=0;j<=this.index;j++)
+				{
+					b[j].style.background='yellow';
+				}
+			}
+		}
+
+		
+	</script>
+</body>
+</html>

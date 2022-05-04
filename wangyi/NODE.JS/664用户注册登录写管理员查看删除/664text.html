@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        html,body{width: 100%;height: 100%;}
+        button{margin-left: 20px;}
+        #d1{height: 40px; background: #ddd; border:1px solid black;border-bottom: 0 0 10px black;}
+        #zzc,#d3{width: 100%;height: 100%; background: black;opacity: 0.5; position: absolute;z-index: 1;display: none;font-size: 30px;color: white;}
+        #d2,#allusername{width: 300px;height: 200px;background: white; display:none;border: 1px solid black;position: absolute;top: 50px; padding: 30px;z-index: 3;}
+        #cls{position: absolute;right: 20px;top: 20px;}
+        #textnode{width: 500px;height: 400px;background: #eee; border: 1px solid black; position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;z-index: 3;}
+        #write,#textnode,#look{display: none;}
+        a:hover{color: red;transition: 0.7s;}
+        ol li{list-style: none;width: 20px; float: left;margin: 3px;border: 1px solid black;background: rgb(255, 208, 0);text-align: center;cursor: pointer;}
+        #ul{height: 140px;}
+    </style>
+</head> 
+<body>
+    <div id="zzc"></div>
+    <div id="d3">
+        <h3 id="h3"></h3>
+        <div id="div"></div>
+        <button class="close" id="d3cls" style="position: absolute;right: 20px;top: 20px;">d3cls</button>
+    </div>
+    <div id="textnode">
+        filename:<input id="filename"><br>
+        filecontent:<br><textarea style="width: 400px;height: 300px;" id="filecon"></textarea><br>
+        <button id="submit">submit</button>
+        <button id="textnodecls" class="close">close</button>
+    </div>
+    <div id="d1">
+        <span id="span"></span>
+        <button id="reg">register</button>
+        <button id="log">login</button>
+        <button id="write">write text</button>
+        <button id="look">查看所有账号</button>
+        <button id="d1cls">close</button>
+    </div>
+    <ul id="allusername"><button id="allcls" class="close">close</button></ul>
+    <ul id="ul"></ul>
+    <ol id="ol"></ol>
+    <div id="d2" >
+        username:<input id="user"><br>
+        password:<input id="pass"><br>
+        <button id="reg1">register</button>
+        <button id="log1">login</button>
+        <button id="d2cls" class="close">close</button>
+    </div>
+</body>
+<script>
+    d1cls.onclick=function(){
+        reg.style.display=log.style.display='inline';
+    }
+
+    $('#ul').html('');$('#ol').html('');var sarr=[],barr=[],ulliarr=[],aclass=0;;
+    var jsonget={
+            'type':'get',
+            'url':'http://localhost:1667',
+            'value':{
+                'user':user.value,
+                'pass':pass.value
+            },
+            'success':function(data){
+                var arr=eval('('+data+')');
+                ulliarr=arr;
+                //分页，每页放6个
+                for(var i=0;i<arr.length;i++)
+                {
+                    sarr.push(arr[i]);
+                    if(i>0 && i%6==5 ||i==arr.length-1)
+                    {
+                        barr.push(sarr);
+                        sarr=[];
+                    }
+                }
+
+                for(var i=0;i<barr.length;i++){
+                    $('<li>'+(i+1)+'</li>').appendTo($('ol'));
+                }
+
+                for(var i=0;i<barr[0].length;i++)
+                {
+                    $('<li><a href="#" class="file">'+barr[0][i]+'</a></li>').appendTo($('#ul'));
+                }
+            },
+            'error':function(){
+                console.log('error');
+            }
+    }
+    //console.log(jsontostr(json.value)) ;
+    ajax(jsonget);
+
+    $('.close').click(function(){
+        $(this).parent()[0].style.display='none';
+    })
+
+    reg.onclick=log.onclick=function(){
+        zzc.style.display=d2.style.display='block';     
+    }
+    d2cls.onclick=function(){
+        zzc.style.display=d2.style.display='none';
+    }
+
+    reg1.onclick=function(){
+        if(user.value==''||pass.value=='')
+        {
+            alert("username and password can't be empty");
+            return;
+        }
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1664',
+            'value':{
+                'user':user.value,
+                'pass':pass.value
+            },
+            'success':function(data){
+                alert(data);  
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+    }
+
+    log1.onclick=function(){
+        if(user.value==''||pass.value=='')
+        {
+            alert("username and password can't be empty");
+            return;
+        }
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1665',
+            'value':{
+                'user':user.value,
+                'pass':pass.value
+            },
+            'success':function(data){
+                alert(data);   
+                if(data=='大人，您可回来了'){
+                    reg.style.display=log.style.display=zzc.style.display=d2.style.display='none';
+                    span.innerHTML='尊敬的管理员大人： '+user.value;
+                    look.style.display=write.style.display='inline';
+                    $('<a href="#" style="margin-left:10px;" class="filedelete">delete</a>').appendTo($('#ul li'))
+                }
+                else if(data=='login success')
+                {
+                    reg.style.display=log.style.display=zzc.style.display=d2.style.display='none';
+                    span.innerHTML=user.value;
+                    write.style.display='inline';
+                }
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+    }
+
+    write.onclick=function(){
+        zzc.style.display=textnode.style.display='block';
+    }
+
+    textnodecls.onclick=function(){
+        zzc.style.display=this.parentNode.style.display='none';
+    }
+
+    
+
+    submit.onclick=function(){
+        if(filename.value==''||filecon.value=='')
+        {
+            alert("filename and filecon can't be empty");
+            return;
+        }
+        for(var i=0;i<ulliarr.length;i++)
+        {
+            if(filename.value==ulliarr[i])
+            {
+                alert('filename repeat,please chang filename');
+                return;
+            }
+        }
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1666',
+            'value':{
+                'filename':filename.value,
+                'filecon':filecon.value
+            },
+            'success':function(data){
+                if(data=='filename repeat,please change filename')
+                {
+                    alert('filename repeat,please change filename');
+                }
+                else{
+                    alert('write success');
+                    $('#ul').html('');$('#ol').html('');
+                    var arr=eval('('+data+')');
+                    ulliarr=arr;
+                    //分页，每页放6个
+                    sarr=[],barr=[];
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        sarr.push(arr[i]);
+                        if(i>0 && i%6==5 ||i==arr.length-1)
+                        {
+                            barr.push(sarr);
+                            sarr=[];
+                        }
+                    }
+                    console.log(arr,sarr,barr);
+                    for(var i=0;i<barr.length;i++){
+                        $('<li>'+(i+1)+'</li>').appendTo($('ol'));
+                    }
+
+                    for(var i=0;i<barr[0].length;i++)
+                    {
+                        $('<li><a href="#" class="file">'+barr[0][i]+'</a></li>').appendTo($('#ul'));
+                    }
+                }
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+    }
+
+    ol.onclick=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='LI')
+        {
+            $('ol>li').removeClass("a");
+            $(target).addClass('a');
+            if(look.style.display=='inline')
+            {
+                $('#ul').html('');
+                for(var i=0;i<barr[Number(target.innerHTML)-1].length;i++)
+                {
+                    $('<li><a href="#" class="file">'+barr[Number(target.innerHTML)-1][i]+'</a><a href="#" style="margin-left:10px;" class="filedelete"> delete</a></li>').appendTo($('#ul'));
+                }
+            }
+            else{
+                $('#ul').html('');
+                for(var i=0;i<barr[Number(target.innerHTML)-1].length;i++)
+                {
+                    $('<li><a href="#" class="file">'+barr[Number(target.innerHTML)-1][i]+'</a></li>').appendTo($('#ul'));
+                }
+            }
+        }
+    }
+
+    ul.onclick=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        ev.stopPropagation();
+        //console.log(target.nodeName);
+        if(target.className=='file')
+        {
+            d3.style.display='block';
+            h3.innerHTML=target.innerHTML;
+            var jsonget={
+                'type':'get',
+                'url':'http://localhost:1668',
+                'value':{
+                    'filename':target.innerHTML,
+                },
+                'success':function(data){
+                    div.innerHTML=data;
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+        }
+        //console.log(target.className)
+        if(target.className=='filedelete')
+        {
+            for(var k=0;k<$('ol>li').length;k++)        
+            {
+                if($('ol>li').eq(k).hasClass('a'))aclass=k;
+            }
+            var jsonget={
+                'type':'get',
+                'url':'http://localhost:1671',
+                'value':{
+                    'filename':$(target).prev().html(),
+                },
+                'success':function(data){
+                    alert($(target).prev().html()+' delete success');
+                    //$(target).parent().remove();
+                    //$('#ul').html('');
+                    //console.log(data,typeof data);
+
+                    ulliarr=eval(data);
+                    sarr=[],barr=[];
+                    for(var i=0;i<ulliarr.length;i++)
+                    {
+                        sarr.push(ulliarr[i]);
+                        if(i>0 && i%6==5 ||i==ulliarr.length-1)
+                        {
+                            barr.push(sarr);
+                            sarr=[];
+                        }
+                    }
+                    
+                    //console.log(arr,sarr,barr);
+                    $('#ul').html('');$('#ol').html('');
+                    for(var i=0;i<barr.length;i++){
+                        if((barr.length>aclass && i==aclass)||(barr.length==aclass && i==barr.length-1))
+                        {
+                            $('<li class="a">'+(i+1)+'</li>').appendTo($('ol')); 
+                        }
+                        else{
+                            $('<li>'+(i+1)+'</li>').appendTo($('ol')); 
+                        } 
+                    }
+
+                    if(barr.length>aclass)
+                    {
+                        for(var j=0;j<barr[aclass].length;j++)
+                        {
+                            $('<li><a href="#">'+barr[aclass][j]+'</a><a href="#" style="margin-left:10px;" class="filedelete"> delete</a></li>').appendTo($('#ul'));
+                        }
+                    }
+                    else{
+                        for(var j=0;j<barr[barr.length-1].length;j++)
+                        {
+                            $('<li><a href="#">'+barr[barr.length-1][j]+'</a><a href="#" style="margin-left:10px;" class="filedelete"> delete</a></li>').appendTo($('#ul'));
+                        }
+                    }
+                    
+
+                    
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+        } 
+    }
+
+    d3cls.onclick=function(){
+        d3.style.display='none';
+    }
+
+    look.onclick=function(){
+        allusername.style.display='block';
+        var jsonget={
+                'type':'get',
+                'url':'http://localhost:1669',
+                'value':{},
+                'success':function(data){
+                    var arr=eval('('+data+')');
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        $('<li><span>'+arr[i]+'</span><a href="#">delete</a></li>').appendTo($('#allusername'));
+                    }
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+    }
+
+    allusername.onclick=function(e){
+        var ev=e||event;
+        var target=ev.srcElement||ev.target;
+        if(target.nodeName=='A')
+        {
+            var jsonget={
+                'type':'get',
+                'url':'http://localhost:1670',
+                'value':{
+                    'user':$(target).prev().html()
+                },
+                'success':function(data){
+                    $('#allusername>*:not(button)').remove();
+                    var arr=eval('('+data+')');
+                    for(var i=0;i<arr.length;i++)
+                    {
+                        $('<li><span>'+arr[i]+'</span><a href="#">delete</a></li>').appendTo($('#allusername'));
+                    }
+                },
+                'error':function(){
+                    console.log('error');
+                }
+            }
+            //console.log(jsontostr(json.value)) ;
+            ajax(jsonget);
+        }
+    }
+
+    //get方法，给后台发送数据，并且接收响应的程序
+    function ajax(opt)
+    {
+        var xhr=new XMLHttpRequest();
+        if(opt.type=='get')
+        {
+            xhr.open(opt.type,opt.url+'?'+jsontostr(opt.value),true);
+            xhr.send();
+        }
+        else if(opt.type=='post')
+        {
+            xhr.open('post',opt.url,true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//告诉后台要发送的数据类型，图片，字符串，之类的
+            xhr.send(jsontostr(opt.value));
+        }
+        
+
+        //AJAX状态码发生改变时
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState==4)//AJAX状态码=4时，才可以收到响应
+            {
+                if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+                {
+                    //console.log(xhr.responseText);
+                    opt.success(xhr.responseText);
+                }
+                else{
+                    //console.log('服务器错误');
+                    opt.error && opt.error();
+                }
+            }
+        }
+
+        function jsontostr(json)
+        {
+            var arr=[];
+            for(var i in json)
+            {
+                arr.push(i+'='+json[i]);
+            }
+            return arr.join('&');
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='jquery-1.9.1.min.js'></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        div{width: 600px;height: 300px;border: 1px solid black;position: absolute; left: 50%;top: 50%;margin-left: -300px;margin-top: -150px;}
+        div ul{width: 100%;height: 240px;position: relative;}
+        div ul li{width: 100px;height: 100px;margin: 10px 25px 10px 25px;background: red;float: left;}
+        div ol{float: left;width: 100%;}
+        div ol li{float: left; width: 120px;height: 30px;background: #ccc;margin-right: 10px;text-align: center;line-height: 30px;position: relative;left: 40%;}
+    </style>
+</head>
+<body>
+    <div id="out">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ol>
+            <li>display&none</li>
+        </ol>
+    </div>
+
+    <script>
+        var posx=[],posy=[];
+        for(var i=0;i<$('li').length;i++)
+        {
+            posx.push($('li').eq(i).offset().left);
+            posy.push($('li').eq(i).offset().top);
+        }
+        //console.log(posx,posy);
+
+        var index=0;
+        var t=null;
+        $('ol li').click(function(){
+            var l=$('ol li').eq(0).offset().left-$('ul li').eq(index).offset().left;
+            var t=$('ol li').eq(0).offset().top-$('ul li').eq(index).offset().top
+            // clearInterval(t);
+            t=setInterval(function(){
+                if(index==$('ul li').length)
+                {
+                    clearInterval(t);
+                    return;
+                };
+             
+                $('ul li').eq(index).animate({
+                    
+                    'left':l,
+                    'top':t,
+                    
+                    'width':0,
+                    'height':0,
+                });
+           
+                index++;
+            },300);
+
+            setTimeout(function(){
+                t=setInterval(function(){
+                    if(index==-1)
+                    {
+                        index=0;
+                        clearInterval(t);
+                        return;
+                    };
+                    $('ul li').css({'position':''});
+
+                    $('ul li').eq(index).animate({
+                        'left':posx[index],
+                        'top':posy[index],
+                        'width':100,
+                        'height':100,
+                    });
+                    index--;
+                },300);
+            },3000)
+
+        });
+
+        
+        //console.log($('ol li').eq(0).offset().top-$('ul li').eq(0).offset().top);
+    </script>
+</body>
+</html>

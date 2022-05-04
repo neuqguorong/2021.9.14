@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+/*         let a=`fagthsgrydtjfkg`;//a是字符串
+        console.log(a);
+
+        let c=`5`;
+        var b=`fdsaff${c}`;//在b后面加5
+        var b1=`fdsaff${c+c+c}`;//在b后面加3个5
+        console.log(b,b1);
+
+        let json={'width':'100px','height':'200px'};
+        console.log(`${json.width+json.height}`);
+
+        //数组find函数，第一个参数是数组的第一位到最后一位的值，第二个参数是数组的位数，从0到最后一位，第三位是数组自己
+        [1,2,3,4,5].find(function(x,y,z){
+            console.log(x,y,z);
+            console.log(z[y]);
+        }); */
+
+        //箭头函数
+        x=x=>x;//第一个x是函数名，第二个x是参数，第三个x是返回值 ，只能在其定义后，调用它
+        console.log(x(1));
+        var x=function(x){
+            return x;
+        }
+
+        show=()=>{console.log('执行show函数了');document.body.style.background='black'}
+        show``;
+
+        [1,2,3].find((x,y,z)=>{console.log(x,y,z)});
+        onclick=()=>{document.body.style.background='red'}
+
+        //延展参数,给形参默认值
+        function show2(x=1,y=2){
+            console.log(x,y);
+        }
+        show2(3,4);
+
+
+        //扩展运算符
+        function show3(y,...x){
+            x.push(8);
+            console.log(x);//...x把x扩展位数组，可以push
+        }
+        show3(1,2,3,4);
+
+        var ar1=[32,35,54,3];
+        var ar2=[21];
+        var ar3=[9];
+        ar1.concat(ar2.concat(ar3));//把以上三个数组合并为一个数组
+        console.log(...ar1,...ar2,...ar3);//把以上三个数组合并为一个数组
+
+        var a=`<div></div>`;
+        //document.body.innerHTML= a.repeat(5);//等价于下面一行
+        document.write(a.repeat(5));
+        console.log([...document.querySelectorAll('div')]);
+    </script>
+</body>
+</html>

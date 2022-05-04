@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    for(var i=0;i<20;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.style.cssText='width:30px;height:30px;background:red;float:left;margin:2px;position:relative;';
+        document.body.appendChild(odiv);
+    }
+
+    var t=null,i=0,adiv=document.getElementsByTagName('div'),k=true;
+    onclick=function(){
+        if(!k)return;
+        k=false;
+        t=setInterval(function(){
+            adiv[i].style.top='400px';
+            i++;
+            if(i==adiv.length)
+            {
+                clearInterval(t);k=false;
+                t=setInterval(function(){
+                    i--;
+                    if(i==-1)
+                    {
+                        clearInterval(t);
+                        i=0;
+                        k=true;
+                        return;
+                    }
+                    adiv[i].style.top='0';
+                },100)
+            }
+        },100);
+    }
+
+</script>
+</html>

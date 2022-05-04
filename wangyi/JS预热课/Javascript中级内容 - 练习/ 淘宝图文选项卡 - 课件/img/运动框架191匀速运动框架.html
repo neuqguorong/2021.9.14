@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 100.5px;height: 100px;background: red;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+    function getstyle(obj,name)
+    {
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[name];
+        }
+        if(getComputedStyle)
+        {
+            return getComputedStyle(d1,false)[name];
+        }
+    }
+
+    var t=null,w=parseFloat(getstyle(d1,'width'));//console.log(w);//100px
+
+    function move(obj,stylename,target,speed,time,fn){
+        var w=parseFloat(getstyle(obj,stylename));
+        clearInterval(t);//console.log(w);
+        t=setInterval(function(){
+            if(stylename=='opacity')
+            {
+                w<target?w+=speed:w-=speed;
+                obj.style.opacity=w;
+                if(w-target<0.00000001)
+                {
+                    obj.style.opacity=target;
+                    clearInterval(t);
+                    console.log(fn);
+                    fn&&fn();
+                }
+
+            }
+            else{
+                if(w<=target)
+                {
+                    w+=speed;
+                    obj.style[stylename]=w+'px';
+                    if(w>=target)
+                    {   //console.log(w);
+                        obj.style[stylename]=target+'px';
+                        clearInterval(t);
+                        fn&&fn();
+                        //console.log(stylename,parseFloat(getstyle(obj,stylename)));
+                    }
+                }
+                else{
+                    w-=speed;
+                    obj.style[stylename]=w+'px';
+                    if(w<=target)
+                    {
+                        obj.style[stylename]=target+'px';
+                        clearInterval(t);
+                        fn&&fn();
+                    }
+                }
+            }
+        },time);
+        
+    }
+
+/*     move(d1,'opacity',0,0.1,150,function(){
+        move(d1,'opacity',1,0.05,1000,function(){
+            move(d1,'height',300,2,10,function(){
+                move(d1,'width',300,2,10);
+            });
+        })
+    }); */
+/*     move(d1,'width',200,5);
+    move(d1,'height',30,10);
+    move(d1,'marginLeft',100,5); */
+    //console.log('marginLeft',parseFloat(getstyle(d1,'marginLeft')));
+/*     onclick=function(){
+        move(d1,'width',200,10);
+        move(d1,'height',300,1);
+    }  */
+    
+    //document.addEventListener('click',move(d1,'marginLeft',200,5));
+   
+    function movejson(opt,fn){
+        var w=parseFloat(getstyle(opt.obj,opt.stylename));console.log(w);
+        clearInterval(t);//console.log(w);
+        t=setInterval(function(){
+            if(opt.stylename=='opacity')
+            {
+                w<opt.target?w+=opt.speed:w-=opt.speed;
+                opt.obj.style.opacity=w;
+                if(w-opt.target<0.00000001)
+                {
+                    opt.obj.style.opacity=opt.target;
+                    clearInterval(t);
+                    //console.log(fn);
+                    fn&&fn();
+                }
+
+            }
+            else{
+                if(w<=opt.target)
+                {
+                    w+=opt.speed;//console.log(opt.obj,opt.stylename);
+                    opt.obj['style'][opt.stylename]=w+'px';
+                    if(w>=opt.target)
+                    {   //console.log(w);
+                        opt.obj.style[opt.stylename]=opt.target+'px';
+                        clearInterval(t);
+                        fn&&fn();
+                        //console.log(stylename,parseFloat(getstyle(obj,stylename)));
+                    }
+                }
+                else{
+                    w-=opt.speed;
+                    opt.obj.style[opt.stylename]=w+'px';
+                    if(w<=opt.target)
+                    {
+                        opt.obj.style[stylename]=opt.target+'px';
+                        clearInterval(t);
+                        fn&&fn();
+                    }
+                }
+            }
+        },opt.time);
+    }
+
+    var json={
+        'obj':d1,
+        'stylename':'width',
+        'target':300,
+        'speed':2,
+        'time':10
+    };
+    //json.obj.style[json.stylename]='200px';
+    movejson(json,function(){
+        movejson({
+        'obj':d1,
+        'stylename':'height',
+        'target':300,
+        'speed':2,
+        'time':10
+    },function(){
+        movejson({
+        'obj':d1,
+        'stylename':'opacity',
+        'target':0,
+        'speed':0.1,
+        'time':100
+    })
+    }
+        );
+    });
+</script>
+</html>

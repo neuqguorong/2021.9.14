@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		#d1{width: 300px;height: 200px;border: 1px solid black;position: relative;margin: 100px;}
+		#left{float: left;}
+		#left li{height: 35px; width: 48px;border: 1px solid black;}
+		#right{float: right;}
+		#right li{height: 35px; width: 48px;border: 1px solid black;}
+		#d2{width: 190px;height: 100%;border: 1px solid black;position: absolute;margin-left: 52px;}
+		.aa{background: green;}
+	</style>
+</head>
+<body>
+	<input id="bt1" type="button" value="next">
+	<input id="bt2" type="button" value="cross">
+	<input id="bt3" type="button" value="synchronization">
+	<div id="d1">
+		<ul id="left">
+			<li class="aa">one</li>
+			<li>two</li>
+			<li>three</li>
+			<li>four</li>
+			<li>five</li>
+		</ul>
+		<div id="d2">
+			<img src="0.png">
+		</div>
+		<ul id="right">
+			<li>five</li>
+			<li>four</li>
+			<li>three</li>
+			<li>two</li>
+			<li>one</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var leftli=left.getElementsByTagName('li');
+		var rightli=right.getElementsByTagName('li');
+		var t=null;
+		var j=0;
+		bt1.onclick=function(){
+			clearInterval(t);
+			t=setInterval(function(){
+				if(j==leftli.length)j=0;
+				for(var i=0;i<leftli.length;i++)
+				{
+					leftli[i].className='';
+					rightli[i].className='';
+				}
+				leftli[j].className='aa';
+				rightli[leftli.length-1-j].className='aa';
+				d2.children[0].src=j+'.png';
+				j++;
+			},300)
+		}
+
+		bt2.onclick=function(){
+			clearInterval(t);
+			for(var i=0;i<leftli.length;i++)
+			{
+				leftli[i].setAttribute('index',i);
+				//console.log(leftli[i].getAttribute('index'));
+				leftli[i].onclick=function(){
+					for(var i=0;i<leftli.length;i++)
+					{
+						leftli[i].className='';
+						rightli[i].className='';
+					}
+					this.className='aa';
+					rightli[leftli.length-1-this.getAttribute('index')].className='aa';
+					d2.children[0].src=this.getAttribute('index')+'.png';
+					j=this.getAttribute('index');
+				}
+			}
+		}
+
+		bt3.onclick=function(){
+			clearInterval(t);
+			for(var i=0;i<leftli.length;i++)
+			{
+				leftli[i].setAttribute('index',i);
+				//console.log(leftli[i].getAttribute('index'));
+				leftli[i].onclick=function(){
+					for(var i=0;i<leftli.length;i++)
+					{
+						leftli[i].className='';
+						rightli[i].className='';
+					}
+					this.className='aa';
+					rightli[this.getAttribute('index')].className='aa';
+					d2.children[0].src=this.getAttribute('index')+'.png';
+					j=this.getAttribute('index');
+				}
+			}
+		}
+	</script>
+</body>
+</html>

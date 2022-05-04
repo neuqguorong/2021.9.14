@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+/*     var json={'a':'10','b':20,'c':30};//console.log(Object.keys(json),Object.values(json));
+    console.log(Object.getOwnPropertyDescriptors(json)); */
+/*     var map=new Map(Object.entries(json));
+    console.log(map);
+    for( var i of map){
+        console.log(i,i[0],i[1]);
+    }
+
+    var str='dfsg';
+    console.log(str.padStart(10),str.padEnd(10),str.padStart(10,'yyyy-mm-dd'),str.padEnd(10,'yyyy-mm-dd')); */
+
+var json1={};
+Object.defineProperties(json1,{
+    'name':{
+        configurable:false,
+        enumerable:true,
+        value:'aaa',
+        writable:false
+    },
+    'age':{
+        configurable:false,
+        enumerable:true,
+        value:'12',
+        writable:true
+    }
+});
+/* console.log(json1);
+console.log(Object.getOwnPropertyDescriptors(json1));
+
+//sky,克隆json1
+var sky={};
+console.log(Object.defineProperties(sky,Object.getOwnPropertyDescriptors(json1)));
+var one={};
+console.log(Object.defineProperty(one,'one',Object.getOwnPropertyDescriptors(json1).name));
+console.log(Object.getOwnPropertyDescriptors(one)); */
+
+var json2=Object.create({},{
+    'json21':{
+        configurable:false,
+        enumerable:true,
+        value:'12',
+        writable:true
+    }
+})
+
+var json3=Object.create({},{
+    'json31':Object.getOwnPropertyDescriptors(json1).age,
+    'json32':Object.getOwnPropertyDescriptor(json1,'age')
+})
+console.log(json2);
+console.log(json3);
+</script>
+</html>

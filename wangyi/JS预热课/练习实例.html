@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   
+</body>
+<script>
+    function createtab(node,text,w,h,bgcolor){
+        var onode=document.createElement(node);
+        onode.innerHTML=text;
+        onode.style.width=w;
+        onode.style.height=h;
+        onode.style.background=bgcolor;
+        document.body.appendChild(onode);
+    }
+    createtab('div','i am div','200px','200px','red');
+    createtab('p','i am p','200px','200px','green');
+
+    function createtab2(obj){
+        console.log(obj);
+        var onode=document.createElement(obj.node);
+        onode.innerHTML=obj.text;
+        onode.style.width=obj.w;
+        onode.style.height=obj.h;
+        onode.style.background=obj.bgcolor;
+        document.body.appendChild(onode);
+    }
+    createtab2({
+        node:'div',
+        'text':'i am div create by object arguments',
+        'w':'200px',
+        'h':'200px',
+        'bgcolor':'red'
+    });
+    
+    function createxxk(obj){
+        for(var i=0;i<obj.topinnerHTML.length;i++)
+        {
+            var onode=document.createElement(obj.topnode);
+            onode.innerHTML=obj.topinnerHTML[i];
+            document.body.appendChild(onode);
+        }
+        for(var i=0;i<obj.topinnerHTML.length;i++)
+        {
+            var onode=document.createElement(obj.bottomnode);
+            onode.innerHTML=obj.bottominnerHTML[i];
+            for(var j in obj.bottomstyle)
+            {
+                onode['style'][j]=obj.bottomstyle[j];
+            }
+            if(i==0)
+            {
+                onode.style.display='block';
+            }
+            document.body.appendChild(onode);
+        }
+        for(var i=0;i<obj.topinnerHTML.length;i++)
+        {
+            document.body.children[document.body.children.length-2*obj.topinnerHTML.length+i].index=i;
+            document.body.children[document.body.children.length-2*obj.topinnerHTML.length+i].onclick=function(){
+                //console.log(this);
+                for(var i=0;i<obj.topinnerHTML.length;i++)
+                {
+                    document.body.children[document.body.children.length-2*obj.topinnerHTML.length+i].style.background='';
+                    document.body.children[document.body.children.length-obj.topinnerHTML.length+i].style.background='';
+                    document.body.children[document.body.children.length-obj.topinnerHTML.length+i].style.display='none';
+                }
+                this.style.background=obj.topbg;
+                //console.log(document.body.children[document.body.children.length-obj.topinnerHTML.length+this.index]);
+                document.body.children[document.body.children.length-obj.topinnerHTML.length+this.index].style.display='block';
+                document.body.children[document.body.children.length-obj.topinnerHTML.length+this.index].style.background=obj.bottombg;
+            }
+        }
+    }
+    createxxk({
+        'topnode':'button',
+        'bottomnode':'div',
+        'topinnerHTML':[1,2,3],
+        'bottominnerHTML':['1','2','3'],
+        'topbg':'red',
+        'bottombg':'green',
+        'bottomstyle':{
+            'width':'200px',
+            'height':'200px',
+            'background':'#ccc',
+            'fontSize':'100px',
+            'display':'none'
+        }
+    });
+
+    var obj={
+        'topnode':'button',
+        'bottomnode':'div',
+        'topinnerHTML':[1,2,3,4],
+        'bottominnerHTML':['1','2','3',4],
+        'topbg':'red',
+        'bottombg':'green',
+        'bottomstyle':{
+            'width':'200px',
+            'height':'200px',
+            'background':'#ccc',
+            'fontSize':'100px',
+            'display':'none'
+        }
+    };
+
+    createxxk({
+        'topnode':'button',
+        'bottomnode':'div',
+        'topinnerHTML':[1,2,3,4],
+        'bottominnerHTML':['1','2','3',4],
+        'topbg':'red',
+        'bottombg':'green',
+        'bottomstyle':{
+            'width':'200px',
+            'height':'200px',
+            'background':'#ccc',
+            'fontSize':'100px',
+            'display':'none'
+        }
+    });
+
+    function auto(obj,index1){
+        for(var i=0;i<obj.topinnerHTML.length;i++)
+        {
+            for(var i=0;i<obj.topinnerHTML.length;i++)
+            {
+                document.body.children[document.body.children.length-2*obj.topinnerHTML.length+i].style.background='';
+                document.body.children[document.body.children.length-obj.topinnerHTML.length+i].style.background='';
+                document.body.children[document.body.children.length-obj.topinnerHTML.length+i].style.display='none';
+            }
+            document.body.children[document.body.children.length-2*obj.topinnerHTML.length+index1].style.background=obj.topbg;
+            document.body.children[document.body.children.length-obj.topinnerHTML.length+index1].style.display='block';
+            document.body.children[document.body.children.length-obj.topinnerHTML.length+index1].style.background=obj.bottombg;
+        }
+    }
+
+    var index2=0;
+    setInterval(function(){
+        
+        auto(obj,index2);
+        index2++;
+        if(index2==obj.topinnerHTML.length)
+        {
+            index2=0;            
+        }
+    },1000);
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='text'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src='angular.js'></script>
+</head>
+
+<script>
+    var app=angular.module('text',[]);
+    app.controller('cont1',function($scope){
+        $scope.a=10;
+        $scope.b=20;
+        $scope.show=function(x,y){
+            return Number(x)+Number(y);
+        }
+    })
+</script>
+
+<body ng-controller='cont1'>
+    <input ng-model='a'> 
+    <input ng-model='a'> 
+    <input ng-model='a'> 
+    <div ng-bind='a'>input data is:</div>
+    <div>input data is:{{a}} </div>
+    <input ng-model='a'> +<input ng-model='b'>=<div ng-bind='a+b'></div> 
+    <input type="number" ng-model='a'> +<input type="number" ng-model='b'>=<div ng-bind='a+b'></div> 
+    <input type="number" ng-model='a'> *<input type="number" ng-model='b'>=<div ng-bind='a*b'></div> 
+    <input ng-model='a'> *<input ng-model='b'>=<div ng-bind='a*b'></div> 
+    <input ng-model='a'> *<input ng-model='b'>=<div>{{a*b}}</div> 
+    <input ng-model='a'>+<input ng-model='b'>=<div>{{a+b}}</div> 
+    <input ng-model='a'>+<input ng-model='b'>=<div>{{show(a,b)}}</div> 
+</body>
+
+
+</html>

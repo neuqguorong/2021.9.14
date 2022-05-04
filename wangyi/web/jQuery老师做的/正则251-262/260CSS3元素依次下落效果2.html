@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    var odiv=document.createElement('div');
+    odiv.style.cssText='width:200px;height:200px;float:left;';
+    for(i=0;i<10;i++)
+    {
+        for(j=0;j<10;j++)
+        {
+            var odiv1=document.createElement('div');
+            odiv1.style.cssText='width:20px;height:20px;background:black;float:left;position:relative;';
+            odiv.appendChild(odiv1);
+        }
+    }
+    document.body.appendChild(odiv);
+
+/*     onclick=function(){
+        var t=null,i=odiv.children.length;
+        clearInterval(t);
+        t=setInterval(function(){
+            i--;console.log(i);
+            //console.log(odiv.children[i]);
+            odiv.children[i].style.top='400px';
+            if(i==0)
+            {
+                clearInterval(t);
+                t=setInterval(function(){
+                    odiv.children[i].style.top=0;
+                    i++;
+                    if(i==odiv.children.length)
+                    {   
+                        clearInterval(t);
+                    }
+                },50);
+                
+            }
+
+        },50);
+    } */
+    var t=null,i=odiv.children.length,k=true,t1=null;
+    onclick=function(){
+        //clearInterval(t);
+        if(!k)return;
+        k=false;
+        t=setInterval(function(){
+            i--;//console.log(i);
+            //console.log(odiv.children[i]);
+            $(odiv.children).eq(i).stop().animate({
+                'top':'400px'
+            },50);
+            odiv.children[i].style.background='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+            if(i==0)
+            {
+                clearInterval(t);k=false;
+                setTimeout(function(){
+                    t1=setInterval(function(){
+                    //odiv.children[i].style.top=0;
+                        $(odiv.children).eq(i).stop().animate({
+                            'top':'0'
+                        },50);
+                        i++;
+                        if(i==odiv.children.length)
+                        {   
+                            clearInterval(t1);
+                            k=true;
+                        }
+                    },50);
+                },1000);    
+            }
+
+        },50);
+    }
+</script>
+</html>

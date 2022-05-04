@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <div></div>
+    <div></div>
+</body>
+<script>
+/*     var set=new Set();
+    console.log(set);
+    set.add(1),set.add(2),set.add(3),set.add(4),set.add(4);
+    console.log(set);//Set(4) {1, 2, 3, 4}
+    console.log(set.has(1));//true
+    console.log(set.has(5));//false
+    console.log(set.size);//4,相当于数组length
+    console.log(set.keys(),set.values());//SetIterator {1, 2, 3, 4}
+    for(var i of set.values())
+    {
+        console.log(i);
+    }// 1 2 3 4 
+    set.delete(4);
+    console.log(set);//Set(3) {1, 2, 3}
+    /* set.clear();
+    console.log(set); */
+    ;
+    //console.log(set.entries());//SetIterator {1 => 1, 2 => 2, 3 => 3} */
+
+/*     var set=new Set([1,2,3,4]);
+    console.log(set);//Set(4) {1, 2, 3, 4}
+
+    var arr=[1,2,3,4,5];
+    var set=new Set(arr);
+    console.log(set);//Set(5) {1, 2, 3, 4, 5} */
+
+/*     var arr=[1,2,3,4,5],arr2=[1,2,3,4,5,67,8];
+    var set=new Set([...arr,...arr2]);//合并数组，并且去重，
+    console.log(set);//Set(7) {1, 2, 3, 4, 5,67,8}
+    var arr3=[...set];
+    console.log(arr3);//[1, 2, 3, 4, 5, 67, 8]
+
+    $=obj=>[...document.querySelectorAll(obj)];
+    console.log($('div'));//[div, div] */
+
+    var mapnode=new Map();
+    mapnode.set('1','a');
+    mapnode.set('2','b');
+    mapnode.set(1,'a');
+/*     console.log(mapnode);//map里面不允许key值重复
+    console.log(mapnode.get('1'));
+    console.log(mapnode.has('c'),mapnode.has('1'));
+    mapnode.delete('1');
+    console.log(mapnode);
+    mapnode.clear();
+    console.log(mapnode); */
+
+    for(var [k,v] of mapnode)
+    {
+        console.log(k,v);
+    }
+
+    var json={
+        'aa':'aa1',
+        'aa':'aa1',
+        'cc':'cc1',
+    };
+    for(var i in json)
+    {
+        mapnode.set(i,json[i]);
+    }
+    console.log(mapnode);
+
+    var json2={};
+    for(var [k,v] of mapnode)
+    {
+        json2[k]=v;
+    }
+    console.log(json2);
+</script>
+</html>

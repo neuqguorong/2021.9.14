@@ -1,0 +1,19 @@
+1.xxx  兼容性最好的版本 ie6+ pc端 非常大 200多k
+2.xxx  兼容性一般 不兼容 ie6-8 pc端 小了100多k 运行就更流畅了
+3.xxx  兼容性最强的版本 移动端都兼容了pc 老大了 运行很一般了 ie6+ 移动端 
+
+只有新手才爱用jquery 依赖性
+你们想害一个程序员的话 ， 就让他不断的用jquery.
+
+
+extend  给jquery 扩展方法的
+$.extend(json);
+$.fn.extend(json);
+jq 的不支持原生的方法
+原生的东西不支持jq的方法
+运动的核心是定时器
+color 插件
+运动插件 
+swing  线性运动
+linear 匀速运动
+

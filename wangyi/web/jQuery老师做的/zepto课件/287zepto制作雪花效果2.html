@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src='jquery-1.9.1.min.js'></script>
+    <script src='zepto.min.js'></script>
+    <script src='zTouch.min.js'></script>
+    <script src='zepto.fx.js'></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{background: black;color: white;font-size: 30px;}
+        #d1{position: absolute;}
+        .a{position: absolute;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        function snow(){
+            var xuehua ='❄❅❆'.split('');//['❄','❅','❆']
+
+            //生成随机数，向下取整
+            function ran(num){
+                return Math.floor(Math.random()*num);
+            }
+            $('<div class="a">'+xuehua[ran(xuehua.length)]+'</div>').appendTo(d1);
+            //$('#d1')//获取id为d1的元素
+            $('#d1').css({
+                'left':ran(100)+'%',
+                'top':-ran(10)+'%',
+                'scaleX':2//老师，这个为啥scale不能被赋值
+            });
+
+            $('#d1').animate({
+                'left':ran(100)+'%',
+                'top':'100%',
+                'rotate':(Math.random()*720-360)+'deg',//老师，这个为啥rotate不能被赋值
+                'opacity':0
+            },2000,function(){
+                $('.a').remove();
+                snow();
+            });
+        }
+        //snow();
+        var i=100;
+        while(i--)
+        {
+            snow();
+        } 
+       
+
+
+    </script>
+</body>
+</html>

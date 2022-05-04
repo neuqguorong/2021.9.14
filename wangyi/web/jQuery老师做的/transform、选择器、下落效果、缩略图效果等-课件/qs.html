@@ -1,0 +1,27 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+</head>
+<body>
+<script type="text/javascript">
+	
+var a = 'abc'//'abc';
+var b = function(){alert(a)};
+var c = [a,b];//b 存在这了
+//a = null;
+//a = 10;
+//b = null;
+//a = b = null;
+//function (){alert(null)}
+c[1]();//[null,null] //['abc',function(){alert(null)}]
+//a = b = null;
+//alert(c[1]);
+//alert(c);
+//alert(c[0])
+//c[1]()
+
+</script>
+</body>
+</html>

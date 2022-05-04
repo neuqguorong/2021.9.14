@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin:0;padding: 0;list-style: none;}
+        #out{width: 600px;height: 300px;border: 1px solid black;
+        position: absolute;left: 50%;top: 50%;margin-left: -300px;
+        margin-top: -150px;}
+        #out ul{width: 100%;height: 240px;}
+        #out ul li{width: 100px;height: 100px;background: green;float: left;
+        margin:10px 25px}
+        #out ol{width: 100%;float: left;}
+        #out ol li{width: 20px;height: 20px;background: #ccc; float: left;
+        margin:10px;text-align: center;position: relative;left: 43%;}
+    </style>
+</head>
+<body>
+    <div id="out">
+        <ul>
+            <li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li>
+        </ul>
+        <ol>
+            <li>1</li><li>2</li>
+        </ol>
+    </div>
+
+    <script>
+        var arrx=[],arry=[];
+        for(var i=0;i<$('#out ul li').length;i++)
+        {
+            $('#out ul li').eq(i).css({
+                'left':$('#out ul li').eq(i).offset().left-$('#out').offset().left,
+                'top':$('#out ul li').eq(i).offset().top-$('#out').offset().top
+            });
+            arrx.push($('#out ul li').eq(i).offset().left-$('#out').offset().left);
+            arry.push($('#out ul li').eq(i).offset().top-$('#out').offset().top);
+        };
+        console.log(arrx,arry);
+
+        //清除每个li的margin,转为绝对定位
+        $('#out ul li').css({
+            'margin':0,
+            'position':'absolute'
+        });
+
+        //下面这段代码是 让ul li一起从ol li那里消失
+/*         $('#out ol li').click(function(){
+            for(var i=0;i<$('#out ul li').length;i++)
+            {
+                $('#out ul li').eq(i).stop().animate({
+                    'left':$('#out ol li').offset().left-$('#out').offset().left,
+                    'top':$('#out ol li').offset().top-$('#out').offset().top,
+                    'width':0,
+                    'height':0
+                });
+            }
+        }); */
+
+        var index=0;
+        var t=null;
+        $('#out ol li').click(function(){
+            clearInterval(t);
+            t=setInterval(function(){
+                if(index==$('#out ul li').length)
+                {
+                    clearInterval(t);console.log(index);
+                    return;
+                }
+                $('#out ul li').eq(index).stop().animate({
+                    'left':$('#out ol li').offset().left-$('#out').offset().left,
+                    'top':$('#out ol li').offset().top-$('#out').offset().top,
+                    'width':0,
+                    'height':0
+                },500);
+                index++;
+            },300);
+
+            setTimeout(function(){
+                t=setInterval(function(){
+                    index--;
+                    if(index==-1)
+                    {
+                        index=0;
+                        clearInterval(t);
+                        return;
+                    }
+                    $('#out ul li').eq(index).stop().animate({
+                        'left':arrx.pop(),
+                        'top':arry.pop(),
+                        'width':100,
+                        'height':100
+                    },500);  
+                },300);
+            },3000);
+        });
+    </script>
+</body>
+</html>

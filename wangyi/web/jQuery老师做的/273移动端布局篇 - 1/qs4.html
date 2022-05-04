@@ -1,0 +1,20 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+</head>
+<body>
+<script type="text/javascript">
+	
+var a = new String('abc');
+var b = 'abc';
+var c = function (){alert(b+a)};
+var d = [a,b,c];
+a = b = c = null;
+d[2]();//'abcabc'
+alert(d);//['abc','abc',function (){alert(b+a)}];
+
+</script>
+</body>
+</html>

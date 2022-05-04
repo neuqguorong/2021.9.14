@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 100px;height: 100px;background: red;position: absolute;}
+		.drag{width: 100px;height: 100px;background: green;position: absolute;}
+	</style>
+</head>
+<body>
+	gfdsxfbgdfhsdxfgfdxgbxfb
+	<div id="d1"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+	<div class="drag"></div>
+
+	<script type="text/javascript">
+		/*d1.onmousedown=function(){
+			var l=event.clientX-d1.offsetLeft;
+			var t=event.clientY-d1.offsetTop;
+			document.onmousemove=function(){
+				d1.style.left=event.clientX-l+'px';
+				d1.style.top=event.clientY-t+'px';
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			return false;
+		}*/
+
+		document.documentElement.onmousedown=function(){
+			var itarget=event.target||event.srcElement;
+			if(itarget.classList.contains('drag'))
+			{
+				itarget.onmousedown=function(){
+					var l=event.clientX-d1.offsetLeft;
+					var t=event.clientY-d1.offsetTop;
+					document.onmousemove=function(){
+						itarget.style.left=event.clientX-l+'px';
+						itarget.style.top=event.clientY-t+'px';
+						itarget.style.background='#ccc';
+					}
+					document.onmouseup=function(){
+						itarget.style.background='green';
+						document.onmousemove=null;
+						document.onmouseup=null;
+					}
+					return false;
+				}
+			}
+		}
+		
+		alert(1=='1');
+	</script>
+</body>
+</html>

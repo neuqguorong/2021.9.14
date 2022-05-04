@@ -1,0 +1,115 @@
+<script>
+/*     new Promise((res,rej)=>{
+        rej(1);
+    }).catch(x=>{
+        console.log('第一层rej'+x);
+        return x;
+    }).then(x=>{console.log('第二层res'+x)}
+        ,x=>{console.log('第二层rej'+x);
+        return x;
+    }).then(x=>{console.log('第三层res'+x)}
+        ,x=>{console.log('第三层rej'+x);
+        return x;
+    }); */
+    
+</script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .outnode div{width: 200px;height: 200px;background: red;font-size: 50px;display: none;}
+        .outnode .a{background: red;}
+        .outnode .b{display: block;}
+    </style>
+</head>
+<body>
+    <!-- <input id="ipt" type="button">
+    <div id="d1"></div> -->
+    <div class="outnode">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <div class="b">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <div class="outnode">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <input type="button" value="4">
+        <div class="b">1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div>
+</body>
+<script>
+    //点击按钮，显示或隐藏div,切换
+/*     var i=true;
+    show=()=>{
+        return new Promise((resolve,reject)=>{
+            i=!i;
+            i?resolve():reject();
+        }).then(()=>{
+            d1.style.display='block';
+        }).catch(()=>{
+            d1.style.display='none';
+        })
+    }
+    ipt.onclick=show; */
+
+    var t=null,j=0,arr=[];
+
+    show2=()=>{
+        t=setInterval(()=>{
+            j++;
+            [...document.querySelectorAll('.outnode')].map((x,y4)=>{
+                //console.log([...x.querySelectorAll('input')].length);
+                (j==arr[y4]) && (j=0);
+                [...x.querySelectorAll('input')].map((x3,y)=>{
+                    [...x.querySelectorAll('input')]. map(x1=>{
+                        x1.className='';
+                    });
+                    [...x.querySelectorAll('input')][j].className='a';
+                    [...x.querySelectorAll('div')].map(x2=>{
+                        x2.className='';
+                    });
+                    [...x.querySelectorAll('div')][y].className='b';
+                })
+            })
+        },600);
+    }
+    show2();
+    [...document.querySelectorAll('.outnode')].map(x=>{
+        arr.push([...x.querySelectorAll('input')].length);
+        console.log(arr);
+        [...x.querySelectorAll('input')].map((x3,y)=>{
+            x3.onclick=()=>{
+                [...x.querySelectorAll('input')]. map(x1=>{
+                    x1.className='';
+                });
+                x3.className='a';
+                [...x.querySelectorAll('div')].map(x2=>{
+                    x2.className='';
+                });
+                [...x.querySelectorAll('div')][y].className='b';
+                j=y;
+            }
+        })
+       
+        x.onmouseover=()=>{
+            clearInterval(t);
+        }
+        x.onmouseout=()=>{
+            show2();
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d0{margin: 20px;word-wrap: break-word;}
+        #d1{width: 500px;height: 300px; border: 2px solid black;margin-top: 20px;}
+        #d2{width: 500px;height: 100px;border: 1px solid black;margin-top: 20px;}
+        .a{width: 100%; word-wrap: break-word;background: #ccc;margin-top: 10px;font-size: 20px;}
+        .b{position: relative;text-align: right;width: 100%;display: none;font-size: 14px;}
+        .c{vertical-align:50%;line-height: 300px;}
+    </style>
+</head>
+<body>
+    <div>留言板</div>
+    <div id="d0">
+        <div id="d1" class="c">please input message...</div>
+        <div contenteditable="true" id="d2"></div>
+        <div id="cl">发表留言</div>
+    </div>
+</body>
+<script>
+    var i=0;
+    cl.onclick=function(){
+        if(d2.innerHTML=='')
+        {
+            alert('please input message');
+        }
+        else{
+            i++;
+            var odiv=document.createElement('div');
+            odiv.className='a';
+            odiv.innerHTML=i+'.'+d2.innerHTML+'<span class="b" style="text-align:right;">您确定要删除'+d2.innerHTML+'么？</span>';
+            if(d1.children.length==0)
+            {
+                d1.innerHTML='';
+            }
+            d1.appendChild(odiv);
+            d1.classList.remove('c');
+            odiv.children[0].style.top=-2*odiv.offsetHeight+'px';
+            //console.log(odiv.offsetHeight);
+            d2.innerHTML='';
+        }
+    }
+     document.documentElement.onmouseover=function(e){
+         var ev=e||event;
+         var itarget=ev.target||ev.srcElement;
+         if(itarget.className=='a')
+         {
+            var h=itarget.offsetHeight;
+            //var p=document.createElement('p');
+            // p.style.cssText='';
+            itarget.children[0].style.display='inline-block';
+            itarget.style.height=h+'px';
+            itarget.onmouseout=function(){
+                itarget.children[0].style.display='none';
+            }
+            itarget.onclick=function(){
+                itarget.remove();
+                if(d1.children.length=='')
+                {
+                    d1.innerHTML='please input message...';
+                    d1.classList.add('c');
+                }
+            }
+         }
+     }   
+
+    
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 300px;height: 225px;margin:100px;position: absolute;overflow: hidden;}
+        #d1 ul{width: 300px;height: 225px;position: relative;z-index: 1;}
+        #d1 ul li{position: relative;width: 300px;height: 225px;float: left;}
+        img{width: 300px;height: 225px;}
+        #d1 #d2{position: absolute;z-index: 2; bottom: 10px;margin-left: 90px;}
+        button{width: 30px;margin: 3px;}
+        #d1 #le,#d1 #ri{position: absolute;top: 45%;z-index: 2;}
+        #d1 #ri{left: 260px;}
+        .a{background: yellow;}
+        /* #d1 ul .b{display: block;} */
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <ul>
+            <li ><img src="1.jpg" class="b"></li><li><img src="2.jpg"></li><li><img src="3.jpg"></li>
+        </ul>
+        <div id="d2">
+            <button class="a">1</button><button>2</button><button>3</button>
+        </div>
+        <button id="le">left</button>
+        <button id="ri">right</button>
+    </div>
+</body>
+<script>
+    var i=0;
+    $('ul').width($('ul>li').eq(0).width()*$('ul>li').length);
+    $('#d2>button').on({
+        'click':function(){
+            $('#d2>button').removeClass('a');
+            $(this).addClass('a');//console.log($(this).index());
+            $('ul').stop().animate({
+                'left':-$(this).index()*$('ul>li').eq(0).width()
+            });
+/*             $('img').removeClass('b');
+            console.log($(this).index(), $('img').eq($(this).index()));
+            $('img').eq($(this).index()).addClass('b'); */
+        }
+    });
+
+    $('#ri').on({
+        'click':function(){
+            i==$('ul>li').length-1?i=0:i++;
+            $('#d2>button').removeClass('a');
+            $('#d2>button').eq(i).addClass('a');
+            $('ul').stop().animate({
+                'left':-i*$('ul>li').eq(0).width()
+            });
+        }
+    });
+
+    $('#le').on({
+        'click':function(){
+            i==0?i=$('ul>li').length-1:i--;
+            $('#d2>button').removeClass('a');
+            $('#d2>button').eq(i).addClass('a');
+            $('ul').stop().animate({
+                'left':-i*$('ul>li').eq(0).width()
+            });
+        }
+    });
+</script>
+</html>

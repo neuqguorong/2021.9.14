@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 680px;height: 344px;position: absolute;left: 50%;top: 50%;margin-left: -340px;margin-top: -172px;}
+
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+
+    function a(k){
+        for(var i=0;i<10;i++)
+        {
+            for(var j=0;j<20;j++)
+            {
+                var odiv=document.createElement('div');
+                //odiv.style.width=d1.offsetWidth/20+'px';
+                //odiv.style.height=d1.offsetHeight/10+'px';
+                odiv.style.cssText='float:left;width:'+d1.offsetWidth/20+'px;height:'+d1.offsetHeight/10+'px;background:url('+k+'.jpg) '+(-j)*d1.offsetWidth/20+'px '+(-i)*d1.offsetHeight/10+'px;transition:'+(Math.random()*1.8+0.7)+'s all ease';
+                //odiv.style.backgroundPositionX=(-j)*d1.offsetWidth/20+'px';
+                //odiv.style.backgroundPositionY=(-i)*d1.offsetHeight/10+'px';
+                d1.appendChild(odiv);
+            }
+        }
+
+        var adiv=d1.children;
+        setTimeout(function(){
+            for(var i=0;i<adiv.length;i++)
+            {
+                adiv[i].style.transform='perspective('+(Math.random()*300+500)+'px) rotate('+(Math.random()*360-180)+'deg) scale('+(Math.random()*3+1)+') translateX('+(Math.random()*360-180)+'px) translateY('+(Math.random()*360-180)+'px)';
+                //adiv[i].style.transition=(Math.random()*1.8+0.7)+'s all ease';
+                //adiv[i].style.opacity=0;
+                
+            }
+        },1000);
+    }
+
+    a(1);
+    var k=1;
+    setInterval(function(){
+        d1.innerHTML='';
+        k++;
+        if(k==8)k=1;
+        a(k);
+    }, 2100);
+</script>
+</html>

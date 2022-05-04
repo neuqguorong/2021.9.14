@@ -1,0 +1,126 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+<link href="style/zns_style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+
+<div id="automatic">
+
+	<div class="prev_div"></div>
+    <a class="prev" href="###">
+        <span class="ico1"></span>
+        <span class="ico"></span>
+        <span class="txt"></span>
+    </a>
+	
+	<div class="next_div"></div>
+    <a class="next" href="###">
+        <span class="ico1"></span>
+        <span class="ico"></span>
+        <span class="txt"></span>
+    </a>
+
+	<div class="line"></div>
+
+    <ul>
+        <li class="pos_0"><a href="http://www.zhinengshe.com"><img src="images/8.jpg" width="100" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_1"><a href="http://www.zhinengshe.com"><img src="images/1.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_2"><a href="http://www.zhinengshe.com"><img src="images/2.jpg" width="510" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_3"><a href="http://www.zhinengshe.com"><img src="images/3.jpg" width="680" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_4"><a href="http://www.zhinengshe.com"><img src="images/4.jpg" width="510" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_5"><a href="http://www.zhinengshe.com"><img src="images/5.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_6"><a href="http://www.zhinengshe.com"><img src="images/6.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+        <li class="pos_6"><a href="http://www.zhinengshe.com"><img src="images/7.jpg" width="270" alt="智能社 www.zhinengshe.com" longdesc="http://www.zhinengshe.com" /></a></li>
+    </ul>
+
+</div>
+<p id="footer"><a href="javascript:;">leo</a></p>
+
+<script type="text/javascript">
+    var jsimg={
+        'lileft':[],
+        'litop':[],
+        'imgwidth':[],
+        'imgheight':[],
+        'liopa':[],
+        'liwidth':[],
+        'liheight':[],
+        'liz':[]
+    };
+
+    for(var i=0;i<$('li').length;i++)
+    {
+        jsimg.lileft.push($('li').eq(i).css('left'));
+        jsimg.litop.push($('li').eq(i).css('top'));
+        jsimg.liopa.push($('li').eq(i).css('opacity'));
+        jsimg.imgwidth.push($('li img').eq(i).css('width'));
+        jsimg.imgheight.push($('li img').eq(i).css('height'));
+        jsimg.liwidth.push($('li').eq(i).css('width'));
+        jsimg.liheight.push($('li').eq(i).css('height'));
+        jsimg.liz.push($('li').eq(i).css('zIndex'));
+    }
+    console.log(jsimg);
+
+    $('.prev_div').click(function(){
+        jsimg.lileft.push(jsimg.lileft.shift());
+        jsimg.litop.push(jsimg.litop.shift());
+        jsimg.liwidth.push(jsimg.liwidth.shift());
+        jsimg.liheight.push(jsimg.liheight.shift());
+        jsimg.liopa.push(jsimg.liopa.shift());
+        jsimg.imgwidth.push(jsimg.imgwidth.shift());
+        jsimg.imgheight.push(jsimg.imgheight.shift());
+        jsimg.liz.push(jsimg.liz.shift());
+        
+        for(var i=0;i<$('li').length;i++)
+        {
+            $('li').eq(i).stop().animate({
+                'left':jsimg.lileft[i],
+                'top':jsimg.litop[i],
+                'opacity':jsimg.liopa[i],
+                'width':jsimg.liwidth[i],
+                'height':jsimg.liheight[i],
+                'zIndex':jsimg.liz[i]
+            });
+            
+            $('li img').eq(i).stop().animate({
+                'width':jsimg.imgwidth[i],
+                'height':jsimg.imgheight[i]
+            });
+        }
+    });
+
+    $('.next_div').click(function(){
+        jsimg.lileft.unshift(jsimg.lileft.pop());
+        jsimg.litop.unshift(jsimg.litop.pop());
+        jsimg.liwidth.unshift(jsimg.liwidth.pop());
+        jsimg.liheight.unshift(jsimg.liheight.pop());
+        jsimg.liopa.unshift(jsimg.liopa.pop());
+        jsimg.imgwidth.unshift(jsimg.imgwidth.pop());
+        jsimg.imgheight.unshift(jsimg.imgheight.pop());
+        jsimg.liz.unshift(jsimg.liz.pop());
+        
+        for(var i=0;i<$('li').length;i++)
+        {
+            $('li').eq(i).stop().animate({
+                'left':jsimg.lileft[i],
+                'top':jsimg.litop[i],
+                'opacity':jsimg.liopa[i],
+                'width':jsimg.liwidth[i],
+                'height':jsimg.liheight[i],
+                'zIndex':jsimg.liz[i]
+            });
+            
+            $('li img').eq(i).stop().animate({
+                'width':jsimg.imgwidth[i],
+                'height':jsimg.imgheight[i]
+            });
+        }
+    });
+</script>
+</body>
+</html>

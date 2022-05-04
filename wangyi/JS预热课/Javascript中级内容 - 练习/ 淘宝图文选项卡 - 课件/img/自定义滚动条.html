@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 400px;height: 20px;background: #ccc;margin: auto;margin-bottom: 20px;}
+        #d2{width: 40px;height: 100%;background: red;position: relative;}
+        #d3{width: 200px;height: 200px;border: 1px solid black;word-wrap: break-word;overflow: hidden;margin-bottom: 20px;}
+        #d4{width: 100%;height: 2000px;font-size: 50px;position: relative;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+    </div>
+    <div id="d3">
+        <div id="d4">这些内容都试过，当div中包含<p>、<img >等标签时，在火狐中正常，但在Apple的Safari浏览器中就不正常了，我查找了其中的原因，浏览器下载文本内容较快，图片（img）等内容的下载速度较慢,当div中包含图片内容，内容的下载速度较慢,当div中包含图片内容，</div>
+    </div>
+    <div id="d5" style="width: 200px;height: 200px;border: 1px solid black;font-size: 50px;;" contenteditable="true"></div>
+</body>
+<script>
+    d2.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX;
+        document.onmousemove=function(e){
+            var ev=e||event,l1=ev.clientX-l;
+            if(l1<0)l1=0;
+            if(l1>d1.offsetWidth-d2.offsetWidth)l1=d1.offsetWidth-d2.offsetWidth;
+            d2.style.left=l1+'px';
+            var bili=l1/(d1.offsetWidth-d2.offsetWidth);
+            d4.style.top=-bili*d4.offsetHeight+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+</script>
+</html>

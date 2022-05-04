@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    
+</body>
+
+<script>
+    //生成器函数,可以有多个返回值，用yield返回
+    function* show(){
+        yield console.log(0);
+        yield ()=>{console.log(1);};
+        yield ()=>{console.log(2);};
+    }
+    show().next();//0
+    show().next().value();//0 1
+    show().next().value();//想让他打印0 1 2，怎么办
+
+    //生成器函数,可以有多个返回值，用yield返回
+ /*    function* show(){
+        yield ()=>{console.log(1);};
+        yield ()=>{console.log(2);};
+        yield ()=>{document.body.style.background='red'}
+    }
+    //show().next();//
+    var k=show(); */
+  /*   k.next().value();//
+    k.next().value();//
+    k.next().value();
+ */
+/*     onclick=()=>{
+        k.next().value();
+    }
+
+
+    //json set get 方法
+    var json={
+        set leo(x){
+            console.log('jsonset'+x);
+        },
+        get leo(){console.log('jsonget');}
+    };
+    json.leo=1;//执行set leo函数
+    json.leo; */
+</script>
+</html>

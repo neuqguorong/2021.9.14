@@ -1,0 +1,38 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+document.body.innerHTML = '<canvas id="chess" width="450" height="450"></canvas>'
+
+var chess = document.getElementById(
+	'chess');
+
+var context = chess.getContext('2d');
+context.strokeStyle = '#686868';
+context.beginPath();
+for(var i = 0;i < 15;i++){
+	context.moveTo(15,15+i*30);
+	context.lineTo(435,15+i*30);
+
+	context.moveTo(15+i*30,15);
+	context.lineTo(15+i*30,435);
+	context.stroke();
+}
+
+
+
+
+
+
+</script>
+</body>
+</html>

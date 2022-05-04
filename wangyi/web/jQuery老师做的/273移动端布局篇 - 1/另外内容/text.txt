@@ -1,0 +1,96 @@
+响应式 － 移动端＋pc端的一个终极解决方案
+媒体查询
+media 媒体
+英语中 后缀＋er 就代表人
+player  玩家
+media player 媒体玩家
+
+就切一个移动端  然后切pc端
+用户进页面的时候 判断一下ua 如果有mobile 或者提示其余移动的字符串 就location.href 进入到移动端的页面
+除非就进入pc端
+
+
+媒体查询判断横屏
+@media all and (orientation : landscape) {
+	body{
+		background: black;
+	}
+}
+竖屏
+@media all and (orientation : portrait) {
+	body{
+		background: yellow;
+	}
+}
+小于等于600px的时候 会执行
+@media screen and (max-width : 600px) {
+	body{
+		background: black;
+	}
+}
+大于601 小于768 这个区间内会执行
+@media screen and (min-width: 601px) and (max-width: 768px) {
+	body{
+		background: yellow;
+	}
+}
+大于769的都会执行 里面的样式
+@media screen and (min-width: 769px) {
+	body{
+		background: pink;
+	}
+}
+写在link 中也是可以的 
+<!-- pc -->
+    <link rel="stylesheet" type="text/css" media="screen and (min-width:960px)" href="link.css">
+    <!-- pad -->
+	<link rel="stylesheet" type="text/css" media="screen and (min-width:600px) and (max-width:960px)" href="link2.css">
+	<!-- mobile -->
+	<link rel="stylesheet" type="text/css" media="screen and (max-width:600px)" href="link3.css">
+
+
+rem 是根据 html 元素的font－size 去改变 
+比例就是1rem ＝ 默认的font－size 
+html 20px
+1rem ＝ 20px  3rem ＝ 3* 20px 60px
+
+chrome 最小字体是 12px 低于12 会解析成12px
+safari 不吃这套
+
+因为 我们要兼容的最低尺寸是320
+所以呢 我们需要除以320 来兼容最低尺寸
+但是chrome 浏览器最低fontsize 是 12 
+所以我们分2次除
+
+上面 2   i 320 ／ 2
+地下 160
+
+
+innerWidth / 1
+320 －
+让font －size 除以16
+让匹配的像素 除以 20
+
+32 ＊ 10
+
+
+200-
+20 － 10
+innerWidth 320/20  100px/10 = 10rem
+
+transform
+scale(x,y) 缩放   scaleX scaleY
+skew 扭曲 skewX skewY
+translate x y z 平移 
+perspective  透视
+rotate
+rotateX
+rotateY
+
+animate 核心是定时器
+第三个参数 speed
+
+ajax post get 
+安全性不一样
+
+

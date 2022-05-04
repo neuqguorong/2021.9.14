@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 400px;height: 300px;overflow: hidden;}
+        #d2{width: 400%;height: 250px;position: relative;transition: 1s all ease;}
+        #d2 li{width: 400px;height: 100%;float: left;}
+        #d21{background: blue;}
+        #d22{background: rgb(0, 128, 128);}
+        #d23{background: yellow;}
+        #d24{background: tomato;}
+        #d3{width: 100%;height: 50px;background: black;}
+        #d3 li{width: 50px;height: 10px;margin-top: 10px;margin-right: 5px;border: 1px solid black;background: white;float: left;}
+        #d31{margin-left: 80px;}
+        #d3 li div{width: 0; height: 100%;background: green;overflow: hidden;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <ul id="d2">
+            <li id="d21"></li>
+            <li id="d22"></li>
+            <li id="d23"></li>
+            <li id="d24"></li>
+        </ul>
+        <ul id="d3">
+            <li id="d31"><div id="d311"></div></li>
+            <li id="d32"><div id="d321"></div></li>
+            <li id="d33"><div id="d331"></div></li>
+            <li id="d34"><div id="d341"></div></li>
+        </ul>
+    </div>
+</body>
+<script>
+    var d3ali=d3.getElementsByTagName('li'),t=null,j=0;console.log(d3ali),d3adiv=d3.getElementsByTagName('div'),x=0;
+
+    function move(){
+        t=setInterval(function(){
+            d2.style.left=-x*d2.children[0].offsetWidth+'px';
+            j+=5;
+            for(var i=0;i<d3adiv.length;i++)
+            {
+                d3adiv[i].style.width=0;
+            }
+            d3adiv[x].style.width=j+'%';
+            if(j==100)
+            {
+                j=0;
+                x++;
+                if(x==d3adiv.length)x=0;
+                d2.style.left=-x*d2.children[0].offsetWidth+'px';//console.log(-x*d2.children[0].offsetWidth);
+            }
+        },100);
+    }
+
+    move();
+    for(var i=0;i<d3ali.length;i++)
+    {
+        d3ali[i].index=i;
+        d3ali[i].onmouseover=function(){
+            clearInterval(t);
+        }
+        d3ali[i].onmouseout=move;
+        d3ali[i].onclick=function(){
+            for(var i=0;i<d3adiv.length;i++)
+            {
+                d3adiv[i].style.width=0;
+            }
+            x=this.index;
+            j=0;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 100px;height: 100px;background: green;}
+	</style>
+</head>
+<body>
+	<div id='d1'></div>
+	<button id='btn'>显示/隐藏</button>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<script type="text/javascript">
+		/*window.onload=function(){
+			document.getElementById('d1').style.height='200px';
+		}*/
+
+		var d2=document.getElementById('d1'),btn=document.getElementById('btn'),adiv=document.getElementsByTagName('div');
+		d2.onclick=function() {
+			d2.style.background='red';
+		}
+		n=0;
+		btn.onclick=function(){
+			n=n+1;
+			if(n%2==1)
+				d2.style.display='none';
+			else
+				d2.style.display='block';
+		}
+		
+		adiv[0].style.color='red';
+		adiv[1].style.color='green';
+		adiv[2].style.color='orange';
+	</script>
+</body>
+</html>

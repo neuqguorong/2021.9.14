@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        div{width: 200px;height: 200px;background: black;position: absolute;left: 50%;top: 50%;margin-left: -100px;margin-top: -100px;transition: 1s;}
+        #d1{background: red;transform-style: preserve-3d;transform: perspective(800px) translateZ(1px);}
+        #d2{background:green;transform: translateZ(-1px);}
+      /*   #d1:hover{transform: perspective(800px) rotateY(80deg);} */
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <input id="ipt1" type="button" value="我想注册">
+        <div id="d2">
+            用户名：<input type="text" value=""><br>
+            密码：<input type="password" value=""><br>
+            <input id="ipt2" type="submit">
+        </div>
+    </div>
+</body>
+
+<script>
+    ipt1.onclick=function(){
+        d1.style.transform='perspective(800px) rotateY(180deg)';
+        //d2.style.transform='perspective(800px) rotateY(-180deg)';
+        d2.style.transform='scaleX(-1)';
+    }
+    ipt2.onclick=function(){
+        d1.style.transform='translateY(-600px) rotateY(180deg)';
+    }
+</script>
+</html>

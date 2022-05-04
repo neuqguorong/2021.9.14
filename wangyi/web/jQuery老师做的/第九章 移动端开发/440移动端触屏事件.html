@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 200px;height: 200px;background: black;position: absolute; float: left;}
+        #d2{width: 200px;height: 200px;background: red;float: left;margin-left: 300px;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+    </div>
+</body>
+
+<script>
+    d1.onclick=function(e){
+        //alert(1);
+    }
+    d2.onclick=function(e){
+       // e.stopPropagation();
+       e.cancelBubble=true;
+    }
+
+    var l=t=0;
+    var drag=false;
+    d1.addEventListener('touchstart',function(e){
+        //console.log(e.touches[0].clientX);
+        //e.preventDefault();//取消移动端的默认事件
+        l=e.touches[0].clientX-d1.offsetLeft;
+        t=e.touches[0].clientY-d1.offsetTop;
+        drag=true;
+    },false);
+
+    document.addEventListener('touchmove',function(e){
+        //console.log(e.touches[0].clientX);
+        //e.preventDefault();//取消移动端的默认事件
+        if(drag)
+        {
+            d1.style.left=e.touches[0].clientX-l+'px';
+            d1.style.top=e.touches[0].clientY-t+'px';
+        }
+    },false);
+
+    document.addEventListener('touchend',function(){
+        drag=false;
+    },false);
+</script>
+</html>

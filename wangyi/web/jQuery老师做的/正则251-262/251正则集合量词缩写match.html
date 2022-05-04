@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <script>
+        var a='dfawwer2tYuFf342qbvzcX54_cbnh';
+        /* console.log(a.indexOf('w'));//3
+        console.log(a.search('w'));//3
+        console.log(a.search(/w/));//3
+        var c=new RegExp('w');
+        console.log(a.search(c)); //3 */
+
+        /* var willfind='y';
+        var c=new RegExp(willfind);
+        console.log(a.search(c));//8 */
+
+        /* var willfind='y';
+        console.log(a.search(willfind));//8 */
+
+        //console.log(a.search(/y/));//-1  没找到
+        //console.log(a.search(/y/i));//8 i可以不区分大小写地找
+
+        //console.log(a.search(/rtyu/i));//6 i可以不区分大小写地找
+
+        //console.log(a.substring(a.search(/f/i)+1).search(/f/i));
+        //从第一个f开始截取的字符串中的第一个不区分大小写的f，
+        //就是找原来字符串的第二个不区分大小写的f，
+
+        //用正则查找多个连续字母
+        /* var c=new RegExp('RTYU','i');
+        console.log(a.search(c));//6 */
+
+        //用正则找数字，转义字符
+        //console.log(a.search(/\d/));//7  \d找所有的数字0到9的第一个数字
+        //console.log(a.search(/[0-9]/));//7 用集合找第一个数字
+        //console.log(a.search(/[m-z]/));//3 找属于m-z的第一个字母的位置
+        //console.log(a.search(/[m-z0-9]/));//3 找属于m-z或者0-9的第一个字母或数字的位置
+        //console.log(a.match(/[m-z0-9]/));//['w'] 找到符合条件的第一个字母或数字，并且以数组返回
+ 
+        //console.log(a.match(/[m-z0-9]/i));//['w'] 不区分大小写地找到符合条件的第一个字母或数字，并且以数组返回
+        //贪婪法则 g global查找全部符合条件的，并且以数组形式返回，
+        //console.log(a.match(/[m-z0-9]/g));
+        //['w', 'w', 'r', '2', 't', 'u', '3', '4', '2', 'q', 'v', 'z', '5', '4', 'n']
+
+        //量词 {1,2}第一个数字必须小于第二个数字,限制正则条件的长度，只要符合多个条件，优先返回长度长的
+        //console.log(a.match(/[m-z0-9]{2}/i));//ww 找到2位符合条件的第一个，并以数组形式返回
+        //console.log(a.match(/[m-z0-9]{2}/g));//['ww', 'r2', '34', '2q', 'vz', '54']
+        //找到2位符合条件的所有，并以数组形式返回
+
+        //console.log(a.match(/[m-z0-9]{2,3}/g));//['ww', 'r2t', '342', 'vz', '54']
+        //console.log(a.match(/[m-z0-9]{2,}/g));//第二个量词不写，就是到无限长度
+        // ['ww', 'r2t', '342q', 'vz', '54']
+        //console.log(a.match(/[m-z0-9]+/g));//['ww', 'r2t', 'u', '342q', 'vz', '54', 'n']
+        //console.log(a.match(/[m-z0-9]{1,}/g));//['ww', 'r2t', 'u', '342q', 'vz', '54', 'n']
+
+        //console.log(a.match(/[m-z0-9]?/g));
+        //console.log(a.match(/[m-z0-9]{0,1}/g));
+        //['', '', '', 'w', 'w', '', 'r', '2', 't', '', 'u', '', '', '3', '4', '2', 'q', '', 'v', 'z', '', '', '5', '4', '', '', 'n', '', '']
+        //console.log(toString(a.match(/[m-z0-9]?/g)) ==toString(a.match(/[m-z0-9]{0,1}/g)) );//true
+
+        //console.log(a.match(/[m-z0-9]*/g));//['', '', '', 'ww', '', 'r2t', '', 'u', '', '', '342q', '', 'vz', '', '', '54', '', '', 'n', '', '']
+        //console.log(a.match(/[m-z0-9]{0,}/g));//a.match(/[m-z0-9]*/g) 与 a.match(/[m-z0-9]{0,}/g)返回一样
+
+        //console.log(a.match(/\d/));//2 返回找到的第一个数字自己
+        //console.log(a.match(/\d/g));// ['2', '3', '4', '2', '5', '4']  返回找到的所有数字自己
+
+        //console.log(a.match(/\d+/g));// ['2', '342', '54']
+        //console.log(a.match(/\w+/g));//['dfawwer2tYuFf342qbvzcX54_cbnh'] 找到字母数字下划线
+        //console.log(a.match(/[a-zA-Z0-9_]+/g));//['dfawwer2tYuFf342qbvzcX54_cbnh']
+
+        //var b='fd121sa%dfiFdswDSadf^fdaFDSFEsu*';
+        //console.log(b.match(/\w+/g));// ['fdsa', 'dfiadf', 'fdasu']
+        //console.log(b.match(/[a-z0-9_]+/g));// ['fd121sa', 'dfi', 'dsw', 'adf', 'fda', 'su']
+        //console.log(b.match(/[^0-9]+/g));//['fd', 'sa%dfiFdswDSadf^fdaFDSFEsu*'] 非 除了0到9
+        //console.log(b.match(/[^a-z]+/g));//['121', '%', 'F', 'DS', '^', 'FDSFE', '*']
+        //console.log(b.match(/[6\w]+/g));//['fd121sa', 'dfiFdswDSadf', 'fdaFDSFEsu']
+
+      /*   var name1='王静王晶晶李念李菲儿';
+        console.log(name1.replace('李',''));//王静王晶晶念李菲儿
+        console.log(name1.replace(/李/,''));//王静王晶晶念李菲儿
+        console.log(name1.replace(/李/g,''));//王静王晶晶念菲儿 g 替换所有的李,换为''
+        
+        var a1='fsafasdGDSEnjkij342njkj32njk4n5';
+        console.log(a1.replace(/[0-9]/,''));//fsafasdGDSEnjkij42njkj32njk4n5只替换了第一个数字
+        console.log(a1.replace(/[0-9]/g,''));//fsafasdGDSEnjkijnjkjnjkn
+        console.log(a1.replace(/[a-z]/g,''));//GDSE3423245
+        console.log(a1.replace(/[a-zA-Z]/g,''));//3423245
+        console.log(a1.replace(/[a-zA-Z]/g,function(i){
+            console.log(i);
+            return '你好';
+        })); */
+ 
+        //过滤敏感词,查找关键字词
+        /* document.body.innerHTML='台湾独立fda香港暴乱fdaj脏话fejiej法解决';
+        //document.body.innerHTML=document.body.innerHTML.replace(/台湾独立|香港暴乱|脏话/g,'**');
+       /*  document.body.innerHTML=document.body.innerHTML.replace(/台湾独立|香港暴乱|脏话/g,function(x){
+            var m='';
+            for(i=0;i<x.length;i++)
+            {
+                m+='*';
+            }
+            return m;
+        });//****fda****fdaj**fejiej法解决,每次敏感词的字，都替换为* */
+
+        //让每个字都变色
+      /*   document.body.innerHTML=document.body.innerHTML.replace(/./g,function(x){
+            return '<span style="color:rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+');">'+x+'</span>';
+        })
+        setInterval(function(){
+            var aspan=document.getElementsByTagName('span');
+            for(var i=0;i<aspan.length;i++)
+            {
+                aspan[i].style.color='rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+')';
+            }
+        },500); */ 
+
+/*         var re=/[a-z]+\d+/g;// 前面是小写字母，后面是数字的形式，
+        var a='dsfaj89fdsa90';
+        console.log(re.test(a));//true 匹配到了
+        var b='ffdsaFDEAW34';
+        console.log(re.test(b));//false  有大写字母，不匹配
+        var re2=/[a-z]+\d+/ig;
+        console.log(re2.test(b));//true
+        var a3='k-sfeev:9';
+        var re3=/[a-z]{1}-{1}[a-z]{5}:{1}\d{1}/g;
+        console.log(re3.test(a3));//true
+        var a4='k-sf~eev:9';
+        var re4=/[a-z]{1}-{1}[a-z]{2}~{1}[a-z]{3}:{1}\d{1}/g;
+        console.log(re4.test(a4));//true
+        var a5='...';
+        var re5=/\./g;//匹配. 用转义字符
+        console.log(re5.test(a5));//true
+        var a6='...fwad';
+        var re6=/\./g;//匹配. 用转义字符
+        console.log(re6.test(a6));//true
+
+        var a7='78fsda..fewa890';
+        var a8='fdsajk78978fsda..fewa890';
+        var re7=/[a-z]+\d+/g;
+        console.log(re7.test(a7));//true 只要全部中有对应re7的样式，就是true
+        var re8=/^[a-z]+\d+/g;//从第一个找，如果第一个不匹配，直接返回false
+        console.log(re8.test(a7));//false 从第一个找re8的样式，如果第一个不匹配，直接返回false
+        console.log(re8.test(a8));//true 从第一个找re8的样式，第一个匹配，直接返回true
+        var re9=/[a-z]+\d+$/g;//从尾部开始匹配，尾部如果不符合，返回false
+        console.log(re9.test(a7));//true
+        var a9='fas789./67dfas';
+        console.log(re9.test(a9));//false */
+
+        //匹配qq，最低是5位，最高是10位，第一位不能为0，必须全是数字
+       /*  var qq='739824';
+        var reqq=/^[1-9]{1}[0-9]{4,9}$/g; //从头到尾匹配
+        console.log(reqq.test(qq));//true
+
+        //匹配电话号码，北京的 010-82729999 必须全是数字
+        var tel='010-82729999';
+        var tel2='011-82729999';
+        var retel=/^010-[12568]{1}[0-9]{7}$/g; //从头到尾匹配
+        console.log(retel.test(tel));//true
+        console.log(retel.test(tel2));//false */
+
+/*         var a10='s8a9456dd5fdsa7fdsa897fas';
+        var re10=/([a-z]+\d+){2,3}/g;
+        console.log(re10.test(a10));//true
+        console.log(a10.match(re10));//['s8a9456dd5', 'fdsa7fdsa897']
+        var a11='  ';
+        var re11=/\s/;
+        console.log(re11.test(a11));//true
+        console.log(/^\s/g.test(a11));//true
+        console.log(/^\s/g.test('dfa  fdsafds  fdsa'));//false  因为开头不是空格
+
+        var qqmail='1243255@qq.com';
+        var reqqmail=/^[1-9]{1}[0-9]{4,9}@qq\.com$/g;
+        console.log(reqqmail.test(qqmail));//true
+
+        var a12='fdsayi78697sa';
+        var a13='fd中sayi78697sa';
+        var re12=/[\u4e00-\u9fa5]+/g;//检测所有中文，只要有中文就返回true
+        console.log(re12.test(a12));//false
+        console.log(re12.test(a13));//true */
+
+        var mima='dga24_343';
+        if(mima.length>=6 && mima.length<=10)
+        {
+            if(/\d/g.test(mima))
+            {
+                if(/[a-zA-z]/g.test(mima))
+                {
+                    if(/_/g.test(mima))
+                    {
+                        alert('可以把此设为密码');
+                    }
+                    else{
+                        alert('密码里需要有下划线');
+                    }
+                }
+                else{
+                    alert('密码里需要有字母');
+                }
+            }
+            else{
+                alert('密码里需要有数字');
+            }
+        }
+        else{
+            alert('密码长度必须在6到10位之间');
+        }
+
+
+</script>
+</body>
+</html>

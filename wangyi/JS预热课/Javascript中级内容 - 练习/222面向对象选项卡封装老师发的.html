@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.active {
+			background: red;
+		}
+	</style>
+</head>
+
+<body>
+
+</body>
+<script type="text/javascript">
+	function newtab(opt) {
+		var this1 = this;
+		this.index1 = 0;
+		this.opt = opt;
+		if (opt.iscreate) {
+			this1.createnode1(this1, this.opt);
+			this1.event(this.opt, this);
+		}
+		if (opt.isinterval) {
+			this.t = null;
+			this.interval(this1, this.index1, this.opt.intervaltime, this.opt);
+			this.opencloseinterval(this.index1, this.opt.intervaltime, this.opt, this1);
+		}
+
+
+
+	}
+	newtab.prototype = {
+		//生成外部元素
+		'createnode1': function (this1, opt) {
+			console.log(opt);
+			opt.isinterval && (this1.t = null);
+			var otab = document.createElement(opt.createnode.outernode.split('/')[1].toLowerCase());
+			//console.log(opt.createnode.outernode.split('/')[1].toLowerCase());
+			otab.id = opt.createnode.outernode.split('/')[0];
+			document.body.appendChild(otab);
+
+			//生成内部顶部元素buttton
+			for (var i = 0; i < opt.createnode.length; i++) {
+				var otop = document.createElement(opt.createnode.topnodecos.split('/')[0].toLowerCase());
+				otop.type = 'button';
+				for (var j in opt.createnode.topnodestyle) {
+					otop.style[j] = opt.createnode.topnodestyle[j];
+				}
+				if (opt.createnode.topnodecos.split('/')[0].toLowerCase() == 'input') {
+					otop.value = opt.createnode.topnodeval[i];
+				} else {
+					otop.innerHTML = opt.createnode.topnodeval[i];
+				}
+				if (i == 0) otop.className = 'active';
+				otab.appendChild(otop);
+			}
+
+			//生成内部底部元素
+			for (var i = 0; i < opt.createnode.length; i++) {
+				var obottom = document.createElement(opt.createnode.topnodecos.split('/')[1].toLowerCase());
+				for (var j in opt.createnode.bottomnodestyle) {
+					obottom.style[j] = opt.createnode.bottomnodestyle[j];
+				}
+				if (opt.createnode.topnodecos.split('/')[1].toLowerCase() == 'input') {
+					obottom.value = opt.createnode.bottomnodeval[i];
+				} else {
+					obottom.innerHTML = opt.createnode.bottomnodeval[i];
+				}
+				if (i == 0) obottom.style.display = 'block';
+				otab.appendChild(obottom);
+			}
+
+		},
+
+		//点击事件
+		'event': function (opt, this1) {
+			if (this1.opt.iscreate) {
+				var allinput = document.getElementById(opt.createnode.outernode.split('/')[0])
+					.getElementsByTagName(opt.createnode.topnodecos.split('/')[0].toLowerCase());
+				var alldiv = document.getElementById(opt.createnode.outernode.split('/')[0]).getElementsByTagName(
+					opt.createnode.topnodecos.split('/')[1].toLowerCase());
+				//console.log(allinput,this1);
+				for (var i = 0; i < allinput.length; i++) {
+					allinput[i].index = i;
+					allinput[i].onclick = function () {
+						for (var i = 0; i < allinput.length; i++) {
+							allinput[i].className = '';
+							alldiv[i].style.display = 'none';
+						}
+						this.className = 'active';
+						//alldiv[this.index].className='active';
+						alldiv[this.index].style.display = 'block';
+						//this1.index1 = this.index;
+						window.count=this.index;
+						//this1.interval(this1, this1.index1, this1.opt.intervaltime, opt);
+						this1.interval(this1,window.count, this1.opt.intervaltime, opt);
+					}
+				}
+			}
+
+		},
+
+		//定时器模块,use cycle
+		/*			'interval':function(timer,index2,time,opt){
+						clearInterval(timer);
+						timer=setInterval(function(){
+							index2++;
+							if(index2==8)index2=0;
+							var allinput=document.getElementById(opt.createnode.outernode.split('/')[0]).getElementsByTagName(opt.createnode.topnodecos.split('/')[0].toLowerCase());
+							var alldiv=document.getElementById(opt.createnode.outernode.split('/')[0]).getElementsByTagName(opt.createnode.topnodecos.split('/')[1].toLowerCase());
+							for(var i=0;i<allinput.length;i++)
+							{
+								allinput[i].className='';
+								alldiv[i].style.display='none';
+							}
+							allinput[index2].className='active';
+							alldiv[index2].style.display='block';
+						},time)
+					},*/
+
+		//定时器模块,no use cycle
+		'interval': function (this1, num, time, opt) {
+			//因为你传入的都是index2，而你的index2已经在前面直接赋值为0，所以不太行，我建议你仔细去看一下我怎么传值的，然后实在还是看不懂把不懂的地方圈出问我
+			clearInterval(this1.t);
+			this1.t = setInterval(function () {
+				var allinput = document.getElementById(opt.createnode.outernode.split('/')[0])
+					.getElementsByTagName(opt.createnode.topnodecos.split('/')[0].toLowerCase());
+				var alldiv = document.getElementById(opt.createnode.outernode.split('/')[0])
+					.getElementsByTagName(opt.createnode.topnodecos.split('/')[1].toLowerCase());
+				// allinput[index2].className = '';
+				// alldiv[index2].style.display = 'none';
+				for (var i = 0; i < allinput.length; i++) {
+					allinput[i].className = '';
+					alldiv[i].style.display = 'none';
+				}
+
+
+				num == allinput.length - 1 ? num = 0 : num = num + 1;
+
+				allinput[num].className = 'active';
+				alldiv[num].style.display = 'block';
+				window.count = num;
+			}, time)
+		},
+
+		'opencloseinterval': function (index2, time, opt, this1) {
+			document.getElementById(opt.createnode.outernode.split('/')[0]).onmouseover = function () {
+				clearInterval(this1.t);
+
+			}
+			document.getElementById(opt.createnode.outernode.split('/')[0]).onmouseout = function () {
+				this1.interval(this1, window.count, time, opt);
+			}
+		}
+	}
+
+	new newtab({
+		iscreate: true,
+		createnode: {
+			outernode: 'tabnode/DIV',
+			length: 8,
+			topnodecos: 'INPUT/DIV',
+			topnodestyle: {
+				'width': '70px',
+				'height': '40px',
+				'float': 'left',
+				'cursor': 'pointer'
+			},
+			bottomnodestyle: {
+				'width': '200px',
+				'height': '200px',
+				'float': 'left',
+				'display': 'none',
+				'fontSize': '100px',
+				'border': '1px solid black'
+			},
+			topnodeval: [1, 2, 3, 4, 5, 6, 7, 8],
+			bottomnodeval: [1, 2, 3, 4, 5, 6, 7, 8]
+		},
+		tabnodename: 'asd',
+		nodetoclass: 'lll/ooo',
+		activetopclass: 'active',
+		isinterval: true,
+		intervaltime: 1000
+
+	});
+</script>
+
+</html>

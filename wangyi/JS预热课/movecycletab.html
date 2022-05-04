@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		
+		#div1 div{width: 200px;height: 200px;font-size: 20px;font-size: 100px;background: red;}
+	</style>
+</head>
+<body>
+	<div id="div1">
+		<a id="left" href="javascript:;">left</a>
+		<a id="right" href="javascript:;">right</a>
+		<input type="button" name="" value="1" class="active">
+		<input type="button" name="" value="2" >
+		<input type="button" name="" value="3" >
+		<div>1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+</body>
+<script type="text/javascript">
+	var allinput=document.getElementsByTagName('input');
+	var alldiv=div1.getElementsByTagName('div');
+	window.lrindex=0;
+	for(var i=0;i<allinput.length;i++)
+	{
+		allinput[i].setAttribute('index',i);
+		allinput[i].onclick=function(){
+			for(var i=0;i<allinput.length;i++)
+			{
+				allinput[i].style.background='';
+				alldiv[i].style.display='none';
+			}
+			this.style.background='yellow';
+			alldiv[this.getAttribute('index')].style.display='block';
+			lrindex=this.getAttribute('index');
+		}
+	}
+	right.onclick=function(){
+		lrindex++;
+		if(lrindex==3)
+			lrindex=0;
+		for(var i=0;i<allinput.length;i++)
+			{
+				allinput[i].style.background='';
+				alldiv[i].style.display='none';
+			}
+			allinput[lrindex].style.background='yellow';
+			alldiv[lrindex].style.display='block';
+	}
+	left.onclick=function(){
+		lrindex--;
+		if(lrindex==-1)
+			lrindex=2;
+		for(var i=0;i<allinput.length;i++)
+			{
+				allinput[i].style.background='';
+				alldiv[i].style.display='none';
+			}
+			allinput[lrindex].style.background='yellow';
+			alldiv[lrindex].style.display='block';
+	}
+</script>
+</html>

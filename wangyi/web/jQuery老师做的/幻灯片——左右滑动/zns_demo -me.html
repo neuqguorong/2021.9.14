@@ -1,0 +1,70 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>幻灯片左右滑动效果 - leo</title>
+<link href="css.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+
+</head>
+
+<body>
+
+<div class="box" id="play">
+    <p class="prev">&laquo;</p>
+    <p class="next">&raquo;</p>
+    <ol>
+        <li class="active">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol>
+    <ul>
+        <li><a href="http://www.zhinengshe.com/"><img src="images/1.jpg" alt="广告一" /></a></li>
+        <li><a href="http://www.zhinengshe.com/"><img src="images/2.jpg" alt="广告二" /></a></li>
+        <li><a href="http://www.zhinengshe.com/"><img src="images/3.jpg" alt="广告三" /></a></li>
+        <li><a href="http://www.zhinengshe.com/"><img src="images/4.jpg" alt="广告四" /></a></li>
+        <li><a href="http://www.zhinengshe.com/"><img src="images/5.jpg" alt="广告五" /></a></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var index1=0;
+    $('ol>li').on({
+       'mouseover':function(){
+            $('ul').width($('ul>li').eq(0).width()*$('ul>li').length);
+            $('ol>li').removeClass('active');
+            $(this).addClass('active');
+            //console.log($(this).index());//每个都带有索引值
+            $('ul').animate({
+                'left':-$(this).index()*$('ul>li').eq(0).width(),
+            });
+            index1=$(this).index()
+       }
+   });
+
+   
+   $('.next').on({
+       'click':function(){
+            index1==$('ol>li').length-1?index1=0:index1++;
+            $('ol>li').removeClass('active');
+                $('ol>li').eq(index1).addClass('active');
+            $('ul').animate({
+                'left':-index1*$('ul>li').eq(0).width(),
+            });
+       }
+   });
+
+   $('.prev').on({
+       'click':function(){
+            index1==0?index1=$('ol>li').length-1:index1--;
+            $('ol>li').removeClass('active');
+                $('ol>li').eq(index1).addClass('active');
+            $('ul').animate({
+                'left':-index1*$('ul>li').eq(0).width(),
+            });
+       }
+   });
+</script>
+</body>
+</html>

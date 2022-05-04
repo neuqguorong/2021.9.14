@@ -1,0 +1,127 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+
+    <style type="text/css">
+	*{margin: 0;padding: 0;list-style: none;}
+	.zns{
+		width: 600px;height: 300px;border:1px solid black;
+		position: absolute;left: 50%;top: 50%;margin: -150px 0 0 -300px;
+	}
+
+	.zns ul {
+		float: left;
+		position: relative;width: 100%;
+	}
+	.zns ul > li {
+		float: left;width: 100px;height: 100px;
+		border:1px solid black;
+		background: #ccc;
+		margin: 20px 0 0 40px;
+	}
+	.zns ol {
+		float: left;
+		display: -webkit-box;
+		-webkit-box-pack:center;
+		width: 100%;
+		margin-top: 20px;
+	}
+
+	.zns ol li{
+		width: 30px;height: 30px;text-align: center;line-height: 30px;background: yellow;color: pink;
+		margin-right: 10px;
+		cursor: pointer;
+
+	}
+
+
+
+    </style>
+    <script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+</head>
+<body>
+	<div class='zns'>
+		
+		<ul>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+
+		</ul>
+
+		<ol>
+			
+			<li>1</li>
+			<li>2</li>
+		</ol>
+	</div>
+	<script type="text/javascript">
+	//转定位
+	$('.zns ul').height($('.zns ul').height())
+	var aLi = $('.zns ul li');
+	var arrX = [];
+	var arrY = [];
+	for(var i = 0; i < aLi.length;i++){
+		aLi.eq(i).css({
+			'left':aLi[i].offsetLeft,
+			'top':aLi[i].offsetTop
+		});
+		arrX.push(aLi[i].offsetLeft);
+		arrY.push(aLi[i].offsetTop);
+	};
+
+	aLi.css({
+		'margin':0,
+		'position':'absolute'
+	});
+
+	var index = 0;
+	var timer = null;
+	$('ol li').click(function(){
+		var t = $('ol')[0].offsetTop;
+		var l = this.offsetLeft;
+		timer = setInterval(function(){
+			if(index == $('ul li').length){
+				clearInterval(timer);
+				return;
+			}
+			aLi.eq(index).animate({
+				'top':t,
+				'left':l,
+				'width':'0',
+				'height':'0',
+				'opacity':'0'
+			},500);
+			index++;
+		},300);
+
+		setTimeout(function(){
+			timer = setInterval(function(){
+				if(index == -1){
+					clearInterval(timer);
+					index = 0;
+					return;
+				}
+				aLi.eq(index).animate({
+					'top':arrY[index],
+					'left':arrX[index],
+					'width':'100px',
+					'height':'100px',
+					'opacity':'1'
+				},500);
+				index--;
+			},300);
+		},3000)
+		
+	});
+
+	</script>
+</body>
+</html>

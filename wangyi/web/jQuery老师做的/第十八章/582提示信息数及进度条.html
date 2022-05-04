@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      
+    </style>
+  </head>
+  <body style="height: 2000px;">
+    <nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="active"><a href="#">home</a></li>
+            <li><a href="#">school</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">bus
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>time</li>
+                    <li>station</li>
+                    <li>last station</li>
+                    <li><a>time</a></li>
+                    <li><a>station</a></li>
+                    <li><a>last station</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </nav>
+    <br><br><br><br><br>
+
+    <a href="#">who<span class="badge">30</span></a>
+    <button class="btn btn-info">
+        message
+        <span class="badge">40</span>
+    </button>
+    <button class="btn btn-danger">
+        message
+        <span class="badge">40</span>
+    </button>
+
+    <h4>第一种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar" style="width: 40%;"></div>
+    </div>
+
+    <h4>第二种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar" style="width: 40%;">
+            <span>40%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar" style="width: 0%;min-width: 2em;">
+            <span>0%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar progress-bar-success" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar progress-bar-danger" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar progress-bar-warning" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar progress-bar-info" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第三种进度条</h4>
+    <div class="progress" style="width: 500px;">
+        <div class="progress-bar progress-bar-info progress-bar-striped" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第六种进度条</h4>
+    <input type="button" id="ipt">
+    <div class="progress" style="width: 500px;">
+        <div id="d1" class="progress-bar progress-bar-info progress-bar-striped active" style="width: 60%;min-width: 2em;">
+            <span>60%</span>
+        </div>
+    </div>
+
+    <h4>第七种进度条</h4>
+    <input type="button" id="ipt">
+    <div class="progress" style="width: 500px;">
+        <div id="d1" class="progress-bar progress-bar-info progress-bar-striped active" style="width: 20%;min-width: 2em;">
+            <span>20%</span>
+        </div>
+        <div id="d1" class="progress-bar progress-bar-warning progress-bar-striped active" style="width: 10%;min-width: 2em;">
+            <span>10%</span>
+        </div>
+        <div id="d1" class="progress-bar progress-bar-danger progress-bar-striped active" style="width: 15%;min-width: 2em;">
+            <span>15%</span>
+        </div>
+        <div id="d1" class="progress-bar progress-bar-success progress-bar-striped active" style="width: 5%;min-width: 2em;">
+            <span>5%</span>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <ul class="nav nav-tabs">
+            <li><a href="#">home</a></li>
+            <li><a href="#">school</a></li>
+            <li><a href="#">bus</a></li>
+        </ul>
+    </div>
+
+ 
+
+    <div class="container">
+        <ul class="nav nav-pills nav-stacked" style="width: 150px;">
+            <li class="active"><a href="#">home
+                <span class="badge">20</span>
+            </a></li>
+            <li><a href="#">school
+                <span class="badge">30</span>
+            </a></li>
+            <li class="disabled"><a href="#">bus</a></li>
+        </ul>
+    </div>
+
+    <nav class="navbar navbar-fixed-bottom">
+        <div class="container">
+            <ul class="nav nav-pills">
+                <li class="active"><a href="#">home</a></li>
+                <li><a href="#">school</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">bus
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>time</li>
+                        <li>station</li>
+                        <li>last station</li>
+                        <li><a>time</a></li>
+                        <li><a>station</a></li>
+                        <li><a>last station</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        </nav>
+
+    <div class="h1">今天天气不错<span class="label label-default">new</span></div>
+
+    <div class="container">
+        <div class="alert alert-success">成功登录</div>
+        <div id="d2" class="alert alert-info hide">您收到了一条新信息
+            <a href="#">点击查看</a>
+        </div>
+        <input id="ipt2" type="button" class="btn btn-default btn-info" value="点我显示新信息提示">
+    </div>
+    
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+  </body>
+
+  <script>
+      $('#ipt').on({
+          'click':function(){
+             $('#d1').toggleClass('active');
+          }
+      })
+
+      $('.nav-tabs>li').on({
+          'click':function(){
+            $('.nav-tabs>li').removeClass('active');
+            $(this).addClass('active');
+          }
+      })
+
+      $('.nav-pills>li:not(.disabled)').on({
+          'click':function(){
+            $('.nav-pills>li').removeClass('active');
+            $(this).addClass('active');
+          }
+      })
+
+      //老师，如何让$('#d2')淡入2秒后，又淡出
+      $('#ipt2').on({
+          'click':function(){
+              //$('#d2').toggleClass('hide');
+              $('#d2').fadeIn(2000);
+              $('#d2').fadeOut(3000);
+       /*        $('#d2').fadeIn(function(){
+                  setTimeout(function(){
+                    $('#d2').fadeOut();
+                  },2000)
+              }) */
+          }
+      })
+  </script>
+</html>

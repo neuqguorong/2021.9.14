@@ -1,0 +1,19 @@
+<script type="text/javascript">
+	var a=0;
+	function b()
+	{
+		window.timer=setTimeout(
+			function()
+			{
+				console.log(a);
+				a=a+1;
+				b();
+			}
+		,1000)
+
+	}
+	b();
+	setTimeout(function(){clearTimeout(timer)},5500);
+
+
+</script>

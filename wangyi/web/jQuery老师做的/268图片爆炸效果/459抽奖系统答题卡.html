@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        .center{position: absolute;left: 50%;top: 50%;margin: -150px 0 0 -200px;}
+        html,body{width: 100%;height: 100%;background: black;opacity: 0.7;transition: 0.3s;}
+        .d31,.d1,.d21{width: 400px;height: 300px;background: white; position: absolute;left: 50%;top: 50%;margin: -150px 0 0 -200px;border-radius: 30px;overflow: hidden;transition: 0.3s jump-end;z-index: 10;}
+        .d2{width: 100%;height: 150px;float: left;background: url(1.jpg) 100% 100%;border-radius: 30px;}
+       .d1 p{width: 100%;height:30px ;float: left;margin-top: 5%;text-align: center;}
+        .d3{width: 100%;height: 30px; display: -webkit-box;-webkit-box-align: center;-webkit-box-pack: center;}
+        label{margin-right:10px ;}
+        .d4{width: 40%;height:40px;line-height: 40px; background: red;color: white;border-radius: 10px;margin-left: 30%;text-align: center;margin-top: 10px;cursor: pointer;}
+        .d5{width: 80px;height: 80px;color: #aaa;position: absolute;right: 0;bottom: 0;font-size: 40px;line-height: 110px;text-align: center;}
+        .d21{height: 350px;z-index: 19;opacity: 1;}
+        .d21 p{width: 100%;height: 40px;text-align: center;line-height: 50px;font-size: 20px;}
+        .d21 div{width: 120px;height: 90px;margin: 6px;background: darksalmon;float: left;font-size: 30px;text-align: center;line-height: 90px;border-radius: 10px;}
+        .d21 .se{background:darkorange;}
+        .d21 div:nth-child(5):active{background: tomato;}
+        .d31{display: none;z-index: 24;}
+    </style>
+</head>
+<body>
+    <div class="d1"></div>
+    <div class="d21">
+        <p class="d22">您还有<span>3</span>次抽奖机会</p>
+        <div a="0">0</div>
+        <div a="1">1</div>
+        <div a="2">2</div>
+        <div a="7">7</div>
+        <div style="cursor: pointer;background: white;" class="cj">抽奖</div>
+        <div a="3">3</div>
+        <div a="6">6</div>
+        <div a="5">5</div>
+        <div a="4">4</div>
+    </div>
+    <div class="d31">
+        <div class="d33"></div>
+        <div class="d32">收下奖品</div>
+    </div>
+</body>
+<script>
+    var ar1=[
+        {
+            'que':'您的名字是',
+            'ans':['yi','er','san','si'],
+            'type1':'name',
+            'trueans':'yi'
+        },
+        {
+            'que':'您的学校是',
+            'ans':['yixue','erxue','sanxue','sixue'],
+            'type1':'school',
+            'trueans':'yixue'
+        },
+        {
+            'que':'您的年龄是',
+            'ans':['18','19','20','21'],
+            'type1':'age',
+            'trueans':'18'
+        },
+        {
+            'que':'您的地址是',
+            'ans':['yihao','erhao','sanhao','sihao'],
+            'type1':'adress',
+            'trueans':'yihao'
+        },
+    ],choujiangshu=0,myans='',datishu=0;
+
+function dati(){
+    var suijitimu=ar1[parseInt(Math.random()*ar1.length)];
+    $('.d1').html(`        <div class="d2"></div>
+        <p>${suijitimu.que}</p>
+        <div class="d3">
+            <label>
+                <input type="radio" name="a" value="${suijitimu.ans[0]}">${suijitimu.ans[0]}
+            </label>
+            <label>
+                <input type="radio" name="a" value="${suijitimu.ans[1]}">${suijitimu.ans[1]}
+            </label>
+            <label>
+                <input type="radio" name="a" value="${suijitimu.ans[2]}">${suijitimu.ans[2]}
+            </label>
+            <label>
+                <input type="radio" name="a" value="${suijitimu.ans[3]}">${suijitimu.ans[3]}
+            </label>
+        </div>
+        <div class="d4">点击提交</div>
+        <div class="d5">${suijitimu.type1}</div>`
+    );
+    $('.d1').css('top','-150px').animate({
+        'top':'50%'
+    },300);
+    $('.d4').click(function(){
+        var j=0;
+        for(var i=0;i<$('input').length;i++)
+        {
+            if($('input')[i].checked==false)
+            {
+                j++;
+            }
+            else{
+                myans=$('input')[i].value;
+            }
+        }
+        
+        if(j==$('input').length-1)
+        {
+            datishu++;
+            $('.d1').animate({
+                'top':'130%',
+            },300,function(){
+                $('.d1').css('top','-150px') 
+            });
+            if(myans==suijitimu.trueans)
+            {
+                choujiangshu++;
+                $('.d21 span').html(choujiangshu);
+            }
+        }
+        else{
+            alert('please choose an answer');
+        }
+        if(datishu==3)
+        {
+            datishu=0;
+            $('.d1').html('');
+            $('body').css({
+                'background':'skyblue',
+                'opacity':1
+            });
+            $('.d21').css('opacity',1);
+            return;
+            
+        }
+        else{
+            dati();
+        }
+    })
+}
+//dati();
+
+//抽奖部分
+var cji=0,t=300,t1=null,quan=parseInt(20*Math.random()),ji=1;
+$('.cj').click(function(){
+    if($('.d21 span').html()==0)
+    {
+        alert('您的抽奖次数已用完');
+    }
+    else{
+        var choujiangshu2=Number($('.d21 span').html());
+        choujiangshu2--
+        $('.d21 span').html(choujiangshu2);
+        $(this).css('background','tomato');
+        clearInterval(t1);
+        t1=setInterval(function(){
+            
+            if(cji==$('[a]').length)cji=0;
+            /* $('[a]').css('background','darksalmon');
+            $('[a='+cji+']').css('background','yellow'); */
+
+            $('[a]').removeClass('se');
+            $('[a='+cji+']').addClass('se');
+            cji++;
+            if(quan==0)
+            {
+                t+=50;
+                if(t==350)
+                {
+                    clearInterval(t1);
+                    //alert($('.se').html());
+                    t=300;
+                    if($('.se').hasClass('b')&& !$('.se').next().hasClass('b'))
+                    {
+                        $('.se').next().addClass('b');
+                    }
+                    else{
+                        $('.se').html('奖品'+ji).addClass('b');
+                        $('.d33').html($('.se').html());
+                        ji++;
+                        setTimeout(function(){
+                            $('.d31').css({
+                                'display':'block',
+                                'top':'-150px'}).animate({
+                                'top':'50%'
+                            },300);
+                        },500);
+                        $('.d32').click(function(){
+                            $('.d31').animate({
+                                'top':'130%',
+                            },300,function(){
+                                $('.d31').css({
+                                'display':'none',
+                                'top':'-150px'}) 
+                            });
+                        })
+                    }
+                }
+            }
+            else{
+                if(t==50)
+                {
+                    quan--;
+                }
+                else{
+                    t-=50;
+                }
+            }  
+        },t);
+    }
+})
+
+</script>
+</html>

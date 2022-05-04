@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #out{width: 680px;height: 344px;background: url(1.jpg);position: absolute;transition: 1s;}
+        #move{width: 50%;height: 100%;position: absolute;left: 50%;transition: 1s;transform-origin: left center;}
+    </style>
+</head>
+<body>
+    <input type="button" value="nextpage" id="ipt">
+    <div id="out">
+        <div id="move"></div>
+    </div>
+</body>
+<script>
+    var i=1;
+    move.style.background='url('+i+'.jpg) 100% 0';
+    ipt.onclick=function(){
+        move.style.transform='perspective(800px) rotateY(180deg)';
+        i++;
+        move.style.background='url('+i+'.jpg) 100% 0';
+        setTimeout(function(){
+           // move.style.transform='scaleX(-1) perspective(800px) rotateY(-180deg)';
+           move.style.transform='rotateY(0deg)';
+           out.style.background='url('+i+'.jpg) 50% 0';
+        },500)
+        if(i==7)
+        {
+            i=1;
+            move.style.background='url('+i+'.jpg) 100% 0';
+        }
+    }
+</script>
+</html>

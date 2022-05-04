@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <input id="user"><br>
+    <input id="pass"><br>
+    <button id="bt1">register</button><button id="bt2">login</button>
+</body>
+    <script>
+        function jsontostrls(arg){
+        var arr=[];
+        for(var i in arg)
+        {
+            //console.log(json[i]);
+            arr.push(i+'='+arg[i]);
+        }
+        return arr.join('&');
+    }
+
+    bt1.onclick=function(){
+        //1113是register接口，1114是登录接口
+        var ajax1={
+            url:'http://localhost:1113', 
+            type:'get',
+            data:{user:user.value,pass:pass.value},
+            success:function(respdata){
+                console.log(respdata);
+                if(respdata=='login success')
+                {
+                    document.body.style.background='green';
+                }
+            },
+            error:function(){console.log('服务器错误');}
+        };
+        var ajax2={
+            url:'http://localhost:9218',
+            type:'post',
+            data:{user:user.value,pass:pass.value},
+            success:function(respdata){
+                console.log(respdata);
+                if(respdata=='login success')
+                {
+                    document.body.style.background='green';
+                }
+            },
+            error:function(){console.log('服务器错误');}
+        };
+        
+        ajaxget(ajax1);
+        //ajaxget(ajax2);//对
+    }
+
+    bt2.onclick=function(){
+        //1113是register接口，1114是登录接口
+        var ajax1={
+            url:'http://localhost:1114', 
+            type:'get',
+            data:{user:user.value,pass:pass.value},
+            success:function(respdata){
+                console.log(respdata);
+                if(respdata=='login success')
+                {
+                    document.body.style.background='green';
+                }
+            },
+            error:function(){console.log('服务器错误');}
+        };
+        var ajax2={
+            url:'http://localhost:9218',
+            type:'post',
+            data:{user:user.value,pass:pass.value},
+            success:function(respdata){
+                console.log(respdata);
+                if(respdata=='login success')
+                {
+                    document.body.style.background='green';
+                }
+            },
+            error:function(){console.log('服务器错误');}
+        };
+        
+        ajaxget(ajax1);
+        //ajaxget(ajax2);//对
+    }
+
+    function ajaxget(option)
+    {
+        var ajax=new XMLHttpRequest();
+        //ajax.open('get','http://localhost:9217/',true);
+        //ajax.open(option.type,option.url+'?'+jsontostr(option.data)[0]+'='+option.data[jsontostr(option.data)[0]]+'&'+jsontostr(option.data)[1]+'='+option.data[jsontostr(option.data)[1]],true);//访问数据
+        if(option.type=='get')
+        {
+            ajax.open(option.type,option.url+'?'+jsontostrls(option.data),true);
+            ajax.send();
+        }
+        else if(option.type=='post'){
+            ajax.open('post',option.url,'true');
+            //get方式，数据直接在地址中传输，需要node1.js中有response.url
+            //post方式，通过send传输数据
+            ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");//告诉后台，要发送的是哪种数据类型
+            ajax.send(jsontostrls(option.data));
+        }
+        
+        //ajax状态码发生改变时，调用的函数
+        ajax.onreadystatechange=function(){
+            if(ajax.readyState==4)
+            {
+               
+                if(ajax.status>=200 && ajax.status<300||ajax.status==304)
+                {
+                    //console.log(ajax.status);//200
+                    //服务器状态码，200表示成功
+                    option.success(ajax.responseText);
+                 
+                }
+                else{
+                   option.error();
+                }
+            }
+        }
+    }
+    </script>
+</html>

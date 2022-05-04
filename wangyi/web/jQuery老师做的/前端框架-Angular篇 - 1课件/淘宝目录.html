@@ -1,0 +1,44 @@
+<!doctype html> 
+<html ng-app='text'> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='angular.js'></script>
+</head>
+<script type="text/javascript">
+	
+	var app = angular.module('text',[]);
+	app.controller('const',function ($scope){
+		$scope.arr = [
+			{'name':'今年的最流行的超短裙',
+             'money':'88',
+             'da':1474512129328
+			},
+			{'name':'今年的最流行的呢子大衣',
+			 'money':'288.58',
+             'da':1474612129328
+			},
+			{'name':'今年的最流行的布娃娃',
+			 'money':'128.9',
+             'da':1474612100328
+       		  },
+			{'name':'今年的最流行的王越超',
+			 'money':'250.9',
+             'da':1474612100328
+       		  }
+		]
+	})
+
+</script>
+<body ng-controller='const'>
+<ul>
+	<li ng-repeat='value in arr'>
+		<span>{{value.name}}</span>
+		<span>{{value.money|currency}}</span>
+		<span>{{value.da|date:' yy年MM月dd日 hh:mm:ss'}}</span>
+
+	</li>
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 600px;height: 30px;background: #ccc;margin:0 300px;position: absolute;}
+		#d2{width: 100px;height: 100%;background: black;position: absolute; }
+		#d3{width: 300px;height: 100px;border: 1px solid black;word-wrap:break-word;overflow: hidden;margin-top: 100px;position: absolute;}
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<div id="d2"></div>
+	</div>
+	<div id="d3">safgehtgsryjhtdhdngrsfewrgsthyjtrgewfert56yufjngbvdsssghjtukhtyrt6e54w3w3e45678iujghnbfvsdsew345t67u8ujhgbvfdsaewr4ty56rtuhfgbc vxfdsewr4t5y6r7ufhgbvdewr4yt56ujbgfvdcsewr4t5y6ruijghnbfvdsar4wteiolkjhgfdew4tr5yuijghfdcsaewr45t6yrugjhnvfdsaewr4t5y6ujfgbvdsew34t5yr6uhfgbdvsewa342t5fdaewegdvawsefswaesrdrgefwfaesfwdawsfdfedwdsryuhjgfdrfwaersgefwfdasefewaersgefwefrffersrgefwergtgdbvfwdwefrtygffedwe4rtygfdwertdrgewqrdwaesrtgefwqertdrgefwqewertyrgewsrtdfgrewwsrtdgrewrfgrt</div>
+
+	<script type="text/javascript">
+		d2.onmousedown=function(e)
+		{
+			var ev=e||event;
+			var l=ev.clientX-this.offsetLeft;
+			document.onmousemove=function(e){
+				var ev=e||event;
+				var newl=ev.clientX-l;
+				newl<0?newl=0:newl;
+				newl>d1.offsetWidth-d2.offsetWidth?newl=d1.offsetWidth-d2.offsetWidth:newl;
+				var per=newl/(d1.offsetWidth-d2.offsetWidth);
+		 		d2.style.left=newl+'px';
+			}
+			document.onmouseup=function(){
+				document.onmousemove=document.onmouseup=null;
+			}
+		}
+		 
+	</script>
+</body>
+</html>

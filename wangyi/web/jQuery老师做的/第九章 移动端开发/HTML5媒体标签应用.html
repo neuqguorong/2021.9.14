@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <video id="videonode" src="不谓侠.mp4" autoplay loop width=500 height="500"></video>
+    <input type="range" id="ipt" value="50" mix=0 max="100" >
+    <div id="playnode">play</div>
+    <div id="stopnode">stop</div>
+    <div id="fastforward">fast-forward</div>
+    <div id="loopnode">loop</div>
+</body>
+
+<script>
+    //videonode.loop=true;//让视频循环播放
+    loopnode.onclick=function(){
+        if(this.innerHTML='loop')
+        {
+            this.innerHTML='unloop';
+            videonode.loop=false;
+        }
+        else{
+            this.innerHTML='loop';
+            videonode.loop=true;
+        }
+    }
+
+    
+    playnode.onclick=function(){
+        videonode.play();
+    }
+
+    stopnode.onclick=function(){
+        videonode.pause();
+    }
+
+    //快进，让视频当前时间前进多少秒就可以
+    fastforward.onclick=function(){
+        videonode.currentTime+=3;
+    }
+
+    //需要视频加载完成，才可以知道总时长
+    setTimeout(function(){
+        var totaltime=videonode.duration;
+        var m=parseInt(totaltime/60);
+        var s=totaltime%60;
+        console.log(m+':'+s,videonode.networkState);//videonode.networkState看视频网络状态
+    },100)
+
+   /*  setInterval(() => {
+        console.log(videonode.currentTime);
+    }, 1000); */
+    
+    videonode.currentTime=10;
+
+    videonode.volume=ipt.value/100;
+    ipt.oninput=function(){
+        videonode.volume=this.value/100;
+    }
+
+    videonode.controls=true;//给视频加控件
+    videonode.muted=true;//给视频静音
+
+    videonode.addEventListener('ended',function(){
+        console.log('视频播放结束');
+        videonode.play();
+    });
+
+    videonode.playbackRate=3;//设置视频播放速度
+
+</script>
+</html>

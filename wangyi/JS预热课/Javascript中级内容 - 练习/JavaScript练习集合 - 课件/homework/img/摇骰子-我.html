@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 550px;height: 350px;}
+        img{margin: 10px;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <p><button>more</button><button>less</button><button>shake</button><button>stop</button></p>
+    <p>骰子<span id="s1">0</span>个</p>
+    <p>总计<span id="s2">0</span>点</p>
+</body>
+<script>
+    var abtn=document.getElementsByTagName('button'),arr=[];
+    abtn[0].onclick=function(){
+        var img=document.createElement('img'),x=parseInt(6*Math.random()+1);arr.push(x);
+        img.src=x+'.gif';//console.log(img.src);
+        d1.appendChild(img);
+        s1.innerHTML=d1.children.length;
+        s2.innerHTML=eval(arr.join("+"));
+    }
+    abtn[1].onclick=function(){
+        d1.removeChild(d1.children[d1.children.length-1]);arr.pop();
+        s1.innerHTML=d1.children.length;
+        if(arr.length==0){
+            s2.innerHTML=0;
+        }
+        else{
+            s2.innerHTML=eval(arr.join("+"));
+        }
+        
+    }
+
+    var t=null;
+    abtn[2].onclick=function(){
+        clearInterval(t);
+        t=setInterval(function(){
+            var sum=0;
+            for(var i=0;i<d1.children.length;i++)
+            {   
+                var n=parseInt(6*Math.random()+1);
+                //sum+=n;
+                arr[i]=n;
+                d1.children[i].src=n+'.gif';
+            }
+            s1.innerHTML=d1.children.length;
+            s2.innerHTML=eval(arr.join("+"));
+        },10)
+    }
+    abtn[3].onclick=function(){
+        clearInterval(t);
+    }
+
+    //console.log(eval([1,2,3].join("+")));
+</script>
+</html>

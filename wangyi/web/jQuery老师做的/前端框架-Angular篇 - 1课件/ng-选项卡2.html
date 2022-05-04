@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='text'>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="angular.js"></script>
+    <style>
+        div{width: 100px;height: 100px;background: #ccc;font-size: 50px; display: none;}
+        input.active{background: red;}
+        div.active{display: block;}
+    </style>
+</head>
+<body ng-controller='const' ng-mouseover='cancelt()' ng-mouseout='startt()'>
+    <input type="button" ng-repeat='value in arr' value={{value.iptv}} ng-click='setindex($index)' class={{$index==i?'active':''}}>
+    <div ng-repeat='value in arr' class={{$index==i?'active':''}}>{{value.divin}}</div>
+    {{i}}
+</body>
+
+<script>
+    var app=angular.module('text',[]);
+    
+    app.controller('const',function($scope,$interval){
+        $scope.i=0;
+        $scope.arr=[
+            {
+                'iptv':'a',
+                'divin':'a'
+            },
+            {
+                'iptv':'b',
+                'divin':'b'
+            },
+            {
+                'iptv':'c',
+                'divin':'c'
+            }
+        ];
+
+        $scope.setindex=function(n){
+            //alert(n);
+            $scope.i=n;
+        }
+
+        var t=null;
+        t=$interval(function(){
+            $scope.i++;
+            if($scope.i==$scope.arr.length)
+            {
+                $scope.i=0;
+            }
+        },1000)
+
+        $scope.cancelt=function(){
+            $interval.cancel(t);
+        }
+
+        $scope.startt=function(){
+            //$interval.cancel(t);
+            t=$interval(function(){
+            $scope.i++;
+            if($scope.i==$scope.arr.length)
+            {
+                $scope.i=0;
+            }
+        },1000)
+        }
+    })
+</script>
+</html>

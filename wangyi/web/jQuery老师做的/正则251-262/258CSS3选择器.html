@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #d1>div{width: 100px;height: 100px;background:#ccc;margin-bottom: 10px;}
+        #d1+div{width: 100px;height: 100px;background:pink;margin-bottom: 10px;}
+        #d1+span{width: 100px;height: 100px;background:orange;margin-bottom: 10px;}
+        #d1~p{width: 100px;height: 100px;background:green;margin-bottom: 10px;}
+    </style>
+</head>
+<body>
+    <div id="d1">d1
+        <div >d1的第一个子级
+            <div>d1的第一个子级的第一个子级</div>
+        </div>
+
+        <div >d1的第二个子级</div>
+    </div>
+    <p>d1下面的第一个p</p>
+    <span>与d1同级别的第一个span</span>
+    <p>d1下面的第二个p</p>
+    <span>与d1同级别的第二个span</span>
+    <div id="d4">d4与d1同级别</div>
+    <div id="d5">d5与d1同级别</div>
+    <p>d1下面的第三个p</p>
+</body>
+</html>

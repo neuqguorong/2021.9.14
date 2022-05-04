@@ -1,0 +1,45 @@
+标签页-导航
+
+ul - nav nav-tabs (nav-pills)
+	li a      active
+
+竖着的 nav-stacked
+
+disabled 禁用的链接
+
+菜单可以放下拉菜单
+
+固定在头部的菜单
+
+navbar-fixed-top / bottom
+
+navbar-inverse 反色
+
+后置标签
+<span class='label label-default'></span>
+
+警告条
+
+$('#s1').modal('show')
+$('#s1').modal('hide')
+$('#s1').modal('toggle')
+
+lg - sm
+
+fade class是控制动画的
+
+西区的是有网的
+传网站上 免费给大家
+
+明天上午 项目 - 下午 es6
+晚上留项目
+
+
+
+
+
+
+
+
+
+

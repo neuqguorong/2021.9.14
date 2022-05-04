@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 300px;height: 300px;border: 2px solid orangered;position: relative;}
+        #d2{width: 100%;height: 50px;font-size: 30px;background: orange;float: left;position: relative;cursor: move;}
+        #d3{width: 100%;height: 250px;font-size: 20px;position: relative;float: left;}
+        #d4{width: 20px;height: 20px;background: black;position: absolute;right: 0;bottom: 0;cursor: se-resize;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2">head</div>
+        <div id="d3">body
+            <div id="d4"></div>
+        </div>
+    </div>
+</body>
+<script>
+    function getstyle(obj,name){
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[name];
+        }
+        else if(getComputedStyle)
+        {
+            return getComputedStyle(obj,false)[name];
+        }
+    }
+
+    d2.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX-this.offsetLeft,t=ev.clientY-this.offsetTop;
+        document.onmousemove=function(e){
+            var ev=e||event,l1=ev.clientX-l,t1=ev.clientY-t;
+            //d2.style.left=l1+'px',d2.style.top=t1+'px';
+            d1.style.left=l1+'px',d1.style.top=t1+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+
+
+    d4.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX-this.offsetLeft,t=ev.clientY-this.offsetTop,w=parseFloat(getstyle(d1,'width')),h=parseFloat(getstyle(d1,'height'));console.log(w,h,this.offsetLeft);
+        document.onmousemove=function(e){
+            var ev=e||event,l1=ev.clientX-l,t1=ev.clientY-t;
+            l1<0?l1=0:l1=l1;
+            t1<0?t1=0:t1=t1;
+            d4.style.left=l1+'px',d4.style.top=t1+'px';
+            d1.style.width=d4.offsetLeft+d4.offsetWidth+'px';
+            d1.style.height=d4.offsetTop+d4.offsetHeight+d2.offsetHeight+'px';
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+</script>
+</html>

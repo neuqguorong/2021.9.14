@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		#d1{width: 300px;height: 200px;border: 1px solid black;position: relative;margin: 100px;}
+		#left{float: left;}
+		#left li{height: 35px; width: 48px;border: 1px solid black;}
+		#right{float: right;}
+		#right li{height: 35px; width: 48px;border: 1px solid black;}
+		#d2{width: 190px;height: 100%;border: 1px solid black;position: absolute;margin-left: 52px;}
+		#names{position: absolute;bottom: 40px;background: red;width: 100%;opacity: 0.7;}
+		#price{position: absolute;bottom: 20px;background: gray;color: white;width: 100%;}
+		.aa{background: orange;}
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<ul id="left">
+			<li>one</li>
+			<li>two</li>
+			<li>three</li>
+			<li>four</li>
+			<li>five</li>
+		</ul>
+		<div id="d2">
+			<img src="0.png">
+			<div id="names">one</div>
+			<div id="price">one yuan</div>
+		</div>
+		<ul id="right">
+			<li>six</li>
+			<li>seven</li>
+			<li>eight</li>
+			<li>nine</li>
+			<li>ten</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var ali=document.getElementsByTagName('li');
+		var json={'one':'one yuan','two':'two yuan','three':'three yuan','four':'four yuan','five':'five yuan','six':'six yuan','seven':'seven yuan','eight':'eight yuan','nine':'nine yuan','ten':'ten yuan',};
+		var t=null;
+		var index=0;
+		var index2=0;
+		var index3=0;
+		move();
+		function move(){
+			clearInterval(t);
+			t=setInterval(function(){
+				index==10?index=0:index;
+				for(var i=0;i<ali.length;i++)
+				{
+					ali[i].className='';
+				}
+				ali[index].className='aa';
+				d2.children[0].src=index+'.png';
+				for(var i in json)
+				{
+					if(index==index2)
+					{
+						names.innerHTML=i;
+						price.innerHTML=json[i];
+					}
+					index2++;
+				}
+				index2=0;
+				index++;
+			},500);
+		}
+
+
+		d1.onmouseover=function(){
+			clearInterval(t);
+		}
+		d1.onmouseout=function(){
+			move();
+		}
+
+		for(var i=0;i<ali.length;i++)
+		{
+			var index4=0;
+			ali[i].ind=i;
+			ali[i].onmouseover=function(){
+				for(var i=0;i<ali.length;i++)
+				{
+					ali[i].className='';
+				}
+				this.className='aa';
+				d2.children[0].src=this.ind+'.png';
+				for(var i in json)
+				{
+					if(index4==this.ind)
+					{
+						names.innerHTML=i;
+						price.innerHTML=json[i];
+					}
+					index4++;
+				}
+				index4=0;
+				index=this.ind;
+			}
+			
+		}
+	</script>
+</body>
+</html>

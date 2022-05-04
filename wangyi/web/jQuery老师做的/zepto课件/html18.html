@@ -1,0 +1,71 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+body{
+    background: black;
+    color: white;
+    font-size: 30px;
+}
+div{position: absolute;}
+
+    </style>
+    <!--
+    <script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+    -->
+  	
+    <script type="text/javascript" src='zepto.min.js'></script>
+    <script type="text/javascript" src='zTouch.min.js'></script>
+    <script type="text/javascript" src='zepto.fx.js'></script>
+
+</head>
+<body>
+<script type="text/javascript">
+    var xuehua ='❄❅❆'.split('');//['❄','❅','❆']
+    function ran(max){
+        return Math.floor(Math.random() * max);
+    };
+
+    function random(min,max){ 
+        return parseInt(Math.random() * (max - min)) + min;
+    };
+    function random2(min,max){ 
+        return (Math.random() * (max - min)) + min;
+    };
+
+
+    var i = 150;
+    while(i--)toSnow();
+ //   toSnow();
+    function toSnow(){
+        var da = $('<div class="da"></div>');
+        $('<div>'+xuehua[ran(3)]+'</div>').appendTo(da);
+        da.appendTo('body');
+
+        da.css({
+            'left':ran(100)+'%',
+            'top':random(-100,-500)+'px'
+        });
+
+        da.animate({
+            'top':120+'%',
+            'left':ran(100)+'%',
+            'scale':random2(0,2),
+            'rotate':random(-200,200)+'deg',
+            'opacity':0.4
+        },random(3000,8000),'linear',function(){
+            $(this).remove();
+            toSnow();
+        });
+    };
+   // alert(ran(99))
+
+
+
+
+</script>
+</body>
+</html>

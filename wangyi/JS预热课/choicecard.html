@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		div{width: 200px;height: 200px;background: red;}
+		.hide{display: none;}
+		.color{background: green;}
+	}
+	</style>
+</head>
+<body>
+	<input type="buttuon" name="" value="1">
+	<input type="buttuon" name="" value="2">
+	<input type="buttuon" name="" value="3">
+	<div>i am first div</div>
+	<div>i am second div</div>
+	<div>i am third div</div>
+
+	<script type="text/javascript">
+		var aipt=document.getElementsByTagName('input');
+		var adiv=document.getElementsByTagName('div');
+		for(var i=0;i<aipt.length;i++)
+			aipt[i].setAttribute('index',i);
+
+		for(var i=0;i<aipt.length;i++)
+		{
+			aipt[i].setAttribute('class','');
+			adiv[i].setAttribute('class','');
+			aipt[i].onclick=function(){
+				
+				
+				this.classList.toggle('color');
+				adiv[this.getAttribute('index')].classList.toggle('hide');
+			}
+		}
+	</script>
+</body>
+</html>

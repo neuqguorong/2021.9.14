@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		#tab .a{background: #ccc;}
+		#tab div{width: 200px;height: 200px;background: #ccc;font-size: 100px;display: none;}
+	</style>
+</head>
+<body>
+	<div id="tab">
+		<input type="button" value="1" class="a">
+		<input type="button" value="2">
+		<input type="button" value="3">
+		<div style="display: block;">1</div>
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<script type="text/javascript">
+		window.count=0;
+		function tabnode(node){
+			var this1=this;// this是指new tabnode这个对象
+			this1.index1=0;
+			//console.log(this);
+			this.varnode(node.node2);//console.log(node.node2);
+			this.varevent(this);//
+			node.interval && (this.intervalset(this,node.intervaltime,this1.index1,node.node2),this.opencloseinter(this,node.node2,node.intervaltime,this1.index1));
+			//console.log(node.interval,node.intervaltime,node.index1);
+			;
+		}
+		
+		tabnode.prototype={
+			'varnode':function(node){
+				this.allinput=node.getElementsByTagName('input');
+				this.alldiv=node.getElementsByTagName('div');
+				this.interval&&(this.interval=null);
+			},
+
+			'varevent':function(this1){
+				for(var i=0;i<this.allinput.length;i++)
+				{
+					this.allinput[i].index=i;
+					this.allinput[i].onclick=function(){
+						for(var i=0;i<this1.allinput.length;i++)
+						{
+							this1.allinput[i].className='';
+							this1.alldiv[i].style.display='none';
+						}
+						this.className='a';
+						this1.alldiv[this.index].style.display='block';
+						this1.interval && (this1.index1=this.index);
+					}
+				}
+			},
+			'intervalset':function(this1,intervaltime,index1,node){
+				clearInterval(this.interval);
+				this.interval=setInterval(function(){
+					if(index1==this1.allinput.length)index1=0;
+					for(var i=0;i<this1.allinput.length;i++)
+						{
+							this1.allinput[i].className='';
+							this1.alldiv[i].style.display='none';
+						}
+						this1.allinput[index1].className='a';
+						this1.alldiv[index1].style.display='block';
+						window.count=index1;
+						index1++;
+				},intervaltime);
+			},
+
+			'opencloseinter':function(this1,node,inter){
+				node.onmouseover=function(){
+					window.count=this1.index;
+					clearInterval(this1.interval);
+					//window.b=this1.index1;
+				};
+				node.onmouseout=function(){
+					this1.intervalset(this1,inter,this1.index1,node);
+					//this1.intervalset(this1,inter,count,node);
+				};
+			},
+		}
+
+		new tabnode({
+			'node2':document.getElementById('tab'),
+			'interval':true,
+			'intervaltime':1000,
+			'index1':0
+		});
+	</script>
+</body>
+</html>

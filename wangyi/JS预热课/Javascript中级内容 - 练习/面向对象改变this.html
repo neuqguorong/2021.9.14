@@ -1,0 +1,59 @@
+<script>
+/*     var a=10;
+    function show(a){
+        var b=a+10;//a不是10，a是undefined,a是形参，没有传参数时，默认参数a是undefined
+        console.log(b);
+        return a;
+    }
+    console.log(a);
+    console.log(show()+10);
+    console.log(show()); */
+
+/*     //让a中的this，指向b，所以是改变a的this的指向，要让b得到a里面的值，就让b的this去a里面走一遍。
+    function a(){
+        this.a=10;
+        this.b=20;
+        d.call(this);
+        function d(){
+            this.f=8;console.log(this);
+            
+        }
+        //d();//d没有实例化，this.f中的this指向window
+        //new d();//d实例化了，那么this.f中的this指向new d();
+    }
+
+    //b实例化之后，b中的this就指向实例化对象
+    function b(){
+        a.call(this);
+    }
+    //console.log(new b().b);//20 b实例化了，所以b中的this就指向实例化对象
+    console.log(new b().f);//8  改变d中this的指向，让d中的this指向a中的this,那么就可以拿到d中的this.f的值 */
+
+/*     var a=5,b=8,c=[10];
+    function show2(a2,b2,c2)
+    {
+        this.a3=a2;console.log(this);
+        this.b3=b2;console.log(this);
+        this.c3=c2;console.log(this);
+        c2.k=20;//c2=[10]，是对象，可以赋予私有属性
+    }
+    function show(a1,b1,c1)
+    {
+        //show2.call(this,a1,b1,c1);//这里的this是实例化后的new show对象，show的this是实例化后的new show对象，show2的this也指向实例化后的new show对象，这里的a1,b1,c11作为实参传给show2的a2,b2,c2,
+        console.log(this);
+    }
+    //alert(new show(a,b,c).a3);//5 
+    new show(a,b,c); 
+    alert(c.k);//20,c是对象，有私有属性 和引用机制 */
+
+   /*  var a=new String('123');//a 实例化对象，
+    console.log(a);//String {'123'} */
+
+    function a(){
+
+    }
+    a.prototype.b=function(){
+        console.log(this);
+    }
+    new a().b();//对象
+</script>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		div{width: 100px;height: 100px;background: red;border: 0 solid black;}
+		#d2{background: green;float: left;}
+		#d3{background: black;float: left;border: 0 solid yellow;}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<div id="d3"></div>
+	<script type="text/javascript">
+		function move(obj,name,target,speed,timer,fn){
+			var t=null;
+			function getstyle(obj,name){
+				if(obj.currentStyle)
+				{
+					return obj.currentStyle[name];
+				}
+				else
+				{
+					return getComputedStyle(obj,false)[name];
+				}
+			}
+
+			t=setInterval(function(){
+				var cur=(name=='opacity')?parseFloat(getstyle(obj,name)):parseInt(getstyle(obj,name));
+				cur<target?cur+=speed:cur-=speed;
+				if(name=='opacity')
+				{
+					obj.style[name]=cur;
+				}
+				else{
+					obj.style[name]=cur+'px';
+				}
+				
+				if(cur==target)
+				{
+					fn&&fn();
+					clearInterval(t);
+				}
+				
+			},timer);
+		}
+
+		//move(d1,'width',200,50);
+		//move(d1,'marginLeft',200,30);
+		//move(d1,'borderWidth',200,30);
+		//move(d1,'height',20,50);
+		move(d1,'opacity',0,0.1,100,function(){
+			move(d1,'opacity',1,0.1,100,function(){
+				move(d1,'height',20,1,50);
+			});
+		});
+
+
+		function move2(opt,fn){
+			var t=null;
+			function getstyle(obj,name){
+				if(obj.currentStyle)
+				{
+					return obj.currentStyle[name];
+				}
+				else
+				{
+					return getComputedStyle(obj,false)[name];
+				}
+			}
+
+			t=setInterval(function(){
+				var cur=(opt.name=='opacity')?parseFloat(getstyle(opt.obj,opt.name)):parseInt(getstyle(opt.obj,opt.name));
+				cur<opt.target?cur+=opt.speed:cur-=opt.speed;
+				if(opt.name=='opacity')
+				{
+					opt.obj.style[opt.name]=cur;
+				}
+				else{
+					opt.obj.style[opt.name]=cur+'px';
+				}
+				
+				if(cur==opt.target)
+				{
+					fn&&fn();
+					clearInterval(t);
+				}
+				
+			},opt.timer);
+		}
+		var json={'obj':d2,'name':'height','target':200,'speed':'5','timer':'100'};
+		var json3={'obj':d3,'name':'width','target':200,'speed':5,'timer':100};
+		var json4={'obj':d3,'name':'borderWidth','target':20,'speed':5,'timer':100};
+		move2(json);
+		move2(json3,move2(json4));
+	</script>
+</body>
+</html>

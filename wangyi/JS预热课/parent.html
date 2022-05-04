@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div id="d1">
+		<div id="d2">
+			<div id="d3"></div>
+		</div>
+		<div id="d4">
+	</div>
+
+	<script type="text/javascript">
+		d3.style.cssText='width:100px;height:100px;background:pink;';
+		d3.parentNode.style.cssText='width:200px;height:200px;background:green;';
+		d3.parentNode.parentNode.style.cssText='width:300px;height:300px;background:red';
+
+		setTimeout(function(){
+			d1.children[0].style.background='orange';
+			d1.children[1].style.cssText='width:400px;height:400px;background:blue;';
+		},1000)
+		
+		setTimeout(function(){
+					d1.children[0].children[0].style.background='black';
+				},1000)
+
+
+	</script>
+
+</body>
+</html>

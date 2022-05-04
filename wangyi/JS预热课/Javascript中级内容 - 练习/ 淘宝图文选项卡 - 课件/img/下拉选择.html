@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0; list-style: none;}
+        ul{width: 300px;height: 364px;}
+        li{width: 300px;height: 50px;border: 1px solid orangered;font-size: 30px;display: none;}
+        #s{display: block;}
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li id="s">1</li>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+    </ul>
+</body>
+<script>
+    function getstyle(obj,name){
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[name];
+        }
+        else if(getComputedStyle)
+        {
+            return getComputedStyle(obj,false)[name];
+        }
+    }
+
+
+
+    document.onclick=function(e){
+        var ev=e||event;
+        var itar=ev.srcElement||ev.target;
+        if(itar.id!='ul')
+        {
+            for(var i=1;i<ul.children.length;i++)
+            {
+                ul.children[i].style.display='none';
+            }
+        }
+        if(itar.id=='s')
+        {
+            for(var i=1;i<ul.children.length;i++)
+            {
+                ul.children[i].style.display='block';
+                ul.children[i].style.background='';
+                if(s.innerHTML==ul.children[i].innerHTML)
+                {
+                    ul.children[i].style.background='orange';
+                }
+                ul.children[i].onmouseover=function(){
+                    this.style.background='orange';
+                }
+                ul.children[i].onmouseout=function(){
+                    this.style.background='';
+                    if(s.innerHTML==this.innerHTML)
+                    {
+                        this.style.background='orange';
+                    }
+                }
+                ul.children[i].onclick=function(){
+                    s.innerHTML=this.innerHTML;
+                    for(var i=1;i<ul.children.length;i++)
+                    {
+                        ul.children[i].style.display='none';
+                    }
+                }
+            }
+        }
+    }
+/*     for(var i=1;i<ul.children.length;i++)
+    {
+        
+    } */
+</script>
+</html>

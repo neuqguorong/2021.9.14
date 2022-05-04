@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <input id="ipt" type="text" ><br>
+    <textarea id="tx"></textarea>
+    <button id="btn">submit</button>
+</body>
+<script>
+    btn.onclick=function(){
+        //循环，自动生成
+        for(var i=0;i<5;i++)
+        {
+            ajaxget({
+                url:'http://localhost:1111',
+                type:'get',
+                data:{user:'fs'+i+'.txt',pass:Math.random()},
+                success:function(respdata){
+                    console.log(respdata);
+                    if(respdata=='login success')
+                    {
+                        document.body.style.background='green';
+                    }
+                },
+                error:function(){console.log('服务器错误');}
+            });
+        }
+       
+
+        ajaxget({
+            url:'http://localhost:1111',
+            type:'get',
+            data:{user:ipt.value,pass:tx.value},
+            success:function(respdata){
+                console.log(respdata);
+                if(respdata=='login success')
+                {
+                    document.body.style.background='green';
+                }
+            },
+            error:function(){console.log('服务器错误');}
+        });
+    }    
+    function jsontostrls(arg){
+        var arr=[];
+        for(var i in arg)
+        {
+            //console.log(json[i]);
+            arr.push(i+'='+arg[i]);
+        }
+        return arr.join('&');
+    }
+
+    function ajaxget(option)
+    {
+        if(window.XMLHttpRequest)
+        {
+            var ajax=new XMLHttpRequest();
+        }
+        else{
+            var ajax=new ActiveXObject("Microsoft.XMLHTPP");
+        }
+        //var ajax=new XMLHttpRequest();
+        //ajax.open('get','http://localhost:9217/',true);
+        //ajax.open(option.type,option.url+'?'+jsontostr(option.data)[0]+'='+option.data[jsontostr(option.data)[0]]+'&'+jsontostr(option.data)[1]+'='+option.data[jsontostr(option.data)[1]],true);//访问数据
+        ajax.open(option.type,option.url+'?'+jsontostrls(option.data),true);
+        ajax.send();
+        //ajax状态码发生改变时，调用的函数
+        ajax.onreadystatechange=function(){
+            if(ajax.readyState==4)
+            {
+               
+                if(ajax.status>=200 && ajax.status<300||ajax.status==304)
+                {
+                    //console.log(ajax.status);//200
+                    //服务器状态码，200表示成功
+                    option.success(ajax.responseText);
+                 
+                }
+                else{
+                   option.error();
+                }
+            }
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        #d1{width: 200px;height: 200px;background: black;}
+        #d2{width: 100px;height:100px;background: red;margin: 200px;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+    </div>
+    
+    <form action="http://www.baidu.com" method="get">
+        user:<input name="user" class="user">
+        password:<input name="pass" class="pass">
+        <button class="btn">submit</button>
+    </form>
+    <input class="ipt2" value="go">
+<script>
+/*     d1.onclick=function(){
+        alert('d1.onclick');
+    }
+    d1.onclick(); */
+
+    $('#d1').on({
+        'click':function(e,s,k){
+            console.log('$("#d1")',e,s,k);
+        },
+        'leo2':function(e,x,y){
+            console.log(e,x,y);
+        }
+    });
+    $('#d2').on({
+        'click':function(e,s,k){
+            //e.stopPropagation();//阻止事件冒泡
+            //e.preventDefault();//阻止默认行为，例如表单提交
+            console.log('$("#d2")',e,s,k);
+        }
+    });
+    //$('#d1').click();
+    //$('#d1').trigger('click',['$("#d1")',2]);//调用d1的click事件
+    //$('#d1').trigger('leo2',[1,2]); 
+    $('#d2').trigger('click',['$("#d2")',2]);//不能阻止事件冒泡
+    $('#d2').triggerHandler('click',['$("#d2")',2]);//可以阻止事件冒泡
+
+    $('form').on({
+        'submit':function(){
+            console.log('submit');
+        }
+    });
+    $('.ipt2').on({
+        'click':function(){
+            //$('form').trigger('submit',[1,2]);//点击button，自动提交，有默认事件
+            $('form').triggerHandler('submit',[1,2]);//会阻止默认提交事件
+        }
+    })
+    //$('form').trigger('submit',[1,2]);//点击button，自动提交，有默认事件
+    
+    $('#d3').click(function(){
+        console.log('$("d3")');
+    });
+    console.log($('#d3').trigger('click',['$("#d3")',2])) ;
+    console.log($('#d3').triggerHandler('click',['$("#d3")',2])) ;
+</script>
+</html>

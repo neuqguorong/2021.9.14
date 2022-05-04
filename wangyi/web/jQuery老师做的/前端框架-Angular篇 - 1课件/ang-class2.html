@@ -1,0 +1,25 @@
+<!doctype html> 
+<html ng-app=''> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='angular.js'></script>
+</head>
+<style type="text/css">
+div{transition:.5s all ease;}
+.div{
+	width: 100px;height: 100px;
+	background: black;
+}
+.div1{
+	width: 100px;height: 100px;
+	background: red;
+}
+
+</style>
+<body ng-init='arr=["div","div2"]'>
+<input>
+<div ng-class='arr[0]'></div>
+
+</body>
+</html>

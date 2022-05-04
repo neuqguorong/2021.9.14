@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0 ;padding: 0;}
+        #d1{width: 200px;height: 200px;background: #ccc;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px; border-bottom: 20px solid #ccc;background-image: -webkit-linear-gradient(45deg,red,yellow,green);box-shadow: 0px 0px 30px black;}
+        #d2{width: 0;height: 0;border-left: 100px solid black;border-right: 100px solid green;border-top: 100px solid red;border-bottom: 100px solid pink;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+<script>
+    d1.onmousedown=function(){
+        d1.style.borderBottom='none';
+        d1.style.marginTop='120px';
+    }
+    d1.onmouseup=function(){o
+        d1.style.borderBottom='20px solid black';
+        d1.style.marginTop='100px';
+    }
+    onmousemove=function(e){
+        var bili1=0.5-e.clientX/innerWidth,bili2=0.5-e.clientY/innerHeight;
+        d1.style.boxShadow=bili1*60+'px '+bili2*60+'px 30px black';
+    }
+</script>
+</html>

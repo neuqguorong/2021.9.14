@@ -1,0 +1,10 @@
+.searchNum{ display:flex; flex-direction:row; justify-content:center; align-items:center; flex-wrap: wrap; }
+.searchNum input{ -webkit-appearance: none; outline:none; width:8vw; height:11vw; line-height:11vw; text-align:center; padding:2px; margin:0; font-size:1.8rem; font-weight:900; border-left: 1px solid #d3d3d3;border-top: 1px solid #d3d3d3;border-bottom: 1px solid #d3d3d3; border-right: 0; box-sizing: border-box;}
+.searchNum input:last-child{ border-right: 1px solid #d3d3d3;border-radius: 0 .2em .2em 0;}
+.searchNum input:first-child{border-radius: .2em 0 0 .2em;}
+.searchNum input:nth-child(3),.searchNum input:nth-child(7){ margin-right:10px; border-right: 1px solid #d3d3d3;}
+
+.grayTxt{color: #999;text-align: center;padding: 1.2em 0;}
+.btn-submit{background-color: #c33;color: #FFF;text-align: center;line-height: 2;-webkit-border-radius: .2em;
+-moz-border-radius: .2em;
+border-radius: .2em;}

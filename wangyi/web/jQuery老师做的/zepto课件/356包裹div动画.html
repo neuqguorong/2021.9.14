@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    var js={
+        'width':'50%',
+        'height':'50%',
+        'background':'rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')',
+        'position':'absolute',
+        'left':0,
+        'top':0,
+        'right':0,
+        'bottom':0,
+        'margin':'auto',
+    };
+
+    $('<div class="d1"></div>').css(js).appendTo($('body'));
+
+    var i=1;
+    setInterval(function(){
+        $('.d'+(i++)).wrap($('<div class="d'+i+'"></div>').css(js).css('background','rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')'));
+
+        if($('div').length>4)
+        {
+            //$('div:gt('+($('div').length-5)+')').remove();
+            console.log($('div:gt(4)'));
+            $('div:gt(4)').remove();
+        }
+        console.log($('div').length);
+    },1000)
+</script>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		div{width: 100px;height: 100px;background: red;border: 0 solid black;}
+		#d2{background: green;float: left;}
+		#d3{background: black;float: left;border: 0 solid yellow;}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<div id="d2"></div>
+	<script type="text/javascript">
+		var a=0;
+		function move(obj,name,target,timer,fn){
+			//var t=null;
+			var t=setInterval(function(){
+				function getstyle(obj,name){
+					if(obj.currentStyle)
+					{
+						return obj.currentStyle[name];
+					}
+					else
+					{
+						return getComputedStyle(obj,false)[name];
+					}
+				}
+
+				var w=parseFloat(getstyle(obj,name));
+				var m=target;
+				var speed=(m-w)/5;
+				speed=speed>0?Math.ceil(speed):Math.floor(speed);
+				obj.style[name]=w+speed+'px';
+				if(w==m)clearInterval(t);
+				fn&&fn();
+			},timer);
+		}
+
+		//onclick=move;
+		//move(d1,'width',300,500,move(d1,'height',400,500));
+
+		function move2(obj,opt,timer,fn){
+			//var t=null;
+			var t=setInterval(function(){
+				function getstyle(obj,name){
+					if(obj.currentStyle)
+					{
+						return obj.currentStyle[name];
+					}
+					else
+					{
+						return getComputedStyle(obj,false)[name];
+					}
+				}
+
+				
+				for(var i in opt)
+				{
+					var w=parseFloat(getstyle(obj,i));
+					var m=opt[i];
+					var speed=(m-w)/10;
+					speed=speed>0?Math.ceil(speed):Math.floor(speed);
+					obj.style[i]=w+speed+'px';
+					if(w==m)
+					{
+						a++;
+					    console.log(a);
+					}
+					fn&&fn();
+					if(a==3)
+					{
+						clearInterval(t);
+						a=0;
+					}
+				}
+				//clearInterval(t);
+
+			},timer);
+		}
+		json={'width':400,'height':400,'marginLeft':100};
+		move2(d2,json,1000,function(){
+			move2(d2,{'width':50,'height':50,'marginLeft':100},50);
+		});
+		
+		//move2(d2,json,500);
+		//move2(d2,{'width':50,'height':50,'marginLeft':100},500);
+	</script>
+</body>
+</html>

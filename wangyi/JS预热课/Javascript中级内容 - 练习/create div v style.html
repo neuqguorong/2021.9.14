@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		div{width: 100px;height: 100px;background: red;line-height: 100px; text-align: center;float: left;}
+	</style>
+</head>
+<body>
+	<input id="btn" type="button" value="create div">
+	<p id="out"></p>
+	<script type="text/javascript">
+		var odiv=document.createElement('div');
+		var i=0;
+		btn.onclick=function(){
+			var odiv=document.createElement('div');
+			odiv.innerHTML=i;
+			if(i%2==1)
+				odiv.style.marginTop='100px';
+			if(i%2==0&&i%4!=0)
+				odiv.style.marginTop='200px';
+			out.appendChild(odiv);
+			i++;
+		}
+	</script>
+</body>
+</html>

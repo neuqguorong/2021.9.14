@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 200px;height: 200px;background: black;}
+        div:after{width: 300px;height: 300px;background: red;content: 'fdsafvdszdfdvsssss';font-size: 30px;}
+        div:hover:after{
+            position: absolute;left: 200px;content: 'hahhhhhah';
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+
+<script>
+    console.log(getComputedStyle(d1)['width']);
+    function getstyle(obj,stylename){
+        if(obj.currentStyle){
+            return obj.currentStyle[stylename];//ie
+        }
+        else{
+            return getComputedStyle(obj)[stylename];//非ie
+        }
+    }
+    console.log(getstyle(d1,'height'));
+    console.log(getComputedStyle(d1,':after')['width']);
+</script>
+</html>

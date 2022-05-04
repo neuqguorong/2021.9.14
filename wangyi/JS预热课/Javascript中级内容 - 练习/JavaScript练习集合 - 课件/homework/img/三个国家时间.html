@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p{font-size: 50px;height:50px;line-height: 50px;}
+        span{font-size: 100px;}
+        img{width: 45px;height: 70px;margin-right: 5px;}
+    </style>
+</head>
+<body>
+    <p>北京时间</p>
+    <p id="p2"><img><img><span>:</span><img><img><span>:</span><img><img></p>
+</body>
+<script>
+    document.body.style.background='purple';
+    function two(num){
+        if(num>=0&&num<=9)
+        {
+            return '0'+num;
+        }
+        else{
+            return num;
+        }
+    }
+
+    function b(){
+        var a=new Date();
+        var h=two(a.getHours()),m=two(a.getMinutes()),s=two(a.getSeconds());
+        var aimg=document.getElementsByTagName('img');
+        aimg[0].src=parseInt(h/10)+'.png';
+        aimg[1].src=parseInt(h%10)+'.png';
+        aimg[2].src=parseInt(m/10)+'.png';
+        aimg[3].src=parseInt(m%10)+'.png';
+        aimg[4].src=parseInt(s/10)+'.png';
+        aimg[5].src=parseInt(s%10)+'.png';
+    }
+    b();
+
+    setInterval(b,1000);
+</script>
+</html>

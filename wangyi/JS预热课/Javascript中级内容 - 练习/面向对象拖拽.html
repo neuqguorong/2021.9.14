@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="d1" style="width: 100px;height: 100px;background: black;position: absolute;"></div>
+</body>
+<script>
+/*     function drag(dom){
+        this.dom=dom;
+        var this1=this;
+        this1.dom.onmousedown=function(e){
+            this1.ev=e||event;
+            this1.l=this1.ev.clientX-this.offsetLeft;
+            this1.t=this1.ev.clientY-this.offsetTop;
+            document.onmousemove=function(e){
+                this1.ev=e||event;
+                this1.dom.style.left=this1.ev.clientX-this1.l+'px';
+                this1.dom.style.top=this1.ev.clientY-this1.t+'px';
+            }
+            document.onmouseup=function(){
+                document.onmousemove=document.onmouseup=null;
+            }
+        }
+    }   
+    new drag(d1); */
+
+    function drag(dom,opt){
+        this.dom=dom;
+        this.opt=opt;
+        var this1=this;
+        this1.mousedown(this1);
+        this1.mousemove(this1);
+        this1.mouseup(this1);         
+    }
+  
+    drag.prototype={
+        'mousedown':function(this1){
+            this1.dom.onmousedown=function(e){
+                this1.ev=e||event;
+                this1.l=this1.ev.clientX-this.offsetLeft;
+                this1.t=this1.ev.clientY-this.offsetTop;
+                this1.mousemove(this1);
+                this1.mouseup(this1);  
+            }
+        },
+        'mousemove':function(this1){
+            document.onmousemove=function(e){
+                this1.ev=e||event;
+                this1.x1=this1.ev.clientX-this1.l;
+                this1.y1=this1.ev.clientY-this1.t;
+                this1.opt.left||this1.x1<0?this1.x1=0:this1.x1=this1.x1;
+                this1.opt.right||this1.x1>innerWidth-this1.dom.offsetWidth?this1.x1=innerWidth-this1.dom.offsetWidth:this1.x1=this1.x1;
+/*                 this1.opt.onresize && (
+                    if(this1.x1>(innerWidth-this1.dom.offsetWidth))
+                    {this1.x1=innerWidth-this1.dom.offsetWidth;}
+                ); */
+                if(this1.opt.onresize)
+                {
+                    if(this1.x1==innerWidth-this1.dom.offsetWidth)
+                    {
+                        onresize=function(){
+                            
+                            if(this1.x1>(innerWidth-this1.dom.offsetWidth)||this1.x1<(innerWidth-this1.dom.offsetWidth))
+                            {
+                                this1.x1=innerWidth-this1.dom.offsetWidth;
+                                this1.dom.style.left=this1.x1+'px';//console.log(this1.x1);
+                            }
+                        }
+                    }
+
+                    if(this1.x1==0)
+                    {
+                        onresize=function(){
+                            this1.dom.style.left=0+'px';//console.log(this1.x1);
+                        }
+                    }
+
+                    if(this1.y1==0)
+                    {
+                        onresize=function(){
+                            this1.dom.style.top=0+'px';//console.log(this1.x1);
+                        }
+                    }
+
+                    if(this1.y1==innerHeight-this1.dom.offsetHeight)
+                    {
+                        onresize=function(){
+                            this1.dom.style.top=innerHeight-this1.dom.offsetHeight+'px';//console.log(this1.x1);
+                        }
+                    }
+
+                }
+                this1.opt.top||this1.y1<0?this1.y1=0:this1.y1=this1.y1;
+                this1.opt.bottom||this1.y1>innerHeight-this1.dom.offsetHeight?this1.y1=innerHeight-this1.dom.offsetHeight:this1.y1=this1.y1;
+                
+/*                 if(!this1.opt.left)
+                {
+                    if(this1.x1<0)
+                    {
+                        this1.x1=0;
+                    }
+                    
+                } */
+                this1.dom.style.left=this1.x1+'px';
+                this1.dom.style.top=this1.y1+'px';
+            }
+        },
+        'mouseup':function(this1){
+            document.onmouseup=function(){
+                document.onmousemove=document.onmouseup=null;
+            }
+        }
+    }
+    var json={
+        'left':false,
+        'right':false,
+        'top':false,
+        'bottom':false,
+        'onresize':true
+    };
+    new drag(d1,json);
+</script>
+</html>

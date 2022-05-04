@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        ul{margin: 10px;}
+        li{width: 110px;height: 110px; float: left;margin: 3px;background: dimgray;filter: grayscale(1);}
+        img{width: 100%;height: 100%;}
+    </style>
+</head>
+<body>
+    <button id="last">last</button>
+    <button id="next">next</button>
+    <input type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+</body>
+<script>
+    var j=0;
+    $('<ul></ul>').appendTo('body');
+    for(var i=0;i<3;i++)
+    {
+        $('<li><img src="'+(i+1)+'.jpg"></li>').appendTo($('ul'));
+    }
+/*     $('li').on({
+        'mouseover':function(){
+            $('li').css('background','');
+            $(this).css('background-color','rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')');
+        },
+        'mouseout':function(){
+            $('li').css('background','');
+        }
+    }); */
+
+        //console.log($('input').eq(i),$('input').eq(i).index());
+/*         $('body *').on({
+            'click':function(){
+                console.log($(this),$(this).index());
+            }
+        }) */
+
+
+
+    $('li').eq(0).css('filter','grayscale(0)')
+    $('li').on({
+        'mouseover':function(){
+            j=$(this).index();console.log('mouseover'+j,$('li').index());
+            $('li').css('filter','grayscale(1)');
+            //$(this).css('filter','grayscale('+parseFloat(Math.random()+0.1)+')');
+            $(this).css('filter','grayscale(0)');
+        },
+/*         'mouseout':function(){
+            $('img').css('filter','grayscale(1)');
+        } */
+    });
+
+    $('#next').click(function(){
+        j++;console.log('next'+j);
+        if(j== $('img').length)j=0;
+        $('li').css('background','').css('filter','grayscale(1)');
+        $('li').eq(j).css('background-color','rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')');
+        $('li').eq(j).css('filter','grayscale(0)');
+    })
+
+    $('#last').click(function(){
+        j--;console.log('#last'+j);
+        if(j==-1)j=$('li').length-1;
+        $('li').css('background','').css('filter','grayscale(1)');
+        $('li').eq(j).css('background-color','rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')');
+        $('li').eq(j).css('filter','grayscale(0)');
+    })
+</script>
+</html>

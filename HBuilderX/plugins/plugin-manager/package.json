@@ -1,0 +1,16 @@
+{
+  "name": "plugin-manager",
+  "version": "1.0.1-2021081720",
+  "description": "HBuilderX插件管理器",
+  "__private": true,
+  "main": "out.js",
+  "scripts": {
+    "compile": "tsc -p ./api"
+  },
+  "author": "HBuilderX",
+  "license": "ISC",
+  "dependencies": {
+    "vscode-jsonrpc": "^4.0.0"
+  },
+  "_dc_signatures": "1205a44b262cda122832b596b291589d5290b25464769668e28197392124b5c94ae4316925bfc12bf1cb62f3e6c45253"
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>boot</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+      .alert-info{display: none;}
+    </style>
+  </head>
+  <body style='height: 3000px;'>
+    <div class='container'>
+
+
+      <div class='alert alert-info'>您收到了一条新信息。<a href="#" class='alert-link' >点击查看</a></div>
+
+      <input type="button" class='btn btn-info' name="" value='点我' style='position: absolute; top: 200px;'>
+
+    </div>
+    <script src="js/jq.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      
+      $('.btn-info').on({
+        click:function(){
+          $('.alert-info').fadeIn(function(){
+            setTimeout(function(){
+              $('.alert-info').fadeOut();
+            },2000);
+          });
+        }
+      })
+    </script>
+   
+  </body>
+</html>

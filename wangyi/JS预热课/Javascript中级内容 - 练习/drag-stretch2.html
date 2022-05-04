@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#d1{height: 200px;width: 200px;border: 1px solid black;position: relative;margin:200px 200px;}
+		#d2{height: 50px;width: 100%;background: red;cursor: move;}
+		#d3{width: 100%;height: 100%;word-wrap: break-word;}
+		#d4{width: 20px;height: 20px;background: green;position: absolute; right: 0;bottom: 0;cursor: nw-resize;}
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<div id="d2">perfect drag</div>
+		<div id="d3">fdageawfsbfrvefwesrtbfdvewafgrstbvgefwrstdgbrfewrsdrfewarsgrfewdafsfeddfv
+			<div id="d4">drag</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		d2.onmousedown=function(e){
+			var ev=e||event;
+			var l=ev.clientX-d1.offsetLeft;
+			var t=ev.clientY-d1.offsetTop;
+			document.onmousemove=function(e){
+				var ev=e||event;
+				var needl=ev.clientX-l;
+				var needt=ev.clientY-t;
+				d1.style.left=needl+'px';
+				d1.style.top=needt+'px';
+			}
+			document.onmouseup=function(){
+				document.onmousemove=document.onmouseup=null;
+			}
+		}
+
+		d4.onmousedown=function(e){
+			var ev=e||event;
+			var l=ev.clientX-this.offsetLeft;
+			var t=ev.clientY-this.offsetTop;
+			//console.log(oldwidth,oldheight);
+			document.onmousemove=function(e){
+				var ev=e||event;
+				var itarget=ev.srcElement||ev.target;
+				var needl=ev.clientX-l;
+				var needt=ev.clientY-t;
+				if(needl<0)needl=0;
+				if(needt<0)needt=0;
+				d4.style.left=needl+'px';
+				d4.style.top=needt+'px';
+				/*d1.style.width=ev.clientX-d1.offsetLeft+'px';
+				d1.style.height=ev.clientY-d1.offsetTop+'px';*/
+				d1.style.width=itarget.offsetLeft+itarget.offsetWidth+'px';
+				d1.style.height=itarget.offsetTop+itarget.offsetHeight+'px';
+			}
+			document.onmouseup=function(){
+				document.onmousemove=document.onmouseup=null;
+			}
+		}
+	</script>
+</body>
+</html>

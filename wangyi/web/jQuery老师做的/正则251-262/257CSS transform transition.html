@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 200px;height: 200px;background: green;
+        position: absolute;left: 50%;top: 50%;margin-left: -200px;
+        margin-top: -200px;transition:4s transform ease;background-image: url(bilibili.png);
+        transform-style: preserve-3d;transform: perspective(800px) rotateY(60deg);}
+        /* #d1:active{-transform: rotateX(90deg);-transform: skew(180deg,180deg);
+        transform: translateX(200px);} */
+        #d2{width: 200px;height: 200px;background: red;position: absolute; 
+        transform: translateZ(150px);}
+        #d3{width: 200px;height: 200px;background: green;position:absolute; 
+        transform: translateZ(-150px);}
+        #d4{width: 200px;height: 200px;background: yellow;position:absolute; 
+        transform:rotateY(90deg) translateZ(-150px) ;}
+        #d5{width: 200px;height: 200px;background:pink;position:absolute; 
+        margin: 400px 200px;transform: perspective(800px); transform-origin: -100px -100px;}
+        
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+        <div id="d3"></div>
+        <div id="d4"></div>
+    </div>
+    <div id="d5"></div>
+
+    <script>
+       /*  d1.onclick=function(){
+            d1.style.transform='scaleX(-3)';//相当于镜像
+        }; */
+
+        var a=0;
+        setInterval(function(){
+            a++;
+            d5.style.transform='rotateY('+a+'deg)';
+        },10);
+    </script>
+</body>
+</html>

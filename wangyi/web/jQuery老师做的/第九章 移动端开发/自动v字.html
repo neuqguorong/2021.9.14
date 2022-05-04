@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #d1{width: 0;height: 0; }
+        div{width: 50px;height: 50px;background: red;font-size: 30px;color: white;position: absolute;}
+    </style>
+</head>
+<body>
+    <button id="btn">button</button><br>
+    <div id="d1"></div>
+</body>
+<script>
+    var index=0;
+    btn.onclick=function(){
+        if(index%4==0)
+        {
+            d1.innerHTML='';
+            for(var i=0;i<5;i++)
+            {
+                var odiv=document.createElement('div');
+                odiv.innerHTML=i;
+                odiv.style.left=50*i+'px';
+                if(i%2==0 && i!=0 && i%4!=0){
+                    odiv.style.top='0px';
+                }
+                else if(i%2==1)
+                {
+                    odiv.style.top='50px';
+                }
+                else{
+                    odiv.style.top='100px';
+                }
+                d1.appendChild(odiv);
+            } 
+            index++;
+        }
+        else if(index%4==1)
+        {
+            d1.innerHTML='';
+            for(var i=0;i<5;i++)
+            {
+                var odiv=document.createElement('div');
+                odiv.innerHTML=i;
+                odiv.style.top=50*i+'px';
+                if(i%2==0 && i!=0 && i%4!=0){
+                    odiv.style.left='100px';
+                }
+                else if(i%2==1)
+                {
+                    odiv.style.left='50px';
+                }
+                else{
+                    odiv.style.left='0px';
+                }
+                d1.appendChild(odiv);
+            } 
+            index++;
+        }
+        else if(index%4==2)
+        {
+            d1.innerHTML='';
+            for(var i=0;i<5;i++)
+            {
+                var odiv=document.createElement('div');
+                odiv.innerHTML=i;
+                odiv.style.left=50*i+'px';
+                if(i%2==0 && i!=0 && i%4!=0){
+                    odiv.style.top='100px';
+                }
+                else if(i%2==1)
+                {
+                    odiv.style.top='50px';
+                }
+                else{
+                    odiv.style.top='0px';
+                }
+                d1.appendChild(odiv);
+            } 
+            index++;
+        }
+        else if(index%4==3)
+        {
+            d1.innerHTML='';
+            for(var i=0;i<5;i++)
+            {
+                var odiv=document.createElement('div');
+                odiv.innerHTML=i;
+                odiv.style.top=50*i+'px';
+                if(i%2==0 && i!=0 && i%4!=0){
+                    odiv.style.left='0px';
+                }
+                else if(i%2==1)
+                {
+                    odiv.style.left='50px';
+                }
+                else{
+                    odiv.style.left='100px';
+                }
+                d1.appendChild(odiv);
+            } 
+            index++;
+        }
+    }
+</script>
+</html>

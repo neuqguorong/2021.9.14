@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		div{width: 300px;height: 300px;border: 1px solid black;}
+	</style>
+</head>
+<body>
+	<div id="d1" contenteditable="true"></div>
+	<p>
+		<span id="s1">0</span>/<span id="s2">0</span>
+		<input id="btn" type="button" value="go">
+	</p>
+	<div id="d2"></div>
+
+	<script type="text/javascript">
+		var t=null;
+
+		btn.onclick=function(){
+			clearInterval(t);
+			s1.innerHTML=d1.innerHTML.length;
+			s2.innerHTML=d2.innerHTML.length;
+			t=setInterval(function(){
+				d2.innerHTML+=d1.innerHTML.charAt(0);
+				d1.innerHTML=d1.innerHTML.substring(1);
+				s1.innerHTML=d1.innerHTML.length;
+				s2.innerHTML=d2.innerHTML.length;
+				if(d1.innerHTML=='')
+					clearInterval(t);
+			},30)
+		}
+
+	</script>
+</body>
+</html>

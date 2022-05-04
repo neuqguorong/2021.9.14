@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		#d0{width: 800px;height: 600px;}
+		*{margin: 0;padding: 0;list-style: none;}
+		#d1{width: 500px;height: 300px;background: #ccc;position:absolute;top: 200px;left: 200px; display: none;}
+		#d2{width: 440px;height: 240px;background: white;position: relative;left: 30px;top: 30px;}
+		#d2 ul{position: relative;left: 20px;top: 20px;}
+		ul li{margin-top: 10px;}
+		span{float: left; width: 150px;height: 50px;word-wrap: break-word;}
+		button{width: 70px;height: 40px;color: white;}
+		.last{text-align: center;}
+	</style>
+</head>
+<body>
+	<div id="d0">
+		<h2>please set style for below div:<button id="btn" style="height: 30px;width: 60px; background: red;color: white;">click set</button></h2>
+		<div id="d3" style="width: 100px;height: 100px; border:5px solid black;"></div>
+		<div id="d1">
+			<div id="d2">
+				<ul>
+					<li>
+						<span>please choose backgroundcolor:</span>
+						<button style="background: red;">red</button>
+						<button style="background: yellow;">yellow</button>
+						<button style="background: blue;">blue</button>
+					</li>
+					<li><span>please choose width(px):</span>
+						<button style="background: #ccc;">200</button>
+						<button style="background: #ccc;">300</button>
+						<button style="background: #ccc;">400</button>
+					</li>
+					<li><span>please choose height(px):</span>
+						<button style="background: #ccc;">200</button>
+						<button style="background: #ccc;">300</button>
+						<button style="background: #ccc;">400</button>
+					</li>
+					<li class="last">
+						<button style="background: darkblue;">recover</button>
+						<button style="background: darkblue;">determine</button>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+	var abtn=document.getElementsByTagName('button');//console.log(abtn);
+	abtn[0].onclick=function(){
+		d0.style.background='#bbb';
+		d1.style.display='block';
+		var n=d2.children[0].children[0].children.length;
+		for(var i=1;i<n;i++){
+			abtn[i].onclick=function(){
+				//console.log(this.innerHTML);
+				d3.style.background=this.innerHTML;
+			}
+		}
+		for(i=n;i<2*n-1;i++){
+			abtn[i].onclick=function(){
+				//console.log(this.innerHTML);
+				d3.style.width=this.innerHTML+'px';
+			}
+		}
+		for(i=2*n-1;i<3*n;i++){
+			abtn[i].onclick=function(){
+				console.log(this.innerHTML);
+				d3.style.height=this.innerHTML+'px';
+			}
+		}
+		abtn[abtn.length-2].onclick=function(){
+			d1.style.display='none';
+			d3.style.cssText='width: 100px;height: 100px; border:5px solid black;';
+		}
+		abtn[abtn.length-1].onclick=function(){
+			d1.style.display='none';
+		}
+	}
+</script>
+</html>

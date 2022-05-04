@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script src='jquery-1.9.1.min.js'></script>
+	<style type="text/css">
+/*	    p{float: left;}
+	    img{float: left;}
+	    input{float: left;}
+	    span{float: left;}*/
+		.hide{display: none;}
+	</style>
+</head>
+<body>
+	<div>
+		<h2>Category name</h2>
+		<ul>
+			<li>
+				<p id="p1">teachear online class</p>
+				<img id="pen1" src="pen.png" alt="pen">
+				<input id="ipt1" type="text" name="" value="">
+				<span class="save">save</span>
+				<span class="cancel">cancel</span>
+			</li>
+			<li>
+				<p>techear online class</p>
+				<img src="pen.png" alt="pen">
+				<input type="text" name="">
+				<span>save</span>
+				<span>cancel</span>
+			</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		$('li>input,li>span').addClass('hide');
+
+		$('img').click(function(){
+			$(this).next().val($(this).prev().html()).parent().children('p,img').toggleClass('hide').siblings('input,span').toggleClass('hide');
+		});
+
+		$('span:contains(save)').click(function(){
+			$(this).siblings('p').html($(this).siblings('input').val()).siblings('input,span').toggleClass('hide').siblings('p,img').toggleClass('hide');
+		});
+
+		$('span:contains(can)').click(function(){
+			$(this).siblings('input,span').toggleClass('hide').siblings('p,img').toggleClass('hide');
+		})
+
+
+
+
+
+
+	</script>
+</body>
+</html>

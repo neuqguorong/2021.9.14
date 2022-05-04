@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{width: 100px;height: 100px;}
+        #d1{background:#ccc;position: relative;}
+        #d2{margin: 300px;background: red;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+<script>
+    d1.onmousedown=function(e){
+        var ev=e||event,l=ev.clientX-this.offsetLeft,t=ev.clientY-this.offsetTop;
+        document.onmousemove=function(e){
+            var ev=e||event,l1=ev.clientX-l,t1=ev.clientY-t;
+            d1.style.left=l1+'px',d1.style.top=t1+'px';
+            if(d1.offsetLeft==d2.offsetLeft && d1.offsetTop==d2.offsetTop)
+            {
+                alert('合体');
+            }
+        }
+        document.onmouseup=function(){
+            document.onmousemove=document.onmouseup=null;
+        }
+    }
+
+</script>
+</html>

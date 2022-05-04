@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="alt_tabs.js"></script>
+    <script src="hzsoft-ui.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>六位数字框</title>
+</head>
+<body>
+   <div class="db mt">
+   	<div class="searchNum" id="searchNum">
+   		<input type="tel" maxlength="1" value="1" readonly="readonly" autofocus="autofocus">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   		<input type="tel" maxlength="1" value="">
+   	</div>
+   	<div class="grayTxt">位数可留空</div>
+   </div>
+   <div class="btn-submit">确定</button>
+</body>
+</html>
+<script type="text/javascript">
+		var organizeId = request('organizeId');
+		var city = request('city');
+		$("#searchNum input").keyup(function(event) {
+			switch (event.which) {
+				case 8: //back
+					$(this).prev().focus();
+					break;
+				case 37: //left
+					$(this).prev().focus();
+					break;
+				case 39: //right
+					$(this).next().focus();
+					break;
+				default:
+					var t = $(this).val();
+					var reg = /[\d]/g;
+					if (reg.test(t)) {
+						$(this).next().focus();
+					} else {
+						t = t.replace(/[^\d]/g, '');
+						$(this).val(t);
+					}
+					break;
+			}
+		});
+
+		function searchBykw() {
+			var _kw = '';
+			if ($("#kwtit1").hasClass('cur')) {
+				_kw = $("#kw").val();
+				if (_kw != '') {
+					if ($("#cbIsEnd").is(':checked')) {
+						_kw += "|";
+					}
+				}
+			} else {
+				var o = document.getElementById('searchNum').getElementsByTagName('input');
+				for (i = 0; i < o.length; i++) {
+					if (o[i].value == '') {
+						_kw += '*';
+					} else {
+						_kw += o[i].value;
+					}
+				}
+			}
+			if (_kw != '' && _kw != '1__________') {
+				//do search
+				//keyword = _kw; 下边一行代码就是设置需要跳转的页面
+				//location.href = 'list?keyword=' + _kw + "&organizeId=" + organizeId + "&city=" + city;
+			} else {
+			}
+			alert(_kw)
+		}
+
+		$(".btn-submit").click(function() {
+			searchBykw();
+		})
+		$(document).ready(function() {
+			$('.alt-tabs').alt_tabs({
+				action: 'click'
+			});
+		});
+	</script>

@@ -1,0 +1,68 @@
+<!doctype html> 
+<html> 
+<head> 
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+    <meta charset="utf-8"> 
+    <meta charset="utf-8"> 
+    <title></title> 
+     <!--
+    <script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+    -->
+  	
+    <script type="text/javascript" src='zepto.min.js'></script>
+    <script type="text/javascript" src='zTouch.min.js'></script>
+    <script type="text/javascript" src='zepto.fx.js'></script>
+    <style type="text/css">
+.l{width: 100px;height: 100px;background: black;position: absolute;}
+
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+	/*
+l.addEventListener('touchstart',function(){
+	//alert(1);
+},false);
+l.addEventListener('touchmove',function(){
+	//alert(2);
+},false);
+l.addEventListener('touchend',function(){
+	alert(3);
+},false);
+*/
+
+
+$('<div></div>').appendTo('body').addClass('l').on({
+	/*
+	'tap':function(){
+		alert($(this).css('background'));
+	},
+	*/
+	'click':function(){
+
+		$(this).animate({
+			'perspective':'800px',
+			'rotate':'90deg',
+			'rotateY':'45deg',
+			'background':'pink'
+		},5000,'cubic-bezier(0, 1.15, 1, 1)');
+		/*
+		$(this).css({
+			'transition':'1s all ease',
+			'transform':'rotate(45deg) rotateY(45deg)'
+		});
+*/
+		/*
+		$(this).animate({
+			//'rotate':'90deg'
+			//'transform':'rotate(90deg)'
+		},1000);
+*/
+	}
+})
+
+
+
+</script>
+</body>
+</html>

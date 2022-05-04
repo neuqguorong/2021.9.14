@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<span>
+		<input type="" value="">
+		<button>+</button>
+		<input type="" value="">
+		<button>=</button>
+		<input type="" value="">
+    </span>
+    <br>
+    <span>
+		<input type="" value="">
+		<button>+</button>
+		<input type="" value="">
+		<button>=</button>
+		<input type="" value="">
+    </span><br>
+    <button id="b1">验证结果</button>
+
+    <script type="text/javascript">
+    	var s=document.getElementsByTagName('span'),ipt=document.getElementsByTagName('input'),b1=document.getElementById('b1');
+    	
+    	b1.onclick=function(){
+    		for(var i=0;i<6;i++)
+	    	{
+	    		if((typeof Number(ipt[i].value))!='number')
+	    			alert('input number');
+	    	};
+	    	if(ipt[0].value||ipt[1].value||ipt[2].value||ipt[3].value||ipt[4].value||ipt[5].value)
+	    		alert('输入框必须不为空');
+	    	else
+	    	{
+	    		if(Number(ipt[0].value)+Number(ipt[1].value)==Number(ipt[2].value)&&Number(ipt[3].value)+Number(ipt[4].value)==Number(ipt[5].value))
+	    			alert('true');
+	    		else
+	    			alert(false);
+	    	};
+    	};
+    	
+    </script>
+</body>
+</html>

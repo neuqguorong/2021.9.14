@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		.a{height: 100px;width: 100px;background: black;}
+		.b{background: red;}
+	</style>
+</head>
+<body>
+	<div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div><div id="d1" class="a"></div>
+	<script type="text/javascript">
+		document.onclick=function(e){
+			var ev=e||event;
+			var itarget=ev.srcElement||ev.target;
+			if(itarget.className=='a')
+				itarget.style.background='green';
+		}
+	</script>
+</body>
+</html>

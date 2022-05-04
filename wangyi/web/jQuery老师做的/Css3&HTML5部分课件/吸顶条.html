@@ -1,0 +1,42 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+*{margin:0;padding: 0;list-style: none;}
+img{position: absolute;}
+
+
+    </style>
+</head>
+<body style="height:3000px;">
+<img src="王越超.jpg" width=100 style='top:300px;left:200px'>
+<img src="张瑞.JPG" width=150 style='top:450px;left:350px'>
+<img src="张瑞希.jpg" width=200 style='top:600px;left:500px' >
+<script type="text/javascript">
+	
+	var Wyc = document.querySelectorAll('img')[0];
+	var Zrx = document.querySelectorAll('img')[2];
+
+	var oldTop = Wyc.offsetTop;
+	//alert(Wyc.offsetWidth);
+	//alert(Wyc.src)
+	onscroll = function(){
+		//console.log(Wyc.offsetTop)
+		var iScroll = document.body.scrollTop || document.documentElement.scrollTop;
+
+		if(iScroll > oldTop){
+			Wyc.style.position = 'fixed';
+			Wyc.style.top = '0';
+		}
+		else{
+			Wyc.style.position = 'absolute';
+			Wyc.style.top = '0';
+		}
+		//console.log(iScroll);
+	}
+
+</script>
+</body>
+</html>

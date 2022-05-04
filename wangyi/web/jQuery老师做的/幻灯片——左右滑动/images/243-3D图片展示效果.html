@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        ul{width: 500px;height: 300px;position: absolute;left: 50%;top: 50%;margin-left: -250px;
+        margin-top: -150px;background:rgb(83, 75, 93);}
+       li{width: 130px;height: 100px;float: left;margin:50px 0 0 12px;background: #666;border: 1px solid white;border-radius: 10px; opacity: 0.3;}
+       img{width: 110px;height: 80px;margin: 10px;}
+       .a{width: 180px;height: 140px;margin-top:70px;opacity: 1;}
+       .b{width: 160px;height: 120px;}
+    </style>
+</head>
+<body>
+    
+        <ul>
+            <li class="le"><img src="1.jpg"></li><li class="a"><img class="b" src="2.jpg"></li><li class="ri"><img src="3.jpg"></li>
+        </ul>
+    
+</body>
+<script>
+    var imgsrc=[];console.log($('ul img'),$('li').length);
+    var liclas=[],imgw=[],imgh=[],imgclas=[];
+    for(var i=0;i<$('img').length;i++)
+    {
+        imgsrc.push($('img')[i].src);
+        liclas.push($('li')[i].className); //['le', 'a', 'ri'] 
+        imgclas.push($('img')[i].className); //['', 'b', '']
+    }
+    console.log(imgsrc,liclas,imgclas);
+    $('.ri').on({
+        'click':function(){
+            imgsrc.unshift(imgsrc.pop());
+            for(var i=0;i<$('img').length;i++)
+            {
+                $('img')[i].src=imgsrc[i];
+            }
+        }
+    })
+</script>
+</html>

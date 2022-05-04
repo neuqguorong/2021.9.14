@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 500px;height: 500px;transform: perspective(800px) rotateY(60deg);transform-style: preserve-3d;}
+        div{width: 25px;height: 25px;float: left;transition: 1s all ease;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+    for(var i=0;i<20;i++)
+    {
+        for(var j=0;j<20;j++)
+        {
+            var odiv=document.createElement('div');
+            odiv.style.background='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+            d1.appendChild(odiv);
+        }
+    }
+
+    setTimeout(function(){
+        d1.children[d1.children.length/2-10].style.transform='translateZ(150px)';
+    },1000);
+
+    setTimeout(function(){
+        d1.children[d1.children.length/2-10].style.transform='translateZ(0px)';
+        for(var i=0;i<d1.children.length;i++)
+        {
+            d1.children[i].style.transform='translateX('+Math.random()*180+'px) translateY('+Math.random()*180+'px) rotateX('+Math.random()*360+'deg) rotateY('+Math.random()*360+'deg)';
+        }
+        setTimeout(function(){
+            for(var i=0;i<d1.children.length;i++)
+            {
+                d1.children[i].style.opacity=0;
+            }
+        },2500)
+    },2000);
+
+
+    
+</script>
+</html>

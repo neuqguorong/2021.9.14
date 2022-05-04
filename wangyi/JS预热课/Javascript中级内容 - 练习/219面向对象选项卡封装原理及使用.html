@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1 div,#d2 div{width: 200px;height: 200px;border: 1px solid black;font-size: 100px;display: none;}
+        #d1 .a,#d2 .a{background: red;}
+        #d1 .b,#d2 .b{display: block;}
+    </style>
+</head>
+<body>
+<!--     <div id="d1">
+        <button>1</button><button>2</button><button>3</button>
+        <div class="b">1</div><div>2</div><div>3</div>
+    </div> -->
+    <div id="d2">
+        <button>1</button><button>2</button><button>3</button><button>4</button><button>5</button>
+        <div class="b">1</div><div>2</div><div>3</div><div>4</div><div>5</div>
+    </div>
+</body>
+<script>
+    function tabnode(json){
+
+        var this1=this;//BOM实例化之后，this指向实例化对象，tabnode //console.log(json,this);
+        this1.index2=0;
+        this1.setinter=null;//用来存放tabnode的定时器函数
+        //声明节点
+        this1.statement(json.node);
+
+        //点击事件
+        this1.clickevent(this1);
+
+        //定时器模块
+        json.inteval && this1.openinterval(this1,json.intervaltime);
+
+        //鼠标移入事件
+        this1.onmouseover(this1,json.node);
+
+        //鼠标移出事件
+        this1.onmouseout(this1,json.intervaltime);
+
+
+    }
+
+    tabnode.prototype={
+        'statement':function(node){
+            this.abtn=node.getElementsByTagName('button');//console.log(this.btn);
+            this.adiv=node.getElementsByTagName('div');
+        },
+        'clickevent':function(this1){
+            for(var i=0;i<this.abtn.length;i++)
+            {
+                this.abtn[i].index=i;
+                this.abtn[i].onclick=function(){
+                    for(var i=0;i<this1.abtn.length;i++)
+                    {
+                        this1.abtn[i].className='';
+                        this1.adiv[i].className='';
+                    }
+                    this.className='a';//DOM中，this指向发生的事件源
+                    this1.adiv[this.index].className='a b';
+                    this1.index2=this.index;
+                }
+            }
+        },
+        'openinterval':function(this1,time){
+            this1.setinter= setInterval(() => {
+                this1.index2++;
+                if(this1.index2==this1.abtn.length)this1.index2=0;
+                for(var i=0;i<this1.abtn.length;i++)
+                    {
+                        this1.abtn[i].className='';
+                        this1.adiv[i].className='';
+                    }
+                    this1.abtn[this1.index2].className='a';//DOM中，this指向发生的事件源
+                    this1.adiv[this1.index2].className='a b';
+            }, time);
+        },
+        'onmouseover':function(this1,node){
+            node.onmouseover=function(){
+                this1.setinter=null;
+            }
+        },
+        'onmouseout':function(this1,time){
+            this1.openinterval(this1,time);
+        }
+
+    }
+
+var json1={
+'node':d2,
+'inteval':true,
+'intervaltime':1000
+};
+new tabnode(json1);
+
+
+
+
+
+
+/*     function tabnode(node){
+
+        var this1=this;//BOM实例化之后，this指向实例化对象，node
+
+        //声明节点
+        this1.statement(node);
+
+        //点击事件
+        this1.clickevent(this1);
+    }
+
+    tabnode.prototype={
+        'statement':function(node){
+            this.abtn=node.getElementsByTagName('button');//console.log(this.btn);
+            this.adiv=node.getElementsByTagName('div');
+        },
+        'clickevent':function(this1){
+            for(var i=0;i<this.abtn.length;i++)
+            {
+                this.abtn[i].index=i;
+                this.abtn[i].onclick=function(){
+                    for(var i=0;i<this1.abtn.length;i++)
+                    {
+                        this1.abtn[i].className='';
+                        this1.adiv[i].className='';
+                    }
+                    this.className='a';//DOM中，this指向发生的事件源
+                    this1.adiv[this.index].className='a b';
+                }
+            }
+        }
+    }
+    new tabnode(d1); */
+
+
+/*     function tabnode(json){
+
+        var this1=this;//BOM实例化之后，this指向实例化对象，tabnode
+        console.log(json,this);
+        //声明节点
+        this1.statement(json.node);
+
+        //点击事件
+        this1.clickevent(this1);
+
+        //定时器模块
+        this1.index2=0;
+        json.inteval && this1.openinterval(this1,this1.index2,json.intervaltime);
+    }
+
+    tabnode.prototype={
+        'statement':function(node){
+            this.abtn=node.getElementsByTagName('button');//console.log(this.btn);
+            this.adiv=node.getElementsByTagName('div');
+        },
+        'clickevent':function(this1){
+            for(var i=0;i<this.abtn.length;i++)
+            {
+                this.abtn[i].index=i;
+                this.abtn[i].onclick=function(){
+                    for(var i=0;i<this1.abtn.length;i++)
+                    {
+                        this1.abtn[i].className='';
+                        this1.adiv[i].className='';
+                    }
+                    this.className='a';//DOM中，this指向发生的事件源
+                    this1.adiv[this.index].className='a b';
+                }
+            }
+        },
+        'openinterval':function(this1,index2,time){
+            setInterval(() => {
+                index2++;
+                if(index2==this1.abtn.length)index2=0;
+                for(var i=0;i<this1.abtn.length;i++)
+                    {
+                        this1.abtn[i].className='';
+                        this1.adiv[i].className='';
+                    }
+                    this1.abtn[index2].className='a';//DOM中，this指向发生的事件源
+                    this1.adiv[index2].className='a b';
+            }, time);
+        }
+    }
+    new tabnode({
+        'node':d1,
+        'inteval':true,
+        'intervaltime':1000
+    }); */
+
+
+    
+</script>
+</html>

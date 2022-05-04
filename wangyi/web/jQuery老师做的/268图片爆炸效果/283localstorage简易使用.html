@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+</head>
+<body>
+    <input id="ipt1">
+    <input type="checkbox" id="ipt2">
+    <script>
+        //localStorage.a=10;
+        //console.log(localStorage.a);
+        
+        ipt2.onclick=function(){
+            if(this.checked)
+            {
+                localStorage.mes=ipt1.value;
+                localStorage.oldtime=new Date().getTime();
+            }
+        }   
+/*         if(localStorage.mes)
+        {
+            ipt1.value=localStorage.mes;
+        } */
+
+        //七天记住密码
+        var timesub=new Date().getTime()-localStorage.oldtime;
+        console.log(timesub);
+        if(timesub/1000/3600/24>7)
+        {
+            localStorage.mes=null;
+            localStorage.oldtime=nul;
+        }
+        else{
+            ipt1.value=localStorage.mes;
+        }
+    </script>
+</body>  
+</html>

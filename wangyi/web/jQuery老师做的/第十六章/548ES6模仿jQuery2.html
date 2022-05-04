@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{
+     width: 200px;
+        height: 200px;
+        background: #ccc;
+     float: left;
+        margin: 20px;
+        }
+        .b{
+           box-shadow:0 0 20px orange;
+        }
+    </style>
+</head>
+  
+<body>
+<div id='div1'></div>
+<div class='div1 b'></div>
+<script type="text/javascript">   
+    class jquery{
+ constructor(obj=''){
+  this.obj = obj;
+  this.allNode = [];
+  switch(this.obj.charAt(0)){
+   case '#':
+    this.allNode.push(document.getElementById(this.obj.substring(1)));
+    //console.log(this.allNode);
+   break;
+   case '.':
+    this.myObj = document.getElementsByClassName(this.obj.substring(1));
+    for(let i = 0;i < this.myObj.length;i++){
+     this.allNode.push(this.myObj[i]);
+    }
+   break;
+  }
+ }
+ addClass(cls){
+  
+  for(let i = 0;i < this.allNode.length;i++){
+   this.allNode[i].classList.add(cls);
+  } 
+ }
+ removeClass(cls){
+  for(let i = 0;i < this.allNode.length;i++){
+   this.allNode[i].classList.remove(cls);
+  }
+ }
+
+ css(json){
+  for(let i = 0;i < this.allNode.length;i++){
+   for(var j in json){
+    this.allNode[i]['style'][j] = json[j];
+   }
+  }
+ }
+}
+function $(obj){
+ return new jquery(obj)
+};
+
+// 定时器1000ms添加类
+setTimeout(() => {
+     $('#div1').addClass('b');
+}, 3000); 
+// 定时器1000ms删除类
+setTimeout(() => {
+     $('.div1').removeClass('b');
+}, 3000); 
+</script>  
+</body>
+</html>

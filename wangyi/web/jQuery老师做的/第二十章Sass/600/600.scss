@@ -1,0 +1,11 @@
+
+@for $i from 0 through 99 {
+    .name#{$i}{background:desaturate(red,$i+1%);}
+}
+@for $i from 0 through 99 {
+    .green#{$i}{background:desaturate(green,$i+1%);}
+}
+@for $i from 0 through 99 {
+    .blue#{$i}{background:desaturate(blue,$i+1%);}
+    .d7#{$i}{background:adjust-hue(red, $i*3.6deg);}
+}

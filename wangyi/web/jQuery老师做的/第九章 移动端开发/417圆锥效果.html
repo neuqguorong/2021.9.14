@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 200px;height: 200px;background: black;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px; -transform:perspective(800px) rotateX(60deg);transform-style: preserve-3d;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+
+<script>
+    for(var i=0;i<100;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.style.cssText='width:'+(d1.offsetWidth-2*i)+'px;height:'+(d1.offsetHeight-2*i)+'px;background:rgb('+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+','+parseInt(Math.random()*256)+');position:absolute;left:0;top:0;right:0;bottom:0;margin:auto;transform:translateZ('+i+'px);';
+        d1.appendChild(odiv);
+    }
+    
+    var j=0;
+    setInterval(function(){
+        j++;
+        d1.style.transform='perspective(800px) rotateX('+j+'deg);';
+    },6);
+</script>
+</html>

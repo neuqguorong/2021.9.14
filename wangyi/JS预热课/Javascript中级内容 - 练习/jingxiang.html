@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		#d1{width: 1px;height: 100%;background: black;position: absolute;left: 50%;}
+		#le,#rt{width: 100px;height: 100px;background: red;position: absolute;left: -100px;top: 200px;}
+		#rt{background: green;left:1px;}
+	</style>
+</head>
+<body>
+	<div id="d1">
+		<div id="le"></div>
+		<div id="rt"></div>
+	</div>
+
+	<script type="text/javascript">
+			le.onmousedown=function(e){
+			var ev=e||event;
+			var l=ev.clientX-this.offsetLeft;
+			var t=ev.clientY-this.offsetTop;
+			document.onmouseover=function(e){
+				var ev=e||event;
+				var needl=ev.clientX-l;
+				var needt=ev.clientY-t;
+				le.style.left=needl+'px';
+				le.style.top=needt+'px';
+				rt.style.top=needt+'px';
+				rt.style.left=-needl-100+'px';
+			}
+			document.onmouseup=function(){
+				document.onmouseover=document.onmouseup=null;
+			}
+		}
+	</script>
+</body>
+</html>

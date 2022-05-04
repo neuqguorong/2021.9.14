@@ -1,0 +1,71 @@
+angular - MVC
+M —  Model 模块、模型
+V -  View  视图
+C -  Controller  控制器
+
+angular
+偷懒的工具 程序员开发更简单
+数据驱动的框架
+Jquery
+事件驱动的框架
+
+ng
+1.你只需要顶住数据，不需要老想着Dom操作.
+2.NG的JS和原生的JS不通用、包括数据.
+
+双向绑定
+ng-model
+
+绑定－不是很好
+ng-bind
+
+{{a}} 模版 用起来比bind 舒服很多
+推荐大家用模版
+
+ng-init 初始值
+依赖注入
+
+ng-class 可以利用ng自己的数组去放入class
+
+ng-style 可以利用ng自己的Json去放入
+
+ng自己的东西 不用加模版
+不是ng自己的东西 都需要加模版
+
+ng是支持三目的 !非也可以用
+
+angular名字ng
+
+ng-show 只有给的ng的变量是true的时候才会显示
+
+ng-hide 只有给的ng的变量是true的时候才会隐藏
+
+ng的事件
+ng-click 事件
+
+原生js 和ng js的一个桥梁
+Controller
+
+循环 
+ng 私有的东西也加$
+$index 一种方法之一
+(key,value) in arr
+key -> index
+value -> 值
+
+过滤器
+filter:
+currency 货币
+date:'yy年MM月dd日 hh:mm:ss' 日期
+
+controller 提供的工具 原生都不好用
+$apply() 强制刷新
+
+
+$timeout
+$interval
+
+cancel 关定时器
+
+
+ 

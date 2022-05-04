@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+/*	var a=10;
+	function show(){
+		var b=a+10;
+		alert(b);
+		return b;
+	}
+	alert(a);//10
+	alert(show()+10);//NAN //NAN
+	alert(show());*///NAN //NAN
+ 	
+/* 	function show(){
+ 		var a=new Object();
+ 		a.b=10;
+ 		return a;
+ 	};
+ 	alert(show());//Object
+ 	alert(show().b);//10*/
+
+
+/* 	var a=function(){};
+ 	var b=a;
+ 	b.c=10;
+ 	var c=new b();
+ 	c.a=20;
+ 	alert(a.a);*/
+
+/* 	function a(){
+ 		this.e=new d();
+ 		console.log(this);
+ 		function d(){console.log(this);}
+ 	}
+ 	function b(){
+ 		a.call(this);
+ 	}
+ 	new a();*/ //调用者是a,
+
+/* 	var a=new Object('123');//再使用a，调用者就是window了。
+ 	a.b=function(){
+ 		console.log(this);
+ 		alert(this);//实例化，new了的对象，指向对象自己
+ 	};
+ 	a.b();*///b   //?????????????????????????????????????????????????
+
+
+/* 	var a=[1,2,3];
+ 	a.b=20;
+ 	a.c=function(){console.log(this);};//this指向a，因为a是实例化对象
+ 	a.c();// 1,2,3,  */
+
+/* 	var c=function(){
+ 		console.log(this);
+ 	}
+ 	new c();//c
+ 	c();//window*/
+
+
+/* 	function show(){
+ 		var a=new Object();
+ 		a.b=10;
+ 		a.c=function(){this.k=20;console.log(this);};//对象a
+ 		a.c();
+ 		console.log(a);//对象a
+ 		return a;
+ 	}
+ 	show();
+ 	alert(show().k);//20*/
+
+ 	var a=function(){};
+ 	var b=a;
+ 	b.m=10;
+ 	alert(a.m);//10
+ 	var c=new b();
+ 	c.n=20;
+ 	alert(a.n);//undefined
+ 	alert(b.n);//undefined
+</script>
+</body>
+</html>

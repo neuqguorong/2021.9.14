@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+</head>
+<body>
+    
+</body>
+<script>
+    // maxlength="1"
+     for(var i=0;i<11;i++)
+    {
+        $('<input maxlength="1">').css({
+            'float':'left',
+            'width':'20px',
+            'margin':'3px'
+        }).appendTo('body');
+    }
+   var aipt=document.getElementsByTagName('input');
+    for(var i=0;i<aipt.length;i++)
+    {
+        aipt[i].index=i;
+        aipt[i].oninput=function(){
+            aipt[this.index+1] && (this.blur(),aipt[this.index+1].focus());
+        }
+        aipt[i].onkeydown=function(e){
+            //console.log(e);
+            if(e.key=='Backspace')
+            {
+                this.value='';
+                this.blur();
+                setTimeout(function(){   
+                    aipt[this.index-2] && aipt[this.index-1].focus();
+                    //console.log(1);
+                },1)
+            }
+        }
+    }
+
+
+
+
+
+
+
+/*         $('<input>').on({
+            'input':function(){
+                $(this).blur();
+                $(this).next() && $(this).next().focus();
+            },
+            'keydown':function(e){
+                if(e.key=='Backspace')
+                {
+                    $(this).val('');
+                    $(this).blur();
+                    setTimeout(function(){
+                        $(this).prev().prev() && $(this).prev().focus();
+                    },1)
+                }
+            }
+        }) */
+    
+</script>
+</html>

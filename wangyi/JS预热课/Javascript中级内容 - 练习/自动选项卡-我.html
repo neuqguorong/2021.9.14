@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .a{background: red;}
+        .b{width: 200px;height: 200px;font-size: 100px;display: block;background: red;}
+        .e{display: none;}
+        button,a{font-size: 20px;margin-right: 10px;}
+    </style>
+</head>
+<body>
+    <div id="p1" class="p1">
+        <button class="a">1</button><button>2</button><button>3</button><a id="le" href="javascript:;">left</a><a id="ri" href="javascript:;">right</a>
+       
+        <div class="b">1</div><div class="e">2</div><div class="e">3</div>
+    </div>
+</body>
+<script>
+    var abtn=document.getElementsByTagName('button'),adiv=p1.getElementsByTagName('div');
+    var i=0,t=null;
+    function auto(){
+        for(var j=0;j<abtn.length;j++)
+        {
+            abtn[j].className='';
+            adiv[j].className='e';
+                //adiv[j].style.display='none';
+        }
+        abtn[i].className="a";
+        adiv[i].className="b";
+        //adiv[i].style.display='block';
+        i++;
+        if(i==abtn.length)i=0;
+    }
+
+    t=setInterval(auto,1000);
+
+    p1.onmouseover=function(){
+        clearInterval(t);  console.log('over'+i);
+        p1.onmouseout=function(){
+        t=setInterval(auto,1000);console.log('out'+i);
+        };
+    }
+
+   
+
+    le.onclick=function(){
+        clearInterval(t);//console.log(i);
+        for(var j=0;j<abtn.length;j++)
+        {
+            abtn[j].className='';
+            adiv[j].className='e';
+        }
+        i--;
+        if(i==-1)
+        {
+            i=abtn.length-1;
+        }
+        abtn[i].className="a";
+        adiv[i].className="b";
+    }
+
+    ri.onclick=function(){
+        clearInterval(t);//console.log(i);
+        for(var j=0;j<abtn.length;j++)
+        {
+            abtn[j].className='';
+            adiv[j].className='e';
+        }
+        i++;
+        if(i==abtn.length)
+        {
+            i=0;
+        }
+        abtn[i].className="a";
+        adiv[i].className="b";
+    }
+
+</script>
+</html>

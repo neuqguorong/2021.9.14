@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<!--     <script src="jquery-1.9.1.min.js"></script> -->
+    <script src="zepto.min.js"></script>
+    <script src="zTouch.min.js"></script>
+    <style>
+        .a{width: 100px;height: 100px;background: red;}
+        #d1{width: 100px;height: 100px;background: orange;}
+    </style>
+</head>
+<body>
+    <div id="d1">我是移动端div</div>
+</body>
+<script>
+    $('<div></div>').appendTo('body').addClass('a').on({
+/*         'click':function(){
+            console.log($(this).css('background'));
+        },
+        'tap':function(){
+            console.log('tap');
+        },
+        'longTap':function(){
+            console.log('longTap');
+        }, */
+        'swipeUp':function(){
+            console.log('swipeUp');
+        },
+    })
+
+/*     d1.addEventListener('touchstart',function(){
+        console.log('touchstart');
+    });
+    d1.addEventListener('touchmove',function(){
+        console.log('touchmove');
+    });
+    d1.addEventListener('touchend',function(){
+        console.log('touchend');
+    }); */
+
+/*     $('#d1').css({
+        'transition':'1s all ease',
+        'transform':'rotateX(45deg)'
+    }) */
+    $('#d1').on({
+        'click':function(){
+            $(this).css({
+                'transition':'1s all ease',
+                'transform':'rotate(45deg)'
+            })
+        }
+    })
+</script>
+</html>

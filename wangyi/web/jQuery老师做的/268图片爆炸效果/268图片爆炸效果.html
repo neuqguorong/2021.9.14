@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        #d1{width:680px;height: 344px;
+        position: absolute;left: 50%;top: 50%;margin:-172px 0 0 -340px;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+
+    <script>
+        function createboom(x,y,index){
+            var r=x,t=y;
+            for(var i=0;i<t;i++)
+            {
+                for(var j=0;j<r;j++)
+                {
+                    var odiv=document.createElement('div');
+                    odiv.style.width=d1.offsetWidth/r+'px';
+                    odiv.style.height=d1.offsetHeight/t+'px';
+                    odiv.style.float='left';
+                    odiv.style.background='url('+index+'.jpg)';
+                    //下面这方法对，直接赋值
+                    /* odiv.style.backgroundPositionX=-j*d1.offsetWidth/r+'px';
+                    odiv.style.backgroundPositionY=-i*d1.offsetHeight/t+'px'; */
+                    odiv.style.transition=Math.random()*0.5+1+'s all ease';
+                    d1.appendChild(odiv);
+                    //odiv的offsetWidth和odiv的offsetHeight，在odvi插入进去之后，才有
+                    odiv.style.backgroundPositionX=-j*odiv.offsetWidth+'px';
+                    odiv.style.backgroundPositionY=-i*odiv.offsetHeight+'px';
+                    //console.log(odiv.offsetWidth);
+                    
+                }
+            };
+
+            setTimeout(function(){
+                for(var i=0;i<d1.children.length;i++)
+                {
+                    //d1.children[i].style.position='absolute';
+                    d1.children[i].style.transform=
+                    'perspective('+(Math.random()*300+500)+'px) rotateX('+(Math.random()*360-180)+'deg)  rotateY('+(Math.random()*360-180)+'deg) scale('+(Math.random()*3+0.5)+') translateX('+(Math.random()*360-180)+'px)  translateY('+(Math.random()*360-180)+'px)'; 
+                    d1.children[i].style.opacity=0; 
+                    setTimeout(function(){
+                        d1.innerHTML='';
+                    },300);
+                }
+            },1400);
+        };
+
+        var imgindex=1;
+        setInterval(function(){
+            createboom(10,8,imgindex);
+            imgindex++;
+            if(imgindex==8)imgindex=1;
+        },100);
+        
+        
+    </script>
+</body>
+</html>

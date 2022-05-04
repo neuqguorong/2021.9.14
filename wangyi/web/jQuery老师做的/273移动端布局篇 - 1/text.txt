@@ -1,0 +1,40 @@
+回收
+null
+
+delete js 删除
+1.只能删除属性
+2.不能删除var的东西
+3.eval里面的var可以
+
+移动端兼容的浏览器
+iOS － 安卓
+苹果 － 三星、华为...
+Safari － 多了去了...
+没有ie、火狐…
+兼容Webkit内核就可以了
+最小宽度320 iPhone4 － iPhone5s
+
+display:-webkit-box;
+告诉你是个盒子
+-webkit-box-orient:horizontal;
+里面东西给我横着码
+-webkit-box-orient:vertical;
+里面东西给我竖着码
+*display:flex
+
+-webkit-box-flex:几份
+子级告诉人家分几份
+
+有几份就把父级的宽度／高度 除以几份在分给子级
+
+一种布局方式就够了 尽量不使用多种布局混合
+
+只支持块状元素
+算宽度／高度的时候别忘了 margin/padding
+如果子元素 没有flex 只有宽度／高度的时候 先用父级的宽度／高度 － 没有flex的元素的宽度／高度 在平均分flex份数
+
+如果子元素 又有flex 又有宽度／高度的时候 先用父级的宽度／高度 － 有宽度／高度 元素 最后在平均分flex份数
+
+如果分不开了最后一个元素会稍微多拿一点
+弹性布局 不继承 只适用于一层
+拿到设计图的 时候如果是移动端 px做 除以2

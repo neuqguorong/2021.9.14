@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 200px;height: 200px;background: #ccc;font-size: 100px;display: none;}
+        div:first-of-type{display: block;}
+        .m{background: red;}
+
+    </style>
+</head>
+<body>
+    
+</body>
+<script>
+    var jsondata={
+        'topvalue':[1,2,3],
+        'bottominner':['a','b','c']
+    };
+    createnode=json=>`${json.topvalue.map((x)=>`<input type=button value=${x}>`).join('')} 
+    ${json.bottominner.map((x)=>`<div>${x}</div>`).join('')} 
+    `;
+    console.log(createnode(jsondata));
+    document.body.innerHTML=createnode(jsondata);
+
+    const $=obj=>[...document.querySelectorAll(obj)];
+    console.log($('input'));//本身就是数组,三个 input
+    let allinput=new Set($('input'));
+    let alldiv=new Set($('div'));
+    console.log(allinput);
+    [...allinput][0].className='none';
+    [...allinput].forEach((i,index)=>{
+        i['onclick']=()=>{
+            [...allinput].forEach((i)=>{i.className=''});
+            [...alldiv].forEach((j)=>{
+                j.style.display='none';
+            });
+            [...alldiv][index].style.display='block';
+            [...allinput][index].className='m';
+        }
+    });
+
+    var i=0;
+    setInterval(() => {
+        i++;
+        (i==[...allinput].length)&&(i=0);
+        [...allinput].forEach(a=>a.className='');
+        [...alldiv].forEach(a=>a.style.display='none');
+        [...allinput][i].className='m';
+        [...alldiv][i].style.display='block';
+    }, 1000);
+</script>
+</html>

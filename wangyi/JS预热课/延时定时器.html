@@ -1,0 +1,10 @@
+<script type="text/javascript">
+	var timer1 =setTimeout(function a() {console.log("我在2秒后执行")
+		// body...
+	},2000)
+
+	var timer=setInterval(function b() {console.log("我是循环定时器执行的")},1000)
+    setTimeout(function(){clearInterval(timer)},5000)
+    setTimeout(function(){clearTimeout(timer1)},3000)
+</script>
+

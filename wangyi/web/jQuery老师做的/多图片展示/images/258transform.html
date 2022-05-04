@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 200px;height: 200px;background:black;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px;transition: 1s all ease;
+        transform: perspective(800px) rotateY(60deg);transform-style: preserve-3d;}
+        #d2{width: 200px;height: 200px;background:red;position: absolute;transition: 1s all ease;transform:translateZ(100px);}
+        #d3{width: 200px;height: 200px;background:green;position: absolute;transition: 1s all ease;transform:translateZ(-100px);}
+        #d4{width: 200px;height: 200px;background:yellow;position: absolute;transition: 1s all ease;transform:translateZ(-100px) rotateY(-90deg);transform-origin: left;}
+        #d5{width: 200px;height: 200px;background:blue;position: absolute;transition: 1s all ease;transform:translateZ(-100px) rotateY(90deg);transform-origin: right;}
+        #d6{width: 200px;height: 200px;background:pink;position: absolute;transition: 1s all ease;transform:translateZ(-100px) rotateX(90deg);transform-origin: top;}
+        #d7{width: 200px;height: 200px;background:aqua;position: absolute;transition: 1s all ease;transform:translateZ(-100px) rotateX(-90deg);transform-origin:bottom;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2"></div>
+        <div id="d3"></div>
+        <div id="d4"></div>
+        <div id="d5"></div>
+        <div id="d6"></div>
+        <div id="d7"></div>
+    </div>
+</body>
+<script>
+var t=null,i=0;
+t=setInterval(function(){
+    i++;//console.log('perspective(800px) rotateX('+i+'deg) rotateY('+i+'deg);');
+    d1.style.transform='perspective(800px) rotateX('+i+'deg) rotateY('+i+'deg)';
+},10)
+    
+</script>
+</html>

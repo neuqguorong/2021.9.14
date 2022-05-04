@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		div{width: 100px;height: 100px;background: pink;}
+	</style>
+</head>
+<body>
+	<div id='par'>1
+		<div>2</div>
+		<div>3</div>
+	</div>
+
+	<script type="text/javascript">
+		var d4=document.createElement('div');
+		d4.style.background='green';
+
+		//par.insertBefore(d4,par.children[1]);
+		//par.insertBefore(d4,par.children[0]);
+		par.appendChild(d4);
+	</script>
+</body>
+</html>

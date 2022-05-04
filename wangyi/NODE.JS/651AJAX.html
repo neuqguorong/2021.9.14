@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    用户名：<input id="ip1"><br>
+    密  码：<input id="ip2"><br>
+    <button id="bt1">注册</button><input type="button" id="bt" value="登陆">
+</body>
+<script>
+    var xhr=new XMLHttpRequest();
+    //xhr.open('get','http://localhost:1111?user=leo&pass=123456',true);
+
+/*     bt.onclick=function(){
+        xhr.open('get','http://localhost:1111?user='+ip1.value+'&pass='+ip2.value,true);
+        xhr.send();
+
+        //AJAX状态码发生改变时
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState==4)//AJAX状态码=4时，才可以收到响应
+            {
+                if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+                {
+                    console.log(xhr.responseText);
+                }
+                else{
+                    console.log('服务器错误');
+                }
+            }
+        }
+    } */
+
+
+//get方法，给后台发送数据，并且接收响应的程序
+    function ajax(opt)
+    {
+        var xhr=new XMLHttpRequest();
+        if(opt.type=='get')
+        {
+            xhr.open(opt.type,opt.url+'?'+jsontostr(opt.value),true);
+            xhr.send();
+        }
+        else if(opt.type=='post')
+        {
+            xhr.open('post',opt.url,true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//告诉后台要发送的数据类型，图片，字符串，之类的
+            xhr.send(jsontostr(opt.value));
+        }
+        
+
+        //AJAX状态码发生改变时
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState==4)//AJAX状态码=4时，才可以收到响应
+            {
+                if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+                {
+                    //console.log(xhr.responseText);
+                    opt.success(xhr.responseText);
+                }
+                else{
+                    //console.log('服务器错误');
+                    opt.error && opt.error();
+                }
+            }
+        }
+
+        function jsontostr(json)
+        {
+            var arr=[];
+            for(var i in json)
+            {
+                arr.push(i+'='+json[i]);
+            }
+            return arr.join('&');
+        }
+    }
+    
+
+
+    //注册时
+    bt1.onclick=function(){
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1111',
+            'value':{
+                'user':ip1.value,
+                'pass':ip2.value
+            },
+            'success':function(data){
+                if(data=='get登录成功')
+                {
+                    console.log(data);
+                    document.body.style.background='green';
+                }
+                else{
+                    console.log(data);
+                }
+                
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+
+        //post方式
+/*         var jsonpost={
+            'type':'post',
+            'url':'http://localhost:1112',
+            'value':{
+                'user':ip1.value,
+                'pass':ip2.value
+            },
+            'success':function(data){
+                if(data=='登录成功')
+                {
+                    console.log(data);
+                    document.body.style.background='green';
+                }
+                else{
+                    console.log(data);
+                }
+                
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonpost); */
+
+    }
+   
+//post方法，给后台发送数据，并且接收响应的程序
+/* bt.onclick=function(){
+    xhr.open('post','http://localhost:1112',true);
+    xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//告诉后台要发送的数据类型，图片，字符串，之类的
+    xhr.send('user='+ip1.value+'&pass='+ip2.value);
+    xhr.onreadystatechange=function(){
+        if(xhr.readyState==4)
+        {
+            if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+            {
+                console.log(xhr.responseText);
+            }
+        }
+    }
+} */
+
+    bt.onclick=function(){
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1114',
+            'value':{
+                'user':ip1.value,
+                'pass':ip2.value
+            },
+            'success':function(data){
+                if(data=='get登录成功')
+                {
+                    console.log(data);
+                    document.body.style.background='green';
+                }
+                else{
+                    console.log(data);
+                }
+                
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+    }
+
+    var a={'x':10,'y':'yy'};
+    var b={};
+    b[Object.values(a)[0]]=Object.values(a)[1];
+    console.log(b);
+    //console.log(JSON.stringify(a).includes('z'));
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <style type="text/css">
+#div1{width: 200px;height: 200px;background: black;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px;}
+
+    </style> 
+</head>
+<body>
+<div id='div1'></div>
+
+<script type="text/javascript">
+	
+	var timer = null;
+	div1.onclick = function(){
+		this.style.background = 'none';
+		var R = 10;
+		var L = 10;
+		for(var i = 0;i < R ;i++){
+			for(var j = 0;j <L;j++){
+
+				var oDiv = document.createElement('div');
+				oDiv.style.width = div1.offsetWidth / R + 'px';
+				oDiv.style.height =div1.offsetHeight/  L + 'px';
+				oDiv.style.float = 'left';
+				oDiv.style.background = 'black';
+				oDiv.style.transition =(0.5 + Math.random()*0.7)+'s all ease' 
+				div1.appendChild(oDiv);
+
+
+			}
+		}
+		var length = div1.children.length-1;
+		clearInterval(timer);
+		timer = setInterval(function(){
+			if(length == -1)clearInterval(timer);
+			div1.children[length].style.transform = 'translateY(300px)';
+			length--;
+		},30);
+	}
+</script>
+</body>
+</html>

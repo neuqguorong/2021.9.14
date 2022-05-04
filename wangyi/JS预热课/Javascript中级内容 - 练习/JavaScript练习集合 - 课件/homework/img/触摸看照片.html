@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin:0;padding: 0;}
+        #d1{width: 600px;height: 700px;}
+        
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+    for(var i=0;i<10;i++)
+    {
+        for(var j=0;j<10;j++)
+        {
+            var odiv=document.createElement('div');
+            odiv.style.cssText="width: 60px;height: 70px;float: left;background: url(b5.jpg)  no-repeat;";
+            odiv.style.backgroundPositionX=-j*60+'px';//
+            odiv.style.backgroundPositionY=-i*70+'px';//
+            //odiv.style.display='none';
+
+            odiv.onmouseover=function(){
+                this.style.display='block';
+            }
+            d1.appendChild(odiv);
+        }
+    }
+
+/*     for(var k=0;k<d1.children.length;k++)
+    {
+        d1.children[k].onmouseover=function(){
+            this.style.display='block';
+        }
+    } */
+
+    console.log([1,2,3].indexOf(3));
+</script>
+</html>

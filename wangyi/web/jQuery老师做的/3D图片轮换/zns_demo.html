@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>三维图片轮换</title>
+<link href="zns_style.css" rel="stylesheet" type="text/css" />
+<script src="jquery-1.9.1.min.js"></script>
+
+</head>
+
+<body>
+
+<ul id="znsRotatePic">
+	<li class="pic1">
+		<a href="http://baidu.com/"><img src="images/pic1.gif" alt="pic1" class="unactive" longdesc="http://www.zns.com" width="187" /></a><!-- 208 -->
+		<span></span>
+	</li>
+	<li class="pic2">
+		<a href="http://google.com/"><img src="images/pic2.gif" alt="pic2" longdesc="http://www.zns.com" width="208" /></a>
+		<span></span>
+	</li>
+	<li class="pic3">
+		<a href="http://www.zns.com/"><img src="images/pic3.gif" alt="pic3" class="unactive" longdesc="http://www.zns.com" width="187" /></a>
+		<span></span>
+	</li>
+</ul>
+<script type="text/javascript">
+	
+	var PosX = [];
+	var PosY = [];
+	var opa = [];
+	var ClassNameArr = [];
+	var imgW = [];
+	var imgT = [];
+	$('a').attr('href','javascript:;');
+
+	for(var i = 0;i < $('li').length;i++){
+		PosX.push($('li').eq(i).css('left'));
+		PosY.push($('li').eq(i).css('top'));
+		opa.push($('li img').eq(i).css('opacity'));
+		imgW.push($('li img').eq(i).css('width'));
+		imgT.push($('li img').eq(i).css('top'));
+
+		ClassNameArr.push($('li')[i].className);
+
+	};
+
+
+
+	$('body').on({
+		'click':function(){
+			PosX.unshift(PosX.pop());
+			PosY.unshift(PosY.pop());
+			ClassNameArr.unshift(ClassNameArr.pop());
+			opa.unshift(opa.pop());
+			imgW.unshift(imgW.pop());
+			imgT.unshift(imgT.pop());
+			for(var i = 0 ;i < $('li').length;i++){
+				$('li').eq(i).stop().animate({
+					'left':PosX[i],
+					'top':PosY[i]
+				},500);
+			};
+
+			for(var i = 0;i < $('li img').length;i++){
+				$('li img').eq(i).stop().animate({
+					'opacity':opa[i],
+					'width':imgW[i],
+					'top':imgT[i]
+				},500)
+			};
+
+			for(var i = 0;i < $('li').length;i++){
+				$('li')[i].className = ClassNameArr[i];
+			}
+		}
+	},'.pic3');
+	$('body').on({
+		'click':function(){
+			PosX.push(PosX.shift());
+			PosY.push(PosY.shift());
+			opa.push(opa.shift());
+			ClassNameArr.push(ClassNameArr.shift());
+			imgW.push(imgW.shift());
+			imgT.push(imgT.shift());
+			for(var i = 0 ;i < $('li').length;i++){
+				$('li').eq(i).stop().animate({
+					'left':PosX[i],
+					'top':PosY[i]
+				},500);
+			};
+
+			for(var i = 0;i < $('li img').length;i++){
+				$('li img').eq(i).stop().animate({
+					'opacity':opa[i],
+					'width':imgW[i],
+					'top':imgT[i]
+				},500)
+			};
+
+			for(var i = 0;i < $('li').length;i++){
+				$('li')[i].className = ClassNameArr[i];
+			}
+		}
+	},'.pic1');
+
+	$('body').on({
+		'click':function(){
+			alert('你真棒！');
+		}
+	},'.pic2')
+	//console.log(PosY);
+
+</script>
+</body>
+</html>

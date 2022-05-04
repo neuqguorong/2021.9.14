@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 200px;height: 200px;background: black;transform-origin: left center;transform: perspective(800px);margin: 200px;transition: 1s all ease;}
+        #d1:active{transform: rotateY(-180deg);}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+</body>
+<script>
+    var i=0;
+    setInterval(function(){
+        i++;
+        d1.style.transform='rotateY('+i+'deg)';
+    },10)
+</script>
+</html>

@@ -1,0 +1,32 @@
+classList
+
+可以对dom元素的class 操作
+add      添加一个类
+remove   删除一个类
+toggle   切换类
+contains 判断这个类 如果有就告诉你是个true没有就是false
+
+-webkit-clip-path:polygon 
+css3的任意形状
+
+0 - 1
+0 - 360
+-180 - 180
+
+移动端
+Pad ＋ 手机端
+
+一般来说的是手机端
+Pc      － windows  mac linux
+Mobile - 安卓 苹果 塞班 微软
+
+塞班 - Nokia － 芬兰 N99 
+苹果 - IOS  -> 30%  － 美国 IPhone7plus -> iPhone 3G -> iPhone 4
+Mac -> 0.3% WINDOWS -> 99% -> 1299 -> 番茄公园 -> 3% 
+微软 -> Nokia - WinPhone -> 拍照－摄影 <-> 日本  <-> 防偷拍法 -> 富士康收购 0.03%
+安卓 -> 59% -> 低端的手机使用 -> 美国 -> Google -> 开源 <-> 三星 -> 在使用安卓垂死
+-> 安卓 -> 加工 -> 火 -> 安卓是一个低端版的IOS -> 回收机制有问题 -> 华为、小米、中兴、黑莓、op....
+       -> 系统有时候不一致,浏览器显示不一样…
+       -> 测试人员买一堆手机。乐视 -> 一屋子手机
+
+Pad -> 苹果 -> 三星 -> 小米

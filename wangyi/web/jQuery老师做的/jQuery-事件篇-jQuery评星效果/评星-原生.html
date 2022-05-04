@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>评星效果</title>
+
+
+<style>
+*{margin:0;padding:0;}
+#pingfen{ width:142px;margin:10px auto;height:28px;}
+#pingfen li{ width:14px;float:left;height:28px; cursor:pointer;background:url(star.gif) no-repeat 0 0; list-style:none;}
+#pingfen .on{ width:14px;float:left;height:28px; cursor:pointer;background:url(star.gif) no-repeat -14px 0; list-style:none;}
+#pingfen .on1{ width:14px;float:left;height:28px; cursor:pointer;background:url(star.gif) no-repeat -14px -29px; list-style:none;}
+#pingfen .re{ width:14px;float:left;height:28px; cursor:pointer;background:url(star.gif) no-repeat 0 -29px; list-style:none;}
+</style>
+
+</head>
+
+<body>
+<div id="pingfen">
+	<ul>
+    	<li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+<script type="text/javascript">
+	var allLi = pingfen.children[0].children;
+	for(var i = 0;i < allLi.length;i++){
+		allLi[i].index = i;
+		if(i%2==1){
+			allLi[i].className = 'on';
+		};
+
+
+		allLi[i].onmouseover = function(){
+
+			for(var j = 0; j <= this.index;j++){
+				//console.log(j)
+
+
+
+				if(j%2==1){
+					allLi[j].className='on1';
+				}
+				else{
+					allLi[j].className='re';
+				}
+			}
+		};
+
+		allLi[i].onmouseout = function(){
+			for(var k = 0;k < allLi.length;k++){
+				if(k%2==1){
+					allLi[k].className = 'on';
+				}
+				else{
+					allLi[k].className = '';
+				}
+			};
+		};
+
+		allLi[i].onclick = function(){
+			alert('您评价了'+(this.index+1)*0.5+'分');
+			for(var i = 0;i < allLi.length;i++){
+				allLi[i].onclick = null;
+				allLi[i].onmouseover = null;
+				allLi[i].onmouseout  = null;
+			};
+
+		};
+	};
+
+
+</script>
+</body>
+</html>

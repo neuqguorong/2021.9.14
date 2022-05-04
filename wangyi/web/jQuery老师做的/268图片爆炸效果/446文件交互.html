@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{width: 100%;height: 100%;font-size: 50px;}
+        #d2{width: 0; height: 30px;background: -webkit-linear-gradient(left,red,green);}
+    </style>
+</head>
+<body>
+    <div>
+        file name:<span id="sp1"></span><br>
+        file size:<span id="sp2"></span><br>
+    </div>
+    <div id="d2"></div>
+</body>
+<script>
+    //当拖入文件时，执行
+/*     ondragenter=function(e){
+        this.innerHTML='file enter';
+    } */
+
+    document.body.ondragenter=function(e){
+        this.style.background='red';
+        this.innerHTML+='file enter/ ';
+    }
+
+    //当拖入的文件离开时，执行
+    document.body.ondragleave=function(e){
+        this.style.background='white';
+        this.innerHTML+='file leave/ ';
+    }
+
+    //当拖入的文件在元素内时（文件拖入到拖出为止，一直执行）
+    var i=0;
+    document.body.ondragover=function(e){
+        document.title=i++;
+        //this.innerHTML+='file in dom/ ';
+        return false;
+    }
+
+    //当拖入的文件在元素内,撒手时执行
+    document.body.ondrop=function(e){
+        //console.log(e);//DragEvent
+        this.style.background='yellow';
+        this.innerHTML+='file is droped dom/ ';
+
+        //读取文件，先new一个文件对象，再转为二进制，再加载进程，
+        var ofile=e.dataTransfer.files[0];
+        sp1.innerHTML=ofile.name;
+        sp2.innerHTML=ofile.size;
+        var reader=new FileReader();
+        reader.readAsBinaryString(ofile);
+        reader.onprogress=function(e){
+            console.log(e);//ProgressEvent
+            d2.style.width=parseInt(e.loaded/e.total*100)+'%';
+            if(e.loaded==e.total)
+            {
+                d2.style.width=0; 
+            }
+        }
+        return false;
+    }
+    
+    
+</script>
+</html>

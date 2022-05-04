@@ -1,0 +1,19 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+</head>
+<body>
+<script type="text/javascript">
+function b(x,y,z){
+	arguments[2] = 10;
+	alert(z);//10
+
+}
+b(1,2,3);
+alert(arguments[2])//Error
+
+</script>
+</body>
+</html>

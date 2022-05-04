@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 200px;height: 200px;background: #ccc;font-size: 50px;}
+        div:after{content: '1';}
+        input:nth-child(2):checked~div:after{background: red;content: '2';}
+        input:nth-child(3):checked~div:after{background: red;content: '3';}
+        input:nth-child(4):checked~div:after{background: red;content: '4';}
+    </style>
+</head>
+<body>
+    <input type="radio" name="a" checked>
+    <input type="radio" name="a">
+    <input type="radio" name="a">
+    <input type="radio" name="a">
+    <div></div>
+</body>
+</html>

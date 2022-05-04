@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        #d1{width: 720px;height: 30px;}
+        #d1 div{width: 2px;height: 100%;float: left;}
+        #d2{width: 100px;height: 100px;margin-top: 10px}
+    </style>
+</head>
+<body style="background: black;"> 
+    <canvas id="cv" width="500" height="500" style="background: white;"></canvas>
+    <div id="d1"></div>
+    <div id="d2"></div>
+</body>
+<script>
+    /* var xhr=new XMLHttpRequest();
+    xhr.open('get',url,true);//url是后台的地址
+     xhr.send(); */
+/*      for(var i=0;i<360;i++)
+    {
+        var odiv=document.createElement('div');
+        odiv.style.background='hsl('+(i+1)+',50%,50%)';
+        d1.appendChild(odiv);
+    }
+    //console.log(d1.children[d1.children.length-1],d1.children[0]);
+
+   setInterval(()=>{
+        d1.insertBefore(d1.children[d1.children.length-1],d1.children[0]);
+        d2.style.background=getComputedStyle(d1.children[0])['background'];
+    },10); */
+
+    //画黑棋，棋子的半径是13，放射状的半径是1，x2=x1+8,y2=y1-7,r2=1
+    var ctx=cv.getContext('2d');
+
+    function heiqi(x1,y1,r1,x2,y2,r2){
+        ctx.beginPath();
+        ctx.fillStyle='black';
+        ctx.arc(x1,y1,r1,0,Math.PI*2);
+        ctx.fill();
+        ctx.stroke();
+        var grd=ctx.createRadialGradient(x1,y1,r1,x2,y2,r2);
+        grd.addColorStop(0,"black");
+        grd.addColorStop(1,"white"); 
+        ctx.fillStyle=grd;
+        ctx.fill();
+    }
+    //heiqi(100,100,13,108,93,1);
+
+    //画白棋，棋子的半径是13，放射状的半径是1，x2=x1+8,y2=y1-7,r2=1
+    function baiqi(x1,y1,r1,x2,y2,r2){
+        ctx.beginPath();
+        ctx.fillStyle='white';
+        ctx.arc(x1,y1,r1,0,Math.PI*2);
+        ctx.fill();
+        ctx.stroke();
+        var grd=ctx.createRadialGradient(x1,y1,r1,x2,y2,r2);
+        grd.addColorStop(0,"white");
+        grd.addColorStop(1,"lightgray"); 
+        ctx.fillStyle=grd;
+        ctx.fill();
+    }
+    //baiqi(100,100,13,108,93,1);
+
+    //画棋盘
+    for(var i=0;i<15;i++)
+    {
+        ctx.beginPath();
+        ctx.moveTo(30,30+i*30);
+        ctx.lineTo(450,30+i*30);
+        ctx.moveTo(30+i*30,30);
+        ctx.lineTo(30+i*30,450);
+        ctx.stroke();
+    }
+
+    //棋盘上，该位置没有子，chessboard[i][j]=0,有子，chessboard[i][j]=1
+    var chessboard=[];
+    for(var i=0;i<15;i++)
+    {
+        chessboard[i]=[];
+        for(var j=0;j<15;j++)
+        {
+            chessboard[i][j]=0;
+        }
+    }
+    
+    //计算五子棋共有多少种赢法
+    var wins=[],count=0;
+    for(var i=0;i<15;i++)
+    {
+        wins[i]=[];
+        for(var j=0;j<15;j++)
+        {
+            wins[i][j]=[];
+        }
+    }
+
+    //横着赢法
+    for(var i=0;i<15;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i][j+k][count]=true;
+            }
+            count++;
+        }  
+    }
+
+    //纵着赢法
+    for(var i=0;i<11;i++)
+    {
+        for(var j=0;j<15;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i+k][j][count]=true;
+            }
+            count++;
+        }  
+    }
+
+    //右下方斜着赢法
+    for(var i=0;i<11;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i+k][j+k][count]=true;
+            }
+            count++;
+        }
+    }
+
+    //左下方斜着赢法
+    for(var i=4;i<15;i++)
+    {
+        for(var j=0;j<11;j++)
+        {
+            for(var k=0;k<5;k++)
+            {
+                wins[i-k][j+k][count]=true;
+            }
+            count++;
+        }
+    }
+    //console.log(wins,count);
+
+    var mywin=[],cpwin=[];//记录某种赢法上，有多少个子，当某种赢法上有5个子时，就赢了
+    for(var i=0;i<count;i++)
+    {
+        mywin[i]=0;  
+        cpwin[i]=0;
+    }
+
+    //确定落子点坐标(x3,y3)
+    var arr=[];
+    cv.onclick=function(e){
+        //console.log(e.offsetX,e.offsetY,Math.round(e.offsetX/30)-1,Math.round(e.offsetY/30)-1);
+        var i=Math.round(e.offsetX/30)-1;
+        var j=Math.round(e.offsetY/30)-1;
+/*         if(JSON.stringify(arr).indexOf(JSON.stringify({i,j}))!=-1)
+        {
+            alert('这个位置已经有棋子了，请在其他没有棋子的地方下棋子');
+        } */
+        //console.log(i,j);
+        if(chessboard[i][j]==1 || chessboard[i][j]==2)
+        {
+            alert('这个位置已经有棋子了，请在其他没有棋子的地方下棋子');
+            return;
+        }
+        
+        arr.push({i,j});
+        heiqi((i+1)*30,(j+1)*30,13,(i+1)*30+8,(j+1)*30-7,1);
+        chessboard[j][i]=1;
+         
+        for(var k=0;k<count;k++)
+        {
+            if(wins[i][j][k])//每种赢法
+            {
+                mywin[k]++;//让每种赢法的子数加1
+                if(mywin[k]==5)//如果，某种赢法的子数，到5了，那就赢了
+                {
+                    console.log('你胜了');
+                }
+            }
+        }
+        computerAI();
+        console.log(chessboard);
+    }
+
+    function computerAI(){
+        //电脑应该先防守，在有落子点的周围，得到最高危险分，在那个位置落子
+        var score=[],cpscore=[];
+        var max=0,u=0,v=0;
+        //初始化，所有的分数为0
+        for(var i=0;i<15;i++)
+        {
+            score[i]=[];
+            cpscore[i]=[];
+            for(var j=0;j<15;j++)
+            {
+                score[i][j]=0;
+                cpscore[i][j]=0;
+            }
+        }
+        
+        //在没有落子的位置，计算危险分
+        for(var i=0;i<15;i++)
+        {
+            for(var j=0;j<15;j++)
+            {
+                if(chessboard[i][j]==0)//在没有落子的位置
+                {
+                    for(var k=0;k<count;k++)
+                    {
+                        if(wins[i][j][k])
+                        {
+                            //电脑计算人的危险分
+                            switch(mywin[k]){
+                                case 1:score[i][j]+=2;break;
+                                case 2:score[i][j]+=5;break;
+                                case 3:score[i][j]+=10;break;
+                                case 4:score[i][j]+=20;break;
+                            }
+
+                            //电脑计算电脑的进攻分
+                            switch(cpwin[k]){
+                                case 1:cpscore[i][j]+=2.1;break;
+                                case 2:cpscore[i][j]+=5.1;break;
+                                case 3:cpscore[i][j]+=10.1;break;
+                                case 4:cpscore[i][j]+=50;break;
+                            }
+                        }
+                    }
+                }
+
+                //电脑防守
+                if(score[i][j]>max)
+                {
+                    max=score[i][j];
+                    u=i,v=j;
+                }
+                else if(score[i][j]==max)
+                {
+                    if(cpscore[i][j]>cpscore[u][v])
+                    {
+                        u=i;
+                        v=j;    
+                    }
+                }
+
+                //电脑进攻
+                if(cpscore[i][j]>max)
+                {
+                    max=cpscore[i][j];
+                    u=i,v=j;
+                }
+                else if(cpscore[i][j]==max)
+                {
+                    if(score[i][j]>score[u][v])
+                    {
+                        u=i;
+                        v=j;    
+                    }
+                }
+            }
+        }
+        
+        //console.log(score,u,v,max);
+        baiqi((v+1)*30,(u+1)*30,13,(v+1)*30+8,(u+1)*30-7,1);
+        chessboard[u][v]=2;
+        
+        for(var k=0;k<count;k++)
+        {
+            if(wins[u][v][k])//每种赢法
+            {
+                cpwin[k]++;//让每种赢法的子数加1
+                if(cpwin[k]==5)//如果，某种赢法的子数，到5了，那就赢了
+                {
+                    console.log('电脑胜了');
+                }
+            }
+        }
+    }
+
+    
+
+
+/*     var a=[];
+    for(var i=0;i<3;i++)
+    {
+        a[i]=[];
+        for(var j=0;j<3;j++)
+        {
+            a[i][j]=i*3+j;
+        }
+    }
+    console.log(a); */
+</script>
+</html>

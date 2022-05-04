@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			#div1 {
+				width: 100px;
+				height: 100px;
+				background-color: #697;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="div1"></div>
+		<button id="btn">点击</button>
+		<script>
+			var divW = 100;
+			var divH = 100;
+			var w = window.screen.width;
+			var h = window.screen.height;
+			btn.onclick = function () {
+				let clear = setInterval(function () {
+					if(divW == w) {
+						//console.log('最大宽度')
+						clearInterval(clear)
+					}else {
+						divW++;
+					};
+					if(divH == h){
+						//console.log('最大高度')
+					}
+					else {
+						divH++;
+					}
+					
+					div1.style.cssText = 'width:'+divW+'px;height:'+divH+'px';
+				},1)
+				
+			}
+		</script>
+	</body>
+</html>

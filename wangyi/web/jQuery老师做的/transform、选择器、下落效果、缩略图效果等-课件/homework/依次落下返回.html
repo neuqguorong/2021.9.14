@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+
+
+
+</head>
+
+<body>
+<script type="text/javascript">
+
+//Create Div 
+for(var i = 0;i < 20;i++){
+	var oDiv = document.createElement('div');
+	oDiv.style.position = 'absolute';
+	oDiv.style.top = '0px';
+	oDiv.style.left = i*60+'px';
+	oDiv.style.height = '50px';
+	oDiv.style.width = '50px';
+	oDiv.style.background = 'red';
+	oDiv.style.transition = '0.5s all ease'
+	document.body.appendChild(oDiv);
+};
+//
+var INDEX = 0;
+var TIMER = null;
+var ZHANGRUI = 1;
+var allDiv = document.getElementsByTagName('div');
+document.onclick = function(){
+	if(ZHANGRUI == 2)return;
+	ZHANGRUI = 2;
+	if(INDEX == 0){
+		clearInterval(TIMER);
+		TIMER = setInterval(function(){
+			if(INDEX == allDiv.length)
+				{
+					clearInterval(TIMER);
+					INDEX = allDiv.length-1;
+					ZHANGRUI = 1;
+					return;
+				}
+			allDiv[INDEX].style.top = '200px';
+			INDEX++;
+		},30);
+	}
+	else{
+		console.log(INDEX);
+		clearInterval(TIMER);
+		TIMER = setInterval(function(){
+			if(INDEX == -1){
+				clearInterval(TIMER);
+				INDEX = 0;
+				ZHANGRUI = 1;
+				return;
+
+			}
+			allDiv[INDEX].style.top = '0px';
+			INDEX--;
+		},30);
+	}
+	
+}
+
+</script>
+</body>
+</html>
+

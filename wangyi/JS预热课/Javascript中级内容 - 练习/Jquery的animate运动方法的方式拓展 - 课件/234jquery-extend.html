@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        .a{width: 100px;height: 100px;background: #ccc;margin: 10px;}
+        .b{border: 5px solid black;}
+        .c{color: yellow;}
+        .d{color: green;}
+    </style>
+</head>
+<body>
+    <div>im tag div  1</div><div>im tag div  2</div><div>im tag div  3</div>
+    <div id="d1">my id is d1 div</div>
+    <div class="d2">my class is d2 div</div><div class="d2">my class is d2 div</div><div class="d2">my class is d2 div</div>
+
+    <p>wsedrfghgfrefw</p>
+</body>
+<script>
+    //console.log($('div'));//以数组方式存储
+/*     $('div').addClass('a');//可以给所有的div添加类a
+
+    //extend方法，用来添加接口，里面放对象，扩展jquery对象，可以放json
+    $.extend({
+        'a1':function(){
+            console.log(this);
+        },
+        'a2':function(){
+            $('div').addClass('b');
+        },
+        'a3':function(){
+            return {w:innerWidth,h:innerHeight}
+        }
+    })
+    $.a1();//ƒ (e,t){return new b.fn.init(e,t,r)}
+    $.a2();
+    console.log($.a3(),$.a3().w); */
+
+    //$('body').css('background','pink');//一个键值对，中间用逗号隔开
+
+    //
+/*     $.fn.extend({
+        'fn1':function(){
+            $(this).addClass('a b');
+
+        }
+    })
+    $('div').fn1();
+    $('div')[0].style.fontWeight=800;//如果用原生的方法给样式，需要选中那个元素，再用原生的方法给予 */
+
+    //$调用
+    function a4(dom){
+        //console.log(dom);
+        this.dom=dom;
+        this.arr=[];
+        switch(dom.charAt(0)){
+            case '#':this.lastlength=this.arr.length;
+                this.arr.push(document.getElementById(dom.substring(1)));
+                this.nowlength=this.arr.length;
+                console.log(this.arr,this.arr[0],this.arr.length,this.lastlength,this.nowlength);
+                this.arr[0].classList.add('b');
+                break;
+            case '.':this.lastlength=this.arr.length;
+                this.arr.push(document.getElementsByClassName(dom.substring(1)));
+                this.nowlength=this.arr.length;
+                console.log(this.arr,this.arr[0],this.arr.length,this.lastlength,this.nowlength);
+                for(var i=0;i<this.arr[0].length;i++)
+                {
+                    this.arr[0][i].classList.add('c');
+                }
+                break;
+            default:this.lastlength=this.arr.length;
+                this.arr.push(document.getElementsByTagName(dom));
+                this.nowlength=this.arr.length;
+                console.log(this.arr,this.arr[0],this.lastlength,this.nowlength); break;
+        }
+    }
+    a4.prototype={
+        'addclass':function(){
+            for(var i=0;i<this.arr[0].length;i++)
+            {
+                this.arr[0][i].classList.add('a');
+            }
+        },
+        'width':function(ar){
+            console.log(typeof(ar),this.arr,this.arr.length,this.arr[0].length);
+            if(this.arr.length==1 && this.arr[0].length==undefined)
+            {
+                console.log(1,this.arr[0]);
+                if((typeof(ar))=='number')
+                this.arr[0].style.width=ar+'px';
+                if(typeof(ar)=='string')
+                this.arr[0].style.width=ar;
+            }
+            else{
+                for(var i=0;i<this.arr[0].length;i++)
+                {
+                    if((typeof(ar))=='number')
+                    this.arr[0][i].style.width=ar+'px';
+                    if(typeof(ar)=='string')
+                    this.arr[0][i].style.width=ar;
+                }
+            }
+        },
+        'css':function(ar){
+            console.log(ar,arguments,arguments[0],arguments[1],ar.length);
+            if(arguments.length==2)
+            {
+                if(this.arr.length==1 && this.arr[0].length==undefined)
+                {
+                    //console.log(1,this.arr[0]);
+                    if((typeof(arguments[1]))=='number')
+                    this.arr[0].style[arguments[0]]=arguments[1]+'px';
+                    if(typeof(arguments[1])=='string')
+                    this.arr[0].style[arguments[0]]=arguments[1];
+                }
+                else{
+                    console.log(2);
+                    for(var i=0;i<this.arr[0].length;i++)
+                    {
+                        if((typeof(arguments[1]))=='number')
+                        this.arr[0][i].style[arguments[0]]=arguments[1]+'px';
+                        if(typeof(arguments[1])=='string')
+                        this.arr[0][i].style[arguments[0]]=arguments[1];
+                    }
+                }
+            }
+            else{
+                for(var j in ar)
+                {
+                    if(this.arr.length==1 && this.arr[0].length==undefined)
+                    {
+                        this.arr[0].style[j]=ar[j];
+                    }
+                    else{
+                        for(var i=0;i<this.arr[0].length;i++)
+                        {
+                            this.arr[0][i].style[j]=ar[j];
+                        }
+                    }
+                }
+            }
+        }
+    }
+    function $(dom){return new a4(dom);}
+    $('#d1').addclass();
+    $('.d2').addclass();
+    $('div').addclass();
+
+    $('#d1').width(200);
+    $('.d2').width(300);
+    //$('div').width(150);
+
+    $('.d2').css('height','150px');
+    $('#d1').css({
+        'width':'330px',
+        'height':'250px',
+        'background':'green',
+        'fontSize':'20px'
+    });
+</script>
+</html>

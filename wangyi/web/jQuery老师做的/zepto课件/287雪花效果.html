@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
+    <title>Document</title>
+    <script src='jquery-1.9.1.min.js'></script>
+    <script src='zepto.min.js'></script>
+    <script src='zTouch.min.js'></script>
+    <script src='zepto.fx.js'></script>
+    <style>
+        p{width: 100px;height: 100px;background: red;}
+    </style>
+</head>
+<body style="background: black;color: white;font-size: 30px;">
+    <!-- <p></p> -->
+    <audio controls autoplay loop src="https://webfs.ali.kugou.com/202202051546/dfc5a06298dade933a5044fc6b94bba1/KGTX/CLTX001/2ea676a1909504d999a106d1f3203410.mp3">
+        
+    </audio>
+</body>
+<script>
+
+    function snow(){
+        var xuehua ='❄❅❆'.split('');
+            $('<div>'+xuehua[parseInt(Math.random()*3)]+'</div>').css({
+                'position':'absolute',
+                'left':Math.random()*100+'%',
+                'top':'-5%',
+                'transition':Math.random()*3+1+'s all ease'
+            }).appendTo('body');
+            
+
+            //console.log($('div'));
+            setTimeout(function(){
+                $('div').css({
+                    'top':'110%',
+                    'transform':'rotate('+(Math.random()*720-360)+'deg) scale('+(Math.random()*3)+')'
+                });
+                snow();
+            },1);
+
+/*         $('<div>'+xuehua[parseInt(Math.random()*3)]+'</div>').css({
+                'position':'absolute',
+                'left':Math.random()*100+'%',
+                'top':Math.random()*10+'%',
+                'transition':Math.random()*3+1+'s all ease'
+        }).appendTo('body'); */
+
+        //console.log($('div'));
+        
+    }
+
+    snow();
+   /*  var j=10;
+    while(j--)
+    {
+        
+    }
+     */
+    setInterval(function(){
+        if($('div').length>100)
+        {
+            for(var i=0;i<100;i++)
+            {
+                $('div').eq(i).remove();
+            }
+        }
+        console.log($('div').length);
+    },2000);
+</script>
+</html>

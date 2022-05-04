@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <!-- <script src='jquery-1.9.1.min.js'></script> -->
+    <script src='zepto.min.js'></script>
+    <script src='zTouch.min.js'></script>
+    <script src='zepto.fx.js'></script>
+    <style>
+        .a{width: 200px;height: 200px;background:black;}
+    </style>
+</head>
+<body>
+    <script>
+        $('<div></div>').addClass('a').appendTo('body').on({
+            'click':function(){
+            /*     $(this).animate({
+                    'transform':'rotate(45deg)'//不能动，因为jquery是低端的
+                }) */
+
+                //$(this).css('transform','rotate(45deg)');//转动45°
+
+                //只能通过修改css来实现动画
+             /*    $(this).css({
+                    'transform':'perspective(800px) rotate(45deg) rotateY(45deg)',
+                    'transition':'1s all ease'
+                }) */
+
+                //用zepto实现动画
+                $(this).animate({
+                    'rotate':'90deg'
+                },1000,'ease');
+
+                
+            }
+        },1000)
+    </script>
+</body>
+</html>

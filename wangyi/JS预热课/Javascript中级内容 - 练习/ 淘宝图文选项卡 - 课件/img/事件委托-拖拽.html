@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        div{width: 100px;height: 100px;background: red;margin: 10px;font-size: 50px;}
+        .drag{position: relative;}
+        #d1{margin: 20px;position: absolute;left: -20;top: -20;}
+    </style>
+</head>
+<body>
+    <div id="d1" class="a drag">132</div>
+   <!--  <div class="a drag">asz</div>
+    <div class="a ">sfd</div> -->
+</body>
+<script>
+/*     document.onclick=function(e){
+        var ev=e||event;
+        var itarget=ev.srcElement||ev.target;
+        if(itarget.nodeName=='DIV')
+        {
+            itarget.style.background='green';
+        }
+        if(itarget.className=='a')
+        {
+            itarget.innerHTML='a';
+        }
+    } */
+
+    function getstyle(obj,name){
+        if(obj.currentStyle)
+        {
+            return obj.currentStyle[name];
+        }
+        else if(getComputedStyle)
+        {
+            return getComputedStyle(obj,false)[name];
+        }
+    }
+
+    console.log(getstyle(d1,'width'));
+
+    //事件委托，指定类的DIV元素才能拖拽
+    document.onmousedown=function(e){
+        var ev=e||event;
+        var itarget=ev.srcElement||ev.target;
+        if(itarget.className.indexOf('drag')!=-1)
+        {
+            //console.log(itarget);
+            var left0=itarget.offsetLeft,left1=ev.clientX-left0;
+            var top0=itarget.offsetTop,top1=ev.clientY-top0,x=[0],y=[0],len=0,t=null;//
+            console.log(x,y);
+            document.onmousemove=function(e){
+                var ev=e||event,left2=ev.clientX-left1,top2=ev.clientY-top1;
+                left2<-left0?left2=-left0:left2=left2;
+                top2<-top0?top2=-top0:top2=top2;
+                left2>innerWidth-parseFloat(getstyle(d1,'width'))?left2=innerWidth-parseFloat(getstyle(d1,'width')):left2=left2;
+                top2>innerHeight-parseFloat(getstyle(d1,'height'))?top2=innerHeight-parseFloat(getstyle(d1,'height')):top2=top2;
+                //console.log(left2,top2,-itarget.offsetLeft);
+                x.push(left2),y.push(top2);console.log(x.length,x);
+                itarget.style.left=left2+'px';
+                itarget.style.top=top2+'px';
+                len=x.length;
+            }
+            document.onmouseup=function(){
+/*                 for(var i=0;i<len;i++)
+                {
+                    itarget.style.left=x.pop()+'px';
+                    itarget.style.top=y.pop()+'px';
+                } */
+
+                t=setInterval(function(){
+                    itarget.style.left=x.pop()+'px';
+                    itarget.style.top=y.pop()+'px';
+                    x.length==0&&clearInterval(t);
+                },10);
+
+                console.log(x,x.length);
+                document.onmousemove=document.onmouseup=null;
+            }
+            return false;
+        }
+    }
+
+
+    //匿名函数写事件委托，拖拽
+/*     (function(d){
+        d.onmousedown=function(e){
+        var ev=e||event;
+        var itarget=ev.srcElement||ev.target;
+        if(itarget.className.indexOf('drag')!=-1)
+        {
+            //console.log(itarget);
+            var l=ev.clientX-itarget.offsetLeft;
+            var t=ev.clientY-itarget.offsetTop;
+            d.onmousemove=function(e){
+                var ev=e||event;
+                itarget.style.left=ev.clientX-l+'px';
+                itarget.style.top=ev.clientY-t+'px';
+            }
+            d.onmouseup=function(){
+                d.onmousemove=d.onmouseup=null;
+            }
+            return false;
+        }
+    }
+    })(document); */
+
+</script>
+</html>

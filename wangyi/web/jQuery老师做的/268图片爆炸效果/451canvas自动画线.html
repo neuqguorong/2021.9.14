@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+</body>
+
+<script>
+/*     //自动画线，线颜色宽度起点终点都任意
+    var obj=canvas.getContext('2d');
+    setInterval(function(){
+        obj.beginPath();
+        obj.strokeStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+        obj.lineWidth=parseInt(Math.random(0,1)*20);
+        obj.moveTo(Math.random(0,1)*500,Math.random(0,1)*500);
+        obj.lineTo(Math.random(0,1)*500,Math.random(0,1)*500);
+        obj.stroke();
+    },30); */
+
+    //画矩形
+/*     var obj=canvas.getContext('2d');console.log(obj);
+    obj.beginPath();
+    obj.rect(50,50,100,100);
+    obj.strokeStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+    obj.lineWidth=parseInt(Math.random(0,1)*20);
+    obj.fillStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+    obj.fill();//给矩形框填充颜色，默认黑色
+    obj.stroke();  */
+
+    var obj=canvas.getContext('2d');console.log(obj);
+    function cleearrect(){
+        obj.beginPath();
+        obj.clearRect(0,0,canvas.width,canvas.height);//清楚矩形全部
+        obj.stroke();
+    }
+  
+
+    //画矩形
+    function drawrect(obj,x,y){
+        obj.beginPath();
+        obj.rect(x,y,100,100);
+        obj.strokeStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+        obj.lineWidth=parseInt(Math.random(0,1)*20);
+        obj.fillStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+        obj.fill();//给矩形框填充颜色，默认黑色
+        obj.stroke();
+    }
+    var startx=50,starty=50;
+    drawrect(obj,startx,starty)
+
+/*     //canvas移动原理，实际上是先清楚，再给画一个原图
+    canvas.onmousemove=function(e){
+        cleearrect();
+        var ev=e||event;
+        
+        //画矩形,因为又随机颜色宽度，相当于移动变色
+        //var obj=canvas.getContext('2d');console.log(obj);
+        drawrect(obj,ev.clientX,ev.clientY);
+    } */
+
+    //拖拽canvas,借助画板起点
+/*     canvas.onmousedown=function(e){
+        var ev=e||event;
+        var startmovex=ev.clientX-startx;
+        var startmovey=ev.clientY-starty;
+        document.onmousemove=function(e){
+            var ev=e||event;
+            cleearrect();
+            drawrect(obj,ev.clientX-startmovex,ev.clientY-startmovey);
+        }
+        document.onmouseup=function(e){
+            var ev=e||event;
+            startx=ev.clientX-startmovex;
+            starty=ev.clientY-startmovey;
+            document.onmousemove=document.onmouseup=null;
+        }
+    } */
+
+    //画圆
+    //把角度转化成弧度
+    function jiaodu(deg){
+        return deg*Math.PI/180;
+    }
+    obj.beginPath();
+    //obj.arc(250,250,100,(Math.PI)/3,true);
+    //obj.arc(250,250,100,(Math.PI)/3,false);
+    obj.arc(250,250,100,0,(Math.PI)/3,false);//要包含起点和终点
+    obj.stroke();
+
+
+    var a=0;
+    setInterval(function(){
+
+/*         //画一段圆弧，并且让圆弧自动转，转动过程中，弧长加长。
+        a++;
+        cleearrect();
+        obj.beginPath();
+        obj.strokeStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+        obj.lineWidth=parseInt(Math.random(0,1)*20);
+        //obj.arc(250,250,100,0+jiaodu(a),jiaodu(60+a),false);//要包含起点和终点
+        obj.arc(250,250,100,0+jiaodu(a),jiaodu(60+a*1.2),false);//让圆弧再转动过程中，连接起来
+        obj.stroke(); */
+
+        //任意画矩形
+        obj.beginPath();
+        obj.strokeStyle='rgb('+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+','+parseInt(Math.random(0,1)*256)+')';
+        obj.lineWidth=parseInt(Math.random(0,1)*20);
+        obj.rect(Math.random()*canvas.width,Math.random()*canvas.height,Math.random()*canvas.width,Math.random()*canvas.height);
+        obj.stroke();
+    },20)
+</script>
+</html>

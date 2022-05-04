@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #d1{width: 400px;height: 400px;border: 10px solid black; border-radius: 50%;position: absolute;}
+        #d2{width: 20px;height: 20px;background: black; border-radius: 50%; position: absolute;left: 50%;top: 50%;margin-left: -10px;margin-top: -10px;}
+        #mz,#fz,#sz{position: absolute;left: 10px;top: 10px; height: 180px;width:1px;margin-left: -0.5px;margin-top: -180px; background: black;transform-origin: bottom center;}
+        #fz{height: 160px; width: 2px;background:darkgoldenrod;margin-left: -1px;margin-top: -160px;}
+        #sz{height: 140px; width: 3px;background: red;margin-left: -1.5px;margin-top: -140px;}
+        .dg{width: 400px;height: 12px;position: absolute;left: 0; top: 50%;margin-top: -6px;}
+        .dgle,.dgri{width: 10px;height: 100%;position:absolute; background: black;}
+        .dgri{right: 0;}
+        .dgle div{position: absolute; margin:-6px 0 0 20px;text-align: center;font-size: 20px;}
+        .dgri div{position: absolute;margin:-6px 0 0 -20px;text-align: center;font-size: 20px;}
+        .xg{width: 400px;height: 6px;position: absolute;top: 50%;margin-top: -3px;transform: rotate(6deg);}
+        .xgle,.xgri{width: 8px;height: 100%;position:absolute; background: black;}
+        .xgri{right: 0;}
+    </style>
+</head>
+<body>
+    <div id="d1">
+        <div id="d2">
+            <div id="mz"></div>
+            <div id="fz"></div>
+            <div id="sz"></div>
+        </div>
+
+        <div class="dg">
+            <div class="dgle"><div>9</div></div>
+            <div class="dgri"><div>3</div></div>
+        </div>
+        <div class="xg">
+            <div class="xgle"></div>
+            <div class="xgri"></div>
+        </div>
+
+    </div>
+</body>
+<script>
+    for(var i=1;i<6;i++)
+    {
+        odiv=document.createElement('div');
+        odiv.className='dg';
+        var ds=(9+i)%12;
+        if((9+i)%12==0)ds=12;
+        odiv.innerHTML='<div class="dgle"><div class="r">'+ds+'</div></div><div class="dgri"><div class="r">'+(3+i)+'</div></div>';
+        odiv.style.transform='rotate('+i*30+'deg)';
+        d1.appendChild(odiv);
+        var ar=odiv.getElementsByClassName('r');//console.log(ar);
+        for( var j=0;j<ar.length;j++)
+        {
+            ar[j].style.transform='rotate('+(-i)*30+'deg)';
+        }
+        
+    }
+
+
+
+    for(var i=1;i<30;i++)
+    {
+        if(i%5==0)continue;
+        odiv=document.createElement('div');
+        odiv.className='xg';
+        odiv.innerHTML='<div class="xgle"></div><div class="xgri"></div>';
+        odiv.style.transform='rotate('+i*6+'deg)';
+        d1.appendChild(odiv);
+    }
+
+    function sfm(){
+        var nd=new Date();//console.log(nd.getHours(),nd.getMinutes(),nd.getSeconds());
+        mz.style.transform='rotate('+nd.getSeconds()*6+'deg)';
+        fz.style.transform='rotate('+nd.getMinutes()*6+'deg)';
+        sz.style.transform='rotate('+(nd.getHours()+nd.getMinutes()/60)*30+'deg)';
+    }
+
+    sfm();
+    setInterval(sfm,1000);
+</script>
+</html>

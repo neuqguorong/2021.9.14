@@ -1,0 +1,29 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+body{background: black;}
+canvas{background:white; }
+
+    </style>
+</head>
+<body>
+<canvas id='canvas' width=800 height=800></canvas>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas');
+
+	var context = canvas.getContext('2d');
+
+	//console.log(context);
+	context.beginPath();
+	context.arc(200,200,100,0,2*Math.PI,false);
+	context.fill();
+	context.stroke();
+
+
+
+</script>
+</body>
+</html>

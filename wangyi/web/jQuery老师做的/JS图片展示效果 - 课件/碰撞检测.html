@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 100px;height: 100px;}
+        #d1{background: black;margin: 300px 0 0 400px;}
+        #d2{background: green;position: absolute;left: 0;top: 0;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div id="d2"></div>
+
+    <script>
+        d2.onmousedown=function(e){
+            var ev=e||event;
+            var l=ev.clientX-this.offsetLeft;
+            var t=ev.clientY-this.offsetTop;
+            d2.onmousemove=function(e){
+                var ev=e||event;
+                var newl=ev.clientX-l;
+                var newt=ev.clientY-t;
+                d2.style.left=newl+'px';
+                d2.style.top=newt+'px';
+                if(d2.offsetLeft+d2.offsetWidth>d1.offsetLeft && d2.offsetTop+d2.offsetHeight>d1.offsetTop && d2.offsetLeft<d1.offsetLeft+d1.offsetWidth && d2.offsetTop<d1.offsetTop+d1.offsetHeight)
+                {
+                    d2.style.background='pink';
+                }
+                else
+                {
+                    d2.style.background='green';
+                }
+                d2.onmouseup=function(){
+                    d2.onmousemove=d2.onmouseup=null;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

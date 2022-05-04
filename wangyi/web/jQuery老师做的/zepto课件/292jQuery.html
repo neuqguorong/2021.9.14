@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 300px;height: 200px;background: #ccc;position: absolute;left: 0;top: 0;right: 0;bottom: 0;margin: auto;text-align: center;line-height: 200px;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div class="d2"></div><div class="d2"></div><div class="d2"></div><div class="d2"></div>
+
+    <div id="d3">
+        <ul>
+            ul<li>li1</li>
+            <li>li2
+                <span>li2下的span1</span>
+            </li>
+            <li>li3</li>
+            <span>ul下的span2</span>
+            <span class="s1">ul下的.s1</span>
+        </ul>
+        <span>d3下的span</span>
+    </div>
+</body>
+<script>
+    //页面加载完成后，让hello world居中
+    $(document).ready(function(){
+        $('#d1').html('hello word').css('color','red');
+    })
+    $('.d2').html('i am class d2 selected').css('color','green');
+    $('.d2')[0].innerHTML='i am jquery find zero';
+    var ad2=document.body.getElementsByClassName('d2');
+    $(ad2).css('font-size','30px');
+
+    console.log($('#d3 li'),$('#d3>span'),$('#d3 li+span'),$('li~span'),$('ul li:last()'));
+
+    $('<div>div</div>').prependTo($('#d3'));
+</script>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;list-style: none;}
+		li{border: 1px solid red;width: 300px;height: 20px;display: none;}
+		#space{display: block;}
+	</style>
+</head>
+<body>
+	<ul id="ul1">
+		<li id="space"></li>
+		<li>one</li>
+		<li>two</li>
+		<li>three</li>
+		<li>four</li>
+		<li>five</li>
+	</ul>
+
+	<script type="text/javascript">
+		var ali=document.getElementsByTagName('li');
+		space.onclick=function(){
+			for(var i=1;i<ali.length;i++)
+			{
+				ali[i].style.display='block';
+				ali[i].onclick=function(){
+					for(var i=1;i<ali.length;i++)
+					{
+						ali[i].style.background='';
+					}
+					this.style.background='green';
+					space.innerHTML=this.innerHTML;
+				}
+			}
+		}
+		ul1.onclick=function(e){
+			var ev=e||event;
+			ul1.style.display='block';
+			ev.cancelBubble=true;
+		}
+		document.onclick=function(){
+			for(var i=1;i<ali.length;i++)
+			{
+				ali[i].style.display='none';
+		    }
+		}
+
+	</script>
+</body>
+</html>

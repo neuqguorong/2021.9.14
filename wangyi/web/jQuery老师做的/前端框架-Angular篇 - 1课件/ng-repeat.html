@@ -1,0 +1,21 @@
+<!doctype html> 
+<html ng-app=''> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='angular.js'></script>
+</head>
+<style type="text/css">
+	
+div{
+	width: 100px;height: 100px;background: black;
+	margin: 50px;float: left;
+	color: white;
+}
+
+</style>
+<body ng-init='arr=["今天真高兴","明天真高兴","天天都高兴"]'>
+<div ng-repeat='wangyue in arr'>{{wangyue}}+{{$index}}</div> 
+
+</body>
+</html>

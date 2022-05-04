@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        body,html{height: 100%;background: black;}
+        ul{width: 400%;height: 100%;position: absolute;transition: 0.3;}
+        ul li{width: 25%;height: 100%;float: left;display: -webkit-box;-webkit-box-pack: center;-webkit-box-align: center;}
+        ul li img{max-width: 100%;max-height: 100%;}
+    </style>
+</head>
+<body>
+    <ul id="ul">
+        <li><img src="1.jpg"></li>
+        <li><img src="2.jpg"></li>
+        <li><img src="3.jpg"></li>
+        <li><img src="4.jpg"></li>
+    </ul>
+</body>
+
+<script>
+    var ali=document.getElementsByTagName('li');
+    var l=t=drag=i=0;
+    document.addEventListener('touchstart',function(e){
+            //e.preventDefault();
+        l=e.touches[0].clientX;
+        //t=e.touches[0].clientY;
+        drag=1;        
+    },false);
+    document.addEventListener('touchmove',function(e){
+            //e.preventDefault();
+        newl=e.touches[0].clientX-l;
+        //newt=e.touches[0].clientY-t;
+        if((newl%innerWidth>-60 && newl%innerWidth<0)||((newl%innerWidth>0 && newl%innerWidth<60)))//如果左滑或者右滑小于60像素，仍然是当前图片
+        {
+            ul.style.transform='translateX('+i*innerWidth+'px)';
+        }
+        if(newl%innerWidth<-60)//左滑超过60像素，图片跳到下一张
+        {
+            i++;
+            if(i+1>ali.length)
+            {
+                i=ali.length-1;
+            }
+            ul.style.transform='translateX('-(i+1)*innerWidth+'px)';
+        }
+
+        if(newl%innerWidth>60)//右滑超过60像素，图片跳到上一张
+        {
+            i--;
+            if(i-1<0)
+            {
+                i=1;
+            }
+            ul.style.transform='translateX('+(i-1)*innerWidth+'px)';
+        }
+    },false);
+
+    document.addEventListener('touchend',function(){
+        drag=0;
+    },false)
+
+</script>
+</html>

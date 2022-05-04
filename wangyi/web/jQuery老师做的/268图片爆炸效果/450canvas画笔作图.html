@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        body{background: black;}
+        canvas{background:white;}
+    </style>
+</head>
+<body>
+    <input type="color" id="cl">
+    <input type="range" id="range">
+    <canvas width="500" height="500" id="canvas"></canvas>//默认300*150透明
+</body>
+
+<script>
+    var obj=canvas.getContext('2d');console.log(obj);
+    var arrx=[],arry=[];
+    obj.beginPath();
+    obj.strokeStyle='red';
+    obj.lineWidth=5;
+    obj.moveTo(50,40);
+    obj.lineTo(100,100);
+    obj.stroke();
+
+    obj.beginPath();
+    obj.strokeStyle='green';
+    obj.lineWidth=10;
+    obj.moveTo(100,40);
+    obj.lineTo(160,100);
+    obj.stroke();
+
+    cl.oninput=function(){
+       obj.strokeStyle=this.value;
+    }
+
+    range.oninput=function(){
+        obj.lineWidth=this.value;
+    }
+
+    canvas.onmousedown=function(e){
+        var ev=e||event;
+        obj.beginPath();
+       //obj.strokeStyle='green';
+       //obj.lineWidth=10;
+        obj.moveTo(ev.clientX,ev.clientY);
+        arrx.push(ev.clientX);
+        arry.push(ev.clientY);
+
+        document.onmousemove=function(e){
+            var ev=e||event;
+            obj.lineTo(ev.clientX,ev.clientY);
+            arrx.push(ev.clientX);
+            arry.push(ev.clientY);
+            obj.stroke();
+        }
+        
+        //类似于橡皮擦
+        document.onmouseup=function(){
+                obj.beginPath();
+                obj.strokeStyle='white';
+                obj.moveTo(arrx.pop(),arry.pop());
+                obj.lineTo(arrx.pop(),arry.pop());
+                if(arrx.length==0)
+                {
+                    obj.stroke();
+                    document.onmousemove=document.onmouseup=null;
+                }
+        }
+        //console.log(arrx,arry);
+    }
+</script>
+</html>

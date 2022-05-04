@@ -1,0 +1,30 @@
+<!doctype html> 
+<html> 
+<head> 
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+#div1{width: 8rem;height: 8rem;background: black;float: left;}
+#div2{width: 8rem;height: 4rem;background: red;float: left;
+	line-height: 4rem;
+}
+
+    </style>
+</head>
+<body>
+	<div id='div1'>1231</div>
+	<div id='div2'>1231</div>
+
+<script type="text/javascript">
+	
+	document.documentElement.style.fontSize = innerWidth/16 + 'px';
+
+	onresize = function(){
+		document.documentElement.style.fontSize = innerWidth/16 + 'px';
+	};
+</script>
+
+</body>
+</html>

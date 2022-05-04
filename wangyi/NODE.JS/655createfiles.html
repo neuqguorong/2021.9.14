@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="filename"><br>
+    <textarea id="conte"></textarea>
+    <button id="btn">submit create file</button>
+</body>
+<script>
+    btn.onclick=function(){
+        var jsonget={
+            'type':'get',
+            'url':'http://localhost:1113',
+            'value':{
+                'filename':filename.value,
+                'conte':conte.value
+            },
+            'success':function(data){
+                if(data=='get,file wite finished')
+                {
+                    console.log(data);
+                    document.body.style.background='green';
+                }
+                else{
+                    console.log(data);
+                }
+                
+            },
+            'error':function(){
+                console.log('error');
+            }
+        }
+        //console.log(jsontostr(json.value)) ;
+        ajax(jsonget);
+    }
+
+    function ajax(opt)
+    {
+        var xhr=new XMLHttpRequest();
+        if(opt.type=='get')
+        {
+            xhr.open(opt.type,opt.url+'?'+jsontostr(opt.value),true);
+            xhr.send();
+        }
+        else if(opt.type=='post')
+        {
+            xhr.open('post',opt.url,true);
+            xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');//告诉后台要发送的数据类型，图片，字符串，之类的
+            xhr.send(jsontostr(opt.value));
+        }
+        
+
+        //AJAX状态码发生改变时
+        xhr.onreadystatechange=function(){
+            console.log(xhr.readyState);
+            if(xhr.readyState==4)//AJAX状态码=4时，才可以收到响应
+            {
+                if(xhr.status>=200 && xhr.status<300 ||xhr.status==304)
+                {
+                    //console.log(xhr.responseText);
+                    opt.success(xhr.responseText);
+                }
+                else{
+                    //console.log('服务器错误');
+                    opt.error && opt.error();
+                }
+            }
+        }
+    }
+
+    function jsontostr(json)
+    {
+        var arr=[];
+        for(var i in json)
+        {
+            arr.push(i+'='+json[i]);
+        }
+        return arr.join('&');
+    }
+</script>
+</html>

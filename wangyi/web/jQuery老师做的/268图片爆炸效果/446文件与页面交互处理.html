@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        *{margin: 0;padding: 0;}
+        #d1{width: 200px;height: 200px;background: black;position: absolute; left: 50%;top: 50%;margin: -100px 0 0 -100px;font-size: 30px;color: white;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <span>File name:<span id="filename"></span></span><br>
+    <span>File size:<span id="filesize"></span></span>
+</body>
+
+<script>
+    d1.ondragenter=function(){
+        d1.innerHTML='ondragenter';
+    }
+
+    d1.ondragleave=function(){
+        d1.innerHTML='ondragleave';
+    }
+
+    var a=0;
+    d1.ondragover=function(){
+        a++;
+        document.title=a;
+        //d1.innerHTML='ondragover';
+        return false;//去掉默认事件，默认打开文件
+    }
+
+    d1.ondrop=function(e){
+        d1.innerHTML='ondrop';
+        var ofile=e.dataTransfer.files[0];
+        filename.innerHTML=ofile.name;
+        filesize.innerHTML=ofile.size;
+        return false;//去掉默认事件，默认打开文件
+
+        var reader=new FileReader();//读取文件
+        reader.readAsBinaryString(ofile);
+        reader.onprogress=function(e){
+            console.log(e,e.loaded,e.total);
+        }
+    }
+</script>
+</html>

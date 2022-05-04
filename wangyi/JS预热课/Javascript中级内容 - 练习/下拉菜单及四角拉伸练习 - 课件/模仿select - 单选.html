@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>模拟select - 单选</title>
+	<style>
+		body { margin: 0; padding: 0; }
+		ul { padding: 0; margin: 0; }
+		li { list-style: none; }
+		a { text-decoration: none; color: #000; display: block; }
+		#div1 { width: 250px; height: 20px; border: 1px solid #fe6601; padding: 5px; line-height:20px; margin: 20px auto 0 auto;}
+		#ul1 { margin: 0 auto; width: 260px; line-height: 20px; border: 1px solid #fe6601; display: none;}
+		#ul1 li a { padding: 5px; }
+		#ul1 li a:hover { background: #fe6601; color: #fff; }
+		#ul1 li .active{
+			background: #fe6601; color: #fff; 
+		}
+	</style>
+</head>
+<body>
+	<div id="div1"></div>
+	<ul id="ul1">
+		<li><a href="javascript:;">宋体</a></li>
+		<li><a href="javascript:;">黑体</a></li>
+		<li><a href="javascript:;">楷体</a></li>
+		<li><a href="javascript:;">微软雅黑</a></li>
+		<li><a href="javascript:;">新宋体</a></li>
+		<li><a href="javascript:;">仿宋</a></li>
+	</ul>
+
+	<script type="text/javascript">
+
+	var allLi = ul1.children;
+
+
+	div1.onclick = function(e){
+		var ev = e || event;
+		ev.cancelBubble = true;
+		ul1.style.display = 'block';
+	};
+
+
+	document.onclick = function(){
+		ul1.style.display = 'none';
+	};
+
+
+	for(var i =0;i<allLi.length;i++){
+		allLi[i].onclick = function(){
+			div1.innerHTML = this.children[0].innerHTML;
+
+			for(var i = 0;i < allLi.length;i++){
+				allLi[i].children[0].className = '';
+			}
+			this.children[0].className = 'active';
+		}
+	}
+	</script>
+</body>
+</html>

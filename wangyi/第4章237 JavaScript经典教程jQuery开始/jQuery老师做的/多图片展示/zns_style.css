@@ -1,0 +1,12 @@
+@charset "utf-8";
+/* CSS Document */
+
+* { padding: 0; margin: 0; }
+li { list-style: none; }
+body { background: #eee; }
+img { border: none; }
+
+ul { width: 390px; padding: 0 0 10px 10px; border: 10px solid #ccc; zoom:1; background: #f6f6f6; margin: 50px auto 0; }
+ul:after { content: '\20'; display: block; clear: both; }
+li { width: 120px; height: 90px; margin: 10px 10px 0 0; float: left; display: inline; }
+img { width: 120px; display: block; }

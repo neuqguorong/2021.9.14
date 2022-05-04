@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+	<div></div>
+
+	<script type="text/javascript">
+		var d=document.getElementsByTagName('div');
+		for(var i=0;i<d.length;i++)
+		{
+			d[i].innerHTML=i;
+			d[i].style.background='green';
+		}
+
+		i=0;
+		onclick=function(){
+			i++;
+			if(i%2==1)
+			{
+				for(var j=0;j<d.length;j++)
+				{
+					if(j%2==0)
+						d[j].style.background='black';
+					else
+						d[j].style.background='red';
+				}
+			}
+			if(i%2==0)
+			{
+				for(var j=0;j<d.length;j++)
+				{
+					if(j%2==0)
+						d[j].style.background='red';
+					else
+						d[j].style.background='black';
+				}
+			}
+		}
+
+
+	</script>
+</body>
+</html>

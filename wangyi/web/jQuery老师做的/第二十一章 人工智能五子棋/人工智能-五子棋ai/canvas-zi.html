@@ -1,0 +1,31 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+
+
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+document.body.innerHTML = '<canvas id="chess" width="450" height="450"></canvas>'
+
+var chess = document.getElementById(
+	'chess');
+
+var context = chess.getContext('2d');
+
+context.arc(100,100,60,0,2*Math.PI);
+var grd = context.createRadialGradient(100,100,60,125,75,1);
+grd.addColorStop(0,'black');
+grd.addColorStop(1,'white');
+context.fillStyle = grd;
+context.fill();
+context.stroke();
+
+</script>
+</body>
+</html>

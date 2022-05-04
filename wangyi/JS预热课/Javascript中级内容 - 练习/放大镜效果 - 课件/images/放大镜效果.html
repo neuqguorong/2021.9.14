@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,body{width: 1000px;}
+        #d5{height: 310px;width: 1000px;float: left;}
+        #d1{width: 300px;height: 300px;background: url(m1.jpg);margin-bottom: 10px;float: left;}
+        #d3{width: 100px;height: 100px;background: orange no-repeat;opacity: 0.3;cursor: move;position: relative; display: none;}
+        #bim{float: left; width: 300px;height: 300px;margin-bottom: 10px;display:block;}
+        .a{border: 1px solid red;position: relative;}
+      
+    </style>
+</head>
+<body>
+    <div id="d5">
+        <div id="d1">
+            <div id="d3"></div>
+        </div>
+        <div id="bim"></div>
+    </div>       
+    <div id="d2">
+        <img id="le" src="left.gif">
+        <img src="s1.jpg" class="a b">
+        <img src="s2.jpg" class="b">
+        <img src="s3.jpg" class="b">
+        <img src="s4.jpg" class="b">
+        <img src="s5.jpg" class="b">
+        <img src="s6.jpg" class="b">
+        <img id="ri" src="right.gif">
+    </div>
+
+</body>
+<script>
+    var im=document.getElementsByClassName('b');console.log(im);
+    for(var i=0;i<im.length;i++)
+    {
+        im[i].index=i;
+        im[i].onmouseover=function(){
+            for(var i=0;i<im.length;i++)
+            {
+                //im[i].className='';//console.log(im[i].className);
+                im[i].classList.remove('a');
+            }
+            this.classList.add('a');
+            //d1.style.background='url(m'+()+'.jpg';
+            var imm=this.src.substring(0,this.src.lastIndexOf('s'))+'m'+this.src.substring(this.src.lastIndexOf('s')+1);
+            d1.style.background='url('+imm+')';
+        }
+    }
+
+    ri.onclick=function(){
+        for(var i=0;i<im.length;i++)
+        {
+            //console.log(im[i].src);
+            var j=Number(im[i].src.substring(im[i].src.lastIndexOf('s')+1,im[i].src.lastIndexOf('.'))); 
+            var j=Number(im[i].src.substring(im[i].src.lastIndexOf('s')+1).substring(0,im[i].src.substring(im[i].src.lastIndexOf('s')).indexOf('.')));
+            //console.log(j);
+            j++;
+            if(j==11)j=1;
+            var nextsrc=im[i].src.substring(0,im[i].src.lastIndexOf('s')+1)+j+'.jpg';
+            im[i].src=nextsrc;
+            if(im[i].classList.contains('a'))
+            {
+                var imm=im[i].src.substring(0,im[i].src.lastIndexOf('s'))+'m'+im[i].src.substring(im[i].src.lastIndexOf('s')+1);//console.log(imm);
+                d1.style.background='url('+imm+')';
+            }
+        }
+    }
+
+    le.onclick=function(){
+        for(var i=0;i<im.length;i++)
+        {
+            //console.log(im[i].src);
+            var j=Number(im[i].src.substring(im[i].src.lastIndexOf('s')+1,im[i].src.lastIndexOf('.'))); 
+            var j=Number(im[i].src.substring(im[i].src.lastIndexOf('s')+1).substring(0,im[i].src.substring(im[i].src.lastIndexOf('s')).indexOf('.')));
+            //console.log(j);
+            j--;
+            if(j==0)j=10;
+            var nextsrc=im[i].src.substring(0,im[i].src.lastIndexOf('s')+1)+j+'.jpg';
+            im[i].src=nextsrc;
+            if(im[i].classList.contains('a'))
+            {
+                var imm=im[i].src.substring(0,im[i].src.lastIndexOf('s'))+'m'+im[i].src.substring(im[i].src.lastIndexOf('s')+1);//console.log(imm);
+                d1.style.background='url('+imm+')';
+            }
+        }
+    }
+
+    for(var i=0;i<im.length;i++)
+    {            
+        if(im[i].classList.contains('a'))
+        {
+            var imm=im[i].src.substring(0,im[i].src.lastIndexOf('s'))+'m'+im[i].src.substring(im[i].src.lastIndexOf('s')+1);//console.log(imm);
+            d1.style.background='url('+imm+')';
+        }
+    }
+
+    d1.onmouseover=function(e){
+        d3.style.display='block';
+        bim.style.display='block';
+        var imm='';
+        for(var i=0;i<im.length;i++)
+        {            
+            if(im[i].classList.contains('a'))
+            {
+                imm=im[i].src.substring(0,im[i].src.lastIndexOf('s'))+'b'+im[i].src.substring(im[i].src.lastIndexOf('s')+1);//console.log(imm);
+                bim.style.background='url('+imm+')';
+            }
+        }
+        var ev=e||event;
+        var l0=ev.clientX-this.offsetLeft,t0=ev.clientY-this.offsetTop;
+        //d3.style.left=l0+'px';
+        //d3.style.top=t0+'px';
+        d1.onmousemove=function(e){
+            var ev=e||event;
+            var l=ev.clientX-l0,t=ev.clientY-t0;//console.log(l0,t0,l);
+            l<0?l=0:l=l;
+            l>(d1.offsetWidth-d3.offsetWidth)?l=(d1.offsetWidth-d3.offsetWidth):l=l;
+            t<0?t=0:t=t;
+            t>(d1.offsetHeight-d3.offsetHeight)?t=(d1.offsetHeight-d3.offsetHeight):t=t;
+            d3.style.left=l+'px';
+            d3.style.top=t+'px';
+            bim.style.backgroundPositionX=-l/(d1.offsetWidth-d3.offsetWidth)*600+'px'; bim.style.backgroundPositionY=-t/(d1.offsetHeight-d3.offsetHeight)*600+'px';
+        }
+        d1.onmouseout=function(){
+            d1.onmousemove=d1.onmouseout=null;
+        }
+    }
+    
+</script>
+</html>

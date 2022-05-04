@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        input,#outspan{float: left;}
+        #load{width: 300px;height: 10px;border: 1px solid black;  border-radius:5px; position:relative;float: left;margin-top: 5px;}
+        #loadpoint{width:0%;height: 100%;border-radius: 5px;background:#ccc;position: relative;}
+        #volume{width: 10px;height: 150px;border:1px solid black;border-radius: 5px;float: left;margin-left: 3px;margin-top:-135px;position: relative; z-index: 2;}
+        #volumepoint{width: 10px;height: 0%;background: black;position:absolute;bottom: 0;}
+    </style>
+</head>
+<body>
+   <!--  <video controls autoplay src="不谓侠.mp4" loop></video> -->
+   <video id="video" style='width: 600px;height: 700px;'>
+       <source src='不谓侠.mp4'>
+   </video><br>
+   <input id="ipt" type="button" value="play">
+   <span id="outspan">
+       <span id="s1">00</span>/<span id="s2">00</span>
+   </span>
+  
+   <div id="load">
+       <div id="loadpoint"></div>
+   </div>
+
+   <div id="volume">
+        <div id="volumepoint">
+   </div>
+</div>
+</body>
+
+<script>
+    onload=function(){
+        s2.innerHTML=video.duration.toFixed(2);
+    }
+  
+    var i=0;
+    ipt.onclick=function(){
+        if(i%2==0)
+        {
+            video.play();
+            ipt.value='pause';
+            video.addEventListener('timeupdate',function(){
+                s1.innerHTML=video.currentTime.toFixed(2);
+                s2.innerHTML=video.duration.toFixed(2);
+                loadpoint.style.width=(video.currentTime/video.duration)*100+'%';
+            },false)
+            
+        }
+        else{
+            video.pause();
+            ipt.value='play';
+        }
+        i++;
+    }
+
+    load.onclick=function(e){
+        var ev=e||event;
+        var bili=(ev.clientX-this.offsetLeft)/this.offsetWidth;
+        loadpoint.style.width=((ev.clientX-this.offsetLeft)/this.offsetWidth)*100+'%';
+
+        video.currentTime=video.duration*bili;
+        video.addEventListener('timeupdate',function(){
+                s1.innerHTML=video.currentTime.toFixed(2);
+                s2.innerHTML=video.duration.toFixed(2);
+                loadpoint.style.width=(video.currentTime/video.duration)*100+'%';
+            },false)
+    }
+
+    volume.onclick=function(e){
+        var ev=e||event;
+        console.log(ev.clientY);
+        volumepoint.style.height=(this.offsetTop+this.offsetHeight)-ev.clientY+'px';
+        video.volume=((this.offsetTop+this.offsetHeight)-ev.clientY)/volume.offsetHeight;
+    }
+</script>
+</html>

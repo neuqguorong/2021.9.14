@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        div{width: 100px;height: 100px;background: #ccc;float: left;margin-right: 10px;}
+        .a{border: 5px solid black;}
+        .b{box-shadow:0 0 20px orange;}
+    </style>
+</head>
+<body>
+    <div id="d1"></div>
+    <div class="d1 b"></div>
+    <div class="d1 b"></div>
+    <div></div>
+</body>
+<script>
+    function $(obj){
+        return new jquery(obj);
+    }
+    class jquery{
+        constructor(x=''){
+            this.x=x;
+            this.allidele=[],this.allclsele=[];
+            switch (x.charAt(0)) {
+                case '#':
+                    this.allidele.push(document.getElementById(this.x.substring(1)));
+                    this.ele=document.getElementById(this.x.substring(1));
+                    this.ele.style.background='red';
+                    this.ele.innerHTML='我是id为d1的div';
+                    console.log(this.allidele);
+                    break;
+                case '.':
+                
+                    this.ele=document.getElementsByClassName(this.x.substring(1));
+                    console.log(this.ele);//this.ele 是HTML元素
+                    for(var i=0;i<this.ele.length;i++)
+                    {
+                        this.ele[i].style.background='green';
+                        this.ele[i].innerHTML='我是class为d1的div';
+                        this.allclsele.push(this.ele[i]);
+                    }
+                    console.log(this.allclsele);
+                    break;
+                default:
+                    
+                    break;
+            }
+        }
+        
+        add_clas(clsname){
+            this.allidele[0].classList.add(clsname);
+
+        }
+        
+        remove_clas(clsname){
+            for(var i=0;i<this.allclsele.length;i++)
+            {
+                this.allclsele[i].classList.remove(clsname);
+            }
+        }
+
+        css(json){
+            for(var i=0;i<this.allclsele.length;i++)
+            {
+                for(var j in json)
+                {
+                    this.allclsele[i]['style'][j]=json[j];
+                }
+            }
+        }
+
+    }
+
+    $('#d1');
+    $('.d1');
+  
+    setTimeout(() => {
+        $('#d1').add_clas('b');
+        $('.d1').remove_clas('b');
+    }, 1000);
+    
+    setTimeout(()=>{
+        $('.d1').css({
+            'width':'300px',
+            'height':'100px',
+            'background':'blue',
+            'transition':'1s'
+        });
+    },2000)
+  
+</script>
+</html>

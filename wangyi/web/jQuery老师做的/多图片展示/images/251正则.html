@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    放大数据库表，第三方库Igor俄方瓦松俄国，的夫人感人的歌五道口看你们单位刘芳菲，俄国人热吻的风格认同感过热服务的绕太阳，微软体育教育threw让他与会各方的风格认同感，的乳房规划国土环境一头热舞蹈风格和寂寞
+</body>
+<script>
+    document.body.innerHTML=document.body.innerHTML.replace(/数据库|俄|你们单位/g,function(x){
+        var m='';
+        for(var i=0;i<x.length;i++)
+        {
+            m+='*';
+        }
+        return m;
+    });
+
+    var a=document.body.innerHTML;
+    for(var i=0;i<a.length;i++)
+    {
+        var ospan=document.createElement('span');
+        ospan.innerHTML=a[i];
+        //ospan.style.background='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+        ospan.style.color='rgb('+parseInt(256*Math.random())+','+parseInt(256*Math.random())+','+parseInt(256*Math.random())+')';
+        document.body.appendChild(ospan);
+    }
+
+
+     //有两种正则表达式，第一种是/正则表达式/，第二种是new RegExp(正则表达式),\d是转义字符，找0到9的数字，集合，  正则中的i代表不区分大小写，match以数组的形式返回满足条件的内容， g找到所有满足条件的内容，以数组的形式返回,{2}放入量词，以数组形式，返回满足条件的连续两个，{1,2}返回符合条件的1个或连续两个
+    //+代表量词1到无穷，？代表量词0到无穷，*代表量词0到1 ,^除了
+    var s='sdfg34chv547S^()87FS978#8@Djhgfd';
+    console.log(s.search('d')) ;
+    console.log(s.search(/f/i)) ;
+    var c=new RegExp('ch');
+    console.log(s.search(c),s.search(/\d/),s.search(/[0-9a-z]/),typeof s.match(/[0-9a-z]/i),s.match(/[d-z]/g),s.match(/[d-z]{2}/g),s.match(/[d-z]{2,3}/g),s.match(/[d-z]+/g),s.match(/[d-z]?/g),s.match(/[d-z]*/g),s.match(/\d/g),s.match(/\d+/g),s.match(/\w/g),s.match(/\w+/g)); 
+    console.log(s.match(/[^0-9]+/g));//^除了
+    console.log(s.match(/[\w]+/g),s.match(/[^\w]+/g));
+    console.log(s.replace(/d/g,'$'),s.replace(/d/ig,'$'));
+    var s1=s.replace(/[a-zA-Z]/g,'*');console.log(s1);
+    s2=s.replace(/[a-zA-Z]/g,function(i){
+        console.log(i);
+    });
+    console.log(s2);
+    s3=s.replace(/[a-zA-Z]/g,function(i){
+        return '%';
+    });
+    console.log(s3); 
+</script>
+</html>

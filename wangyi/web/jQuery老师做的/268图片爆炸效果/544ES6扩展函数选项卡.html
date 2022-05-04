@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input{width: 40px;height: 30px;margin: 5px;}
+        .d2 div,.d1 div{width: 200px;height: 200px;background: #ccc;font-size: 100px;display: none;}
+        .a{background: red;}
+        .d1 div.b,.d2 div.b{background: red;display: block;}
+        #ipt{width: 200px;}
+        #d3{width: 200px;height: 200px;background:pink;transition: 1s;font-size: 100px;}
+    </style>
+</head>
+<body>
+<!--     <div class="d1">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <div class="b">1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+
+    <div class="d2">
+        <input type="button" value="1" class="a">
+        <input type="button" value="2">
+        <input type="button" value="3">
+        <input type="button" value="4">
+        <div class="b">1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+    </div> -->
+    <input id="ipt" value="显示或隐藏d3" type="button">
+    <div id="d3">#d3</div>
+</body>
+<script>
+    //var aipt=[...d1.getElementsByTagName('input')],adiv=[...d1.getElementsByTagName('div')];
+/*     [...d1.getElementsByTagName('input')].forEach((x,y,z)=>{
+        //console.log(x,y,z);
+        x.onclick=()=>{
+            //console.log(x,y,z);
+            z[y].className='';
+            this.className='a';
+            [...d1.getElementsByTagName('div')].forEach((j,k,t)=>{
+                j.className='';
+                t[y].className='b';
+            })
+        }
+    }) */
+
+/*     [...d1.getElementsByTagName('input')].find((x,y,z)=>{
+        x.onclick=()=>{
+            z[y].className='';
+            this.className='a';
+            [...d1.getElementsByTagName('div')].find((j,k,t)=>{
+                j.className='';
+                t[y].className='b';
+            })
+        }
+    }) */
+
+/*     var json={
+        set a(x){
+            console.log('set');
+        },
+        get a(){
+            console.log('get');
+        }
+    };
+    json.a;
+    json.a=1; */
+    
+/*  class tab{
+     constructor(obj){
+         this.obj=document.getElementsByClassName(obj);console.log(this.obj);
+         this.aipt=document.querySelectorAll('.'+obj+' input');console.log(this.aipt);
+         this.adiv=document.querySelectorAll('.'+obj+' div');console.log(this.adiv);
+         this.index=0;
+         this.t=null;
+         this.init();
+     }
+     init(){
+        this.obj[0].onmouseover=()=>{
+            clearInterval(this.t);
+            console.log(1);
+        }
+         for(let i=0;i<this.aipt.length;i++)
+         {     
+            this.aipt[i].onclick=()=>{
+                //console.log(i);
+                clearInterval(this.t);
+                this.hide();
+                this.show(i);
+                this.index=i;
+                
+            }
+         }
+         this.obj[0].onmouseout=()=>{
+            this.automove();
+        }
+     }
+     hide(){
+        for(var j=0;j<this.aipt.length;j++)
+        {
+            this.aipt[j].className=this.adiv[j].className='';
+        }
+     }
+     show(i){
+        this.aipt[i].className='a';
+        this.adiv[i].className='b';
+     }
+     automove(){
+         clearInterval(this.t);
+         this.t=setInterval(()=>{
+            this.index++;
+            this.index==this.aipt.length && (this.index=0);
+            this.hide();
+            this.show(this.index);
+         },1000)
+     }
+ }
+ new tab('d1');
+ new tab('d2').automove(); */
+
+/* var k=0;
+function showpromise(){
+    k++;
+    return new Promise((succ,fail)=>{
+        k%2==1?fail():succ();
+    }).then(()=>{
+        d3.style.display='block';
+    }).catch(()=>{
+        d3.style.display='none';
+    })
+}
+ipt.onclick=()=>{
+    showpromise()
+} */
+
+//与服务器交互
+//_____________________________________________________
+var worker=new Worker('li.js');
+worker.postMessage('asdghjk');
+/* worker.onmessage=(res1)=>{
+    console.log(res1.data);
+}  */
+worker.onmessage=function(res1){
+    console.log(res1.data);
+} 
+//_____________________________________________________
+var json={
+    'topvalue':[1,2,3],
+    'bottomhtml':['d1','d2','d3']
+}
+//console.log(json);
+//用ES6模板创建节点
+/* createnode=(json1)=>{
+    var str=``;
+    json1.topvalue.map(x=>{
+       str+=`<input type='button' value=${x}>`;
+    }),json1.bottomhtml.map(x=>{
+        str+=`<div>${x}</div>`
+    })
+    return `<div class='outnode'>${str}</div>`
+}
+console.log(createnode(json)); */
+
+//用ES6模板创建节点
+/* createnode2=(json1)=>{
+    return `${json1.topvalue.map(x=>{
+        return `<input type='button' value=${x}>`}).join('')}
+        ${json1.bottomhtml.map(x=>{
+        return `<div>${x}</div>`}).join('')}`    
+}
+console.log(createnode2(json));
+document.body.innerHTML+=createnode2(json); */
+
+/* async function a(f){
+    return f;
+}
+/* a(12).then(x=>{
+    console.log('async function成功了第一层'+x);
+    return 2;
+}).then(x=>{
+    console.log('async function成功了第二层'+x);
+}) 
+a(12).catch(x=>{
+    console.log('async function失败了第一层'+x);
+    //return 2;
+}) */
+
+/* .catch(x=>{
+    console.log('async function失败了第二层'+x);
+}) */
+
+/* function b(f){
+    return new Promise((res,rej)=>{
+        //res(f);
+        rej(f);
+    }).then(x=>{
+        console.log('返回new Promise函数，成功了第一层'+x++);
+        return x;
+    }).then(x=>{
+        console.log('返回new Promise函数，成功了第二层'+x);
+    }).catch(x=>{
+        console.log('返回new Promise函数，失败了第一层'+x++);
+        return x;
+    }).then(x=>{
+        console.log('返回new Promise函数，失败了第二层'+x);
+    })
+}
+b(1); */
+//_____________________________________________________
+/*  function c(f){
+    return new Promise((res,rej)=>{
+        //res(f);
+        rej(f);
+    })
+} */
+/* c('c1').then(x=>{
+    console.log('返回new Promise函数,第一层res '+x);
+    return x;
+}).then(x=>{
+    console.log('返回new Promise函数,第二层res '+x);
+}) */
+
+/* c('c1').catch(x=>{
+    console.log('返回new Promise函数,第一层rej '+x);
+    return x;
+}).then(x=>{
+    console.log('返回new Promise函数,第二层rej '+x);
+    return x;
+}).then(x=>{
+    console.log('返回new Promise函数,第三层rej '+x);
+})  */
+//_____________________________________________________
+/* console.log(c('c1').catch(x=>{
+    console.log('返回new Promise函数,第一层rej '+x);
+    return x;
+})); */
+
+
+/* async function awaita(){
+    return await 1
+}
+awaita().then(x=>{
+    console.log('res'+x)
+}).catch(x=>{
+    console.log('rej'+x);
+}) */
+
+/* async function awaita(){
+    return await Promise.resolve(1)
+}
+awaita().then(x=>{
+    console.log('res'+x)
+}).catch(x=>{
+    console.log('rej'+x);
+}) */
+
+/* async function awaita(){
+    await Promise.reject(1)
+}
+awaita().then(x=>{
+    console.log('res'+x)
+}).catch(x=>{
+    console.log('rej'+x);
+}) */
+
+//前面有reject，后面想走resolve
+/* async function awaita1(){
+    await Promise.reject(1).catch(x=>{
+        console.log('第一层rej'+x);
+    })//这里的的reject,只会走这后面的catch 
+
+    await Promise.reject(1).then(x=>{
+        console.log('第一层res '+x)
+    }).catch(x=>{
+        console.log('第一层rej'+x);
+    })
+    return await '前面有reject，后面想走resolve'
+}
+awaita1().then(x=>{
+    console.log('第一层res '+x)
+}).catch(x=>{
+    console.log('第一层rej'+x);
+}) */
+
+/* async function awaita2(){
+    try{
+        await Promise.reject(1)
+    }
+    catch(e){
+        return await e+'前面有reject，后面想走resolve'
+    }  
+}
+awaita2().then(x=>{
+    console.log('第一层res '+x)
+}).catch(x=>{
+    console.log('第一层rej'+x);
+}) */
+
+
+//走一堆await
+/* async function awaita3(){
+    await Promise.reject(1)
+    await Promise.reject(2)
+}
+awaita3().then(x=>{
+    console.log('第一层res '+x)
+}).catch(x=>{
+    console.log('第一层rej'+x);
+    awaita3().catch(x=>{
+    console.log('第二层rej'+x);
+    })
+    awaita3().catch(x=>{
+    console.log('第三层rej'+x);
+    })
+}) */
+
+//检查是否支持webworker
+/* if(typeof(Worker)!=="undefined")
+{
+    // 是的! Web worker 支持!
+    // 一些代码.....
+    console.log('是的! Web worker 支持!')
+}
+else
+{
+    //抱歉! Web Worker 不支持
+    console.log('//抱歉! Web Worker 不支持');
+} */
+</script>
+</html>

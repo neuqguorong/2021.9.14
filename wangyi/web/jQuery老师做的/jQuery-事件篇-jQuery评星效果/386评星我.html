@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.12.4.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        ul{margin: 100px;}
+        li{width: 13.5px;height: 28.5px; background: url(star.gif) no-repeat;float: left;}
+        .a{background-position: -13.5px 0;}
+        .b{background-position: 0 -28.5px;}
+        .c{background-position: -13.5px -28.5px;}
+    </style>
+</head>
+<body>
+</body>
+<script>
+    $('<ul></ul>').appendTo('body');
+    for(var i=0;i<10;i++)
+    {
+        $('<li></li>').appendTo($('ul'));
+    }
+    $('ul>li:odd').addClass('a');
+
+    //事件
+    $('li').on({
+        'mouseover':function(){
+            $('li').removeClass('b c');
+            $('li:lt('+($(this).index()+1)+'):even').add($(this)).addClass('b');
+            $('li:lt('+($(this).index()+1)+'):odd').add($(this)).addClass('c');
+/*             if($(this).index()%2==0)
+            {
+                $('li:lt('+$(this).index()+'):even').add($(this)).addClass('b');
+                $('li:lt('+$(this).index()+'):odd').addClass('c');
+            }
+            else{
+                $('li:lt('+$(this).index()+'):even').addClass('b');
+                $('li:lt('+$(this).index()+'):odd').add($(this)).addClass('c');
+            } */
+        },
+        'mouseout':function(){
+            $('li').removeClass('b c');
+        },
+        'click':function(){
+            console.log('您评价了'+($(this).index()+1)*0.5+'分');
+            //$(this).unbind('mouseout');//可以重复评价
+            $('li').unbind();//只能评价一次
+        }
+    })
+
+/*     var oul=document.createElement('ul');
+    for(var i=0;i<10;i++)
+    {
+        var oli=document.createElement('li');
+        if(i%2==1)
+        {
+            oli.classList.add('a');
+        }
+        oul.appendChild(oli);
+    }
+    document.body.appendChild(oul);
+
+    ali=oul.children;//console.log(ali);
+    for(var i=0;i<ali.length;i++)
+    {
+        ali[i].index=i;
+        ali[i].onmouseover=function(){
+            for(var i=0;i<=this.index;i++)
+            {
+                if(i%2==0)
+                {
+                    ali[i].classList.add('b');
+                }
+                else{
+                    ali[i].classList.add('c');
+                }
+            }
+            for(var i=this.index+1;i<ali.length;i++)
+            {
+                if(i%2==0)
+                {
+                    ali[i].classList.remove('b');
+                }
+                else{
+                    ali[i].classList.remove('c');
+                }
+            }
+        }
+
+        ali[i].onmouseout=function(){
+            for(var i=0;i<ali.length;i++)
+            {
+                if(i%2==0)
+                {
+                    ali[i].classList.remove('b');
+                }
+                else{
+                    ali[i].classList.remove('c');
+                }
+            }
+        }
+
+        ali[i].onclick=function(){
+            this.onmouseout=null;//可以重复评价
+            console.log('您评价了'+(this.index+1)*0.5+'分');
+
+            //下面的执行完，只能评价一次
+            //for(var i=0;i<ali.length;i++)
+            //{
+            //    ali[i].onmouseover=ali[i].onmouseout=ali[i].onclick=null;
+            //} 
+        }
+    } */
+</script>
+</html>

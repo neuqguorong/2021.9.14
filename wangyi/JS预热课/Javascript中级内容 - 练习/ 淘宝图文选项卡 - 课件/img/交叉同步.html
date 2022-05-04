@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        #d1{width: 400px;height: 300px;border: 2px solid black;float: left;}
+        ul{width: 50px;height:100%;}
+        #left{float: left;}
+        #d2{width: 280px;height: 93%;margin: 10px;float: left;background: url(1.jpg);background-size: cover;}
+        #right{float: right;}
+        li{width: 100%;height: 73px;font-size: 50px;border: 1px solid black;text-align: center;}
+        .a{background-color: black;color: white;}
+        button{width: 100px;height: 50px;margin: 10px;font-size: 30px;}
+    </style>
+</head>
+<body>
+    <div>
+        <button id="bt1">next</button>
+        <button id="bt2">交叉</button>
+        <button id="bt3">同步</button>
+    </div>
+    <div id="d1">
+        <ul id="left"></ul>
+        <div id="d2">
+        </div>
+        <ul id="right"></ul>
+    </div>
+</body>
+<script>
+    var k=5;
+    for(var i=0;i<k;i++)
+    {
+        var oli=document.createElement('li');
+        oli.innerHTML=i+1;
+        left.appendChild(oli);
+    }
+
+    for(var i=k;i>0;i--)
+    {
+        var oli=document.createElement('li');
+        oli.innerHTML=i;
+        right.appendChild(oli);
+    }
+
+    var b=left.children,c=right.children,j=0,t=null,tongbu=false;
+
+    function move(){
+        for(var i=0;i<b.length;i++)
+            {
+                b[i].className='';
+                c[i].className='';
+            }
+            b[j].className='a';
+            c[b.length-1-j].className='a';
+            d2.style.background='url('+(j+1)+'.jpg)';
+            d2.style.backgroundSize='cover';
+            j++;
+            if(j==b.length)j=0;
+    }
+
+    function movetb(){
+        for(var i=0;i<b.length;i++)
+            {
+                b[i].className='';
+                c[i].className='';
+            }
+            b[j].className='a';
+            c[j].className='a';
+            d2.style.background='url('+(j+1)+'.jpg)';
+            d2.style.backgroundSize='cover';
+            j++;
+            if(j==b.length)j=0;
+    }
+
+    bt2.onclick=function(){
+        tongbu=false;
+        clearInterval(t);
+        t=setInterval(move,1000);
+    }
+
+    bt3.onclick=function(){
+        tongbu=true;
+        clearInterval(t);
+        t=setInterval(movetb,1000);
+    }
+
+    bt1.onclick=function(){
+        if(!tongbu)
+        {
+            clearInterval(t);
+            t=setInterval(move,1000);
+        }
+        else{
+            clearInterval(t);
+            t=setInterval(movetb,1000);
+        }
+        
+    }
+
+    for(var i=0;i<b.length;i++)
+    {
+        b[i].index=i;
+        c[i].index=i;
+        b[i].onclick=function(){
+            if(!tongbu)
+            {
+                clearInterval(t);
+                for(var i=0;i<b.length;i++)
+                {
+                    b[i].className='';
+                    c[i].className='';
+                }
+                b[this.index].className='a';
+                c[b.length-1-this.index].className='a';
+                d2.style.background='url('+(this.index+1)+'.jpg)';
+                d2.style.backgroundSize='cover';
+                j=this.index;
+                t=setInterval(move,1000);
+            }
+            else{
+                clearInterval(t);
+                for(var i=0;i<b.length;i++)
+                {
+                    b[i].className='';
+                    c[i].className='';
+                }
+                b[this.index].className='a';
+                c[this.index].className='a';
+                d2.style.background='url('+(this.index+1)+'.jpg)';
+                d2.style.backgroundSize='cover';
+                j=this.index;
+                t=setInterval(movetb,1000);
+            }
+        }
+
+        c[i].onclick=function(){
+            if(!tongbu)
+            {
+                clearInterval(t);
+                for(var i=0;i<b.length;i++)
+                {
+                    b[i].className='';
+                    c[i].className='';
+                }
+                b[this.index].className='a';
+                c[b.length-1-this.index].className='a';
+                d2.style.background='url('+(this.index+1)+'.jpg)';
+                d2.style.backgroundSize='cover';
+                j=this.index;
+                t=setInterval(move,1000);
+            }
+            else{
+                clearInterval(t);
+                for(var i=0;i<b.length;i++)
+                {
+                    b[i].className='';
+                    c[i].className='';
+                }
+                b[this.index].className='a';
+                c[this.index].className='a';
+                d2.style.background='url('+(this.index+1)+'.jpg)';
+                d2.style.backgroundSize='cover';
+                j=this.index;
+                t=setInterval(movetb,1000);
+            }
+        }
+    }
+
+
+</script>
+    
+</html>

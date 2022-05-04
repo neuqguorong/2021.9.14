@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>多图片展示效果 - leo</title>
+<link href="zns_style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src='jquery-1.9.1.min.js'></script>
+
+</head>
+
+<body>
+	<ul>
+	    <li><img src="images/1.jpg" alt="图片一" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/2.jpg" alt="图片二" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/3.jpg" alt="图片三" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/4.jpg" alt="图片四" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/5.jpg" alt="图片五" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/6.jpg" alt="图片六" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/7.jpg" alt="图片七" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/8.jpg" alt="图片八" longdesc="http://www.zhinengshe.com" /></li>
+	    <li><img src="images/9.jpg" alt="图片九" longdesc="http://www.zhinengshe.com" /></li>
+	</ul>
+
+
+	<script type="text/javascript">
+
+var z = 999;
+$('li').on({
+	'mouseenter':function(){
+		z++;
+		$(this).find('img').stop().animate({
+			'width':'240px',
+			'height':'180px',
+			'marginLeft':'-60px',
+			'marginTop':'-45px'
+		},300);
+
+		$(this).css({
+			'position':'relative',
+			'zIndex':z
+		})
+
+	},
+	'mouseleave':function(){
+		$(this).find('img').stop().animate({
+			'width':'120px',
+			'height':'90px',
+			'marginLeft':'0px',
+			'marginTop':'0px'
+		},300);
+	}
+})
+
+	</script>
+</body>
+</html>

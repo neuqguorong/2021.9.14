@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		div{height: 200px;width: 200px;background: black;position: relative;}
+	</style>
+</head>
+<body>
+	<div class="div1"></div>
+	<script type="text/javascript">
+		function tabnode(opt){
+			var this1=this;
+			this.opt=opt;
+			document.onmousedown=function(e){
+				var ev=e||event;
+				var itarget=ev.srcElement||ev.target;
+				//console.log(itarget.className,opt.className);
+				if(itarget.className==opt.className)
+				{
+					var l=ev.clientX-itarget.offsetLeft;
+					var t=ev.clientY-itarget.offsetTop;
+					document.onmousemove=function(e){
+						this1.ev=e||event;
+						this1.newl=this1.ev.clientX-l;
+						this1.newt=this1.ev.clientY-t;
+						opt.unleft && (this1.newl<0?this1.newl=0:this1.newl);
+						opt.untop && (this1.newt<0?this1.newt=0:this1.newt);
+						opt.unright && (this1.newl>innerWidth-itarget.offsetWidth?this1.newl=innerWidth-itarget.offsetWidth:this1.newl);
+						opt.unbottom && (this1.newt>innerHeight-itarget.offsetHeight?this1.newt=innerHeight-itarget.offsetHeight:this1.newt);
+						itarget.style.left=this1.newl+'px';
+						itarget.style.top=this1.newt+'px';
+					}
+					document.onmouseup=function(){
+						document.onmousemove=document.onmouseup=null;
+					}
+					return false;
+				}
+			}
+
+			onresize=function(){
+				var alldiv=document.getElementsByClassName(opt.className);
+				for(var i=0;i<alldiv.length;i++)
+				{
+					if(innerWidth<alldiv[i].offsetLeft+alldiv[i].offsetWidth)
+					{
+						alldiv[i].style.left=innerWidth-alldiv[i].offsetWidth+'px';
+					}
+					if(innerHeight<alldiv[i].offsetTop+alldiv[i].offsetHeight)
+					{
+						alldiv[i].style.top=innerHeight-alldiv[i].offsetHeight+'px';
+					}
+				}
+					
+			}
+		}
+
+		new tabnode({
+			className:'div1',
+			unleft:true,
+			untop:true,
+			unright:true,
+			unbottom:true,
+			unresize:true
+		});
+	</script>
+</body>
+</html>

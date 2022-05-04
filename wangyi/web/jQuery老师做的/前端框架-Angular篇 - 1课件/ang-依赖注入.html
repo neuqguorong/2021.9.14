@@ -1,0 +1,18 @@
+<!doctype html> 
+<html ng-app='text'> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <script type="text/javascript" src='angular.js'></script>
+</head>
+<script type="text/javascript">
+	var app = angular.module('text',[]);
+	app.controller('cont1',function ($scope,$http,$interval){
+		alert(arguments.length)
+	})
+</script>
+<body ng-controller='cont1'>
+<input ng-model='a'>+<input ng-model='b'>=<div>{{show(a,b)}}</div>
+
+</body>
+</html>

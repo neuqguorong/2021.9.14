@@ -1,0 +1,55 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+input.active{background: red;}
+
+    </style>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+
+
+var json = {a:20,b:30,length:2};
+console.log(String.prototype.substring.call(json));
+//json.indexOf('a');
+
+//var a = ['asdasd'];
+//console.log(String.prototype..call(a));
+//console.log(Array.prototype.join.call('abcd'));
+/*
+Array.prototype.split = function(){
+
+}
+*/
+//console.log(a.split(''))
+/*
+function show(){
+	console.log(Object.prototype.toString.call(arguments));
+
+};
+show();
+*/
+/*
+function show(x,y,z){
+	console.log(x,y)
+};
+show.bind(1,2)(1);
+*/
+//console.log(show);
+	//alert.call(window,1)
+	/*
+	function show(x,y,z){
+		console.log(this+x);
+	}
+	show.call(1,2,3,4)
+	*/
+
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-1.9.1.min.js"></script>
+    <style>
+        *{margin: 0;padding: 0;list-style: none;}
+        .a{display: none;}
+        #d2{width: 100px;height: 100px;background: greenyellow;position: absolute;left: 100px;top: 200px;margin: 50px;}
+        #drag{width: 20px;height: 20px;background: black; position: absolute;right: 0;bottom: 0;cursor: se-resize;}
+        h1{width: 100%;height: 30px;background: crimson;cursor: move;position:absolute;}
+        #d4{width: 200px;height: 200px;background:rgb(73, 20, 220);transition: 5s all ease;}
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <span>LEO teacher online class</span><button class="modify">modify</button>
+            <input value=""><button class="confirm">confirm</button><button class="cancel">cancel</button>
+        </li>
+        <li>
+            <span>LEO teacher online class</span><button class="modify">modify</button>
+            <input value=""><button class="confirm">confirm</button><button class="cancel">cancel</button>
+        </li>
+        <li>
+            <span>LEO teacher online class</span><button class="modify">modify</button>
+            <input value=""><button class="confirm">confirm</button><button class="cancel">cancel</button>
+        </li>
+    </ul>
+    <button id="bt">click</button>
+    <div id="d1"></div>
+    <div id="d2">
+        <h1></h1>
+        <div id="drag"></div>
+    </div>
+    <div id="d4"></div>
+    <input id="ipt1">
+</body>
+
+<script>
+/*     $('#d2').on({
+        'mousedown':function(e){
+            var l0=e.clientX-$(this).offset().left,t0=e.clientY-$(this).offset().top;
+            //console.log($(this).offset().left,$(this).offset().top,l0,t0);
+            $(document).on({
+                'mousemove':function(e){
+                    $('#d2').css({
+                        'left':e.clientX-l0+'px',
+                        'top':e.clientY-t0+'px'
+                    })
+                },
+                'mouseup':function(){
+                    $(this).unbind();
+                }
+            })
+        },
+    }) */
+
+    $('#drag').on({
+        'mousedown':function(e){
+            var l0=e.clientX,t0=e.clientY,w0=parseFloat($('#d2').css('width')),h0=parseFloat($('#d2').css('height')),l1=e.clientX-$(this).offset().left+$('#d2').offset().left,t1=e.clientY-$(this).offset().top+$('#d2').offset().top,l4=$('#drag').offset().left,t4=$('#drag').offset().top;
+            //console.log($(this).offset().left,$(this).offset().top,l0,t0);
+            $(document).on({
+                'mousemove':function(e){
+                    var l5=e.clientX-l1,t5=e.clientY-t1;
+                    if(l5<0)l5=0;
+                    if(t5<0)t5=0;
+                    $('#drag').css({
+                        'left':l5+'px',
+                        'top':t5+'px'
+                    });
+
+                    var l3=e.clientX-l0+w0,t3=e.clientY-t0+h0;
+                    if((l3)<parseFloat($('#drag').css('width')))
+                    {
+                        l3=parseFloat($('#drag').css('width'));
+                    }
+                    if((t3)<parseFloat($('#drag').css('height')))
+                    {
+                        t3=parseFloat($('#drag').css('height'));
+                    }
+                    $('#d2').css({
+                        'width':l3+'px',
+                        'height':t3+'px'
+                    });
+                },
+                'mouseup':function(){
+                    $(this).unbind();
+                }
+            })
+        },
+    });
+
+    $('h1').on({
+        'mousedown':function(e){
+            var l0=e.clientX,t0=e.clientY,l1=e.clientX-$(this).offset().left+$('#d2').offset().left,t1=e.clientY-$(this).offset().top+$('#d2').offset().top,l2=$('#d2').offset().left,t2=$('#d2').offset().top;
+            console.log(l1,t1);
+            $(document).on({
+                'mousemove':function(e){
+                   /*  $('h1').css({
+                        'left':e.clientX-l1+'px',
+                        'top':e.clientY-t1+'px'
+                    }); */
+
+                    $('#d2').css({
+                        'left':e.clientX-l1+l2-parseFloat($('#d2').css('marginLeft'))+'px',
+                        'top':e.clientY-t1+t2-parseFloat($('#d2').css('marginTop'))+'px'
+                    });
+                    //console.log(l1,t1,e.clientX-l1+l2,e.clientY-t1+t2);
+                },
+                'mouseup':function(){
+                    $(this).unbind();
+                }
+            })
+        },
+    });
+
+    $('#d4').on({
+        'mouseover':function(){
+            $(this).css({
+                'width':'100px',
+                'height':'100px',
+                'background':'greenyellow'
+            })
+        },
+        'mouseout':function(){
+            $(this).css({
+                'background':'black'
+            })
+        }
+    })
+/*     $('input,.confirm,.cancel').toggleClass('a');
+    $('.modify').click(function(){
+        $(this).next().val($(this).prev().html());
+        $(this).siblings().add($(this)).toggleClass('a');
+        //console.log($(this).prev(),$(this).prev().html());
+    });
+
+    $('.confirm').click(function(){
+        //console.log($(this).siblings().eq(0));
+        $(this).siblings().eq(0).html($(this).prev().val());
+        $(this).siblings().add($(this)).toggleClass('a');
+    });
+    $('.cancel').click(function(){
+        //console.log($(this));
+        $(this).siblings().add($(this)).toggleClass('a');
+    })
+
+    $('#bt').click('click',function(e){
+        console.log(e.data);
+    });
+    $('#bt').click();
+
+    $('#bt').dblclick('dblclick',function(e){
+        console.log(e.data);
+    });
+
+    $('#bt').on({
+        'mousedown':function(){
+            $(this).css('background','red');
+        },
+        'mouseup':function(){
+            $(this).css('background','green');
+        },
+    })
+
+    bt.onmousemove=function(e){
+        console.log('bt.onmousemove');
+    }
+
+    $(document).mousemove(function(e){
+        $('#d1').css({
+            'width':e.clientX+'px',
+            'height':e.clientY+'px',
+            'background':'red'
+        })
+    }); */
+
+var a=b=false;
+ $('#ipt1').on({
+    'keydown':function(e){
+        if(e.key=='a')a=true;
+        if(e.key=='b')b=true;
+        if(a && b)console.log('ab');
+    },
+    'keyup':function(e){
+        if(a==true)a=false;
+        if(b==true)b=false;
+    }
+}); 
+ 
+$('body').on('click','#abc',function(){console.log('abc-jquery委托');})
+$('<span id="abc">abc</span>').appendTo('body');
+</script>
+</html>

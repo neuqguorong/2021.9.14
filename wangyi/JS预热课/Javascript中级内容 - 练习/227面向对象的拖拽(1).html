@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#d1{height: 200px;width: 200px;background: black;cursor: move;position: relative;}
+	</style>
+</head>
+<body>
+	<div id="d1"></div>
+	<script type="text/javascript">
+		function drag(dom){
+			var this1=this;
+			this.dom=dom;
+			this.dom.onmousedown=function(e){
+				this1.dragmousedown(e);
+				this1.dragmousemove(e);
+				this1.dragmouseup();
+				return false;
+			}
+		};
+
+		drag.prototype={
+			'dragmousedown':function(e){
+				//var this1=this;
+				this.ev=e||event;
+				this.l=this.ev.clientX-this.ev.offsetX;
+				this.t=this.ev.clientY-this.ev.offsetY;
+			},
+
+			'dragmousemove':function(e){
+				
+				var this1=this;
+
+				//你这边之前还包了一个函数，但是那个函数我刚刚运行的时候没有办法进入到那个函数里面去，所以我给你把那个函数去除了
+			
+					this1.ev=e||event;
+					this1.newl=this1.ev.clientX-this1.l;
+					this1.newt=this1.ev.clientY-this1.t;
+
+					this1.dom.style.left=this1.newl+'px';
+					this1.dom.style.top=this1.newt+'px';
+
+					
+			},
+
+			'dragmouseup':function(){
+				document.onmousedown=document.onmousemove=null;
+			}
+		};
+		new drag(d1);
+	</script>
+</body>
+</html>

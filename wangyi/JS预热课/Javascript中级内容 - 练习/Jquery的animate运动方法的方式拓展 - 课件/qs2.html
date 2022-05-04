@@ -1,0 +1,37 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title> 
+    <style type="text/css">
+*{margin: 0;padding: 0;}
+
+    </style>
+</head>
+<body>
+<script type="text/javascript">
+	
+this.b = 10;
+json = {
+	a:function(){
+		this.b = 20;
+	},
+	d:function(){
+		c.call(this.f);
+		this.f = 10;
+		alert(this.f+this.b);
+	},
+	f:5
+}
+//json.b = 20; json.f = 10; 30 return undefined
+function c(){
+	return this;
+};
+json.a();
+alert(json.d());
+//30 x undefined
+
+
+</script>
+</body>
+</html>

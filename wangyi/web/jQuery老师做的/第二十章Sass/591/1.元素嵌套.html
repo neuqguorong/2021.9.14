@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="1.css">
+    <style>
+        header .a p{color: green;}
+        .a{border-top: 1px solid black;border-bottom: 2px solid red;}
+        .a p{width: 100px;height: 20px;}
+        .clearfix:before,.clearfix:after{
+            content: "";
+            display: table;
+        }
+
+        .clearfix:before{clear: both;overflow: hidden;}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="a">
+            <p>1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+    </header>
+    <div class="centerdiv"></div>
+</body>
+</html>

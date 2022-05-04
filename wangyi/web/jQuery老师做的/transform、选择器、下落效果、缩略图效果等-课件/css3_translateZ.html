@@ -1,0 +1,74 @@
+<!doctype html> 
+<html> 
+<head> 
+    <meta charset="utf-8"> 
+    <title></title>
+    <style type="text/css">
+*{margin: 0;padding: 0;list-style: none;}
+#div1{
+	width: 200px;height: 200px;background:black;position: absolute;left: 50%;top: 50%;margin: -100px 0 0 -100px;
+	transform:perspective(800px);
+	-transition:1s transform ease;
+	transform-style:preserve-3d;
+}
+#div1:active{
+	transform:perspective(800px) rotateX(-90deg) rotateY(-90deg);
+}
+
+#div2{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: red;
+	-z-index:999;
+	transform:translateZ(100px);
+}
+#div3{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: green;
+	-z-index:999;
+	transform:translateZ(-100px);
+}
+#div4{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: yellow;
+	-z-index:999;
+	transform: rotateY(90deg) translateZ(-100px) ;
+}
+#div5{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: blue;
+	-z-index:999;
+	transform: rotateY(-90deg) translateZ(-100px) ;
+}
+#div6{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: pink;
+	-z-index:999;
+	transform: rotateX(-90deg) translateZ(-100px) ;
+}
+#div7{
+	width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: orange;
+	-z-index:999;
+	transform: rotateX(90deg) translateZ(-100px) ;
+}
+
+
+
+    </style> 
+</head>
+<body>
+
+<div id='div1'>
+	
+	<div id='div2'></div>
+	<div id='div3'></div>
+	<div id='div4'></div>
+	<div id='div5'></div>
+	<div id='div6'></div>
+	<div id='div7'></div>
+</div>
+<script type="text/javascript">
+	
+var a = 0;
+setInterval(function(){
+	a++;
+	div1.style.transform = 'perspective(800px) rotateX('+a+'deg) rotateY('+a+'deg)';
+},10);
+
+</script>
+</body>
+</html>

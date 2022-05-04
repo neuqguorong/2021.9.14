@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        input,div{width: 200px;height: 200px;background: #ccc;font-size: 100px; display: none;}
+        input,div:first-of-type{display: block;}
+    </style>
+</head>
+<body>
+    <input type="button" value="1">
+    <input type="button" value="2">
+    <input type="button" value="3">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</body>
+
+<script>
+/*     [...document.querySelectorAll('input')].find((x,y,z)=>{
+        x.onclick=()=>{
+            
+            [...document.querySelectorAll('input')].find((x,y,z)=>{
+                z[y].style.background='#ccc';
+            });
+            x.style.background='red';
+            [...document.querySelectorAll('div')].find((a,b,c)=>{
+                c[b].style.display='none';
+            });
+            [...document.querySelectorAll('div')].find((a,b,c)=>{
+                c[y].style.display='block';
+            });
+        }
+    }) */
+
+    [...document.querySelectorAll('input')].find((x,y,z)=>{
+        x.onclick=()=>{
+            [...document.querySelectorAll('input')].find((x,y,z)=>{
+                z[y].style.background='#ccc';
+            });
+            x.style.background='red';
+            [...document.querySelectorAll('div')].find((a,b,c)=>{
+                c[b].style.display='none';
+                c[y].style.display='block';
+            });
+        }
+    })
+</script>
+</html>

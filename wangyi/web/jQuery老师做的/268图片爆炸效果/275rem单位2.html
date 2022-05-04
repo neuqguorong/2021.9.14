@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport">
+    <style>
+        div{width: 10rem;height: 10rem;background: red;}
+    </style>
+</head>
+<body>
+    <!-- <div></div> -->
+    <img src="1.jpg" id="img1">
+</body>
+<script>
+    var min=320;
+    onload=function(){
+        //console.log(img1.offsetWidth);
+        var max=img1.offsetWidth;
+        var a=document.getElementsByTagName('meta')[3];console.log(a);
+        var bili=min/max;
+        a.content='width=device-width,initial-scale='+bili+',maximum-scale='+bili+',user-scalable=0" name="viewport"';
+    }
+    
+
+/*     document.documentElement.style.fontSize=innerWidth/16+'px';
+    onresize=function(){
+        document.documentElement.style.fontSize=innerWidth/16+'px';
+    } */
+</script>
+</html>

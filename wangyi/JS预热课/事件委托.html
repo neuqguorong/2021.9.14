@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		.div{width: 100px;height: 100px;background: black;float: left;margin-right: 20px;margin-bottom: 10px;}
+		.div1{width: 200px;height: 200px;background: black;float: left;margin-right: 20px;margin-bottom: 10px;}
+	</style>
+</head>
+<body>
+	<script type="text/javascript">
+		document.documentElement.onclick=function(){
+			/*if(event.target.nodeName='DIV')
+			{
+				event.target.style.background='red';
+			}*/
+			if(event.target.className=='div')
+			{
+				event.target.style.background='red';
+			}
+			else if(event.target.className=='div1')
+			{
+				event.target.style.background='green';
+			}
+		}
+		for(var i=0;i<10;i++)
+		{
+			var odiv=document.createElement('div');
+			if(i<5)
+			{
+				odiv.className='div';
+			}
+			else
+			{
+				odiv.className='div1';
+			}
+			document.body.appendChild(odiv);
+		}
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.js"></script>
+    <style>
+        .m{width: 100px;height: 100px;background: black;}
+        .n{width: 200px;height: 200px; border: 10px solid yellow;margin-bottom: 10px;}
+        .nn{width: 100px;height: 100px;background: black;margin-left: 100px;margin-bottom: 10px;}
+    </style>
+    
+</head>
+<body>
+    <div id="d1"></div>
+    <div class="d2"></div>
+    <div class="d2"></div>
+    <div class="d2"></div>
+    <div class="d2 d3"></div>
+    <script >
+        //$('div').className('m');//不对，jQuery不能用原生的接口
+        //document.getElementsByTagName('div')[0].addClass('m');//错误，原生不能用jQuery接口
+       /*  $('div').addClass('m');//选中div,并且给div添加类m
+        $.fn.extend({
+            'yangwenhao':function(nn){
+                console.log(this);//jQuery.fn.init(1) 返回一个数组，数组的第0个指向div //div.m
+                var this1=this;
+                $(this).addClass('n');
+                $(this).addClass(nn);
+                setTimeout(function(){
+                    this1[0].style.cssText="background:red;transition:1s;";
+                },2000)  
+                
+            }
+        });
+        $('div').yangwenhao('nn'); */
+        
+
+/*         $.extend({
+            'sunmin':function(){
+                alert(1);
+            },
+            'ssss':function(){
+                return Math.random();
+            },
+            'bodymax':function(){return {'w':innerWidth,'h':innerHeight}}
+            
+        });
+        $.sunmin();
+        alert($.ssss());
+        alert($.bodymax().w+','+$.bodymax().h); */
+
+        //jquery 转为原生的
+        /* console.log($('div'));//获取所有div,放入数组对象里
+        $('div')[0].className='m';
+        $('div')[1].className='m n'; */
+        //去掉new，类似jQuery 的样子，$().fn();
+/*         function jQueryn(arg1){alert(arg1);};
+        jQueryn.prototype={
+            'aa':function(){
+                alert(1);
+            } 
+        };
+        function $(arg){
+            return new jQueryn(arg);
+        };
+        $('div').aa(); */ // $('div').aa();  //$('#div').aa(); //$('.div').aa();
+
+        //jQuery获取元素的方法有3种，#id  .类 标签tag
+        //js获取元素的方法
+        //#id获取方法：document.getElementById('div')
+        //.类获取方法：document.getElementsByClassName('div')
+        //标签tag获取方法：document.getElementsByTagName('div');
+        
+        window.num=0;
+        function jQueryn(arg1){
+            this.arr=[];
+            switch(arg1.charAt(0)){
+                case '#':
+                    window.num=1;
+                    this.arr.push(document.getElementById(arg1.substring(1)));
+                   
+                break;
+                case '.':
+                window.num=2;
+                    var alldiv=document.getElementsByClassName(arg1.substring(1));
+                    for(var i=0;i<alldiv.length;i++)
+                        this.arr.push(alldiv[i]); //这种方法是对的
+
+                    /* var alldiv=document.getElementsByTagName('*');
+                    for(var i=0;i<alldiv.length;i++)
+                        if(alldiv[i].className.indexOf(arg1.substring(1))!=-1)
+                            this.arr.push(alldiv[i]); */
+                    break;
+                default:
+                    window.num=0;
+                    var alldiv=document.getElementsByTagName(arg1);
+                    for(var i=0;i<alldiv.length;i++)
+                        this.arr.push(alldiv[i]);
+                    break;
+            }
+            console.log(arg1);
+            console.log(this.arr);
+        };
+        jQueryn.prototype={
+            'addclass':function(arg2){
+                //this.arr[0].className=arg2;
+                for(var i=0;i<this.arr.length;i++)
+                    this.arr[i].className=arg2;
+            },
+            'width':function(arg2){
+                switch(window.num)
+                {
+                    case 1:
+                        //用正则的方法
+                        this.arr[0].style.width=/px$/.test(arg2)?arg2:arg2+'px';//用正则的方法：
+                        /* if(toString(arg2).indexOf('px')!=-1)
+                            this.arr[0].style.width=arg2;
+                        else
+                            this.arr[0].style.width=arg2+'px'; */
+                        break;
+                    case 2:
+                        for(var i=0;i<this.arr.length;i++)
+                            this.arr[i].style.width=/px$/.test(arg2)?arg2:arg2+'px';
+                        break;
+                    case 0:
+                        for(var i=0;i<this.arr.length;i++)
+                                this.arr[i].style.width=/px$/.test(arg2)?arg2:arg2+'px';
+                        break;
+                }
+            },
+            'css':function(){
+                console.log(arguments);//arguments是一个对象，arguments[0]才是传入的json对象
+                if(arguments.length==2)//传入的参数是两个，比如 width 100
+                {
+                    for(var i=0;i<this.arr.length;i++)
+                        this.arr[i].style[arguments[0]]=/px$/.test(arguments[1])?arguments[1]:arguments[1]+'px';
+                }
+                if(arguments.length==1)//传入的参数是一个json的时候
+                {
+                    for(var j in arguments[0]) //arguments[0]才是传入的json对象
+                    {
+                        for(var i=0;i<this.arr.length;i++)
+                            if(j=='background')
+                            {
+                                this.arr[i].style[j]=arguments[0][j];
+                            }
+                            else
+                            {
+                                this.arr[i].style[j]=/px$/.test(arguments[0][j])?arguments[0][j]:arguments[0][j]+'px';
+                            }                        
+                    }             
+                }
+            }
+        };
+        function $(arg){
+            return new jQueryn(arg);
+        };
+        //$('#d1').addclass('m'); 
+        //$('.d2').addclass('n'); 
+        //$('div').addclass('nn'); 
+        //$('#d1').width(100);
+        //$('#d1').width('100px');
+        //$('.d2').width('100px');
+        //$('.d2').css('width',100);
+        //$('.d2').css({'width':100,'height':100,'background':'black','marginBottom':'10px'});
+        $('div').css({'width':100,'height':100,'background':'black','marginBottom':'10px'});
+    </script>
+
+</body>
+</html>
